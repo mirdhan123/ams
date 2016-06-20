@@ -17,7 +17,6 @@
 
     <!-- Global style START -->
     <link type="text/css" rel="stylesheet" href="asset/css/materialize.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="asset/css/simplebar.css"  media="screen,projection"/>
     <style type="text/css">
         #menu {
             margin-left: 20px;
