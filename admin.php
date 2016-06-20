@@ -3,7 +3,7 @@
 session_start();
 
 //Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
-if(empty($_SESSION['id_user'])){
+if(empty($_SESSION['admin'])){
 
     //Menampilkan pesan error dan mengarahkan ke halaman login
     $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -48,50 +48,74 @@ if(empty($_SESSION['id_user'])){
             <div class="col s12">
                 <div class="card">
                     <div class="card-content">
-                        <h4>Selamat Datang Rudi</h4>
-                        <p class="description">Anda login sebagai <b>Administrator</b>. Berikut adalah statistik data yang tersimpan dalam sistem.</p>
+                        <h4>Selamat Datang <?php echo $_SESSION['nama']; ?></h4>
+                        <p class="description">Anda login sebagai 
+                        <?php 
+                            if($_SESSION['admin'] == 1 ) {
+                                echo "<strong>Administrator</strong>";
+                            } else {
+                                echo "<strong>Petugas Disposisi</strong>";
+                            }
+                        ?>
+                            . Berikut adalah statistik data yang tersimpan dalam sistem.</p>
                     </div>
                 </div>
             </div>
             <!-- Welcome Message END -->
          
+        <?php 
+            //Menghitung jumlah surat masuk
+            $query1 = mysqli_query($config, "SELECT * FROM tbl_surat_masuk");
+            $count1 = mysqli_num_rows($query1);
+
+            //Menghitung jumlah pengguna
+            $query4 = mysqli_query($config, "SELECT * FROM tbl_user");
+            $count4 = mysqli_num_rows($query4);
+
+        ?>
             <!-- Info Statistic START -->
-            <div class="col s12 m6 l3">
+            <div class="col s12 m4">
                 <div class="card cyan">
                     <div class="card-content"> 
-                        <span class="card-title white-text">Jumlah Surat Masuk</span>
-                        <h5 class="white-text">1 Surat Masuk</h5>
+                        <span class="card-title white-text"><i class="material-icons md-36">mail</i> Jumlah Surat Masuk</span>
+                        <?php echo '<h5 class="white-text">'.$count1.' Surat Masuk</h5>'; ?>
                     </div>
                 </div>
             </div>
 
-            <div class="col s12 m6 l3">
+            <div class="col s12 m4">
                 <div class="card lime darken-1">
                     <div class="card-content"> 
-                        <span class="card-title white-text">Jumlah Surat Keluar</span>
+                        <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Jumlah Surat Keluar</span>
                         <h5 class="white-text">1 Surat Keluar</h5>
                     </div>
                 </div>
             </div>
          
-            <div class="col s12 m6 l3">
+            <div class="col s12 m4">
                 <div class="card yellow darken-3">
                     <div class="card-content"> 
-                        <span class="card-title white-text">Jumlah Disposisi</span>
+                        <span class="card-title white-text"><i class="material-icons md-36">description</i> Jumlah Disposisi</span>
                         <h5 class="white-text">1 Disposisi</h5>
                     </div>
                 </div>
             </div>
 
-            <div class="col s12 m6 l3">
+        <?php
+            //Menampilkan informasi jumlah pengguna (Hanya admin)
+            if($_SESSION['admin'] == 1){?>
+            <div class="col s12 m4">
                 <div class="card deep-orange">
                     <div class="card-content"> 
-                        <span class="card-title white-text">Jumlah Pengguna</span>
-                        <h5 class="white-text">2 Pengguna</h5>
+                        <span class="card-title white-text"><i class="material-icons md-36">people</i> Jumlah Pengguna</span>
+                        <?php echo '<h5 class="white-text">'.$count4.' Pengguna</h5>'; ?>
                     </div>
                 </div>
             </div>
             <!-- Info Statistic START -->
+        <?php 
+            }
+        ?>
 
         </div>
         <!-- Row END --> 
