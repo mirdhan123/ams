@@ -2,10 +2,25 @@
 
     <!-- Menu on medium and small screen START -->
     <ul id="slide-out" class="side-nav" data-simplebar-direction="vertical">
-        <li class="no-padding fixed">
+        <li class="no-padding">
+            <div class="logo-side center blue-grey darken-3">
+                <img src="./asset/img/logo.png"/>
+                <h5 class="smk-side">SMK  Al - Husna Loceret Nganjuk</h5>
+                <p class="description-side">Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471</p>
+            </div>
+        </li>
+        <li class="no-padding blue-grey darken-4">
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a class="collapsible-header"><i class="material-icons">account_circle</i> Administrator</a>
+                    <a class="collapsible-header"><i class="material-icons">account_circle</i> 
+                    <?php
+                        if($_SESSION['admin'] == 1 ){
+                            echo "Administrator";
+                        } else {
+                            echo "Petugas Disposisi";
+                        }
+                    ?>
+                        </a>
                     <div class="collapsible-body">
                         <ul>
                             <li><a href="profil.php">Profil</a></li>
@@ -61,6 +76,8 @@
         <li><a href="klasifikasi.php"><i class="material-icons middle">bookmark</i> Referensi</a></li>
         <li><a href="klasifikasi.php"><i class="material-icons middle">people</i> Data Guru</a></li>
         <li class="no-padding">
+        <?php
+            if($_SESSION['admin'] == 1 ){?>
             <ul class="collapsible collapsible-accordion">
                 <li>
                     <a class="collapsible-header"><i class="material-icons">settings</i> Pengaturan</a>
@@ -72,6 +89,9 @@
                     </div>
                 </li>
             </ul>
+        <?php
+            }
+        ?>
         </li>
     </ul>
     <!-- Menu on medium and small screen END -->
