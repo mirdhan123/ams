@@ -2191,7 +2191,9 @@ ul.staggered-list li {
 
 @media only screen and (max-width : 992px) {
   .show-on-medium-and-down {
-    display: initial !important; } }
+    display: initial !important; } 
+  #header-instansi {display: none}
+  }
 
 @media only screen and (max-width : 600px) {
   .center-on-small-only {
@@ -6805,7 +6807,47 @@ ul.table-of-contents a {
     padding-left: 18px;
     border-left: 2px solid #ea4a4f; }
 
+::-webkit-scrollbar {
+    position: absolute;
+    min-height: 10px;
+    width: 10px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    opacity: 0;
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+    -ms-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+    background: transparent;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+}
+
+::-webkit-scrollbar-track {
+    position: absolute;
+    min-height: 10px;
+    width: 10px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    opacity: 0;
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+    -ms-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+    background: transparent;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+}
+::-webkit-scrollbar-track-piece{
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #b0bec5;
+
+}
+
 ul.side-nav {
+  overflow-y: scroll;
   position: fixed;
   width: 240px;
   left: -105%;
@@ -8075,9 +8117,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .material-icons {position: relative; vertical-align: middle;}
 .material-icons.middle {margin:0 16px 0 0  }
-.material-icons.md-red {color: #f44336;}
 
 .jarak-form {margin-top: 25px;}
 .secondary-nav {margin-top: 2%;}
 .judul {font-size: 25px;}
-.redtext {color: #f44336;}
+
+.logo-side {padding: 20px;}
+.smk-side {margin: 0 0 20px;}
+.description-side {line-height: 1.5rem; }
