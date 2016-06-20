@@ -1,4 +1,6 @@
-<?php include('include/config.php'); ?>
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -23,7 +25,7 @@
     <link type="text/css" rel="stylesheet" href="asset/css/materialize.css"  media="screen,projection"/>
     <style type="text/css">
         .container {
-            padding-top: 5%;
+            padding-top: 4.75%;
             max-width: 70%;
         }
         #logo {
@@ -41,7 +43,7 @@
         }
         #smk {
             font-size: 30px;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
         }
         #title {
             margin: 0 0 35px;
@@ -49,6 +51,14 @@
         .btn-large {
             font-size: 18px;
             margin: 0;
+        }
+        #alert-message {
+            background: #ffebee;
+            color: #f44336 ;
+            font-size: 16px;
+        }
+        .error {
+            padding: 10px;
         }
         @media only screen and (max-width: 1024px) {
             .container {
@@ -89,8 +99,61 @@
                     </div>  
                     <!-- Logo and title END -->     
 
+                    <!-- Proses Login START -->
+                    <?php
+                        include('include/config.php');
+
+                            function validate($data){
+                                $data = trim($data);
+                                $data = stripslashes($data);
+                                $data = htmlspecialchars($data);
+                                $data = mysqli_real_escape_string($data);
+                                return $data;
+                            }
+
+                        //Apabila tombol login ditekan akan mengirimkan data username dan password
+                        if(isset($_REQUEST['submit'])){
+                            $username = validate($config, $_REQUEST['username']);
+                            $password = validate($config, $_REQUEST['password']);
+
+                            //Melakukan query terhadap database
+                            $query = mysqli_query($config, "SELECT id_user, username, nama, nip FROM tbl_user WHERE username='$username' AND password=MD5('$password')");
+
+                            //Apabila data ditemukan dan ada kecocokan data akan melist data
+                            if(mysqli_num_rows($query) > 0){
+                                list($id_user, $username, $nama, $nip) = mysqli_fetch_array($query);
+
+                                //Mengeset session
+                                session_start();
+                                $_SESSION['id_user'] = $id_user;
+                                $_SESSION['username'] = $username;
+                                $_SESSION['nama'] = $nama;
+                                $_SESSION['nip'] = $nip;
+
+                                //Apabila ditemukan data yang cocok akan diarahkan ke halaman admin
+                                header("Location: ./admin.php");
+                                die(); 
+                            } else {
+
+                                //Apabila tidak ditemukan data yang cocok akan diarahkan kembali ke halaman login dan menampilkan pesan error
+                                $_SESSION['err'] = '<strong>ERROR!</strong> Username dan Password tidak ditemukan.';
+                                header("Location: ./");
+                                die();       
+                            }    
+                        } else {
+                    ?>
+                    <!-- Proses Login END -->
+
                     <!-- Form START -->
-                    <form class="col s12 m12 offset-4 offset-4" method="POST" action="proses/login.phpe" >
+                    <form class="col s12 m12 offset-4 offset-4" method="POST" action="" >
+                        <div class="row">
+                           <?php
+                                if(isset($_SESSION['err'])){
+                                    $err = $_SESSION['err'];
+                                    echo '<div id="alert-message" class="error"><i class="material-icons">error_outline</i> '.$err.'</div>';
+                                }
+                            ?>
+                        </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
                             <input id="username" type="text" class="validate" name="username" required autocomplete="off">
@@ -102,11 +165,14 @@
                             <label for="password">Password</label>
                         </div>
                         <div class="input-field col s12">
-                            <button type="submit" class="btn-large waves-effect waves-light blue-grey col s12">LOGIN</button>
+                            <button type="submit" class="btn-large waves-effect waves-light blue-grey col s12" name="submit">LOGIN</button>
                         </div>
                     </form> 
                     <!-- Form END -->
 
+                <?php
+                    }
+                ?>
                     </div>
                     <!-- Row Form START -->
 
@@ -125,12 +191,11 @@
     <!-- Javascript START -->
     <script type="text/javascript" src="asset/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="asset/js/materialize.min.js"></script>
+    <script type="text/javascript" src="asset/js/b.js"></script>
 
     <!-- jquery dropdown select -->
     <script type="text/javascript">
-        $(document).ready(function() {
-        $('select').material_select();
-        });
+        $("#alert-message").alert().delay(2500).slideUp('slow');
     </script>
     <!-- Javascript END -->
 
