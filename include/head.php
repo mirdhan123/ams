@@ -1,3 +1,4 @@
+<?php require('include/config.php'); ?>
 <head>
 
     <title>Aplikasi Manajemen Surat Menyurat</title>
