@@ -8122,6 +8122,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .secondary-nav {margin-top: 2%;}
 .judul {font-size: 25px;}
 
-.logo-side {padding: 20px; max-width: 90px; max-height: 90px;}
+.logo-side {padding: 20px;}
+.logo-side img {max-width: 90px; max-height: 90px;}
 .smk-side {margin: 0 0 20px;}
 .description-side {line-height: 1.5rem; }
