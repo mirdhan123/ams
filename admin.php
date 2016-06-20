@@ -1,11 +1,24 @@
- <!doctype html>
+<?php
+//memulai session
+session_start();
+
+//Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
+if(empty($_SESSION['id_user'])){
+
+    //Menampilkan pesan error dan mengarahkan ke halaman login
+    $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+    header("Location: ./");
+    die();
+}
+?>
+<!doctype html>
 <html lang="en">
 
 <!-- Include Head START -->
 <?php include('include/head.php'); ?>
 <!-- Include Head END -->
 
-<!-- Body STARt -->
+<!-- Body START -->
 <body>
 
 <!-- Header START -->
