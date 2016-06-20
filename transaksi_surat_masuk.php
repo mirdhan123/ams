@@ -99,7 +99,7 @@
             <!-- Delete modal trigger START -->
             <div id="hapus" class="modal">
                 <div class="modal-content">
-                    <h5 class="redtext"><i class="material-icons md-36">error_outline</i> Konfirmasi</h5>
+                    <h5 class="red-text"><i class="material-icons md-36">error_outline</i> Konfirmasi</h5>
                     <p>Apakah Anda yakin akan menghapus data ini?</p>
                 </div>
                 <div class="modal-footer">
