@@ -30,7 +30,7 @@ session_start();
         }
         #logo {
             display: block;
-           margin: -20px auto -15px;
+            margin: -20px auto -15px;
         }
         img {
             border-radius: 50%;
@@ -61,9 +61,9 @@ session_start();
         .error {
             padding: 10px;
         }
-        @media only screen and (max-width: 1024px) {
+        @media only screen and (max-width : 992px) {
             .container {
-                width: 100%;
+                width: 100% !important;
             }
         }
     </style>
