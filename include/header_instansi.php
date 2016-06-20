@@ -1,4 +1,4 @@
-<div class="col s12">
+<div class="col s12" id="header-instansi">
     <div class="card blue-grey white-text">
         <div class="card-content"><div class="circle left"><img src="asset/img/logo.png"/></div>
             <h5>SMK Al - Husna Loceret Nganjuk</h5>
