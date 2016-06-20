@@ -1,14 +1,7 @@
 <?php
-$server = "localhost";
+$host = "localhost";
 $username = "root";
 $password = "";
 $database = "ams"; 
-
-//Buat koneksi
-$conn = mysqli_connect($server, $username, $password, $database);
-
-//Cek koneksi ke database
-if (!$conn){
-    die("Gagal terhubung ke database. Periksa kembali konfigurasi." . mysqli_connect_error());
-}
+$config = mysqli_connect($host, $username, $password, $database);
 ?>
