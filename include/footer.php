@@ -1,3 +1,7 @@
+<?php
+    //Cek session login
+    if(!empty($_SESSION['admin'])){
+?>
 <!-- Footer START -->
 <footer class="page-footer white">
     <div class="container">
@@ -55,3 +59,9 @@ $('.modal-trigger').leanModal();
          
 </script>
 <!-- Javascript END -->
+<?php 
+    } else {
+        header("Location:../");
+        die();
+    }
+?>

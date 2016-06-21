@@ -1,5 +1,12 @@
 <?php
+//Memulai session
 session_start();
+
+//Apabila ditemukan session login, maka akan diarahkan ke halaman dashboard
+if(isset($_SESSION['admin'])){
+    header("Location: ./admin.php");
+    die();
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -106,6 +113,12 @@ session_start();
 
                         //Apabila tombol login ditekan akan mengirimkan data username dan password
                         if(isset($_REQUEST['submit'])){
+
+                            /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika 
+                            ada isinya proses akan dilanjutkan */  
+                            if ($_REQUEST['username'] == "" || $_REQUEST['password'] == "") {
+                                echo '<div class="red-text"><i class="material-icons">error_outline</i> Username dan Password wajib diisi.</div>';
+                            } else {
                             $username = mysqli_real_escape_string($config, $_REQUEST['username']);
                             $password = mysqli_real_escape_string($config, $_REQUEST['password']);
 
@@ -131,6 +144,7 @@ session_start();
                                 $_SESSION['err'] = '<strong>ERROR!</strong> Username dan Password tidak ditemukan.';
                                 header("Location: ./");
                                 die();       
+                            }
                             }    
                         } else {
                     ?>
@@ -139,10 +153,13 @@ session_start();
                     <!-- Form START -->
                     <form class="col s12 m12 offset-4 offset-4" method="POST" action="" >
                         <div class="row">
-                           <?php
+                            <?php
                                 if(isset($_SESSION['err'])){
                                     $err = $_SESSION['err'];
+
+                                    //Menampilkan pesan error
                                     echo '<div id="alert-message" class="error red lighten-5"><i class="material-icons">error_outline</i> '.$err.'</div>';
+                                    unset($_SESSION['err']);
                                 }
                             ?>
                         </div>

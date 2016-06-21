@@ -1,29 +1,13 @@
- <!doctype html>
-<html lang="en">
+<?php
+//Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
+if(empty($_SESSION['admin'])){
 
-<!-- Include Head BEGIN -->
-<?php include('include/head.php'); ?>
-<!-- Include Head END -->
-
-<!-- Body BEGIN -->
-<body>
-
-<!-- Header START -->
-<header>
-
-<!-- Include Navigation START -->
-<?php include('include/menu.php'); ?>
-<!-- Include Navigation END --> 
-
-</header>
-<!-- Header END --> 
-
-<!-- Main START -->
-<main>
-
-    <!-- container START --> 
-    <div class="container">
-
+    //Menampilkan pesan error dan mengarahkan ke halaman login
+    $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+    header("Location: ./");
+    die();
+}
+?>      
         <!-- Row Start -->
         <div class="row">
             <!-- Secondary Nav START -->
@@ -124,18 +108,3 @@
         </ul>
         <!-- Pagination END -->
     <br/>
-
-    </div>
-    <!-- container END --> 
-
-</main>
-<!-- Main END --> 
-
-<!-- Include Footer START -->
-<?php include('include/footer.php'); ?>
-<!-- Include Footer END -->
-
-</body>
-<!-- Body END -->
-
-</html>

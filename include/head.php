@@ -1,3 +1,7 @@
+<?php
+    //Cek session login
+    if(!empty($_SESSION['admin'])){
+?>
 <?php require('include/config.php'); ?>
 <head>
 
@@ -40,3 +44,9 @@
     <!-- Global style END -->
 
 </head>
+<?php 
+    } else {
+        header("Location:../");
+        die();
+    }
+?>

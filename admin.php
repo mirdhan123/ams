@@ -1,5 +1,5 @@
 <?php
-//memulai session
+//Memulai session
 session_start();
 
 //Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
@@ -9,7 +9,7 @@ if(empty($_SESSION['admin'])){
     $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
     header("Location: ./");
     die();
-}
+} else {
 ?>
 <!doctype html>
 <html lang="en">
@@ -37,6 +37,52 @@ if(empty($_SESSION['admin'])){
     <!-- container START --> 
     <div class="container">
 
+    <?php 
+        if(isset($_REQUEST['page'])){
+            
+            $page = $_REQUEST['page'];
+
+            switch ($page) {
+                case 'tsm':
+                    include "transaksi_surat_masuk.php";
+                    break;
+                case 'tsk':
+                    include "transaksi_surat_keluar.php";
+                    break;
+                case 'asm':
+                    include "agenda_surat_masuk.php";
+                    break;
+                case 'ask':
+                    include "agenda_surat_keluar.php";
+                    break;
+                case 'bse':
+                    include "buat_surat_edaran.php";
+                    break;
+                case 'bst':
+                    include "buat_surat_tugas.php";
+                    break;
+                case 'bskt':
+                    include "buat_surat_keterangan.php";
+                    break;
+                case 'bskp':
+                    include "buat_surat_keputusan.php";
+                    break;
+                case 'ref':
+                    include "referensi.php";
+                    break;
+                case 'dg':
+                    include "data_guru.php";
+                    break;
+                case 'set':
+                    include "pengaturan.php";
+                    break;
+                case 'pro':
+                    include "profil.php";
+                    break;
+            }
+
+        } else {
+    ?>
         <!-- Row START --> 
         <div class="row">
 
@@ -71,7 +117,6 @@ if(empty($_SESSION['admin'])){
             //Menghitung jumlah pengguna
             $query4 = mysqli_query($config, "SELECT * FROM tbl_user");
             $count4 = mysqli_num_rows($query4);
-
         ?>
             <!-- Info Statistic START -->
             <div class="col s12 m4">
@@ -119,7 +164,9 @@ if(empty($_SESSION['admin'])){
 
         </div>
         <!-- Row END --> 
-
+    <?php
+        }
+    ?>
     </div>
     <!-- container END --> 
 
@@ -134,3 +181,6 @@ if(empty($_SESSION['admin'])){
 <!-- Body END -->
 
 </html>
+<?php
+    }
+?>
