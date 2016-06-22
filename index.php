@@ -11,6 +11,7 @@ if(isset($_SESSION['admin'])){
 <!doctype html>
 <html lang="en">
 
+<!-- Head START -->
 <head>
 
     <title>Aplikasi Manajemen Surat Menyurat</title>
