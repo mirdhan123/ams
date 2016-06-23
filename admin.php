@@ -111,12 +111,16 @@ if(empty($_SESSION['admin'])){
          
         <?php 
             //Menghitung jumlah surat masuk
-            $query1 = mysqli_query($config, "SELECT * FROM tbl_surat_masuk");
-            $count1 = mysqli_num_rows($query1);
+            $count1 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk"));
+
+            //Menghitung jumlah surat masuk
+            $count2 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_keluar"));
+
+            //Menghitung jumlah surat masuk
+            $count3 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_disposisi"));
 
             //Menghitung jumlah pengguna
-            $query4 = mysqli_query($config, "SELECT * FROM tbl_user");
-            $count4 = mysqli_num_rows($query4);
+            $count4 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
         ?>
             <!-- Info Statistic START -->
             <div class="col s12 m4">
@@ -132,7 +136,7 @@ if(empty($_SESSION['admin'])){
                 <div class="card lime darken-1">
                     <div class="card-content"> 
                         <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Jumlah Surat Keluar</span>
-                        <h5 class="white-text">1 Surat Keluar</h5>
+                        <?php echo '<h5 class="white-text">'.$count2.' Surat Keluar</h5>'; ?>
                     </div>
                 </div>
             </div>
@@ -141,7 +145,7 @@ if(empty($_SESSION['admin'])){
                 <div class="card yellow darken-3">
                     <div class="card-content"> 
                         <span class="card-title white-text"><i class="material-icons md-36">description</i> Jumlah Disposisi</span>
-                        <h5 class="white-text">1 Disposisi</h5>
+                        <?php echo '<h5 class="white-text">'.$count3.' Disposisi</h5>'; ?>
                     </div>
                 </div>
             </div>

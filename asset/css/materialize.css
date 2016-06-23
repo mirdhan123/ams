@@ -2235,7 +2235,7 @@ thead {
   border-bottom: 1px solid #d0d0d0; }
 
 td, th {
-  padding: 8px 5px;
+  padding: 8px 15px;
   display: table-cell;
   text-align: left;
   vertical-align: middle;
@@ -8126,3 +8126,21 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .logo-side img {max-width: 90px; max-height: 90px;}
 .smk-side {margin: 0 0 20px;}
 .description-side {line-height: 1.5rem; }
+
+
+#alert-message {
+  border-radius: 3px;
+  font-size: 16px;
+  margin-bottom: -15px;
+}
+.error {
+  color: #f44336 ;
+  padding: 10px;
+}
+.success {
+  color: #4caf50;
+  font-size: 18px !important;
+  margin: -25px 0 -10px !important;
+  padding: 15px;
+}
+.bts {margin-bottom: -50px !important}

@@ -107,7 +107,6 @@ if(isset($_SESSION['admin'])){
                     </div>  
                     <!-- Logo and title END -->     
 
-                    <!-- Proses Login -->
                     <?php
                         require('include/config.php');
 
@@ -148,7 +147,6 @@ if(isset($_SESSION['admin'])){
                             }    
                         } else {
                     ?>
-                    <!-- Proses Login END -->
 
                     <!-- Form START -->
                     <form class="col s12 m12 offset-4 offset-4" method="POST" action="" >

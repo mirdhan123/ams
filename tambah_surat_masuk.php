@@ -1,127 +1,119 @@
- <!doctype html>
-<html lang="en">
+<?php
+//Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
+if(empty($_SESSION['admin'])){
 
-<!-- Include Head BEGIN -->
-<?php include('include/head.php'); ?>
-<!-- Include Head END -->
+    //Menampilkan pesan error dan mengarahkan ke halaman login
+    $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+    header("Location: ./");
+    die();
+} else {
+    if(isset($_REQUEST['submit'])) {
+        $no_agenda = $_REQUEST['no_agenda'];
+        $no_surat = $_REQUEST['no_surat'];
+        $asal_surat = $_REQUEST['asal_surat'];
+        $isi = $_REQUEST['isi'];
+        $kode = $_REQUEST['kode'];
+        $indeks = $_REQUEST['indeks'];
+        $tgl_surat = $_REQUEST['tgl_surat'];
+        $keterangan = $_REQUEST['keterangan'];
 
-<!-- Body BEGIN -->
-<body>
+        $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
+            tgl_diterima,keterangan) 
+            VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan')");
 
-<!-- Header START -->
-<header>
-
-<!-- Include Navigation START -->
-<?php include('include/menu.php'); ?>
-<!-- Include Navigation END --> 
-
-</header>
-<!-- Header END --> 
-
-<!-- Main START -->
-<main>
-
-    <!-- container START --> 
-    <div class="container">
-
-        <!-- Row Start -->
-        <div class="row">
-            <!-- Secondary Nav START -->
-            <div class="col s12">
-                <nav class="secondary-nav">
-                    <div class="nav-wrapper blue-grey darken-1">
-                        <ul class="left">
-                            <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">mail</i> Tambah Data Surat Masuk</a></li>
-                        </ul>
-                    </div>
-                </nav>
+        if($query > 0){
+            header("Location: ./admin.php?page=tsm");
+            die();
+        } else {
+            echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Periksa penulisan querynya.</div>';
+        }
+    } else {
+?>
+<!-- Row Start -->
+<div class="row">
+    <!-- Secondary Nav START -->
+    <div class="col s12">
+        <nav class="secondary-nav">
+            <div class="nav-wrapper blue-grey darken-1">
+                <ul class="left">
+                    <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">mail</i> Tambah Data Surat Masuk</a></li>
+                </ul>
             </div>
-            <!-- Secondary Nav END -->    
-        </div>
-        <!-- Row END -->
-
-        <!-- Row form Start -->
-        <div class="row jarak-form">
-
-            <!-- Form START -->
-            <form class="col s12" method="POST" action="ceklogin.php">
-
-                <!-- Row in form START -->
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input id="nomor_agenda" type="number" class="validate" required>
-                        <label for="nomor_agenda">Nomor Agenda</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="kode_klasifikasi" type="text" class="validate" required>
-                        <label for="kode_klasifikasi">Kode Klasifikasi</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="asal_surat" type="text" class="validate" required>
-                        <label for="asal_surat">Asal Surat</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="indeks_berkas" type="text" class="validate" required>
-                        <label for="indeks_berkas">Indeks Berkas</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="nomor_surat" type="text" class="validate" required>
-                        <label for="nomor_surat">Nomor Surat</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="tanggal_surat" type="date" class="datepicker" required>
-                        <label for="tanggal_surat">Tanggal Surat</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <textarea id="isi_ringkas" class="materialize-textarea" required></textarea>
-                        <label for="isi_ringkas">Isi Ringkas</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <form method="post" action="">
-                            <div class="file-field input-field">
-                                <div class="btn waves-effect waves-light">
-                                    <span>File</span>
-                                    <input type="file">
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Upload file scan surat masuk">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="keterangan" type="text" class="validate" required>
-                        <label for="keterangan">Keterangan</label>
-                    </div>                      
-                </div>
-                <!-- Row in form END -->
-
-                <div class="row">
-                    <div class="col 6">
-                    <button type="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
-                    </div>
-                    <div class="col 6">
-                    <button type="reset" onclick="window.history.back();" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></button>
-                    </div>
-                </div>
-
-            </form>
-            <!-- Form END -->
-
-        </div>
-        <!-- Row form END -->
-
+        </nav>
     </div>
-    <!-- container END --> 
+    <!-- Secondary Nav END -->    
+</div>
+<!-- Row END -->
 
-</main>
-<!-- Main END --> 
+<!-- Row form Start -->
+<div class="row jarak-form">
 
-<!-- Include Footer START -->
-<?php include('include/footer.php'); ?>
-<!-- Include Footer END -->
+    <!-- Form START -->
+    <form class="col s12" method="POST" action="?page=tsm&aksi=add">
 
-</body>
-<!-- Body END -->
+        <!-- Row in form START -->
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="no_agenda" type="number" class="validate" name="no_agenda" required>
+                <label for="no_agenda">Nomor Agenda</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="kode" type="text" class="validate" name="kode" required>
+                <label for="kode">Kode Klasifikasi</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="asal_surat" type="text" class="validate" name="asal_surat" required>
+                <label for="asal_surat">Asal Surat</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="indeks" type="text" class="validate" name="indeks" required>
+                <label for="indeks">Indeks Berkas</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="no_surat" type="text" class="validate" name="no_surat" required>
+                <label for="no_surat">Nomor Surat</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="tgl_surat" type="date" class="datepicker" name="tgl_surat" required>
+                <label for="tgl_surat">Tanggal Surat</label>
+            </div>
+            <div class="input-field col s6">
+                <textarea id="isi" class="materialize-textarea" name="isi" required></textarea>
+                <label for="isi">Isi Ringkas</label>
+            </div><!--
+            <div class="input-field col s6">
+                <div class="file-field input-field">
+                    <div class="btn waves-effect waves-light">
+                        <span>File</span>
+                        <input type="file" name="file" >
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload file scan surat keluar">
+                    </div>
+                </div>
+            </div> -->
+            <div class="input-field col s6">
+                <input id="keterangan" type="text" class="validate" name="keterangan" required>
+                <label for="keterangan">Keterangan</label>
+            </div>                      
+        </div>
+        <!-- Row in form END -->
 
-</html>
+        <div class="row">
+            <div class="col 6">
+                <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
+            </div>
+            <div class="col 6">
+                <button type="reset" onclick="window.history.back();" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></button>
+            </div>
+        </div>
+
+    </form>
+    <!-- Form END -->
+
+</div>
+<!-- Row form END -->
+<?php
+}
+}
+?>
