@@ -65,11 +65,13 @@ echo '<!-- Row Start -->
 <?php
     if (isset($_GET['message'])) {
         if($_GET['message'] == "1"){
-            echo '<script language="javascript">alert("Data berhasil ditambahkan");</script>';
+            echo '<script language="javascript">alert("Data berhasil ditambahkan!");</script>';
         } elseif ($_GET['message'] == "2"){
-            echo '<script language="javascript">alert("Data berhasil diupdate");</script>';
+            echo '<script language="javascript">alert("Data berhasil diupdate!");</script>';
         } elseif ($_GET['message'] == "3"){
-            echo '<script language="javascript">alert("Data berhasil dihapus");</script>';
+            echo '<script language="javascript">alert("Data berhasil dihapus!");</script>';
+        } else {
+            echo '<script language="javascript">alert("UPSS! Operasi Gagal");</script>';
         }
     }
 ?>

@@ -23,6 +23,15 @@ if(empty($_SESSION['admin'])){
         $tgl_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['tgl_surat'])));
         $keterangan = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['keterangan'])));
 
+        //Cek apakah nomor agenda dan nomor surat sudah ada di database
+        $cek = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_agenda='$no_agenda', no_surat='$no_surat'");
+        $cekdata = mysqli_num_rows($cek);
+
+        if($cekdata > 0){
+            header("Location: ./admin.php?page=tsm&aksi=add&message=4");
+            die();
+        } else {
+
         $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
             tgl_diterima,keterangan) 
             VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan')");
@@ -34,6 +43,7 @@ if(empty($_SESSION['admin'])){
             echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Periksa penulisan querynya.</div>';
         }
     }
+}
     } else {
 ?>
 <!-- Row Start -->
@@ -54,7 +64,13 @@ if(empty($_SESSION['admin'])){
 
 <!-- Row form Start -->
 <div class="row jarak-form">
-
+<?php
+    if (isset($_GET['message'])) {
+        if($_GET['message'] == "4"){
+            echo '<script language="javascript">alert("UPSS! Terjadi duplikasi data NOMOR AGENDA dan NOMOR SURAT.");</script>';
+        }
+    }
+?>
     <!-- Form START -->
     <form class="col s12" method="POST" action="?page=tsm&aksi=add">
 
@@ -111,7 +127,7 @@ if(empty($_SESSION['admin'])){
                 <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
             </div>
             <div class="col 6">
-                <button type="reset" onclick="window.history.back();" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></button>
+                <a href="?page=tsm" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
             </div>
         </div>
 
