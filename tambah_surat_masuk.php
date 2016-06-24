@@ -20,14 +20,13 @@ if(empty($_SESSION['admin'])){
         $isi = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['isi'])));
         $kode = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['kode'])));
         $indeks = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['indeks'])));
-        $tgl_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['tgl_surat'])));
+        $tgl_surat = date('Y-m-d', strtotime(trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['tgl_surat'])))));
         $keterangan = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['keterangan'])));
 
         //Cek apakah nomor agenda dan nomor surat sudah ada di database
-        $cek = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_agenda='$no_agenda', no_surat='$no_surat'");
-        $cekdata = mysqli_num_rows($cek);
+        $cek = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_surat='$no_surat'");
 
-        if($cekdata > 0){
+        if(mysqli_num_rows($cek) > 0){
             header("Location: ./admin.php?page=tsm&aksi=add&message=4");
             die();
         } else {
@@ -36,7 +35,7 @@ if(empty($_SESSION['admin'])){
             tgl_diterima,keterangan) 
             VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan')");
 
-        if($query > 0){
+        if($query == true){
             header("Location: ./admin.php?page=tsm&message=1");
             die();
         } else {
@@ -67,7 +66,7 @@ if(empty($_SESSION['admin'])){
 <?php
     if (isset($_GET['message'])) {
         if($_GET['message'] == "4"){
-            echo '<script language="javascript">alert("UPSS! Terjadi duplikasi data NOMOR AGENDA dan NOMOR SURAT.");</script>';
+            echo '<script language="javascript">alert("ERROR! Terjadi duplikasi data NOMOR SURAT.");</script>';
         }
     }
 ?>
@@ -101,7 +100,7 @@ if(empty($_SESSION['admin'])){
                 <label for="tgl_surat">Tanggal Surat</label>
             </div>
             <div class="input-field col s6">
-                <textarea id="isi" class="materialize-textarea" name="isi"></textarea>
+                <textarea id="isi" class="materialize-textarea validate" name="isi"></textarea>
                 <label for="isi">Isi Ringkas</label>
             </div><!--
             <div class="input-field col s6">

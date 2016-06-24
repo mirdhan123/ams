@@ -27,8 +27,18 @@ if(empty($_SESSION['admin'])){
                 break;
         }
     } else { 
+
+        $limit = 5;
+        $pg = @$_GET['pg'];
+        if(empty($pg)){
+            $posisi = 0;
+            $pg = 1;
+        } else {    
+            $posisi = ($pg - 1) * $limit;
+        }
+
         //Melakukan query ke tabel surat masuk
-        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC");
+        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC LIMIT $posisi, $limit");
        
 echo '<!-- Row Start -->
 <div class="row">
@@ -65,13 +75,13 @@ echo '<!-- Row Start -->
 <?php
     if (isset($_GET['message'])) {
         if($_GET['message'] == "1"){
-            echo '<script language="javascript">alert("Data berhasil ditambahkan!");</script>';
+            echo '<script language="javascript">alert("SUKSES! Data berhasil ditambahkan.");</script>';
         } elseif ($_GET['message'] == "2"){
-            echo '<script language="javascript">alert("Data berhasil diupdate!");</script>';
+            echo '<script language="javascript">alert("SUKSES! Data berhasil diupdate.");</script>';
         } elseif ($_GET['message'] == "3"){
-            echo '<script language="javascript">alert("Data berhasil dihapus!");</script>';
+            echo '<script language="javascript">alert("SUKSES! Data berhasil dihapus.");</script>';
         } else {
-            echo '<script language="javascript">alert("UPSS! Operasi Gagal");</script>';
+            echo '<script language="javascript">alert("ERROR! Operasi Gagal.");</script>';
         }
     }
 ?>
@@ -94,13 +104,14 @@ echo '<!-- Row form Start -->
 
             <tbody>
                 <tr>';
- if (mysqli_num_rows($query) > 0) {
+
+        if (mysqli_num_rows($query) > 0) {
             $no = 1;
             while($row = mysqli_fetch_assoc($query)) { 
               echo '<td>'.$row['no_agenda'].'/'.$row['kode'].'</td>
                     <td>'.$row['isi'].'<br/><br/><strong>File:</strong></td>
                     <td>'.$row['asal_surat'].'</td>
-                    <td>'.$row['no_surat'].'<br/>'.date('d M Y ', strtotime($row['tgl_surat'])).'</td>
+                    <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                     <td>
                         <a class="dropdown-button btn deep-orange" href="#" data-activates="dropdown1">Aksi</a>
                         <ul id="dropdown1" class="dropdown-content">
@@ -120,9 +131,24 @@ echo '<!-- Row form Start -->
   echo '</table>
     </div>
 
-
 </div>
 <!-- Row form END -->';
-}
+
+        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk");
+        $jmldata = mysqli_num_rows($query);
+        $jmlhalaman = ceil($jmldata/$limit);
+
+        echo '<!-- Pagination START -->
+        <ul class="pagination">';
+
+        for($i=1; $i<=$jmlhalaman; $i++)
+            if($i != $pg){
+                echo'<li class="waves-effect"><a href="?page=tsm&pg='.$i.'">'.$i.'</a></li>';
+        } else {
+            echo $i;
+        } echo'
+        </ul>
+        <!-- Pagination END -->';
+    }
 }
 ?>

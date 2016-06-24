@@ -38,37 +38,37 @@ if(empty($_SESSION['admin'])){
 				                <tr>
 				                    <td width="13%">No. Agenda</td>
 				                    <td width="1%">:</td>
-				                    <td width="86%"><b>'.$row['no_agenda'].'</b></td>
+				                    <td width="86%">'.$row['no_agenda'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">Kode Klasifikasi</td>
 				                    <td width="1%">:</td>			                    
-				                    <td width="86%"><b>'.$row['kode'].'</b></td>
+				                    <td width="86%">'.$row['kode'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">No. Isi</td>
 				                    <td width="1%">:</td>				                    
-				                    <td width="86%"><b>'.$row['isi'].'</b></td>
+				                    <td width="86%">'.$row['isi'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">File</td>
 				                    <td width="1%">:</td>			                    
-				                    <td width="86%"><b>file</b></td>
+				                    <td width="86%">file</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">Asal Surat</td>
 				                    <td width="1%">:</td>			                    
-				                    <td width="86%"><b>'.$row['asal_surat'].'</b></td>
+				                    <td width="86%">'.$row['asal_surat'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">No. Surat</td>
 				                    <td width="1%">:</td>			                   
-				                    <td width="86%"><b>'.$row['no_surat'].'</b></td>
+				                    <td width="86%">'.$row['no_surat'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">Tanggal Surat</td>
 				                    <td width="1%">:</td>			                    
-				                    <td width="86%"><b>'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</b></td>
+				                    <td width="86%">'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</td>
 				                </tr>
 				            </tbody>
 				   		</table>
@@ -81,7 +81,7 @@ if(empty($_SESSION['admin'])){
 		                <a href="?page=tsm&aksi=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
 		            </div>
 		            <div class="col 6">
-		                <a type="reset" onclick="window.history.back();" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+		                <a href="?page=tsm" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
 		            </div>
 		        </div>';
 			}
