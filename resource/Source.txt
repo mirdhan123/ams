@@ -2,3 +2,4 @@ Aplikasi PHP Bayar
 www.w3school.com
 www.materializecss.com
 webdinamis samsul
+http://stackoverflow.com/questions/1610455/how-do-you-display-a-javascript-alert-from-php
