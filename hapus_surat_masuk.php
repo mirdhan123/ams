@@ -11,7 +11,7 @@ if(empty($_SESSION['admin'])){
 		$id_surat = $_REQUEST['id_surat'];
 		$query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 		if($query > 0){
-			header("Location: ./admin.php?page=tsm&message=success");
+			header("Location: ./admin.php?page=tsm&message=3");
 			die();
 		} else {
 			echo '<br/><div id="alert-message" class="error red lighten-5"><i class="material-icons">error_outline</i> ERROR! Periksa penulisan querynya.</div>';

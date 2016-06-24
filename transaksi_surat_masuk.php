@@ -59,15 +59,23 @@ echo '<!-- Row Start -->
     </div>
     <!-- Secondary Nav END -->
 </div>
-<!-- Row END -->';?>
-<?php
-    if(isset($_REQUEST['message'] = 1)){
-        echo '<script language="javascript">alert("Berhasil")</script>';
-    }
+<!-- Row END -->';
 ?>
 
 <?php
-echo'<!-- Row form Start -->
+    if (isset($_GET['message'])) {
+        if($_GET['message'] == "1"){
+            echo '<script language="javascript">alert("Data berhasil ditambahkan");</script>';
+        } elseif ($_GET['message'] == "2"){
+            echo '<script language="javascript">alert("Data berhasil diupdate");</script>';
+        } elseif ($_GET['message'] == "3"){
+            echo '<script language="javascript">alert("Data berhasil dihapus");</script>';
+        }
+    }
+?>
+
+<?php 
+echo '<!-- Row form Start -->
 <div class="row jarak-form">
 
     <div class="col m12">
@@ -116,4 +124,3 @@ echo'<!-- Row form Start -->
 }
 }
 ?>
-    

@@ -52,7 +52,7 @@ $('select').material_select();
 });
 
 //jquery alert message
-$("#alert-message").alert().delay(3000).slideUp('slow');
+$("#alert-message").alert().fade(3000).slideUp('slow');
          
 </script>
 <!-- Javascript END -->

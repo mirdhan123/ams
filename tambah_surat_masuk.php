@@ -28,7 +28,7 @@ if(empty($_SESSION['admin'])){
             VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan')");
 
         if($query > 0){
-            header("Location: ./admin.php?page=tsm");
+            header("Location: ./admin.php?page=tsm&message=1");
             die();
         } else {
             echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Periksa penulisan querynya.</div>';

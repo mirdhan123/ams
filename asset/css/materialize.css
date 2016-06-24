@@ -8127,6 +8127,8 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 #alert-message {
   border-radius: 3px;
+  -webkit-border-radius:3px;
+  -moz-border-radius: 3px;
   font-size: 16px;
   margin-bottom: -15px;
 }
@@ -8134,11 +8136,19 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   color: #f44336 ;
   padding: 10px;
 }
+.alert-message {
+  font-size: 16px;
+  margin-bottom: -15px;
+}
 .success {
   color: #4caf50;
+  -webkit-border-radius:3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
   font-size: 18px !important;
   margin: -25px 0 -10px !important;
   padding: 15px;
+  height: 
 }
 .confir {
   background: #ffebee;
