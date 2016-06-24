@@ -1,21 +1,27 @@
 <?php
-//Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
 if(empty($_SESSION['admin'])){
 
-    //Menampilkan pesan error dan mengarahkan ke halaman login
     $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
     header("Location: ./");
     die();
 } else {
     if(isset($_REQUEST['submit'])) {
-        $no_agenda = $_REQUEST['no_agenda'];
-        $no_surat = $_REQUEST['no_surat'];
-        $asal_surat = $_REQUEST['asal_surat'];
-        $isi = $_REQUEST['isi'];
-        $kode = $_REQUEST['kode'];
-        $indeks = $_REQUEST['indeks'];
-        $tgl_surat = $_REQUEST['tgl_surat'];
-        $keterangan = $_REQUEST['keterangan'];
+
+        /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika 
+        ada isinya proses akan dilanjutkan */  
+        if ($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == "" 
+            || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == "") {
+            echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Form wajib diisi.</div>';
+        } else {
+
+        $no_agenda = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_agenda'])));
+        $no_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_surat'])));
+        $asal_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['asal_surat'])));
+        $isi = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['isi'])));
+        $kode = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['kode'])));
+        $indeks = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['indeks'])));
+        $tgl_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['tgl_surat'])));
+        $keterangan = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['keterangan'])));
 
         $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
             tgl_diterima,keterangan) 
@@ -27,6 +33,7 @@ if(empty($_SESSION['admin'])){
         } else {
             echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Periksa penulisan querynya.</div>';
         }
+    }
     } else {
 ?>
 <!-- Row Start -->
@@ -54,31 +61,31 @@ if(empty($_SESSION['admin'])){
         <!-- Row in form START -->
         <div class="row">
             <div class="input-field col s6">
-                <input id="no_agenda" type="number" class="validate" name="no_agenda" required>
+                <input id="no_agenda" type="number" class="validate" name="no_agenda">
                 <label for="no_agenda">Nomor Agenda</label>
             </div>
             <div class="input-field col s6">
-                <input id="kode" type="text" class="validate" name="kode" required>
+                <input id="kode" type="text" class="validate" name="kode">
                 <label for="kode">Kode Klasifikasi</label>
             </div>
             <div class="input-field col s6">
-                <input id="asal_surat" type="text" class="validate" name="asal_surat" required>
+                <input id="asal_surat" type="text" class="validate" name="asal_surat">
                 <label for="asal_surat">Asal Surat</label>
             </div>
             <div class="input-field col s6">
-                <input id="indeks" type="text" class="validate" name="indeks" required>
+                <input id="indeks" type="text" class="validate" name="indeks">
                 <label for="indeks">Indeks Berkas</label>
             </div>
             <div class="input-field col s6">
-                <input id="no_surat" type="text" class="validate" name="no_surat" required>
+                <input id="no_surat" type="text" class="validate" name="no_surat">
                 <label for="no_surat">Nomor Surat</label>
             </div>
             <div class="input-field col s6">
-                <input id="tgl_surat" type="date" class="datepicker" name="tgl_surat" required>
+                <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker">
                 <label for="tgl_surat">Tanggal Surat</label>
             </div>
             <div class="input-field col s6">
-                <textarea id="isi" class="materialize-textarea" name="isi" required></textarea>
+                <textarea id="isi" class="materialize-textarea" name="isi"></textarea>
                 <label for="isi">Isi Ringkas</label>
             </div><!--
             <div class="input-field col s6">
@@ -93,7 +100,7 @@ if(empty($_SESSION['admin'])){
                 </div>
             </div> -->
             <div class="input-field col s6">
-                <input id="keterangan" type="text" class="validate" name="keterangan" required>
+                <input id="keterangan" type="text" class="validate" name="keterangan">
                 <label for="keterangan">Keterangan</label>
             </div>                      
         </div>

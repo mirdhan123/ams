@@ -59,9 +59,15 @@ echo '<!-- Row Start -->
     </div>
     <!-- Secondary Nav END -->
 </div>
-<!-- Row END -->
+<!-- Row END -->';?>
+<?php
+    if(isset($_REQUEST['message'] = 1)){
+        echo '<script language="javascript">alert("Berhasil")</script>';
+    }
+?>
 
-<!-- Row form Start -->
+<?php
+echo'<!-- Row form Start -->
 <div class="row jarak-form">
 
     <div class="col m12">

@@ -2239,9 +2239,6 @@ td, th {
   display: table-cell;
   text-align: left;
   vertical-align: middle;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
   background-clip: padding-box; }
 
 @media only screen and (max-width : 992px) {
@@ -8142,5 +8139,14 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   font-size: 18px !important;
   margin: -25px 0 -10px !important;
   padding: 15px;
+}
+.confir {
+  background: #ffebee;
+  -webkit-border-radius: px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 18px;
+  padding: 10px;
+  margin-bottom: 15px;
 }
 .bts {margin-bottom: -50px !important}

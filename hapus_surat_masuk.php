@@ -11,7 +11,7 @@ if(empty($_SESSION['admin'])){
 		$id_surat = $_REQUEST['id_surat'];
 		$query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 		if($query > 0){
-			header("Location: ./admin.php?page=tsm");
+			header("Location: ./admin.php?page=tsm&message=success");
 			die();
 		} else {
 			echo '<br/><div id="alert-message" class="error red lighten-5"><i class="material-icons">error_outline</i> ERROR! Periksa penulisan querynya.</div>';
@@ -28,42 +28,47 @@ if(empty($_SESSION['admin'])){
 				<div class="row jarak-form">
 
 				    <div class="col m12">
-				        <table class="responsive bordered">
-				            <thead class="red lighten-5 red-text " id="head">
-				                <tr>
-				                    <th colspan="2"><h5><i class="material-icons md-36">error_outline</i> 
-				                    Apakah Anda yakin akan menghapus data ini?</h5></th>
-				                </tr>
+				        <table class="responsive">
+				            <thead class="red lighten-5 red-text">
+				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i> 
+				                Apakah Anda yakin akan menghapus data ini?</div>
 				            </thead>
 
 				            <tbody>
 				                <tr>
-				                    <td width="15%">No. Agenda</td>
-				                    <td><b>'.$row['no_agenda'].'</b></td>
+				                    <td width="13%">No. Agenda</td>
+				                    <td width="1%">:</td>
+				                    <td width="86%"><b>'.$row['no_agenda'].'</b></td>
 				                </tr>
 				                <tr>
-				                    <td width="15%">Kode Klasifikasi</td>
-				                    <td><b>'.$row['kode'].'</b></td>
+				                    <td width="13%">Kode Klasifikasi</td>
+				                    <td width="1%">:</td>			                    
+				                    <td width="86%"><b>'.$row['kode'].'</b></td>
 				                </tr>
 				                <tr>
-				                    <td width="15%">No. Isi</td>
-				                    <td><b>'.$row['isi'].'</b></td>
+				                    <td width="13%">No. Isi</td>
+				                    <td width="1%">:</td>				                    
+				                    <td width="86%"><b>'.$row['isi'].'</b></td>
 				                </tr>
 				                <tr>
-				                    <td width="15%">File</td>
-				                    <td><b>'.$row['file'].'</b></td>
+				                    <td width="13%">File</td>
+				                    <td width="1%">:</td>			                    
+				                    <td width="86%"><b>file</b></td>
 				                </tr>
 				                <tr>
-				                    <td width="15%">Asal Surat</td>
-				                    <td><b>'.$row['asal_surat'].'</b></td>
+				                    <td width="13%">Asal Surat</td>
+				                    <td width="1%">:</td>			                    
+				                    <td width="86%"><b>'.$row['asal_surat'].'</b></td>
 				                </tr>
 				                <tr>
-				                    <td width="15%">No. Surat</td>
-				                    <td><b>'.$row['no_surat'].'</b></td>
+				                    <td width="13%">No. Surat</td>
+				                    <td width="1%">:</td>			                   
+				                    <td width="86%"><b>'.$row['no_surat'].'</b></td>
 				                </tr>
 				                <tr>
-				                    <td width="15%">Tanggal Surat</td>
-				                    <td><b>'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</b></td>
+				                    <td width="13%">Tanggal Surat</td>
+				                    <td width="1%">:</td>			                    
+				                    <td width="86%"><b>'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</b></td>
 				                </tr>
 				            </tbody>
 				   		</table>

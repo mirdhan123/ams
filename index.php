@@ -68,6 +68,10 @@ if(isset($_SESSION['admin'])){
         .error {
             padding: 10px;
         }
+        .upss {
+            margin-left: 20px;
+            font-size: 18px;
+        }
         @media only screen and (max-width : 992px) {
             .container {
                 width: 100% !important;
@@ -116,10 +120,10 @@ if(isset($_SESSION['admin'])){
                             /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika 
                             ada isinya proses akan dilanjutkan */  
                             if ($_REQUEST['username'] == "" || $_REQUEST['password'] == "") {
-                                echo '<div class="red-text"><i class="material-icons">error_outline</i> Username dan Password wajib diisi.</div>';
+                                echo '<div class="upss red-text"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.</div>';
                             } else {
-                            $username = mysqli_real_escape_string($config, $_REQUEST['username']);
-                            $password = mysqli_real_escape_string($config, $_REQUEST['password']);
+                            $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
+                            $password = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password'])));
 
                             //Melakukan query terhadap database
                             $query = mysqli_query($config, "SELECT id_user, nama, admin FROM tbl_user WHERE username='$username' AND password=MD5('$password')");
