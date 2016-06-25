@@ -1,6 +1,6 @@
 Aplikasi PHPBayar
 www.w3school.com
 www.materializecss.com
-webdinamis samsul
+webdinamis samsulhuda
 http://stackoverflow.com/questions/1610455/how-do-you-display-a-javascript-alert-from-php
 http://www.w3schools.com/php/func_mysqli_real_escape_string.asp
