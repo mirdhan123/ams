@@ -1,49 +1,53 @@
 <?php
-if(empty($_SESSION['admin'])){
+    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
+    if(empty($_SESSION['admin'])){
 
-    $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
-    header("Location: ./");
-    die();
-} else {
-    if(isset($_REQUEST['submit'])) {
-
-        /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika 
-        ada isinya proses akan dilanjutkan */  
-        if ($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == "" 
-            || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == "") {
-            echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Form wajib diisi.</div>';
-        } else {
-
-        $no_agenda = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_agenda'])));
-        $no_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_surat'])));
-        $asal_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['asal_surat'])));
-        $isi = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['isi'])));
-        $kode = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['kode'])));
-        $indeks = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['indeks'])));
-        $tgl_surat = date('Y-m-d', strtotime(trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['tgl_surat'])))));
-        $keterangan = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['keterangan'])));
-
-        //Cek apakah nomor agenda dan nomor surat sudah ada di database
-        $cek = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_surat='$no_surat'");
-
-        if(mysqli_num_rows($cek) > 0){
-            header("Location: ./admin.php?page=tsm&aksi=add&message=4");
-            die();
-        } else {
-
-        $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
-            tgl_diterima,keterangan) 
-            VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan')");
-
-        if($query == true){
-            header("Location: ./admin.php?page=tsm&message=1");
-            die();
-        } else {
-            echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Periksa penulisan querynya.</div>';
-        }
-    }
-}
+        //Menampilkan pesan error dan mengarahkan ke halaman login
+        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        header("Location: ./");
+        die();
     } else {
+        if(isset($_REQUEST['submit'])){
+
+            /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika
+            ada isinya proses akan dilanjutkan */
+            if ($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == ""
+                || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
+                echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Form wajib diisi.</div>';
+            } else {
+
+                $no_agenda = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_agenda']));
+                $no_surat = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_surat']));
+                $asal_surat = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['asal_surat']));
+                $isi = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['isi']));
+                $kode = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['kode']));
+                $indeks = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['indeks']));
+                $tgl_surat = date('Y-m-d', strtotime(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['tgl_surat']))));
+                $keterangan = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['keterangan']));
+
+                //Cek apakah nomor surat sudah ada di database
+                $cek = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_surat='$no_surat'");
+
+                //Jika nomor surat sudah ada di database akan menampilkan pesan error
+                if(mysqli_num_rows($cek) > 0){
+                    header("Location: ./admin.php?page=tsm&aksi=add&message=4");
+                    die();
+                } else {
+
+                    $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
+                        tgl_diterima,keterangan)
+                        VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan')");
+
+                    //Jika query berhasil user akan diarahkan kembali ke halaman transaksi surat masuk
+                    if($query == true){
+                        header("Location: ./admin.php?page=tsm&message=1");
+                        die();
+                    } else {
+                        echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Periksa penulisan querynya.</div>';
+                    }
+                }
+            }
+        } else {
 ?>
 <!-- Row Start -->
 <div class="row">
@@ -57,7 +61,7 @@ if(empty($_SESSION['admin'])){
             </div>
         </nav>
     </div>
-    <!-- Secondary Nav END -->    
+    <!-- Secondary Nav END -->
 </div>
 <!-- Row END -->
 
@@ -117,7 +121,7 @@ if(empty($_SESSION['admin'])){
             <div class="input-field col s6">
                 <input id="keterangan" type="text" class="validate" name="keterangan">
                 <label for="keterangan">Keterangan</label>
-            </div>                      
+            </div>
         </div>
         <!-- Row in form END -->
 

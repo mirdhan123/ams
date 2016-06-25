@@ -11,14 +11,17 @@
 <!-- Header START -->
 <header>
 
+<!-- Include Navigation START -->
+<?php include('include/menu.php'); ?>
+<!-- Include Navigation END --> 
 
 </header>
-<!-- Header END -->
+<!-- Header END --> 
 
 <!-- Main START -->
 <main>
 
-    <!-- container START -->
+    <!-- container START --> 
     <div class="container">
 
         <!-- Row Start -->
@@ -33,7 +36,7 @@
                     </div>
                 </nav>
             </div>
-            <!-- Secondary Nav END -->
+            <!-- Secondary Nav END -->   
         </div>
         <!-- Row END -->
 
@@ -89,10 +92,10 @@
         <!-- Row form END -->
 
     </div>
-    <!-- container END -->
+    <!-- container END --> 
 
 </main>
-<!-- Main END -->
+<!-- Main END --> 
 
 <!-- Include Footer START -->
 <?php include('include/footer.php'); ?>

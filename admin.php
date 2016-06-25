@@ -1,15 +1,15 @@
 <?php
-//Memulai session
-session_start();
+    //Memulai session
+    session_start();
 
-//Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
-if(empty($_SESSION['admin'])){
+    //Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
+    if(empty($_SESSION['admin'])){
 
-    //Menampilkan pesan error dan mengarahkan ke halaman login
-    $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
-    header("Location: ./");
-    die();
-} else {
+        //Menampilkan pesan error dan mengarahkan ke halaman login
+        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        header("Location: ./");
+        die();
+    } else {
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,22 +26,22 @@ if(empty($_SESSION['admin'])){
 
 <!-- Include Navigation START -->
 <?php include('include/menu.php'); ?>
-<!-- Include Navigation END --> 
+<!-- Include Navigation END -->
 
 </header>
-<!-- Header END --> 
+<!-- Header END -->
 
 <!-- Main START -->
 <main>
 
-    <!-- container START --> 
+    <!-- container START -->
     <div class="container">
 
-    <?php 
-        if(isset($_REQUEST['page'])){
-            
-            $page = $_REQUEST['page'];
+    <?php
 
+        //Request url page menggunakan fungsi switch case
+        if(isset($_REQUEST['page'])){
+            $page = $_REQUEST['page'];
             switch ($page) {
                 case 'tsm':
                     include "transaksi_surat_masuk.php";
@@ -80,10 +80,9 @@ if(empty($_SESSION['admin'])){
                     include "profil.php";
                     break;
             }
-
         } else {
     ?>
-        <!-- Row START --> 
+        <!-- Row START -->
         <div class="row">
 
             <!-- Include Header Instansi START -->
@@ -95,9 +94,9 @@ if(empty($_SESSION['admin'])){
                 <div class="card">
                     <div class="card-content">
                         <h4>Selamat Datang <?php echo $_SESSION['nama']; ?></h4>
-                        <p class="description">Anda login sebagai 
-                        <?php 
-                            if($_SESSION['admin'] == 1 ) {
+                        <p class="description">Anda login sebagai
+                        <?php
+                            if($_SESSION['admin'] == 1 ){
                                 echo "<strong>Administrator</strong>";
                             } else {
                                 echo "<strong>Petugas Disposisi</strong>";
@@ -108,24 +107,25 @@ if(empty($_SESSION['admin'])){
                 </div>
             </div>
             <!-- Welcome Message END -->
-         
-        <?php 
-            //Menghitung jumlah surat masuk
-            $count1 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk"));
 
-            //Menghitung jumlah surat masuk
-            $count2 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_keluar"));
+            <?php
+                //Menghitung jumlah surat masuk
+                $count1 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk"));
 
-            //Menghitung jumlah surat masuk
-            $count3 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_disposisi"));
+                //Menghitung jumlah surat masuk
+                $count2 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_keluar"));
 
-            //Menghitung jumlah pengguna
-            $count4 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
-        ?>
+                //Menghitung jumlah surat masuk
+                $count3 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_disposisi"));
+
+                //Menghitung jumlah pengguna
+                $count4 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
+            ?>
+
             <!-- Info Statistic START -->
             <div class="col s12 m4">
                 <div class="card cyan">
-                    <div class="card-content"> 
+                    <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">mail</i> Jumlah Surat Masuk</span>
                         <?php echo '<h5 class="white-text">'.$count1.' Surat Masuk</h5>'; ?>
                     </div>
@@ -134,16 +134,16 @@ if(empty($_SESSION['admin'])){
 
             <div class="col s12 m4">
                 <div class="card lime darken-1">
-                    <div class="card-content"> 
+                    <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Jumlah Surat Keluar</span>
                         <?php echo '<h5 class="white-text">'.$count2.' Surat Keluar</h5>'; ?>
                     </div>
                 </div>
             </div>
-         
+
             <div class="col s12 m4">
                 <div class="card yellow darken-3">
-                    <div class="card-content"> 
+                    <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">description</i> Jumlah Disposisi</span>
                         <?php echo '<h5 class="white-text">'.$count3.' Disposisi</h5>'; ?>
                     </div>
@@ -155,27 +155,27 @@ if(empty($_SESSION['admin'])){
             if($_SESSION['admin'] == 1){?>
             <div class="col s12 m4">
                 <div class="card deep-orange">
-                    <div class="card-content"> 
+                    <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">people</i> Jumlah Pengguna</span>
                         <?php echo '<h5 class="white-text">'.$count4.' Pengguna</h5>'; ?>
                     </div>
                 </div>
             </div>
             <!-- Info Statistic START -->
-        <?php 
+        <?php
             }
         ?>
 
         </div>
-        <!-- Row END --> 
+        <!-- Row END -->
     <?php
         }
     ?>
     </div>
-    <!-- container END --> 
+    <!-- container END -->
 
 </main>
-<!-- Main END --> 
+<!-- Main END -->
 
 <!-- Include Footer START -->
 <?php include('include/footer.php'); ?>

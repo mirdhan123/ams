@@ -1,45 +1,47 @@
 <?php
-//Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
-if(empty($_SESSION['admin'])){
+    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
+    if(empty($_SESSION['admin'])){
 
-    //Menampilkan pesan error dan mengarahkan ke halaman login
-    $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
-    header("Location: ./");
-    die();
-} else {
-    if(isset($_REQUEST['aksi'])){
-        $aksi = $_REQUEST['aksi'];
-        switch ($aksi) {
-            case 'add':
-                include "tambah_surat_masuk.php";
-                break;
-            case 'edit':
-                include "edit_surat_masuk.php";
-                break;
-            case 'disp':
-                include "disposisi.php";
-                break;
-            case 'print':
-                include "cetak_disposisi.php";
-                break;
-            case 'del':
-                include "hapus_surat_masuk.php";
-                break;
-        }
-    } else { 
+        //Menampilkan pesan error dan mengarahkan ke halaman login
+        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        header("Location: ./");
+        die();
+    } else {
 
-        $limit = 5;
-        $pg = @$_GET['pg'];
-        if(empty($pg)){
-            $posisi = 0;
-            $pg = 1;
-        } else {    
-            $posisi = ($pg - 1) * $limit;
-        }
+        //Request url aksi menggunakan fungsi switch case
+        if(isset($_REQUEST['aksi'])){
+            $aksi = $_REQUEST['aksi'];
+            switch ($aksi) {
+                case 'add':
+                    include "tambah_surat_masuk.php";
+                    break;
+                case 'edit':
+                    include "edit_surat_masuk.php";
+                    break;
+                case 'disp':
+                    include "disposisi.php";
+                    break;
+                case 'print':
+                    include "cetak_disposisi.php";
+                    break;
+                case 'del':
+                    include "hapus_surat_masuk.php";
+                    break;
+            }
+        } else {
 
-        //Melakukan query ke tabel surat masuk
-        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC LIMIT $posisi, $limit");
-       
+            $limit = 5;
+            $pg = @$_GET['pg'];
+                if(empty($pg)){
+                    $posisi = 0;
+                    $pg = 1;
+                } else {
+                    $posisi = ($pg - 1) * $limit;
+                }
+
+                    //Melakukan query ke tabel surat masuk
+                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC LIMIT $posisi, $limit");
+
 echo '<!-- Row Start -->
 <div class="row">
     <!-- Secondary Nav START -->
@@ -54,7 +56,7 @@ echo '<!-- Row Start -->
                                 <a href="?page=tsm&aksi=add"><i class="material-icons md-24">add_circle</i> Tambah Data Surat Masuk</a>
                             </li>
                         </ul>
-                        </div>
+                    </div>
                     <div class="col m5">
                         <form>
                             <div class="input-field round-in-box">
@@ -73,7 +75,7 @@ echo '<!-- Row Start -->
 ?>
 
 <?php
-    if (isset($_GET['message'])) {
+    if(isset($_GET['message'])){
         if($_GET['message'] == "1"){
             echo '<script language="javascript">alert("SUKSES! Data berhasil ditambahkan.");</script>';
         } elseif ($_GET['message'] == "2"){
@@ -86,7 +88,7 @@ echo '<!-- Row Start -->
     }
 ?>
 
-<?php 
+<?php
 echo '<!-- Row form Start -->
 <div class="row jarak-form">
 
@@ -105,9 +107,9 @@ echo '<!-- Row form Start -->
             <tbody>
                 <tr>';
 
-        if (mysqli_num_rows($query) > 0) {
+        if(mysqli_num_rows($query) > 0){
             $no = 1;
-            while($row = mysqli_fetch_assoc($query)) { 
+            while($row = mysqli_fetch_array($query)){
               echo '<td>'.$row['no_agenda'].'/'.$row['kode'].'</td>
                     <td>'.$row['isi'].'<br/><br/><strong>File:</strong></td>
                     <td>'.$row['asal_surat'].'</td>
@@ -124,10 +126,10 @@ echo '<!-- Row form Start -->
                     </td>
                 </tr>
             </tbody>';
-  } 
-} else {
+            }
+        } else {
     echo '<tr><td colspan="5"><center><h5>Tida ada data untuk ditampilkan.</h5></center></td></tr>';
-  }
+        }
   echo '</table>
     </div>
 

@@ -1,36 +1,28 @@
 <?php
-//Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
-if(empty($_SESSION['admin'])){
+    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
+    if(empty($_SESSION['admin'])){
 
-    //Menampilkan pesan error dan mengarahkan ke halaman login
-    $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
-    header("Location: ./");
-    die();
-} else {
-	if(isset($_REQUEST['submit'])){
-		$id_surat = $_REQUEST['id_surat'];
-		$query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-		if($query > 0){
-			header("Location: ./admin.php?page=tsm&message=3");
-			die();
-		} else {
-			echo '<br/><div id="alert-message" class="error red lighten-5"><i class="material-icons">error_outline</i> ERROR! Periksa penulisan querynya.</div>';
-		}
-	} else {
-		$id_surat = $_REQUEST['id_surat'];
-		$query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-		
-		if (mysqli_num_rows($query) > 0) {
+        //Menampilkan pesan error dan mengarahkan ke halaman login
+        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        header("Location: ./");
+        die();
+    } else {
+
+        //Menampilkan data sesuai id_surat
+    	$id_surat = $_REQUEST['id_surat'];
+    	$query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+
+    	if(mysqli_num_rows($query) > 0){
             $no = 1;
-            while($row = mysqli_fetch_assoc($query)) { 
+            while($row = mysqli_fetch_array($query)){
 
-		  echo '<!-- Row form Start -->
+    		  echo '<!-- Row form Start -->
 				<div class="row jarak-form">
 
 				    <div class="col m12">
 				        <table class="responsive">
 				            <thead class="red lighten-5 red-text">
-				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i> 
+				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
 				                Apakah Anda yakin akan menghapus data ini?</div>
 				            </thead>
 
@@ -42,32 +34,32 @@ if(empty($_SESSION['admin'])){
 				                </tr>
 				                <tr>
 				                    <td width="13%">Kode Klasifikasi</td>
-				                    <td width="1%">:</td>			                    
+				                    <td width="1%">:</td>
 				                    <td width="86%">'.$row['kode'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">No. Isi</td>
-				                    <td width="1%">:</td>				                    
+				                    <td width="1%">:</td>
 				                    <td width="86%">'.$row['isi'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">File</td>
-				                    <td width="1%">:</td>			                    
+				                    <td width="1%">:</td>
 				                    <td width="86%">file</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">Asal Surat</td>
-				                    <td width="1%">:</td>			                    
+				                    <td width="1%">:</td>
 				                    <td width="86%">'.$row['asal_surat'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">No. Surat</td>
-				                    <td width="1%">:</td>			                   
+				                    <td width="1%">:</td>
 				                    <td width="86%">'.$row['no_surat'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">Tanggal Surat</td>
-				                    <td width="1%">:</td>			                    
+				                    <td width="1%">:</td>
 				                    <td width="86%">'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</td>
 				                </tr>
 				            </tbody>
@@ -84,8 +76,20 @@ if(empty($_SESSION['admin'])){
 		                <a href="?page=tsm" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
 		            </div>
 		        </div>';
-			}
-		}
-	}
-}
+
+                //Jika tombol hapus diklik akan mengirimkan id_surat dan melakukan query penghapusan data
+            	if(isset($_REQUEST['submit'])){
+            		$id_surat = $_REQUEST['id_surat'];
+            		$query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+
+            		if($query == true){
+            			header("Location: ./admin.php?page=tsm&message=3");
+            			die();
+            		} else {
+            			echo '<br/><div id="alert-message" class="error red lighten-5"><i class="material-icons">error_outline</i> ERROR! Periksa penulisan querynya.</div>';
+            		}
+            	}
+		    }
+	    }
+    }
 ?>

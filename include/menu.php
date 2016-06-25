@@ -18,7 +18,7 @@ ob_start();
         <li class="no-padding blue-grey darken-4">
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a class="collapsible-header"><i class="material-icons">account_circle</i> 
+                    <a class="collapsible-header"><i class="material-icons">account_circle</i>
                     <?php
                         if($_SESSION['admin'] == 1 ){
                             echo "Administrator";
@@ -124,7 +124,7 @@ ob_start();
             </ul>
         <li><a href="?page=ref">Referensi</a></li>
         <li><a href="?page=dg">Data Guru</a></li>
-        <?php 
+        <?php
             if($_SESSION['admin'] == 1){ ?>
         <li><a class="dropdown-button" href="#!" data-activates="pengaturan">Pengaturan <i class="material-icons md-18">arrow_drop_down</i></a></li>
             <ul id='pengaturan' class='dropdown-content'>
@@ -135,13 +135,13 @@ ob_start();
             }
         ?>
         <li class="right"><a class="dropdown-button" href="#!" data-activates="logout"><i class="material-icons">account_circle</i>
-        <?php 
-            if($_SESSION['admin'] == 1) { 
+        <?php
+            if($_SESSION['admin'] == 1) {
                 echo "Administrator";
             } else {
                 echo "Petugas Disposisi";
             }
-        ?> 
+        ?>
                 <i class="material-icons md-18">arrow_drop_down</i></a></li>
             <ul id='logout' class='dropdown-content'>
                 <li><a href="?page=pro">Profil</a></li>
@@ -154,7 +154,7 @@ ob_start();
 
     <a href="#" data-activates="slide-out" class="button-collapse" id="menu"><i class="material-icons">menu</i></a>
 </nav>
-<?php 
+<?php
     } else {
         header("Location:../");
         die();

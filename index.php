@@ -1,12 +1,12 @@
 <?php
-//Memulai session
-session_start();
+    //Memulai session
+    session_start();
 
-//Apabila ditemukan session login, maka akan diarahkan ke halaman dashboard
-if(isset($_SESSION['admin'])){
-    header("Location: ./admin.php");
-    die();
-}
+    //Apabila ditemukan session login, maka akan diarahkan ke halaman dashboard
+    if(isset($_SESSION['admin'])){
+        header("Location: ./admin.php");
+        die();
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,8 +32,8 @@ if(isset($_SESSION['admin'])){
     <link type="text/css" rel="stylesheet" href="asset/css/materialize.css"  media="screen,projection"/>
     <style type="text/css">
         .container {
-            padding-top: 4.6%;
             max-width: 70%;
+            padding-top: 4.6%;
         }
         #logo {
             display: block;
@@ -41,9 +41,9 @@ if(isset($_SESSION['admin'])){
         }
         img {
             border-radius: 50%;
+            margin: 0 auto;
             max-width: 90px;
             max-height: 90px;
-            margin: 0 auto
         }
         #login {
             margin-top: -2%;
@@ -69,8 +69,8 @@ if(isset($_SESSION['admin'])){
             padding: 10px;
         }
         .upss {
-            margin-left: 20px;
             font-size: 18px;
+            margin-left: 20px;
         }
         @media only screen and (max-width : 992px) {
             .container {
@@ -89,11 +89,11 @@ if(isset($_SESSION['admin'])){
     <!-- Container START -->
     <div class="container">
 
-        <!-- Row START --> 
+        <!-- Row START -->
         <div class="row">
 
             <!-- Col START -->
-            <div class="col s12 m6 offset-m3 offset-m3">          
+            <div class="col s12 m6 offset-m3 offset-m3">
 
                 <!-- Box START -->
                 <div class="card-panel z-depth-2" id="login">
@@ -104,12 +104,12 @@ if(isset($_SESSION['admin'])){
                     <!-- Logo and title START -->
                     <div class="col s12">
                         <div class="card-content">
-                            <h5 class="center" id="title">Aplikasi Manajemen Surat Menyurat</h5>  
+                            <h5 class="center" id="title">Aplikasi Manajemen Surat Menyurat</h5>
                             <img id="logo" src="./asset/img/logo.png"/>
                             <h4 class="center" id="smk">SMK Al - Husna Loceret Nganjuk</h4>
                         </div>
-                    </div>  
-                    <!-- Logo and title END -->     
+                    </div>
+                    <!-- Logo and title END -->
 
                     <?php
                         require('include/config.php');
@@ -117,38 +117,38 @@ if(isset($_SESSION['admin'])){
                         //Apabila tombol login ditekan akan mengirimkan data username dan password
                         if(isset($_REQUEST['submit'])){
 
-                            /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika 
-                            ada isinya proses akan dilanjutkan */  
-                            if ($_REQUEST['username'] == "" || $_REQUEST['password'] == "") {
-                                echo '<div class="upss red-text"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.</div>';
+                            /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika ada isinya proses akan dilanjutkan */
+                            if($_REQUEST['username'] == "" || $_REQUEST['password'] == ""){
+                                echo '<div class="upss red-text"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.
+                                <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke halaman login</a></div>';
                             } else {
-                            $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
-                            $password = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password'])));
+                                $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
+                                $password = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password'])));
 
-                            //Melakukan query terhadap database
-                            $query = mysqli_query($config, "SELECT id_user, nama, admin FROM tbl_user WHERE username='$username' AND password=MD5('$password')");
+                                //Melakukan query terhadap database
+                                $query = mysqli_query($config, "SELECT id_user, nama, admin FROM tbl_user WHERE username=BINARY'$username' AND password=MD5('$password')");
 
-                            //Apabila data ditemukan dan ada kecocokan data akan melist data
-                            if(mysqli_num_rows($query) > 0){
-                                list($id_user, $nama, $admin) = mysqli_fetch_array($query);
+                                //Apabila data ditemukan dan ada kecocokan data akan melist data
+                                if(mysqli_num_rows($query) > 0) {
+                                    list($id_user, $nama, $admin) = mysqli_fetch_array($query);
 
-                                //Mengeset session
-                                session_start();
-                                $_SESSION['id_user'] = $id_user;
-                                $_SESSION['nama'] = $nama;
-                                $_SESSION['admin'] = $admin;
+                                    //Mengeset session
+                                    session_start();
+                                    $_SESSION['id_user'] = $id_user;
+                                    $_SESSION['nama'] = $nama;
+                                    $_SESSION['admin'] = $admin;
 
-                                //Apabila ditemukan data yang cocok akan diarahkan ke halaman admin
-                                header("Location: ./admin.php");
-                                die(); 
-                            } else {
+                                    //Apabila ditemukan data yang cocok akan diarahkan ke halaman admin
+                                    header("Location: ./admin.php");
+                                    die();
+                                } else {
 
-                                //Apabila tidak ditemukan data yang cocok akan diarahkan kembali ke halaman login dan menampilkan pesan error
-                                $_SESSION['err'] = '<strong>ERROR!</strong> Username dan Password tidak ditemukan.';
-                                header("Location: ./");
-                                die();       
+                                    //Apabila tidak ditemukan data yang cocok akan diarahkan kembali ke halaman login dan menampilkan pesan error
+                                    $_SESSION['err'] = '<strong>ERROR!</strong> Username dan Password tidak ditemukan.';
+                                    header("Location: ./");
+                                    die();
+                                }
                             }
-                            }    
                         } else {
                     ?>
 
@@ -178,12 +178,12 @@ if(isset($_SESSION['admin'])){
                         <div class="input-field col s12">
                             <button type="submit" class="btn-large waves-effect waves-light blue-grey col s12" name="submit">LOGIN</button>
                         </div>
-                    </form> 
+                    </form>
                     <!-- Form END -->
 
-                <?php
-                    }
-                ?>
+                    <?php
+                        }
+                    ?>
                     </div>
                     <!-- Row Form START -->
 
@@ -194,7 +194,7 @@ if(isset($_SESSION['admin'])){
             <!-- Col END -->
 
         </div>
-        <!-- Row END --> 
+        <!-- Row END -->
 
     </div>
     <!-- Container END -->

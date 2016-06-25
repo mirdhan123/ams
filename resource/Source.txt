@@ -1,6 +1,7 @@
-Aplikasi PHPBayar
+Aplikasi PHP Bayar
 www.w3school.com
 www.materializecss.com
-webdinamis samsulhuda
+webdinamis samsul
 http://stackoverflow.com/questions/1610455/how-do-you-display-a-javascript-alert-from-php
 http://www.w3schools.com/php/func_mysqli_real_escape_string.asp
+http://diskusiweb.com/discussion/11192/validasi-login-membedakan-huruf-besar-dan-kecil/p1

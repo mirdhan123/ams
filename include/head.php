@@ -33,9 +33,9 @@
         }
         img {
             border-radius: 40px;
+            margin: 0 15px -10px 0;
             max-width: 80px;
             max-height: 80px;
-            margin: 0 15px -10px 0
         }
         .description {
             font-size: 20px;
@@ -44,7 +44,7 @@
     <!-- Global style END -->
 
 </head>
-<?php 
+<?php
     } else {
         header("Location:../");
         die();
