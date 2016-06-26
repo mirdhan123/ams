@@ -16,7 +16,7 @@
     </div>
     <div class="footer-copyright blue-grey darken-1 white-text">
         <div class="container">
-            <i class="material-icons">language</i> <a href="http://www.smkalhusnaloceret.sch.id/" target="_blank" class="white-text">
+            &copy; <?php echo date("Y"); ?> &nbsp;<i class="material-icons md-12">language</i> <a href="http://www.smkalhusnaloceret.sch.id/" target="_blank" class="white-text">
             www.smkalhusnaloceret.sch.id</a> &nbsp;&nbsp;
             <i class="material-icons">mail</i> <a href="mailto:info@smkalhusnaloceret.sch.id" class="white-text">
             info@smkalhusnaloceret.sch.id</a>
@@ -43,7 +43,8 @@ $('.button-collapse').sideNav({
 //jquery datepicker
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 10 // Creates a dropdown of 15 years to control year
+    selectYears: 10, // Creates a dropdown of 15 years to control year
+    dateFormat: 'yyyy-mm-dd'
 });
 
 //jquery teaxtarea

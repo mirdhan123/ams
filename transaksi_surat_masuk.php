@@ -51,7 +51,7 @@ echo '<!-- Row Start -->
                 <div class="nav-wrapper blue-grey darken-1">
                     <div class="col m7">
                         <ul class="left">
-                            <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">mail</i> Surat Masuk</a></li>
+                            <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">mail</i> Surat Masuk</a></li>
                             <li class="waves-effect waves-light hide-on-med-and-down">
                                 <a href="?page=tsm&aksi=add"><i class="material-icons md-24">add_circle</i> Tambah Data Surat Masuk</a>
                             </li>
@@ -59,14 +59,6 @@ echo '<!-- Row Start -->
                             <a href="?page=tsm&aksi=add" class="dropdown-button" data-activates="tsm"><i class="material-icons">add_circle</i> Tambah</a>
                             </li>
                         </ul>
-                    </div>
-                    <div class="col m5 hide-on-med-and-down">
-                        <form>
-                            <div class="input-field round-in-box">
-                                <input id="search" type="search" placeholder="Ketik dan tekan enter mencari data..." required>
-                                <label for="search"><i class="material-icons">search</i></label>
-                            </div>
-                        </form>
                     </div>
                     <div class="col m5 hide-on-med-and-down">
                         <form>

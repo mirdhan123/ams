@@ -14,27 +14,63 @@
             if ($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == ""
                 || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
                 echo '<script language="javascript">
-                window.alert("ERROR! Form wajib diisi.");
+                window.alert("ERROR! Semua form wajib diisi.");
                 window.location.href="./admin.php?page=tsm&aksi=add";
                 </script>';
             } else {
 
-                $no_agenda = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_agenda'])));
-                $no_surat = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_surat']));
-                $asal_surat = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['asal_surat']));
-                $isi = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['isi']));
-                $kode = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['kode']));
-                $indeks = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['indeks']));
+                $no_agenda = mysqli_real_escape_string($config, $_REQUEST['no_agenda']);
+                $no_surat = trim(mysqli_real_escape_string($config, $_REQUEST['no_surat']));
+                $asal_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['asal_surat'])));
+                $isi = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['isi'])));
+                $kode = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['kode'])));
+                $indeks = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['indeks'])));
                 $tgl_surat = date('Y-m-d', strtotime(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['tgl_surat']))));
-                $keterangan = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['keterangan']));
+                $keterangan = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['keterangan'])));
 
-                //Jika nomor agenda tidak diisi angka maka akan menampilkan pesan error
-                if(is_numeric($no_agenda) == false){
+                //Validasi input data
+                if(!preg_match("/^[0-9]*$/", $no_agenda)){
                     echo '<script language="javascript">
                     window.alert("ERROR! Form NOMOR AGENDA harus diisi angka.");
                     window.location.href="./admin.php?page=tsm&aksi=add";
                     </script>';
-                } else {
+                }
+                elseif(!preg_match("/^[a-zA-Z0-9.\/ ]*$/", $no_surat)){
+                    echo '<script language="javascript">
+                    window.alert("ERROR! Form NOMOR SURAT hanya boleh diisi huruf, angka, tanda titik dan garis miring.");
+                    window.location.href="./admin.php?page=tsm&aksi=add";
+                    </script>';
+                }
+                elseif(!preg_match("/^[a-zA-Z0-9. ]*$/", $asal_surat)){
+                    echo '<script language="javascript">
+                    window.alert("ERROR! Form ASAL SURAT hanya boleh diisi huruf, angka dan tanda titik.");
+                    window.location.href="./admin.php?page=tsm&aksi=add";
+                    </script>';
+                }
+                elseif(!preg_match("/^[a-zA-Z0-9.,() ]*$/", $isi)){
+                    echo '<script language="javascript">
+                    window.alert("ERROR! Form ISI RINGKAS hanya boleh diisi huruf, angka, tanda titik, koma dan kurung.");
+                    window.location.href="./admin.php?page=tsm&aksi=add";
+                    </script>';
+                }
+                elseif(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
+                    echo '<script language="javascript">
+                    window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh diisi huruf, angka, tanda titik dan koma.");
+                    window.location.href="./admin.php?page=tsm&aksi=add";
+                    </script>';
+                }
+                elseif(!preg_match("/^[a-zA-Z0-9., ]*$/", $indeks)){
+                    echo '<script language="javascript">
+                    window.alert("ERROR! Form INDEKS hanya boleh diisi huruf, angka, tanda titik dan koma.");
+                    window.location.href="./admin.php?page=tsm&aksi=add";
+                    </script>';
+                }
+                elseif(!preg_match("/^[a-zA-Z0-9.,() ]*$/", $keterangan)){
+                    echo '<script language="javascript">
+                    window.alert("ERROR! Form KETERANGAN hanya boleh diisi huruf, angka, tanda titik, koma dan kurung.");
+                    window.location.href="./admin.php?page=tsm&aksi=add";
+                    </script>';
+                }
 
                     //Cek apakah nomor agenda sudah ada di database
                     $cek1 = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_agenda='$no_agenda'");
@@ -60,6 +96,8 @@
                             </script>';
                         } else {
 
+                            echo $tgl_surat;
+                            die();
                             $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
                                 tgl_diterima,keterangan)
                                 VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan')");
@@ -79,8 +117,7 @@
                         }
                     }
                 }
-            }
-        } else {
+            } else {
 ?>
 <!-- Row Start -->
 <div class="row">
@@ -127,8 +164,8 @@
                 <label for="no_surat">Nomor Surat</label>
             </div>
             <div class="input-field col s6">
-                <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker">
-                <label for="tgl_surat">Tanggal Surat</label>
+                <input id="tgl_surat" type="date" name="tgl_surat" class="date">
+                <label for="tgl_surat"></label>
             </div>
             <div class="input-field col s6">
                 <textarea id="isi" class="materialize-textarea validate" name="isi"></textarea>

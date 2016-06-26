@@ -2191,7 +2191,7 @@ ul.staggered-list li {
 
 @media only screen and (max-width : 992px) {
   .show-on-medium-and-down {
-    display: initial !important; } 
+    display: initial !important; }
   #header-instansi {display: none}
   }
 
@@ -6574,7 +6574,7 @@ select {
   display: none; }
 
 select.browser-default {
-  display: block; 
+  display: block;
   background: #fff;
   color: #444;
   font-size: 18px;
@@ -8148,7 +8148,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   font-size: 18px !important;
   margin: -25px 0 -10px !important;
   padding: 15px;
-  height: 
+  height:
 }
 .confir {
   background: #ffebee;
