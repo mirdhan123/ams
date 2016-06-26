@@ -79,8 +79,8 @@ echo '<!-- Row Start -->
 <!-- Row form Start -->
 <div class="row jarak-form">
 
-    <div class="col m12">
-        <table class="responsive bordered">
+    <div class="col m12" id="colres">
+        <table class="responsive bordered" id="tbl">
             <thead class="blue lighten-4" id="head">
                 <tr>
                     <th width="10%">No. Agenda<br/>Kode</th>
@@ -127,16 +127,31 @@ echo '<!-- Row Start -->
         $jmldata = mysqli_num_rows($query);
         $jmlhalaman = ceil($jmldata/$limit);
 
-        echo '<!-- Pagination START -->
-        <ul class="pagination">';
-
+        echo '<br/><!-- Pagination START -->
+              <ul class="pagination">';
+        if($pg > 1){
+            $prev = $pg-1;
+            echo '<li><a href="?page=tsm&pg='.$prev.'"><i class="material-icons md-50">chevron_left</i></a></li>';
+        } else {
+            echo '<li class="disabled"><a href=""><i class="material-icons md-50">chevron_left</i></a></li>';
+        }
+        //Perulangan pagging
         for($i=1; $i<=$jmlhalaman; $i++)
             if($i != $pg){
-                echo'<li class="waves-effect"><a href="?page=tsm&pg='.$i.'">'.$i.'</a></li>';
-        } else {
-            echo $i;
-        } echo'
+                echo'<li class="waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
+            } else {
+                echo'<li class="active waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
+            }
+
+            if($pg < $jmlhalaman){
+                $next = $pg+1;
+                echo '<li><a href="?page=tsm&pg='.$next.'"><i class="material-icons md-50">chevron_right</i></a></li>';
+            } else {
+                echo '<li class="disabled"><a href=""><i class="material-icons md-50">chevron_right</i></a></li>';
+            }
+        echo '
         </ul>
+        <br/>
         <!-- Pagination END -->';
     }
 }

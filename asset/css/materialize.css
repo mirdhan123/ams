@@ -2084,7 +2084,7 @@ img.responsive-img, video.responsive-video {
   height: auto; }
 
 .pagination li {
-  font-size: 1.2rem;
+  font-size: 1.28rem;
   float: left;
   width: 30px;
   height: 30px;
@@ -2096,15 +2096,17 @@ img.responsive-img, video.responsive-video {
   text-align: center; }
   .pagination li a {
     color: #444; }
+  .pagination li a:hover {
+    font-weight: 900;}
   .pagination li.active a {
     color: #fff; }
   .pagination li.active {
     background-color: #FF5722; }
   .pagination li.disabled a {
-    color: #999; }
+    color: #bdbdbd; }
   .pagination li i {
     font-size: 2rem;
-    line-height: 1.8rem; }
+    line-height: 2rem; }
 
 .parallax-container {
   position: relative;

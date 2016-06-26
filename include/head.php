@@ -43,6 +43,18 @@
         noscript{
             color: #fff;
         }
+        @media only screen and (max-width: 701px) {
+            #colres{
+                width: 100%;
+                overflow-x: scroll!important;
+            }
+            #tbl{
+                width: 600px!important;
+            }
+        }
+        .material-icons.md-50{
+            font-size: 55px;
+        }
     </style>
     <!-- Global style END -->
 
