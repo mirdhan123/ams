@@ -52,9 +52,6 @@
                 width: 600px!important;
             }
         }
-        .material-icons.md-50{
-            font-size: 55px;
-        }
     </style>
     <!-- Global style END -->
 

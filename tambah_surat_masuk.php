@@ -166,19 +166,19 @@
                 <label for="no_agenda">Nomor Agenda</label>
             </div>
             <div class="input-field col s6">
-                <input id="kode" type="text" class="validate tooltipped" name="kode" data-position="top" data-tooltip="Kode pengelompokan surat. Isi dengan huruf, angka, tanda titik(.) dan koma(.)">
+                <input id="kode" type="text" class="validate tooltipped" name="kode" data-position="top" data-tooltip="Kode pengelompokan surat. Isi dengan huruf dan angka">
                 <label for="kode">Kode Klasifikasi</label>
             </div>
             <div class="input-field col s6">
-                <input id="asal_surat" type="text" class="validate tooltipped" name="asal_surat" data-position="top" data-tooltip="Instansi pengirim surat. Isi dengan huruf, angka dan tanda titik(.)">
+                <input id="asal_surat" type="text" class="validate tooltipped" name="asal_surat" data-position="top" data-tooltip="Instansi pengirim surat. Isi dengan huruf dan angka">
                 <label for="asal_surat">Asal Surat</label>
             </div>
             <div class="input-field col s6">
-                <input id="indeks" type="text" class="validate tooltipped" name="indeks" data-position="top" data-tooltip="Indeks berkas surat. Isi dengan huruf, angka, tanda titik(.) dan koma(,)">
+                <input id="indeks" type="text" class="validate tooltipped" name="indeks" data-position="top" data-tooltip="Indeks berkas arsip surat. Isi dengan huruf dan angka">
                 <label for="indeks">Indeks Berkas</label>
             </div>
             <div class="input-field col s6">
-                <input id="no_surat" type="text" class="validate tooltipped" name="no_surat" data-position="top" data-tooltip="Nomor surat. Isi dengan huruf, angka, tanda titik(.) dan garis miring(/)">
+                <input id="no_surat" type="text" class="validate tooltipped" name="no_surat" data-position="top" data-tooltip="Nomor surat. Isi dengan huruf, angka tanda titik(.) dan garis miring(/)">
                 <label for="no_surat">Nomor Surat</label>
             </div>
             <div class="input-field col s6">
@@ -186,22 +186,22 @@
                 <label for="tgl_surat">Tanggal Surat</label>
             </div>
             <div class="input-field col s6">
-                <textarea id="isi" class="materialize-textarea validate tooltipped" name="isi" data-position="top" data-tooltip="Isi ringkas surat. Isi dengan huruf, angka, tanda titik(.), koma(,), kurung(), garis miring(/), persen(%) dan at(@)."></textarea>
+                <textarea id="isi" class="materialize-textarea validate tooltipped" name="isi" data-position="top" data-tooltip="Isi ringkas surat. Isi dengan huruf dan angka"></textarea>
                 <label for="isi">Isi Ringkas</label>
-            </div><!--
-            <div class="input-field col s6">
+            </div>
+            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Gambar/file scan dari surat masuk. Ukuran maksimal 2MB berformat *.JPG, *.JPEG atau *.PNG">
                 <div class="file-field input-field">
                     <div class="btn orange lighten-1 waves-effect waves-light">
                         <span>File</span>
                         <input type="file" name="file" >
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" placeholder="Upload file scan surat masuk">
+                        <input class="file-path validate" type="text" placeholder="Upload file scan Surat Masuk">
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="input-field col s6">
-                <input id="keterangan" type="text" class="validate tooltipped" name="keterangan" data-position="top" data-tooltip="Keterangan surat. Isi dengan huruf, angka, tanda titik(.), koma(,), kurung(), garis miring(/), persen(%) dan at(@).">
+                <input id="keterangan" type="text" class="validate tooltipped" name="keterangan" data-position="top" data-tooltip="Keterangan tambahan surat. Isi dengan huruf dan angka">
                 <label for="keterangan">Keterangan</label>
             </div>
         </div>
@@ -218,6 +218,8 @@
 
     </form>
     <!-- Form END -->
+
+
 
 </div>
 <!-- Row form END -->

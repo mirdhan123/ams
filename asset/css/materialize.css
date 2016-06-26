@@ -6149,7 +6149,7 @@ label {
     position: absolute;
     top: 0.8rem;
     left: 0.75rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     cursor: text;
     -webkit-transition: 0.2s ease-out;
     -moz-transition: 0.2s ease-out;
@@ -6157,7 +6157,7 @@ label {
     -ms-transition: 0.2s ease-out;
     transition: 0.2s ease-out; }
   .input-field label.active {
-    font-size: 1.2rem;
+    font-size: 1rem;
     -webkit-transform: translateY(-140%);
     -moz-transform: translateY(-140%);
     -ms-transform: translateY(-140%);

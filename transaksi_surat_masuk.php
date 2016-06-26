@@ -120,32 +120,40 @@ echo '<!-- Row Start -->
 </div>
 <!-- Row form END -->';
 
+        //Query database untuk pagging
         $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk");
         $jmldata = mysqli_num_rows($query);
         $jmlhalaman = ceil($jmldata/$limit);
 
         echo '<br/><!-- Pagination START -->
               <ul class="pagination">';
-        if($pg > 1){
-            $prev = $pg-1;
-            echo '<li><a href="?page=tsm&pg='.$prev.'"><i class="material-icons md-50">chevron_left</i></a></li>';
-        } else {
-            echo '<li class="disabled"><a href=""><i class="material-icons md-50">chevron_left</i></a></li>';
-        }
-        //Perulangan pagging
-        for($i=1; $i<=$jmlhalaman; $i++)
-            if($i != $pg){
-                echo'<li class="waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
-            } else {
-                echo'<li class="active waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
-            }
 
-            if($pg < $jmlhalaman){
-                $next = $pg+1;
-                echo '<li><a href="?page=tsm&pg='.$next.'"><i class="material-icons md-50">chevron_right</i></a></li>';
+        //First and previous pagging
+        if($pg > 1){
+            $prev = $pg - 1;
+            echo '<li><a href="?page=tsm&pg=1"><i class="material-icons md-48">first_page</i></a></li>
+                  <li><a href="?page=tsm&pg='.$prev.'"><i class="material-icons md-48">chevron_left</i></a></li>';
+        } else {
+            echo '<li class="disabled"><a href=""><i class="material-icons md-48">first_page</i></a></li>
+                  <li class="disabled"><a href=""><i class="material-icons md-48">chevron_left</i></a></li>';
+        }
+
+        //Perulangan pagging
+        for($i=1; $i <= $jmlhalaman; $i++)
+            if($i != $pg){
+                echo '<li class="waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
             } else {
-                echo '<li class="disabled"><a href=""><i class="material-icons md-50">chevron_right</i></a></li>';
+                echo '<li class="active waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
             }
+        //Last and next pagging
+        if($pg < $jmlhalaman){
+            $next = $pg + 1;
+            echo '<li><a href="?page=tsm&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
+                  <li><a href="?page=tsm&pg='.$jmlhalaman.'"><i class="material-icons md-48">last_page</i></a></li>';
+        } else {
+            echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
+                  <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
+        }
         echo '
         </ul>
         <br/>

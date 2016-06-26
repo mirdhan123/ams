@@ -75,7 +75,7 @@
 		            <div class="col 6">
 		                <a href="?page=tsm" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
 		            </div>
-		        </div>';
+		        </div><br/>';
 
                 //Jika tombol hapus diklik akan mengirimkan id_surat dan melakukan query penghapusan data
             	if(isset($_REQUEST['submit'])){

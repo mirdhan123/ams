@@ -80,6 +80,12 @@
         noscript {
             color: #42a5f5;
         }
+       .input-field label {
+            font-size: 1.2rem;
+        }
+        .input-field label.active {
+            font-size: 1rem;
+        }
     </style>
     <!-- Global style END -->
 
