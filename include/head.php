@@ -40,6 +40,9 @@
         .description {
             font-size: 20px;
         }
+        noscript{
+            color: #fff;
+        }
     </style>
     <!-- Global style END -->
 

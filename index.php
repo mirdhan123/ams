@@ -31,8 +31,13 @@
     <!-- Global style START -->
     <link type="text/css" rel="stylesheet" href="asset/css/materialize.css"  media="screen,projection"/>
     <style type="text/css">
+        @media only screen and (min-width: 993px) {
+            .container {
+                width: 70%!important;
+            }
+        }
         .container {
-            max-width: 70%;
+            max-width: 100%;
             padding-top: 4.6%;
         }
         #logo {
@@ -72,10 +77,8 @@
             font-size: 18px;
             margin-left: 20px;
         }
-        @media only screen and (max-width : 992px) {
-            .container {
-                width: 100% !important;
-            }
+        noscript {
+            color: #42a5f5;
         }
     </style>
     <!-- Global style END -->
@@ -209,6 +212,10 @@
         $("#alert-message").alert().delay(3000).slideUp('slow');
     </script>
     <!-- Javascript END -->
+
+    <noscript>
+        <meta http-equiv="refresh" content="0;URL='./enable-javascript.html'" />
+    </noscript>
 
 </body>
 <!-- Body END -->

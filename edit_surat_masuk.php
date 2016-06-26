@@ -1,36 +1,41 @@
 <?php
-//Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
-if(empty($_SESSION['admin'])){
+    //Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
+    if(empty($_SESSION['admin'])){
 
-    //Menampilkan pesan error dan mengarahkan ke halaman login
-    $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
-    header("Location: ./");
-    die();
-} else {
+        //Menampilkan pesan error dan mengarahkan ke halaman login
+        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        header("Location: ./");
+        die();
+    } else {
 
-    if(isset($_REQUEST['submit'])) {
+        if(isset($_REQUEST['submit'])) {
 
-        $no_agenda = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_agenda'])));
-        $no_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_surat'])));
-        $asal_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['asal_surat'])));
-        $isi = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['isi'])));
-        $kode = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['kode'])));
-        $indeks = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['indeks'])));
-        $tgl_surat = date('Y-m-d', strtotime(trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['tgl_surat'])))));
-        $keterangan = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['keterangan'])));
+            $no_agenda = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_agenda'])));
+            $no_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_surat'])));
+            $asal_surat = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['asal_surat'])));
+            $isi = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['isi'])));
+            $kode = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['kode'])));
+            $indeks = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['indeks'])));
+            $tgl_surat = date('Y-m-d', strtotime(trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['tgl_surat'])))));
+            $keterangan = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['keterangan'])));
 
-        $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET no_agenda='$no_agenda' WHERE id_surat='$id_surat'");
+            $query = mysqli_query($config, "UPDAE tbl_surat_masuk SET no_agenda='$no_agenda' WHERE id_surat='$id_surat'");
 
-        if($query == true){
-            header("Location: ./admin.php?page=tsm&message=2");
-            die();
+            if($query == true){
+                echo '<script language="javascript">
+                window.alert("SUKSES! Data berhasil diupdate.");
+                window.location.href="./admin.php?page=tsm";
+                </script>';
+            } else {
+                echo '<script language="javascript">
+                window.alert("ERROR! Periksa penulisan querynya.");
+                window.location.href="./admin.php?page=tsm&aksi=edit&id_surat='.$id_surat.'";
+                </script>';
+            }
         } else {
-            echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Periksa penulisan querynya.</div>';
-        }
-      } else {
-        $id_surat = $_REQUEST['id_surat'];
-        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-        $data = mysqli_fetch_array($query);
+            $id_surat = $_REQUEST['id_surat'];
+            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+            $data = mysqli_fetch_array($query);
 ?>
 
 <!-- Row Start -->
@@ -45,7 +50,7 @@ if(empty($_SESSION['admin'])){
             </div>
         </nav>
     </div>
-    <!-- Secondary Nav END -->       
+    <!-- Secondary Nav END -->
 </div>
 <!-- Row END -->
 
@@ -90,7 +95,7 @@ if(empty($_SESSION['admin'])){
                 <input id="keterangan" type="text" class="validate" name="keterangan" value="<?php echo $data['keterangan']; ?>">
                 <label for="keterangan">Keterangan</label>
             </div>
-                  
+
         </div>
         <!-- Row in form END -->
 

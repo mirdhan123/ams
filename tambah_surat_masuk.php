@@ -13,10 +13,13 @@
             ada isinya proses akan dilanjutkan */
             if ($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == ""
                 || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
-                echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Form wajib diisi.</div>';
+                echo '<script language="javascript">
+                window.alert("ERROR! Form wajib diisi.");
+                window.location.href="./admin.php?page=tsm&aksi=add";
+                </script>';
             } else {
 
-                $no_agenda = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_agenda']));
+                $no_agenda = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_agenda'])));
                 $no_surat = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['no_surat']));
                 $asal_surat = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['asal_surat']));
                 $isi = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['isi']));
@@ -25,25 +28,55 @@
                 $tgl_surat = date('Y-m-d', strtotime(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['tgl_surat']))));
                 $keterangan = htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['keterangan']));
 
-                //Cek apakah nomor surat sudah ada di database
-                $cek = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_surat='$no_surat'");
-
-                //Jika nomor surat sudah ada di database akan menampilkan pesan error
-                if(mysqli_num_rows($cek) > 0){
-                    header("Location: ./admin.php?page=tsm&aksi=add&message=4");
-                    die();
+                //Jika nomor agenda tidak diisi angka maka akan menampilkan pesan error
+                if(is_numeric($no_agenda) == false){
+                    echo '<script language="javascript">
+                    window.alert("ERROR! Form NOMOR AGENDA harus diisi angka.");
+                    window.location.href="./admin.php?page=tsm&aksi=add";
+                    </script>';
                 } else {
 
-                    $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
-                        tgl_diterima,keterangan)
-                        VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan')");
+                    //Cek apakah nomor agenda sudah ada di database
+                    $cek1 = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_agenda='$no_agenda'");
+                    $result1 = mysqli_num_rows($cek1);
 
-                    //Jika query berhasil user akan diarahkan kembali ke halaman transaksi surat masuk
-                    if($query == true){
-                        header("Location: ./admin.php?page=tsm&message=1");
-                        die();
+                    //Jika nomor agenda sudah ada di database akan menampilkan pesan error
+                    if($result1 > 0){
+                        echo '<script language="javascript">
+                        window.alert("ERROR! Terjadi duplikasi data NOMOR AGENDA.");
+                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        </script>';
                     } else {
-                        echo '<br/><div class="error red lighten-5"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Periksa penulisan querynya.</div>';
+
+                        //Cek apakah nomor surat sudah ada di database
+                        $cek2 = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_surat='$no_surat'");
+                        $result2 = mysqli_num_rows($cek2);
+
+                        //Jika nomor surat sudah ada di database akan menampilkan pesan error
+                        if($result2 > 0){
+                            echo '<script language="javascript">
+                            window.alert("ERROR! Terjadi duplikasi data NOMOR SURAT.");
+                            window.location.href="./admin.php?page=tsm&aksi=add";
+                            </script>';
+                        } else {
+
+                            $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
+                                tgl_diterima,keterangan)
+                                VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan')");
+
+                            //Jika query berhasil user akan diarahkan kembali ke halaman transaksi surat masuk
+                            if($query == true){
+                                echo '<script language="javascript">
+                                window.alert("SUKSES! Data berhasil ditambahkan.");
+                                window.location.href="./admin.php?page=tsm";
+                                </script>';
+                            } else {
+                                echo '<script language="javascript">
+                                window.alert("ERROR! Periksa penulisan querynya.");
+                                window.location.href="./admin.php?page=tsm&aksi=add";
+                                </script>';
+                                }
+                        }
                     }
                 }
             }
@@ -67,13 +100,7 @@
 
 <!-- Row form Start -->
 <div class="row jarak-form">
-<?php
-    if (isset($_GET['message'])) {
-        if($_GET['message'] == "4"){
-            echo '<script language="javascript">alert("ERROR! Terjadi duplikasi data NOMOR SURAT.");</script>';
-        }
-    }
-?>
+
     <!-- Form START -->
     <form class="col s12" method="POST" action="?page=tsm&aksi=add">
 

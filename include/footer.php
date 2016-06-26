@@ -2,6 +2,11 @@
     //Cek session login
     if(!empty($_SESSION['admin'])){
 ?>
+
+<noscript>
+    <meta http-equiv="refresh" content="0;URL='./enable-javascript.html'" />
+</noscript>
+
 <!-- Footer START -->
 <footer class="page-footer white">
     <div class="container">
@@ -23,7 +28,6 @@
 <!-- Javascript START -->
 <script type="text/javascript" src="asset/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="asset/js/materialize.min.js"></script>
-<script type="text/javascript" src="asset/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
 //jquery dropdown
@@ -44,19 +48,17 @@ $('.datepicker').pickadate({
 
 //jquery teaxtarea
 $('#isi_ringkas').val('');
-$('#isi_ringkas').trigger('autoresize');   
+$('#isi_ringkas').trigger('autoresize');
 
 //jquery dropdown select
 $(document).ready(function() {
 $('select').material_select();
 });
 
-//jquery alert message
-$("#alert-message").alert().fade(3000).slideUp('slow');
-         
 </script>
 <!-- Javascript END -->
-<?php 
+
+<?php
     } else {
         header("Location:../");
         die();

@@ -1,6 +1,8 @@
 <?php
     session_start();
     session_destroy();
-    header("Location: ./");
-    die();
+    echo '<script language="javascript">
+    window.alert("SUKSES! Anda berhasil logout.");
+    window.location.href="./";
+    </script>';
 ?>

@@ -83,10 +83,15 @@
             		$query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
             		if($query == true){
-            			header("Location: ./admin.php?page=tsm&message=3");
-            			die();
+                        echo '<script language="javascript">
+                        window.alert("SUKSES! Data berhasil dihapus.");
+                        window.location.href="./admin.php?page=tsm";
+                        </script>';
             		} else {
-            			echo '<br/><div id="alert-message" class="error red lighten-5"><i class="material-icons">error_outline</i> ERROR! Periksa penulisan querynya.</div>';
+                        echo '<script language="javascript">
+                        window.alert("ERROR! Periksa penulisan querynya.");
+                        window.location.href="./admin.php?page=tsm&aksi=del&id_surat='.$id_surat.'";
+                        </script>';
             		}
             	}
 		    }
