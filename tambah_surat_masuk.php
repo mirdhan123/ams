@@ -38,49 +38,49 @@
 
                     if(!preg_match("/^[a-zA-Z0-9.\/ ]*$/", $no_surat)){
                     echo '<script language="javascript">
-                    window.alert("ERROR! Form NOMOR SURAT hanya boleh diisi huruf, angka, tanda titik dan garis miring.");
+                    window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan garis miring(/).");
                     window.location.href="./admin.php?page=tsm&aksi=add";
                     </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9. ]*$/", $asal_surat)){
                     echo '<script language="javascript">
-                    window.alert("ERROR! Form ASAL SURAT hanya boleh diisi huruf, angka dan tanda titik.");
+                    window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi dan tanda titik(.).");
                     window.location.href="./admin.php?page=tsm&aksi=add";
                     </script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z0-9.,() ]*$/", $isi)){
+                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $isi)){
                     echo '<script language="javascript">
-                    window.alert("ERROR! Form ISI RINGKAS hanya boleh diisi huruf, angka, tanda titik, koma dan kurung.");
+                    window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
                     window.location.href="./admin.php?page=tsm&aksi=add";
                     </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
                     echo '<script language="javascript">
-                    window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh diisi huruf, angka, tanda titik dan koma.");
+                    window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
                     window.location.href="./admin.php?page=tsm&aksi=add";
                     </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $indeks)){
                     echo '<script language="javascript">
-                    window.alert("ERROR! Form INDEKS hanya boleh diisi huruf, angka, tanda titik dan koma.");
+                    window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
                     window.location.href="./admin.php?page=tsm&aksi=add";
                     </script>';
                 } else {
 
                     if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
                     echo '<script language="javascript">
-                    window.alert("ERROR! Form TANGGAL SURAT hanya boleh diisi angka dan tanda minus.");
+                    window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan tanda minus(-).");
                     window.location.href="./admin.php?page=tsm&aksi=add";
                     </script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z0-9.,() ]*$/", $keterangan)){
+                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $keterangan)){
                     echo '<script language="javascript">
-                    window.alert("ERROR! Form KETERANGAN hanya boleh diisi huruf, angka, tanda titik, koma dan kurung.");
+                    window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
                     window.location.href="./admin.php?page=tsm&aksi=add";
                     </script>';
                 }
@@ -157,51 +157,51 @@
 <div class="row jarak-form">
 
     <!-- Form START -->
-    <form class="col s12" method="POST" action="?page=tsm&aksi=add">
+    <form class="col s12" method="POST" action="?page=tsm&aksi=add" enctype="multipart/form-data">
 
         <!-- Row in form START -->
         <div class="row">
             <div class="input-field col s6">
-                <input id="no_agenda" type="number" class="validate" name="no_agenda">
+                <input id="no_agenda" type="number" class="validate tooltipped" name="no_agenda" data-position="top" data-tooltip="Nomor agenda surat. Isi dengan angka">
                 <label for="no_agenda">Nomor Agenda</label>
             </div>
             <div class="input-field col s6">
-                <input id="kode" type="text" class="validate" name="kode">
+                <input id="kode" type="text" class="validate tooltipped" name="kode" data-position="top" data-tooltip="Kode pengelompokan surat. Isi dengan huruf, angka, tanda titik(.) dan koma(.)">
                 <label for="kode">Kode Klasifikasi</label>
             </div>
             <div class="input-field col s6">
-                <input id="asal_surat" type="text" class="validate" name="asal_surat">
+                <input id="asal_surat" type="text" class="validate tooltipped" name="asal_surat" data-position="top" data-tooltip="Instansi pengirim surat. Isi dengan huruf, angka dan tanda titik(.)">
                 <label for="asal_surat">Asal Surat</label>
             </div>
             <div class="input-field col s6">
-                <input id="indeks" type="text" class="validate" name="indeks">
+                <input id="indeks" type="text" class="validate tooltipped" name="indeks" data-position="top" data-tooltip="Indeks berkas surat. Isi dengan huruf, angka, tanda titik(.) dan koma(,)">
                 <label for="indeks">Indeks Berkas</label>
             </div>
             <div class="input-field col s6">
-                <input id="no_surat" type="text" class="validate" name="no_surat">
+                <input id="no_surat" type="text" class="validate tooltipped" name="no_surat" data-position="top" data-tooltip="Nomor surat. Isi dengan huruf, angka, tanda titik(.) dan garis miring(/)">
                 <label for="no_surat">Nomor Surat</label>
             </div>
             <div class="input-field col s6">
-                <input id="tgl_surat" type="date" name="tgl_surat" class="datep">
+                <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker tooltipped" data-position="top" data-tooltip="Tanggal surat. Isi dengan tanggal">
                 <label for="tgl_surat">Tanggal Surat</label>
             </div>
             <div class="input-field col s6">
-                <textarea id="isi" class="materialize-textarea validate" name="isi"></textarea>
+                <textarea id="isi" class="materialize-textarea validate tooltipped" name="isi" data-position="top" data-tooltip="Isi ringkas surat. Isi dengan huruf, angka, tanda titik(.), koma(,), kurung(), garis miring(/), persen(%) dan at(@)."></textarea>
                 <label for="isi">Isi Ringkas</label>
             </div><!--
             <div class="input-field col s6">
                 <div class="file-field input-field">
-                    <div class="btn waves-effect waves-light">
+                    <div class="btn orange lighten-1 waves-effect waves-light">
                         <span>File</span>
                         <input type="file" name="file" >
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" placeholder="Upload file scan surat keluar">
+                        <input class="file-path validate" type="text" placeholder="Upload file scan surat masuk">
                     </div>
                 </div>
             </div> -->
             <div class="input-field col s6">
-                <input id="keterangan" type="text" class="validate" name="keterangan">
+                <input id="keterangan" type="text" class="validate tooltipped" name="keterangan" data-position="top" data-tooltip="Keterangan surat. Isi dengan huruf, angka, tanda titik(.), koma(,), kurung(), garis miring(/), persen(%) dan at(@).">
                 <label for="keterangan">Keterangan</label>
             </div>
         </div>

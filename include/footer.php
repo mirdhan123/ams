@@ -45,7 +45,7 @@ $('.button-collapse').sideNav({
 //jquery datepicker
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 10, // Creates a dropdown of 15 years to control year
+    selectYears: 10 // Creates a dropdown of 15 years to control year
 });
 
 //jquery teaxtarea
@@ -55,6 +55,11 @@ $('#isi_ringkas').trigger('autoresize');
 //jquery dropdown select
 $(document).ready(function() {
 $('select').material_select();
+});
+
+//jquery tooltip
+$(document).ready(function(){
+$('.tooltipped').tooltip({delay: 10});
 });
 
 </script>

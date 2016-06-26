@@ -52,17 +52,14 @@ echo '<!-- Row Start -->
                     <div class="col m7">
                         <ul class="left">
                             <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">mail</i> Surat Masuk</a></li>
-                            <li class="waves-effect waves-light hide-on-med-and-down">
-                                <a href="?page=tsm&aksi=add"><i class="material-icons md-24">add_circle</i> Tambah Data Surat Masuk</a>
-                            </li>
-                            <li class="hide-on-large-only">
-                            <a href="?page=tsm&aksi=add" class="dropdown-button" data-activates="tsm"><i class="material-icons">add_circle</i> Tambah</a>
+                            <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Klik untuk menambahkan data surat masuk">
+                                <a href="?page=tsm&aksi=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col m5 hide-on-med-and-down">
                         <form>
-                            <div class="input-field round-in-box">
+                            <div class="input-field round-in-box tooltipped" data-position="bottom" data-tooltip="Ketik dan tekan enter mencari data surat masuk yang telah tersimpan">
                                 <input id="search" type="search" placeholder="Ketik dan tekan enter mencari data..." required>
                                 <label for="search"><i class="material-icons">search</i></label>
                             </div>
@@ -97,7 +94,7 @@ echo '<!-- Row Start -->
         if(mysqli_num_rows($query) > 0){
             $no = 1;
             while($row = mysqli_fetch_array($query)){
-              echo '<td>'.$row['no_agenda'].'/'.$row['kode'].'</td>
+              echo '<td>'.$row['no_agenda'].'<br/>'.$row['kode'].'</td>
                     <td>'.$row['isi'].'<br/><br/><strong>File:</strong></td>
                     <td>'.$row['asal_surat'].'</td>
                     <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
