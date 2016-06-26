@@ -67,7 +67,7 @@ $('.tooltipped').tooltip({delay: 10});
 
 <?php
     } else {
-        header("Location:../");
+        header("Location:./");
         die();
     }
 ?>
