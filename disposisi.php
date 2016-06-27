@@ -9,9 +9,9 @@
     } else {
 
         //Request url aksi menggunakan fungsi switch case
-        if(isset($_REQUEST['aksi'])){
-            $aksi = $_REQUEST['aksi'];
-            switch ($aksi) {
+        if(isset($_REQUEST['dsm'])){
+            $dsm = $_REQUEST['dsm'];
+            switch ($dsm) {
                 case 'add':
                     include "tambah_disposisi.php";
                     break;
@@ -22,9 +22,18 @@
                     include "hapus_disposisi.php";
                     break;
             }
-        }
-    }
-echo '
+        } else {
+
+            //Menampilkan data sesuai id_surat
+            $id_surat = $_REQUEST['id_surat'];
+
+            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+
+            if(mysqli_num_rows($query) > 0){
+                $no = 1;
+                while($row = mysqli_fetch_array($query)){
+                    echo '
+
 <!-- Row Start -->
 <div class="row">
     <!-- Secondary Nav START -->
@@ -36,7 +45,7 @@ echo '
                         <ul class="left">
                             <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">description</i> Disposisi  Surat</a></li>
                             <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Klik untuk menambahkan data disposisi surat">
-                                <a href="?page=tsm&aksi=add"><i class="material-icons md-24">add_circle</i> Tambah Disposisi</a>
+                                <a href="?page=tsm&aksi=disp&id_surat='.$row['id_surat'].'&dsm=add"><i class="material-icons md-24">add_circle</i> Tambah Disposisi</a>
                             </li>
                             <li class="waves-effect waves-light hide-on-small-only tooltipped" data-position="bottom" data-tooltip="Klik untuk kembali ke halaman transaksi surat masuk"><a href="?page=tsm"><i class="material-icons">arrow_back</i> Kembali</a></li>
                         </ul>
@@ -55,17 +64,8 @@ echo '
     </div>
     <!-- Secondary Nav END -->
 </div>
-<!-- Row END -->';
+<!-- Row END -->
 
-        //Menampilkan data sesuai id_surat
-        $id_surat = $_REQUEST['id_surat'];
-
-        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-
-        if(mysqli_num_rows($query) > 0){
-            $no = 1;
-            while($row = mysqli_fetch_array($query)){
-                echo '
 <!-- Perihal START -->
 <div class="col s12">
     <div class="card blue lighten-5">
@@ -124,6 +124,8 @@ echo '
 
 </div>
 <!-- Row form END -->';
+}
+}
 }
 }
 ?>

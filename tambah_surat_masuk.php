@@ -37,52 +37,52 @@
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.\/ ]*$/", $no_surat)){
-                    echo '<script language="javascript">
-                    window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan garis miring(/).");
-                    window.location.href="./admin.php?page=tsm&aksi=add";
-                    </script>';
+                        echo '<script language="javascript">
+                        window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan garis miring(/).");
+                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9. ]*$/", $asal_surat)){
-                    echo '<script language="javascript">
-                    window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi dan tanda titik(.).");
-                    window.location.href="./admin.php?page=tsm&aksi=add";
-                    </script>';
+                        echo '<script language="javascript">
+                        window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi dan tanda titik(.).");
+                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi)){
-                    echo '<script language="javascript">
-                    window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
-                    window.location.href="./admin.php?page=tsm&aksi=add";
-                    </script>';
+                        echo '<script language="javascript">
+                        window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
+                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
-                    echo '<script language="javascript">
-                    window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
-                    window.location.href="./admin.php?page=tsm&aksi=add";
-                    </script>';
+                        echo '<script language="javascript">
+                        window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
+                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $indeks)){
-                    echo '<script language="javascript">
-                    window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
-                    window.location.href="./admin.php?page=tsm&aksi=add";
-                    </script>';
+                        echo '<script language="javascript">
+                        window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
+                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        </script>';
                 } else {
 
                     if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
-                    echo '<script language="javascript">
-                    window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan tanda minus(-).");
-                    window.location.href="./admin.php?page=tsm&aksi=add";
-                    </script>';
+                        echo '<script language="javascript">
+                        window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan tanda minus(-).");
+                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $keterangan)){
-                    echo '<script language="javascript">
-                    window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
-                    window.location.href="./admin.php?page=tsm&aksi=add";
-                    </script>';
+                        echo '<script language="javascript">
+                        window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
+                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        </script>';
                 }
 
                     //Cek apakah nomor agenda sudah ada di database
@@ -176,7 +176,7 @@
         <nav class="secondary-nav">
             <div class="nav-wrapper blue-grey darken-1">
                 <ul class="left">
-                    <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">mail</i> Tambah Data Surat Masuk</a></li>
+                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error. Jika tidak ada data isikan tanda minus (-)."><a href="#" class="judul"><i class="material-icons">mail</i> Tambah Data Surat Masuk</a></li>
                 </ul>
             </div>
         </nav>
@@ -194,41 +194,41 @@
         <!-- Row in form START -->
         <div class="row">
             <div class="input-field col s6">
-                <input id="no_agenda" type="number" class="validate tooltipped" name="no_agenda" data-position="top" data-tooltip="Nomor agenda surat. Isi dengan angka" required>
+                <input id="no_agenda" type="number" class="validate" name="no_agenda" required>
                 <label for="no_agenda">Nomor Agenda</label>
             </div>
             <div class="input-field col s6">
-                <input id="kode" type="text" class="validate tooltipped" name="kode" data-position="top" data-tooltip="Kode pengelompokan surat. Isi dengan huruf dan angka" required>
+                <input id="kode" type="text" class="validate" name="kode" required>
                 <label for="kode">Kode Klasifikasi</label>
             </div>
             <div class="input-field col s6">
-                <input id="asal_surat" type="text" class="validate tooltipped" name="asal_surat" data-position="top" data-tooltip="Instansi pengirim surat. Isi dengan huruf dan angka" required>
+                <input id="asal_surat" type="text" class="validate" name="asal_surat" required>
                 <label for="asal_surat">Asal Surat</label>
             </div>
             <div class="input-field col s6">
-                <input id="indeks" type="text" class="validate tooltipped" name="indeks" data-position="top" data-tooltip="Indeks berkas arsip surat. Isi dengan huruf dan angka" required>
+                <input id="indeks" type="text" class="validate" name="indeks" required>
                 <label for="indeks">Indeks Berkas</label>
             </div>
             <div class="input-field col s6">
-                <input id="no_surat" type="text" class="validate tooltipped" name="no_surat" data-position="top" data-tooltip="Nomor surat. Isi dengan huruf, angka tanda titik(.) dan garis miring(/)" required>
+                <input id="no_surat" type="text" class="validate" name="no_surat" required>
                 <label for="no_surat">Nomor Surat</label>
             </div>
             <div class="input-field col s6">
-                <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker tooltipped" data-position="top" data-tooltip="Tanggal surat. Isi dengan tanggal" required>
+                <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker" required>
                 <label for="tgl_surat">Tanggal Surat</label>
             </div>
             <div class="input-field col s6">
-                <textarea id="isi" class="materialize-textarea validate tooltipped" name="isi" data-position="top" data-tooltip="Isi ringkas surat. Isi dengan huruf dan angka" required></textarea>
+                <textarea id="isi" class="materialize-textarea validate" name="isi" required></textarea>
                 <label for="isi">Isi Ringkas</label>
             </div>
-            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Gambar/file scan dari surat masuk. Ukuran maksimal 2MB berformat *.JPG, *.JPEG atau *.PNG">
+            <div class="input-field col s6">
                 <div class="field input-field">
                     <input type="file" name="file" id="file">
                     <medium>Upload</medium>
                 </div>
             </div>
             <div class="input-field col s6">
-                <input id="keterangan" type="text" class="validate tooltipped" name="keterangan" data-position="top" data-tooltip="Keterangan tambahan surat. Isi dengan huruf dan angka" required>
+                <input id="keterangan" type="text" class="validate" name="keterangan" required>
                 <label for="keterangan">Keterangan</label>
             </div>
         </div>
