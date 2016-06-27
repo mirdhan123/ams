@@ -102,7 +102,7 @@ echo '<!-- Row Start -->
                         <a class="dropdown-button btn deep-orange" href="#" data-activates="dropdown1">Aksi</a>
                         <ul id="dropdown1" class="dropdown-content">
                             <li class="cyan "><a href="?page=tsm&aksi=edit&id_surat='.$row['id_surat'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
-                            <li class="lime darken-2"><a href="?page=tsm&aksi=disp"><i class="material-icons">add_circle</i> DISPOSISI</a></a></li>
+                            <li class="lime darken-2"><a href="?page=tsm&aksi=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">add_circle</i> DISPOSISI</a></a></li>
                             <li class="yellow darken-3"><a href="?page=tsm&aksi=print"><i class="material-icons">print</i> CETAK</a></li>
                             <li class="divider"></li>
                             <li class="deep-orange"><a href="?page=tsm&aksi=del&id_surat='.$row['id_surat'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
