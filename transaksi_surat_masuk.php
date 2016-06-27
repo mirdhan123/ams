@@ -30,7 +30,7 @@
             }
         } else {
 
-            $limit = 5;
+            $limit = 10;
             $pg = @$_GET['pg'];
                 if(empty($pg)){
                     $posisi = 0;
@@ -145,6 +145,7 @@ echo '<!-- Row Start -->
             } else {
                 echo '<li class="active waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
             }
+
         //Last and next pagging
         if($pg < $jmlhalaman){
             $next = $pg + 1;

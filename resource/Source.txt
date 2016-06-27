@@ -2,7 +2,6 @@ Aplikasi PHP Bayar
 www.w3school.com
 www.materializecss.com
 webdinamis samsul
-http://stackoverflow.com/questions/1610455/how-do-you-display-a-javascript-alert-from-php
 http://diskusiweb.com/discussion/11192/validasi-login-membedakan-huruf-besar-dan-kecil/p1
 http://stackoverflow.com/questions/5443568/javascript-windows-alert-with-redirect-function
 https://www.w3.org/TR/WCAG20-TECHS/H76.html

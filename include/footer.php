@@ -43,9 +43,10 @@ $('.button-collapse').sideNav({
 });
 
 //jquery datepicker
-$('.datepicker').pickadate({
+$('#tgl_surat').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 10 // Creates a dropdown of 15 years to control year
+    selectYears: 10, // Creates a dropdown of 15 years to control year
+    format: "yyyy-mm-dd"
 });
 
 //jquery teaxtarea

@@ -50,7 +50,7 @@
                     </script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $isi)){
+                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi)){
                     echo '<script language="javascript">
                     window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
                     window.location.href="./admin.php?page=tsm&aksi=add";
@@ -188,7 +188,7 @@
             <div class="input-field col s6">
                 <textarea id="isi" class="materialize-textarea validate tooltipped" name="isi" data-position="top" data-tooltip="Isi ringkas surat. Isi dengan huruf dan angka"></textarea>
                 <label for="isi">Isi Ringkas</label>
-            </div>
+            </div> <!--
             <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Gambar/file scan dari surat masuk. Ukuran maksimal 2MB berformat *.JPG, *.JPEG atau *.PNG">
                 <div class="file-field input-field">
                     <div class="btn orange lighten-1 waves-effect waves-light">
@@ -199,7 +199,7 @@
                         <input class="file-path validate" type="text" placeholder="Upload file scan Surat Masuk">
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="input-field col s6">
                 <input id="keterangan" type="text" class="validate tooltipped" name="keterangan" data-position="top" data-tooltip="Keterangan tambahan surat. Isi dengan huruf dan angka">
                 <label for="keterangan">Keterangan</label>
