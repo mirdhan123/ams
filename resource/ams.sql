@@ -2,8 +2,8 @@
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 24, 2016 at 10:36 PM
+-- Host: localhost
+-- Generation Time: Jun 27, 2016 at 05:11 
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -34,7 +34,14 @@ CREATE TABLE IF NOT EXISTS `tbl_disposisi` (
   `sifat` enum('Penting, Segera, Khusus') NOT NULL,
   `batas_waktu` date NOT NULL,
   `catatatn` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_disposisi`
+--
+
+INSERT INTO `tbl_disposisi` (`id_disposisi`, `id_surat`, `tujuan`, `isi`, `sifat`, `batas_waktu`, `catatatn`) VALUES
+(1, 2, 'Guru', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', 'Penting, Segera, Khusus', '2016-06-01', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ');
 
 -- --------------------------------------------------------
 
@@ -78,8 +85,8 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
-`id_surat` int(7) NOT NULL,
-  `no_agenda` int(7) NOT NULL,
+`id_surat` int(10) NOT NULL,
+  `no_agenda` int(10) NOT NULL,
   `no_surat` varchar(100) NOT NULL,
   `asal_surat` varchar(250) NOT NULL,
   `isi` mediumtext NOT NULL,
@@ -87,24 +94,19 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
   `indeks` varchar(100) NOT NULL,
   `tgl_surat` date NOT NULL,
   `tgl_diterima` date NOT NULL,
+  `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=206 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_surat_masuk`
 --
 
-INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `keterangan`) VALUES
-(162, 2, '2', '2', '2', '2', '2', '0000-00-00', '2016-06-24', '2'),
-(166, 2, '2', '2', '2', '2', '2', '0000-00-00', '2016-06-24', '2'),
-(167, 2, '2', '2', '2', '2', '2', '0000-00-00', '2016-06-24', '2'),
-(168, 2, '2', '2', '2', '2', '2', '0000-00-00', '2016-06-24', '2'),
-(169, 2, '2', 'gfgfghf', 'hjghjg', 'rerrtert', 'fghfhf', '0000-00-00', '2016-06-24', 'hghjgjh'),
-(170, 2, '2', '2', '2', '2', '2', '0000-00-00', '2016-06-24', '2'),
-(190, 1, '1', '1', '1', '1', '1', '0000-00-00', '2016-06-24', '1'),
-(200, 2, '432/234/234/23423/2016', 'Nganjuk', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,', 'H', 'HK', '2016-01-01', '2016-06-24', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore '),
-(202, 56757, '7676', 'Nganjukkkkk', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,', 'H', 'YH', '2016-01-31', '2016-06-24', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,'),
-(205, 2, '6678', 'Nganjuk', 'GHJg', 'G', 'G', '2016-06-25', '2016-06-25', 'ghjgj');
+INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`) VALUES
+(1, 1, '074 / BAZNAZ.JTM / IV / 2016', 'BAZNAZ JATIM', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'G1', 'A1', '2016-04-07', '2016-06-27', 'IMG_20160611_103621.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '),
+(2, 2, '074 / BAZNAZ.JTM / IV / 2018', 'BAZARNAZ JATIM', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', 'G2', 'K1', '2011-01-13', '2016-06-27', 'IMG_20160611_103623.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '),
+(3, 89978, '7897897', '97897', 'yttuqwfqwf', '797', '89789', '2011-10-20', '2016-06-27', 'IMG_20160611_103632.jpg', 'qwfqw'),
+(5, 4, '4', '4', 'fewf', '4', '4', '2016-06-09', '2016-06-27', 'IMG_20160611_103636.jpg', 'wefw');
 
 -- --------------------------------------------------------
 
@@ -119,16 +121,15 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `nama` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
-(6, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'M. Rudianto', '-', 1),
-(7, 'disposisi', '13bb8b589473803f26a02e338f949b8c', 'Petugas Disposisi', '-', 2),
-(8, 'imam', 'eaccb8ea6090a40a98aa28c071810371', 'Imam Al Husna', '-', 2);
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'M. Rudianto', '-', 1),
+(2, 'disposisi', '13bb8b589473803f26a02e338f949b8c', 'Imam Al Husna', '-', 2);
 
 --
 -- Indexes for dumped tables
@@ -172,7 +173,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
-MODIFY `id_disposisi` int(7) NOT NULL AUTO_INCREMENT;
+MODIFY `id_disposisi` int(7) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_instansi`
 --
@@ -187,12 +188,12 @@ MODIFY `id_surat` int(7) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-MODIFY `id_surat` int(7) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=206;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-MODIFY `id_user` tinyint(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id_user` tinyint(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
