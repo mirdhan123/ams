@@ -10,6 +10,7 @@
 
         //Menampilkan data sesuai id_surat
     	$id_surat = $_REQUEST['id_surat'];
+
     	$query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
     	if(mysqli_num_rows($query) > 0){
@@ -45,7 +46,7 @@
 				                <tr>
 				                    <td width="13%">File</td>
 				                    <td width="1%">:</td>
-				                    <td width="86%">file</td>
+				                    <td width="86%"><a href="upload/surat_masuk/'.$row['file'].'">'.$row['file'].'</a></td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">Asal Surat</td>

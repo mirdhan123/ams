@@ -95,7 +95,7 @@ echo '<!-- Row Start -->
             $no = 1;
             while($row = mysqli_fetch_array($query)){
               echo '<td>'.$row['no_agenda'].'<br/>'.$row['kode'].'</td>
-                    <td>'.$row['isi'].'<br/><br/><strong>File:</strong></td>
+                    <td>'.$row['isi'].'<br/><br/><strong>File: <a href="upload/surat_masuk/'.$row['file'].'">'.$row['file'].'</a></strong></td>
                     <td>'.$row['asal_surat'].'</td>
                     <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                     <td>

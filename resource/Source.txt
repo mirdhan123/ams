@@ -9,3 +9,5 @@ http://www.dumetschool.com/blog/Membuat-Validasi-Angka-dengan-PHP
 http://www.w3schools.com/php/php_date.asp
 http://stackoverflow.com/questions/11063753/preg-match-dot-and-slash
 http://www.nulis-ilmu.com/2014/10/membuat-validasi-input-text-pada-form.html
+http://stackoverflow.com/questions/5023181/php-move-uploaded-file-unable-to-move
+http://www.w3schools.com/php/php_file_upload.asp

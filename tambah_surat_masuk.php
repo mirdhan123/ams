@@ -25,7 +25,7 @@
                 $isi = $_REQUEST['isi'];
                 $kode = $_REQUEST['kode'];
                 $indeks = $_REQUEST['indeks'];
-                $tgl_surat = date('Y-m-d', strtotime($_REQUEST['tgl_surat']));
+                $tgl_surat = $_REQUEST['tgl_surat'];
                 $keterangan = $_REQUEST['keterangan'];
 
                 //Validasi input data
@@ -109,9 +109,41 @@
                             </script>';
                         } else {
 
+                            //Query upload image
+                            $file = $_FILES['file']['name'];
+                            $target_dir = "upload/surat_masuk/";
+                            $imageFileType = pathinfo($file, PATHINFO_EXTENSION);
+
+                            //Cek apakah file yang di upload adalah benar-benar file gambar
+                            if (isset($_POST['submit'])){
+                                $check = getimagesize($_FILES['file']['tmp_name']);
+                                if($check == false){
+                                    echo '<script language="javascript">window.alert("ERROR! File yang diupload bukan gambar.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';
+                                }
+                            }
+
+                            //Cek apakah file sudah ada
+                            if(file_exists($file)){
+                                echo '<script language="javascript">window.alert("ERROR! File yang diupload sudah ada dalam database.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';
+                            }
+
+                            //Cek ukuran file
+                            if($_FILES['file']['size'] > 2000000){
+                                echo '<script language="javascript">window.alert("ERROR! Ukuran file yang diupload terlalu besar.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';
+                            }
+
+                            //Cek format gambar
+                            if($imageFileType != "JPG" && $imageFileType != "jpg" && $imageFileType != "JPEG" && $imageFileType != "jpeg" && $imageFileType != "PNG" && $imageFileType != "png"){
+                                echo '<script language="javascript">window.alert("ERROR! Format file yang diperbolehkan hanya *.JPG, *.JPEG dan *.PNG.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';
+                            }
+
+                            if(move_uploaded_file($_FILES['file']['tmp_name'], 'upload/surat_masuk/'.$file) == false){
+                            echo '<script language="javascript">window.alert("ERROR! File gagal diupload.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';                                }
+
+                            //Query insert data
                             $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
-                                tgl_diterima,keterangan)
-                                VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan')");
+                                tgl_diterima,file,keterangan)
+                                VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$file','$keterangan')");
 
                             //Jika query berhasil user akan diarahkan kembali ke halaman transaksi surat masuk
                             if($query == true){
@@ -162,46 +194,41 @@
         <!-- Row in form START -->
         <div class="row">
             <div class="input-field col s6">
-                <input id="no_agenda" type="number" class="validate tooltipped" name="no_agenda" data-position="top" data-tooltip="Nomor agenda surat. Isi dengan angka">
+                <input id="no_agenda" type="number" class="validate tooltipped" name="no_agenda" data-position="top" data-tooltip="Nomor agenda surat. Isi dengan angka" required>
                 <label for="no_agenda">Nomor Agenda</label>
             </div>
             <div class="input-field col s6">
-                <input id="kode" type="text" class="validate tooltipped" name="kode" data-position="top" data-tooltip="Kode pengelompokan surat. Isi dengan huruf dan angka">
+                <input id="kode" type="text" class="validate tooltipped" name="kode" data-position="top" data-tooltip="Kode pengelompokan surat. Isi dengan huruf dan angka" required>
                 <label for="kode">Kode Klasifikasi</label>
             </div>
             <div class="input-field col s6">
-                <input id="asal_surat" type="text" class="validate tooltipped" name="asal_surat" data-position="top" data-tooltip="Instansi pengirim surat. Isi dengan huruf dan angka">
+                <input id="asal_surat" type="text" class="validate tooltipped" name="asal_surat" data-position="top" data-tooltip="Instansi pengirim surat. Isi dengan huruf dan angka" required>
                 <label for="asal_surat">Asal Surat</label>
             </div>
             <div class="input-field col s6">
-                <input id="indeks" type="text" class="validate tooltipped" name="indeks" data-position="top" data-tooltip="Indeks berkas arsip surat. Isi dengan huruf dan angka">
+                <input id="indeks" type="text" class="validate tooltipped" name="indeks" data-position="top" data-tooltip="Indeks berkas arsip surat. Isi dengan huruf dan angka" required>
                 <label for="indeks">Indeks Berkas</label>
             </div>
             <div class="input-field col s6">
-                <input id="no_surat" type="text" class="validate tooltipped" name="no_surat" data-position="top" data-tooltip="Nomor surat. Isi dengan huruf, angka tanda titik(.) dan garis miring(/)">
+                <input id="no_surat" type="text" class="validate tooltipped" name="no_surat" data-position="top" data-tooltip="Nomor surat. Isi dengan huruf, angka tanda titik(.) dan garis miring(/)" required>
                 <label for="no_surat">Nomor Surat</label>
             </div>
             <div class="input-field col s6">
-                <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker tooltipped" data-position="top" data-tooltip="Tanggal surat. Isi dengan tanggal">
+                <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker tooltipped" data-position="top" data-tooltip="Tanggal surat. Isi dengan tanggal" required>
                 <label for="tgl_surat">Tanggal Surat</label>
             </div>
             <div class="input-field col s6">
-                <textarea id="isi" class="materialize-textarea validate tooltipped" name="isi" data-position="top" data-tooltip="Isi ringkas surat. Isi dengan huruf dan angka"></textarea>
+                <textarea id="isi" class="materialize-textarea validate tooltipped" name="isi" data-position="top" data-tooltip="Isi ringkas surat. Isi dengan huruf dan angka" required></textarea>
                 <label for="isi">Isi Ringkas</label>
-            </div> <!--
+            </div>
             <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Gambar/file scan dari surat masuk. Ukuran maksimal 2MB berformat *.JPG, *.JPEG atau *.PNG">
-                <div class="file-field input-field">
-                    <div class="btn orange lighten-1 waves-effect waves-light">
-                        <span>File</span>
-                        <input type="file" name="file" >
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" placeholder="Upload file scan Surat Masuk">
-                    </div>
+                <div class="field input-field">
+                    <input type="file" name="file" id="file">
+                    <medium>Upload</medium>
                 </div>
-            </div> -->
+            </div>
             <div class="input-field col s6">
-                <input id="keterangan" type="text" class="validate tooltipped" name="keterangan" data-position="top" data-tooltip="Keterangan tambahan surat. Isi dengan huruf dan angka">
+                <input id="keterangan" type="text" class="validate tooltipped" name="keterangan" data-position="top" data-tooltip="Keterangan tambahan surat. Isi dengan huruf dan angka" required>
                 <label for="keterangan">Keterangan</label>
             </div>
         </div>
