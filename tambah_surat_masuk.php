@@ -176,7 +176,7 @@
         <nav class="secondary-nav">
             <div class="nav-wrapper blue-grey darken-1">
                 <ul class="left">
-                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error. Jika tidak ada data isikan tanda minus (-)."><a href="#" class="judul"><i class="material-icons">mail</i> Tambah Data Surat Masuk</a></li>
+                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error. Jika tidak ada file gambar, isi dengan tanda minus (-)."><a href="#" class="judul"><i class="material-icons">mail</i> Tambah Data Surat Masuk</a></li>
                 </ul>
             </div>
         </nav>

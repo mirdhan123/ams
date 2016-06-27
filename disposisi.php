@@ -27,11 +27,12 @@
             //Menampilkan data sesuai id_surat
             $id_surat = $_REQUEST['id_surat'];
 
-            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+            $query = "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'";
+            $result = mysqli_query($config, $query);
 
-            if(mysqli_num_rows($query) > 0){
+            if(mysqli_num_rows($result) > 0){
                 $no = 1;
-                while($row = mysqli_fetch_array($query)){
+                while($row = mysqli_fetch_array($result)){
                     echo '
 
 <!-- Row Start -->
@@ -95,11 +96,13 @@
                 <tr>';
 
                 //Melakukan query ke tabel surat masuk
-                $query = mysqli_query($config, "SELECT * FROM tbl_disposisi");
+                $query2 = "SELECT * FROM tbl_disposisi WHERE id_surat IN(SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat')";
 
-                if(mysqli_num_rows($query) > 0){
+                $result2 = mysqli_query($config, $query2);
+
+                if($result2 != false){
                     $no = 1;
-                    while($row = mysqli_fetch_array($query)){
+                    while($row = mysqli_fetch_array($result2)){
                 echo '
                     <td>'.$row['id_disposisi'].'</td>
                     <td>'.$row['tujuan'].'</td>
