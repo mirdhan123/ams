@@ -9,9 +9,9 @@
     } else {
 
         //Request url aksi menggunakan fungsi switch case
-        if(isset($_REQUEST['dsm'])){
-            $dsm = $_REQUEST['dsm'];
-            switch ($dsm) {
+        if(isset($_REQUEST['sub'])){
+            $sub = $_REQUEST['sub'];
+            switch ($sub) {
                 case 'add':
                     include "tambah_disposisi.php";
                     break;
@@ -46,7 +46,7 @@
                         <ul class="left">
                             <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">description</i> Disposisi  Surat</a></li>
                             <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Klik untuk menambahkan data disposisi surat">
-                                <a href="?page=tsm&aksi=disp&id_surat='.$row['id_surat'].'&dsm=add"><i class="material-icons md-24">add_circle</i> Tambah Disposisi</a>
+                                <a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=add"><i class="material-icons md-24">add_circle</i> Tambah Disposisi</a>
                             </li>
                             <li class="waves-effect waves-light hide-on-small-only tooltipped" data-position="bottom" data-tooltip="Klik untuk kembali ke halaman transaksi surat masuk"><a href="?page=tsm"><i class="material-icons">arrow_back</i> Kembali</a></li>
                         </ul>
@@ -111,9 +111,9 @@
                     <td>
                         <a class="dropdown-button btn deep-orange" href="#" data-activates="dropdown1">Aksi</a>
                         <ul id="dropdown1" class="dropdown-content">
-                            <li class="cyan "><a href="?page=tsm&aksi=edit&id_disposisi='.$row['id_disposisi'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
+                            <li class="cyan "><a href="?page=tsm&act=edit&id_disposisi='.$row['id_disposisi'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
                             <li class="divider"></li>
-                            <li class="deep-orange"><a href="?page=tsm&aksi=edit&id_disposisi='.$row['id_disposisi'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
+                            <li class="deep-orange"><a href="?page=tsm&act=edit&id_disposisi='.$row['id_disposisi'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
                         </ul>
                     </td>
                 </tr>

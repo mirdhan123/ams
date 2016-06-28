@@ -15,7 +15,7 @@
                 || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
                 echo '<script language="javascript">
                 window.alert("ERROR! Semua form wajib diisi.");
-                window.location.href="./admin.php?page=tsm&aksi=add";
+                window.location.href="./admin.php?page=tsm&act=add";
                 </script>';
             } else {
 
@@ -32,56 +32,56 @@
                 if(!preg_match("/^[0-9]*$/", $no_agenda)){
                     echo '<script language="javascript">
                     window.alert("ERROR! Form NOMOR AGENDA harus diisi angka.");
-                    window.location.href="./admin.php?page=tsm&aksi=add";
+                    window.location.href="./admin.php?page=tsm&act=add";
                     </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.\/ ]*$/", $no_surat)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan garis miring(/).");
-                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        window.location.href="./admin.php?page=tsm&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9. ]*$/", $asal_surat)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi dan tanda titik(.).");
-                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        window.location.href="./admin.php?page=tsm&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
-                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        window.location.href="./admin.php?page=tsm&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
-                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        window.location.href="./admin.php?page=tsm&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $indeks)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
-                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        window.location.href="./admin.php?page=tsm&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan tanda minus(-).");
-                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        window.location.href="./admin.php?page=tsm&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $keterangan)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
-                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        window.location.href="./admin.php?page=tsm&act=add";
                         </script>';
                 }
 
@@ -93,7 +93,7 @@
                     if($result1 > 0){
                         echo '<script language="javascript">
                         window.alert("ERROR! Terjadi duplikasi data NOMOR AGENDA.");
-                        window.location.href="./admin.php?page=tsm&aksi=add";
+                        window.location.href="./admin.php?page=tsm&act=add";
                         </script>';
                     } else {
 
@@ -105,7 +105,7 @@
                         if($result2 > 0){
                             echo '<script language="javascript">
                             window.alert("ERROR! Terjadi duplikasi data NOMOR SURAT.");
-                            window.location.href="./admin.php?page=tsm&aksi=add";
+                            window.location.href="./admin.php?page=tsm&act=add";
                             </script>';
                         } else {
 
@@ -124,17 +124,17 @@
 
                             //Cek apakah file sudah ada
                             if(file_exists($file)){
-                                echo '<script language="javascript">window.alert("ERROR! File yang diupload sudah ada dalam database.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';
+                                echo '<script language="javascript">window.alert("ERROR! File yang diupload sudah ada dalam database.");window.location.href="./admin.php?page=tsm&act=add";</script>';
                             }
 
                             //Cek ukuran file
                             if($_FILES['file']['size'] > 2000000){
-                                echo '<script language="javascript">window.alert("ERROR! Ukuran file yang diupload terlalu besar.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';
+                                echo '<script language="javascript">window.alert("ERROR! Ukuran file yang diupload terlalu besar.");window.location.href="./admin.php?page=tsm&act=add";</script>';
                             }
 
                             //Cek format gambar
                             if($imageFileType != "" && $imageFileType != "JPG" && $imageFileType != "jpg" && $imageFileType != "JPEG" && $imageFileType != "jpeg" && $imageFileType != "PNG" && $imageFileType != "png"){
-                                echo '<script language="javascript">window.alert("ERROR! Format file yang diperbolehkan hanya *.JPG, *.JPEG dan *.PNG.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';
+                                echo '<script language="javascript">window.alert("ERROR! Format file yang diperbolehkan hanya *.JPG, *.JPEG dan *.PNG.");window.location.href="./admin.php?page=tsm&act=add";</script>';
                             }
 
                             move_uploaded_file($_FILES['file']['tmp_name'], 'upload/surat_masuk/'.$file);
@@ -153,7 +153,7 @@
                             } else {
                                 echo '<script language="javascript">
                                 window.alert("ERROR! Periksa penulisan querynya.");
-                                window.location.href="./admin.php?page=tsm&aksi=add";
+                                window.location.href="./admin.php?page=tsm&act=add";
                                 </script>';
                                 }
                         }
@@ -189,7 +189,7 @@
 <div class="row jarak-form">
 
     <!-- Form START -->
-    <form class="col s12" method="POST" action="?page=tsm&aksi=add" enctype="multipart/form-data">
+    <form class="col s12" method="POST" action="?page=tsm&act=add" enctype="multipart/form-data">
 
         <!-- Row in form START -->
         <div class="row">

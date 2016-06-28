@@ -89,8 +89,8 @@ ob_start();
                     <a class="collapsible-header"><i class="material-icons">settings</i> Pengaturan</a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="instansi.php">Instansi</a></li>
-                            <li><a href="user.php">User</a></li>
+                            <li><a href="?page=sett&sub=ins">Instansi</a></li>
+                            <li><a href="?page=sett&sub=usr">User</a></li>
                         </ul>
                     </div>
                 </li>
@@ -128,8 +128,8 @@ ob_start();
             if($_SESSION['admin'] == 1){ ?>
         <li><a class="dropdown-button" href="#!" data-activates="pengaturan">Pengaturan <i class="material-icons md-18">arrow_drop_down</i></a></li>
             <ul id='pengaturan' class='dropdown-content'>
-                <li><a href="instansi.php">Instansi</a></li>
-                <li><a href="user.php">User</a></li>
+                <li><a href="?page=sett&sub=ins">Instansi</a></li>
+                <li><a href="?page=sett&sub=usr">User</a></li>
             </ul>
         <?php
             }

@@ -20,7 +20,7 @@
                 || $_REQUEST['catatan'] == ""){
                 echo '<script language="javascript">
                 window.alert("ERROR! Semua form wajib diisi.");
-                window.location.href="./admin.php?page=tsm&aksi=add";
+                window.location.href="./admin.php?page=tsm&act=add";
                 </script>';
             } else {
 
@@ -34,28 +34,28 @@
                 if(!preg_match("/^[a-zA-Z0-9.,\/ ]*$/", $tujuan)){
                     echo '<script language="javascript">
                     window.alert("ERROR! Form TUJUAN DISPOSISI hanya boleh mengandung huruf, angka, spasi tanda titik(.), koma(,) dan garis miring(/).");
-                    window.location.href="./admin.php?page=tsm&aksi=disp&id_surat='.$id_surat.'&dsm=add";
+                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                     </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $isi)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form ISI DISPOSISI hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
-                        window.location.href="./admin.php?page=tsm&aksi=disp&id_surat='.$id_surat.'&dsm=add";
+                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $sifat)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form SIFAT hanya boleh mengandung huruf dan spasi.");
-                        window.location.href="./admin.php?page=tsm&aksi=disp&id_surat='.$id_surat.'&dsm=add";
+                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $catatan)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form CATATAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
-                        window.location.href="./admin.php?page=tsm&aksi=disp&id_surat='.$id_surat.'&dsm=add";
+                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                         </script>';
                 }
 
@@ -67,12 +67,12 @@
                     if($query == true){
                         echo '<script language="javascript">
                         window.alert("SUKSES! Data berhasil ditambahkan.");
-                        window.location.href="./admin.php?page=tsm&aksi=disp&id_surat='.$id_surat.'";
+                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
                         </script>';
                     } else {
                         echo '<script language="javascript">
                         window.alert("ERROR! Periksa penulisan querynya.");
-                        window.location.href="./admin.php?page=tsm&aksi=disp&id_surat='.$id_surat.'&dsm=add";
+                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                         </script>';
                     }
                 }
@@ -119,11 +119,11 @@
                 <label for="isi">Isi Disposisi</label>
             </div>
             <div class="input-field col s6">
-                <input id="batas_waktu" type="date" class="datepicker validate" name="batas_waktu">
+                <input id="batas_waktu" type="date" name="tgl_surat" class="datepicker" required>
                 <label for="batas_waktu">Batas Waktu</label>
             </div>
             <div class="input-field col s6">
-                <select class="browser-default validate" name="sifat">
+                <select class="browser-default validate" id="browser-default" name="sifat">
                     <option value="" disabled selected>Pilih Sifat Disposisi</option>
                     <option value="1">Biasa</option>
                     <option value="2">Penting</option>

@@ -91,7 +91,7 @@
             		} else {
                         echo '<script language="javascript">
                         window.alert("ERROR! Periksa penulisan querynya.");
-                        window.location.href="./admin.php?page=tsm&aksi=del&id_surat='.$id_surat.'";
+                        window.location.href="./admin.php?page=tsm&act=del&id_surat='.$id_surat.'";
                         </script>';
             		}
             	}

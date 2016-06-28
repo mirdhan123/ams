@@ -73,7 +73,7 @@
                 case 'dg':
                     include "data_guru.php";
                     break;
-                case 'set':
+                case 'sett':
                     include "pengaturan.php";
                     break;
                 case 'pro':

@@ -9,9 +9,9 @@
     } else {
 
         //Request url aksi menggunakan fungsi switch case
-        if(isset($_REQUEST['aksi'])){
-            $aksi = $_REQUEST['aksi'];
-            switch ($aksi) {
+        if(isset($_REQUEST['act'])){
+            $act = $_REQUEST['act'];
+            switch ($act) {
                 case 'add':
                     include "tambah_surat_masuk.php";
                     break;
@@ -53,7 +53,7 @@ echo '<!-- Row Start -->
                         <ul class="left">
                             <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">mail</i> Surat Masuk</a></li>
                             <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Klik untuk menambahkan data surat masuk">
-                                <a href="?page=tsm&aksi=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
+                                <a href="?page=tsm&act=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
                             </li>
                         </ul>
                     </div>
@@ -99,13 +99,14 @@ echo '<!-- Row Start -->
                     <td>'.$row['asal_surat'].'</td>
                     <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                     <td>
+
                         <a class="dropdown-button btn deep-orange" href="#" data-activates="dropdown1">Aksi</a>
                         <ul id="dropdown1" class="dropdown-content">
-                            <li class="cyan "><a href="?page=tsm&aksi=edit&id_surat='.$row['id_surat'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
-                            <li class="lime darken-2"><a href="?page=tsm&aksi=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">add_circle</i> DISPOSISI</a></a></li>
-                            <li class="yellow darken-3"><a href="?page=tsm&aksi=print"><i class="material-icons">print</i> CETAK</a></li>
+                            <li class="cyan"><a href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
+                            <li class="lime darken-2 tooltipped" data-position="left" data-tooltip="Klik untuk menambahkan disposisi surat"><a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">add_circle</i> DISPOSISI</a></a></li>
+                            <li class="yellow darken-3 tooltipped" data-position="left" data-tooltip="Klik untuk mencetak disposisi surat"><a href="?page=tsm&act=print"><i class="material-icons">print</i> CETAK</a></li>
                             <li class="divider"></li>
-                            <li class="deep-orange"><a href="?page=tsm&aksi=del&id_surat='.$row['id_surat'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
+                            <li class="deep-orange"><a href="?page=tsm&act=del&id_surat='.$row['id_surat'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
                         </ul>
                     </td>
                 </tr>

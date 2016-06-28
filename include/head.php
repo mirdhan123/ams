@@ -49,6 +49,9 @@
         .file-sm {
             margin: 0 0 10px 0;
         }
+        #browser-default {
+            margin-top: -25px;
+        }
         @media only screen and (max-width: 701px) {
             #colres{
                 width: 100%;

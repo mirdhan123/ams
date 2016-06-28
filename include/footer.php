@@ -43,11 +43,12 @@ $('.button-collapse').sideNav({
 });
 
 //jquery datepicker
-$('#tgl_surat').pickadate({
+$('#tgl_surat,#batas_waktu,#dari_tanggal,#sampai_tanggal').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 10, // Creates a dropdown of 15 years to control year
     format: "yyyy-mm-dd"
 });
+
 
 //jquery teaxtarea
 $('#isi_ringkas').val('');
