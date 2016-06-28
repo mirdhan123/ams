@@ -107,23 +107,27 @@
         <!-- Row in form START -->
         <div class="row">
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">place</i>
                 <input id="tujuan" type="text" class="validate" name="tujuan">
                 <label for="tujuan">Tujuan Disposisi</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">featured_play_list   </i>
                 <input id="catatan" type="text" class="validate" name="catatan">
                 <label for="catatan">Catatan</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">description</i>
                 <textarea id="isi" class="materialize-textarea validate" name="isi"></textarea>
                 <label for="isi">Isi Disposisi</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">date_range</i>
                 <input id="batas_waktu" type="date" name="tgl_surat" class="datepicker" required>
                 <label for="batas_waktu">Batas Waktu</label>
             </div>
             <div class="input-field col s6">
-                <select class="browser-default validate" id="browser-default" name="sifat">
+                <select class="browser-default validate" name="sifat">
                     <option value="" disabled selected>Pilih Sifat Disposisi</option>
                     <option value="1">Biasa</option>
                     <option value="2">Penting</option>
@@ -134,7 +138,7 @@
             </div>
         </div>
         <!-- Row in form END -->
-
+        <br/>
         <div class="row">
             <div class="col 6">
                 <button type="submit" name ="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>

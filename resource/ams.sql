@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 28, 2016 at 06:26 
+-- Generation Time: Jun 28, 2016 at 04:56 
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
   `tgl_catat` date NOT NULL,
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
   `tgl_diterima` date NOT NULL,
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -173,12 +173,12 @@ MODIFY `id_instansi` tinyint(1) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
-MODIFY `id_surat` int(7) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id_surat` int(7) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=65;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --

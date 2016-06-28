@@ -9,9 +9,9 @@
     } else {
 
         //Request url aksi menggunakan fungsi switch case
-        if(isset($_REQUEST['aksk'])){
-            $aksk = $_REQUEST['aksk'];
-            switch ($aksk) {
+        if(isset($_REQUEST['act'])){
+            $act = $_REQUEST['act'];
+            switch ($act) {
                 case 'add':
                     include "tambah_surat_keluar.php";
                     break;
@@ -47,7 +47,7 @@ echo '<!-- Row Start -->
                         <ul class="left">
                             <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">drafts</i> Surat Keluar</a></li>
                             <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Klik untuk menambahkan data surat keluar">
-                                <a href="?page=tsk&aksk=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
+                                <a href="?page=tsk&act=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
                             </li>
                         </ul>
                     </div>
@@ -95,9 +95,9 @@ echo '<!-- Row Start -->
                     <td>
                         <a class="dropdown-button btn deep-orange" href="#" data-activates="dropdown1">Aksi</a>
                         <ul id="dropdown1" class="dropdown-content">
-                            <li class="cyan "><a href="?page=tsk&aksk=edit&id_surat='.$row['id_surat'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
+                            <li class="cyan "><a href="?page=tsk&act=edit&id_surat='.$row['id_surat'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
                             <li class="divider"></li>
-                            <li class="deep-orange"><a href="?page=tsk&aksk=del&id_surat='.$row['id_surat'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
+                            <li class="deep-orange"><a href="?page=tsk&act=del&id_surat='.$row['id_surat'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
                         </ul>
                     </td>
                 </tr>

@@ -7,7 +7,7 @@
                 <div class="nav-wrapper blue-grey darken-1">
                     <div class="col 12">
                         <ul class="left">
-                            <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Cetak daftar agenda surat keluar berdasarkan tanggal tertentu"><a href="#" class="judul"><i class="material-icons">print</i> Cetak Agenda Surat Keluar<a></li>
+                            <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Cetak daftar agenda surat keluar berdasarkan range tanggal tertentu"><a href="#" class="judul"><i class="material-icons">print</i> Cetak Agenda Surat Keluar<a></li>
                         </ul>
                     </div>
                 </div>
@@ -21,10 +21,12 @@
 <!-- Row form Start -->
 <div class="row jarak-form">
     <div class="input-field col s3">
+        <i class="material-icons prefix md-prefix">date_range</i>
         <input id="dari_tanggal" type="date">
         <label for="dari_tanggal">Dari Tanggal</label>
     </div>
     <div class="input-field col s3">
+        <i class="material-icons prefix md-prefix">date_range</i>
         <input id="sampai_tanggal" type="date" class="datepicker">
         <label for="sampai_tanggal">Sampai Tanggal</label>
     </div>

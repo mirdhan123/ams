@@ -194,40 +194,55 @@
         <!-- Row in form START -->
         <div class="row">
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">looks_one</i>
                 <input id="no_agenda" type="number" class="validate" name="no_agenda" required>
                 <label for="no_agenda">Nomor Agenda</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">bookmark</i>
                 <input id="kode" type="text" class="validate" name="kode" required>
                 <label for="kode">Kode Klasifikasi</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">place</i>
                 <input id="asal_surat" type="text" class="validate" name="asal_surat" required>
                 <label for="asal_surat">Asal Surat</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">storage</i>
                 <input id="indeks" type="text" class="validate" name="indeks" required>
                 <label for="indeks">Indeks Berkas</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">looks_two</i>
                 <input id="no_surat" type="text" class="validate" name="no_surat" required>
                 <label for="no_surat">Nomor Surat</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">date_range</i>
                 <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker" required>
                 <label for="tgl_surat">Tanggal Surat</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">description</i>
                 <textarea id="isi" class="materialize-textarea validate" name="isi" required></textarea>
                 <label for="isi">Isi Ringkas</label>
             </div>
             <div class="input-field col s6">
-                <input class="file-sm" type="file" name="file" id="file">
-                <small class="red-text">*Upload file scan Surat Masuk</small>
-            </div>
-            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">featured_play_list</i>
                 <input id="keterangan" type="text" class="validate" name="keterangan" required>
                 <label for="keterangan">Keterangan</label>
+            </div>
+            <div class="input-field col s6">
+                <div class="file-field input-field">
+                  <div class="btn light-green darken-1">
+                    <span>File</span>
+                    <input type="file" id="file" name="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload file scan Surat Masuk">
+                  </div>
+                </div>
             </div>
         </div>
         <!-- Row in form END -->

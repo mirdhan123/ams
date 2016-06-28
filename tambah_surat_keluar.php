@@ -15,7 +15,7 @@
                 || $_REQUEST['kode'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
                 echo '<script language="javascript">
                 window.alert("ERROR! Semua form wajib diisi.");
-                window.location.href="./admin.php?page=tsk&aksk=add";
+                window.location.href="./admin.php?page=tsk&act=add";
                 </script>';
             } else {
 
@@ -31,49 +31,49 @@
                 if(!preg_match("/^[0-9]*$/", $no_agenda)){
                     echo '<script language="javascript">
                     window.alert("ERROR! Form NOMOR AGENDA harus diisi angka.");
-                    window.location.href="./admin.php?page=tsk&aksk=add";
+                    window.location.href="./admin.php?page=tsk&act=add";
                     </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.\/ ]*$/", $no_surat)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan garis miring(/).");
-                        window.location.href="./admin.php?page=tsk&aksk=add";
+                        window.location.href="./admin.php?page=tsk&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9. ]*$/", $tujuan)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form TUJUAN SURAT hanya boleh mengandung huruf, angka, spasi dan tanda titik(.).");
-                        window.location.href="./admin.php?page=tsk&aksk=add";
+                        window.location.href="./admin.php?page=tsk&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
-                        window.location.href="./admin.php?page=tsk&aksk=add";
+                        window.location.href="./admin.php?page=tsk&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
-                        window.location.href="./admin.php?page=tsk&aksk=add";
+                        window.location.href="./admin.php?page=tsk&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan tanda minus(-).");
-                        window.location.href="./admin.php?page=tsk&aksk=add";
+                        window.location.href="./admin.php?page=tsk&act=add";
                         </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $keterangan)){
                         echo '<script language="javascript">
                         window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
-                        window.location.href="./admin.php?page=tsk&aksk=add";
+                        window.location.href="./admin.php?page=tsk&act=add";
                         </script>';
                 }
 
@@ -85,7 +85,7 @@
                     if($result1 > 0){
                         echo '<script language="javascript">
                         window.alert("ERROR! Terjadi duplikasi data NOMOR AGENDA.");
-                        window.location.href="./admin.php?page=tsk&aksk=add";
+                        window.location.href="./admin.php?page=tsk&act=add";
                         </script>';
                     } else {
 
@@ -97,7 +97,7 @@
                         if($result2 > 0){
                             echo '<script language="javascript">
                             window.alert("ERROR! Terjadi duplikasi data NOMOR SURAT.");
-                            window.location.href="./admin.php?page=tsk&aksk=add";
+                            window.location.href="./admin.php?page=tsk&act=add";
                             </script>';
                         } else {
 
@@ -111,22 +111,22 @@
                                 /*
                                 $check = getimagesize($_FILES['file']['tmp_name']);
                                 if($check == false){
-                                    echo '<script language="javascript">window.alert("ERROR! File yang diupload bukan gambar.");window.location.href="./admin.php?page=tsk&aksk=add";</script>';
+                                    echo '<script language="javascript">window.alert("ERROR! File yang diupload bukan gambar.");window.location.href="./admin.php?page=tsk&act=add";</script>';
                                 } */
 
                             //Cek apakah file sudah ada
                             if(file_exists($file)){
-                                echo '<script language="javascript">window.alert("ERROR! File yang diupload sudah ada dalam database.");window.location.href="./admin.php?page=tsk&aksk=add";</script>';
+                                echo '<script language="javascript">window.alert("ERROR! File yang diupload sudah ada dalam database.");window.location.href="./admin.php?page=tsk&act=add";</script>';
                             }
 
                             //Cek ukuran file
                             if($_FILES['file']['size'] > 2000000){
-                                echo '<script language="javascript">window.alert("ERROR! Ukuran file yang diupload terlalu besar.");window.location.href="./admin.php?page=tsk&aksk=add";</script>';
+                                echo '<script language="javascript">window.alert("ERROR! Ukuran file yang diupload terlalu besar.");window.location.href="./admin.php?page=tsk&act=add";</script>';
                             }
 
                             //Cek format gambar
                             if($imageFileType != "" && $imageFileType != "JPG" && $imageFileType != "jpg" && $imageFileType != "JPEG" && $imageFileType != "jpeg" && $imageFileType != "PNG" && $imageFileType != "png"){
-                                echo '<script language="javascript">window.alert("ERROR! Format file yang diperbolehkan hanya *.JPG, *.JPEG dan *.PNG.");window.location.href="./admin.php?page=tsk&aksk=add";</script>';
+                                echo '<script language="javascript">window.alert("ERROR! Format file yang diperbolehkan hanya *.JPG, *.JPEG dan *.PNG.");window.location.href="./admin.php?page=tsk&act=add";</script>';
                             }
 
                             move_uploaded_file($_FILES['file']['tmp_name'], 'upload/surat_keluar/'.$file);
@@ -136,7 +136,7 @@
                                 tgl_catat,file,keterangan)
                                 VALUES('$no_agenda','$no_surat','$tujuan','$isi','$kode','$tgl_surat',NOW(),'$file','$keterangan')");
 
-                            //Jika query berhasil user akan diarahkan kembali ke halaman transaksk surat masuk
+                            //Jika query berhasil user akan diarahkan kembali ke halaman transact surat masuk
                             if($query == true){
                                 echo '<script language="javascript">
                                 window.alert("SUKSES! Data berhasil ditambahkan.");
@@ -145,7 +145,7 @@
                             } else {
                                 echo '<script language="javascript">
                                 window.alert("ERROR! Periksa penulisan querynya.");
-                                window.location.href="./admin.php?page=tsk&aksk=add";
+                                window.location.href="./admin.php?page=tsk&act=add";
                                 </script>';
                                 }
                         }
@@ -180,41 +180,55 @@
 <div class="row jarak-form">
 
     <!-- Form START -->
-    <form class="col s12" method="POST" action="?page=tsk&aksk=add" enctype="multipart/form-data">
+    <form class="col s12" method="POST" action="?page=tsk&act=add" enctype="multipart/form-data">
 
         <!-- Row in form START -->
         <div class="row">
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">looks_one</i>
                 <input id="no_agenda" type="number" class="validate" name="no_agenda" required>
                 <label for="no_agenda">Nomor Agenda</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">bookmark</i>
                 <input id="kode" type="text" class="validate" name="kode" required>
                 <label for="kode">Kode Klasifikasi</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">place</i>
                 <input id="tujuan" type="text" class="validate" name="tujuan" required>
                 <label for="tujuan">Tujuan Surat</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">looks_two</i>
                 <input id="no_surat" type="text" class="validate" name="no_surat" required>
                 <label for="no_surat">Nomor Surat</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">date_range</i>
                 <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker" required>
                 <label for="tgl_surat">Tanggal Surat</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">featured_play_list</i>
                 <input id="keterangan" type="text" class="validate" name="keterangan" required>
                 <label for="keterangan">Keterangan</label>
             </div>
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">description</i>
                 <textarea id="isi" class="materialize-textarea validate" name="isi" required></textarea>
                 <label for="isi">Isi Ringkas</label>
             </div>
             <div class="input-field col s6">
-                <input class="file" type="file" name="file" id="file">
-                <small class="red-text">Upload file scan Surat Keluar</small>
+                <div class="file-field input-field">
+                  <div class="btn light-green darken-1">
+                    <span>File</span>
+                    <input type="file" id="file" name="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload file scan Surat Keluar">
+                  </div>
+                </div>
             </div>
         </div>
         <!-- Row in form END -->

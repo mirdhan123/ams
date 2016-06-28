@@ -93,7 +93,7 @@
 <!-- Head END -->
 
 <!-- Body START -->
-<body class="blue lighten-1">
+<body class="light-green">
 
     <!-- Container START -->
     <div class="container">
@@ -175,12 +175,12 @@
                             ?>
                         </div>
                         <div class="input-field col s12">
-                            <i class="material-icons prefix">account_circle</i>
+                            <i class="material-icons prefix md-prefix">account_circle</i>
                             <input id="username" type="text" class="validate" name="username" required autocomplete="off">
                             <label for="username">Username</label>
                         </div>
                         <div class="input-field col s12">
-                            <i class="material-icons prefix">lock</i>
+                            <i class="material-icons prefix md-prefix">lock</i>
                             <input id="password" type="password" class="validate" name="password" required autocomplete="off">
                             <label for="password">Password</label>
                         </div>

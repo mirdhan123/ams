@@ -70,7 +70,7 @@
 
 		        <div class="row bts">
 		            <div class="col 6">
-		                <a href="?page=tsk&aksk=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
+		                <a href="?page=tsk&act=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
 		            </div>
 		            <div class="col 6">
 		                <a href="?page=tsk" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
@@ -92,7 +92,7 @@
             		} else {
                         echo '<script language="javascript">
                         window.alert("ERROR! Periksa penulisan querynya.");
-                        window.location.href="./admin.php?page=tsk&aksk=del&id_surat='.$id_surat.'";
+                        window.location.href="./admin.php?page=tsk&act=del&id_surat='.$id_surat.'";
                         </script>';
             		}
             	}

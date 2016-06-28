@@ -21,10 +21,12 @@
 <!-- Row form Start -->
 <div class="row jarak-form">
     <div class="input-field col s3">
+        <i class="material-icons prefix md-prefix">date_range</i>
         <input id="dari_tanggal" type="date">
         <label for="dari_tanggal">Dari Tanggal</label>
     </div>
     <div class="input-field col s3">
+        <i class="material-icons prefix md-prefix">date_range</i>
         <input id="sampai_tanggal" type="date" class="datepicker">
         <label for="sampai_tanggal">Sampai Tanggal</label>
     </div>
