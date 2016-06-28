@@ -37,6 +37,10 @@
 				                    <td width="1%">:</td>
 				                    <td width="86%">'.$row['kode'].'</td>
 				                </tr>
+                                <td width="13%">Indeks Berkas</td>
+                                <td width="1%">:</td>
+                                <td width="86%">'.$row['indeks'].'</td>
+                                </tr>
 				                <tr>
 				                    <td width="13%">No. Isi</td>
 				                    <td width="1%">:</td>
@@ -45,7 +49,7 @@
 				                <tr>
 				                    <td width="13%">File</td>
 				                    <td width="1%">:</td>
-				                    <td width="86%"><a href="upload/surat_masuk/'.$row['file'].'">'.$row['file'].'</a></td>
+				                    <td width="86%"><a href="upload/surat_masuk/'.$row['file'].'">'.$row['file'].'</a></a></td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">Asal Surat</td>
@@ -82,7 +86,7 @@
             		$id_surat = $_REQUEST['id_surat'];
 
                     unlink("upload/surat_masuk/".$row['file']);
-            		$query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+                    $query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
             		if($query == true){
                         echo '<script language="javascript">

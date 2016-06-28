@@ -116,11 +116,11 @@
 
                             //Cek apakah file yang di upload adalah benar-benar file gambar
                             if (isset($_POST['submit'])){
+                                /*
                                 $check = getimagesize($_FILES['file']['tmp_name']);
                                 if($check == false){
                                     echo '<script language="javascript">window.alert("ERROR! File yang diupload bukan gambar.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';
-                                }
-                            }
+                                } */
 
                             //Cek apakah file sudah ada
                             if(file_exists($file)){
@@ -133,12 +133,11 @@
                             }
 
                             //Cek format gambar
-                            if($imageFileType != "JPG" && $imageFileType != "jpg" && $imageFileType != "JPEG" && $imageFileType != "jpeg" && $imageFileType != "PNG" && $imageFileType != "png"){
+                            if($imageFileType != "" && $imageFileType != "JPG" && $imageFileType != "jpg" && $imageFileType != "JPEG" && $imageFileType != "jpeg" && $imageFileType != "PNG" && $imageFileType != "png"){
                                 echo '<script language="javascript">window.alert("ERROR! Format file yang diperbolehkan hanya *.JPG, *.JPEG dan *.PNG.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';
                             }
 
-                            if(move_uploaded_file($_FILES['file']['tmp_name'], 'upload/surat_masuk/'.$file) == false){
-                            echo '<script language="javascript">window.alert("ERROR! File gagal diupload.");window.location.href="./admin.php?page=tsm&aksi=add";</script>';                                }
+                            move_uploaded_file($_FILES['file']['tmp_name'], 'upload/surat_masuk/'.$file);
 
                             //Query insert data
                             $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
@@ -163,7 +162,8 @@
                 }
                 }
                 }
-                }
+            }
+            }
             }
         }
     }
@@ -176,7 +176,7 @@
         <nav class="secondary-nav">
             <div class="nav-wrapper blue-grey darken-1">
                 <ul class="left">
-                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error. Jika tidak ada file gambar, isi dengan tanda minus (-)."><a href="#" class="judul"><i class="material-icons">mail</i> Tambah Data Surat Masuk</a></li>
+                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error. Khusus form file gambar/scan surat boleh tidak diisi. "><a href="#" class="judul"><i class="material-icons">mail</i> Tambah Data Surat Masuk</a></li>
                 </ul>
             </div>
         </nav>
@@ -222,10 +222,8 @@
                 <label for="isi">Isi Ringkas</label>
             </div>
             <div class="input-field col s6">
-                <div class="field input-field">
-                    <input type="file" name="file" id="file">
-                    <medium>Upload</medium>
-                </div>
+                <input class="file-sm" type="file" name="file" id="file">
+                <small class="red-text">*Upload file scan Surat Masuk</small>
             </div>
             <div class="input-field col s6">
                 <input id="keterangan" type="text" class="validate" name="keterangan" required>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 27, 2016 at 05:11 
+-- Generation Time: Jun 28, 2016 at 06:26 
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -74,9 +74,9 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
   `kode` varchar(50) NOT NULL,
   `tgl_surat` date NOT NULL,
   `tgl_catat` date NOT NULL,
-  `keterangan` varchar(250) NOT NULL,
-  `id_user` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `file` varchar(250) NOT NULL,
+  `keterangan` varchar(250) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -96,17 +96,7 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
   `tgl_diterima` date NOT NULL,
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_surat_masuk`
---
-
-INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`) VALUES
-(1, 1, '074 / BAZNAZ.JTM / IV / 2016', 'BAZNAZ JATIM', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'G1', 'A1', '2016-04-07', '2016-06-27', 'IMG_20160611_103621.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '),
-(2, 2, '074 / BAZNAZ.JTM / IV / 2018', 'BAZARNAZ JATIM', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', 'G2', 'K1', '2011-01-13', '2016-06-27', 'IMG_20160611_103623.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '),
-(3, 89978, '7897897', '97897', 'yttuqwfqwf', '797', '89789', '2011-10-20', '2016-06-27', 'IMG_20160611_103632.jpg', 'qwfqw'),
-(5, 4, '4', '4', 'fewf', '4', '4', '2016-06-09', '2016-06-27', 'IMG_20160611_103636.jpg', 'wefw');
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -121,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `nama` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_user`
@@ -183,17 +173,17 @@ MODIFY `id_instansi` tinyint(1) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
-MODIFY `id_surat` int(7) NOT NULL AUTO_INCREMENT;
+MODIFY `id_surat` int(7) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-MODIFY `id_user` tinyint(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id_user` tinyint(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

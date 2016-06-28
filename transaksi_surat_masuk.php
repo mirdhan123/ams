@@ -112,7 +112,7 @@ echo '<!-- Row Start -->
             </tbody>';
             }
         } else {
-    echo '<tr><td colspan="5"><center><h5>Tida ada data untuk ditampilkan.</h5></center></td></tr>';
+    echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
         }
   echo '</table>
     </div>

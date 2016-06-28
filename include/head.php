@@ -43,6 +43,12 @@
         noscript{
             color: #fff;
         }
+        .file {
+            margin-top: 20px;
+        }
+        .file-sm {
+            margin: 0 0 10px 0;
+        }
         @media only screen and (max-width: 701px) {
             #colres{
                 width: 100%;
