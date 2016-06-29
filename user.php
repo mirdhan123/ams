@@ -121,7 +121,7 @@ echo '
             echo '<br/><!-- Pagination START -->
                   <ul class="pagination">';
 
-            if($cdata > 5 ){
+            if($cdata > 5){
 
             //First and previous pagging
             if($pg > 1){

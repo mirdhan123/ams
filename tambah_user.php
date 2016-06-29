@@ -36,7 +36,7 @@
                               </script>';
                     } else {
 
-                        if (!preg_match("/^[0-9. ]*$/", $nip)) {
+                        if (!preg_match("/^[0-9. -]*$/", $nip)) {
                             echo '<script language="javascript">
                                     window.alert("ERROR! Form NIP hanya boleh mengandung karakter angka, spasi dan titik (.)");
                                     window.location.href="./admin.php?page=sett&sub=usr&act=add";
@@ -45,7 +45,7 @@
 
                             if (!preg_match("/^[1-2]*$/", $admin)) {
                                 echo '<script language="javascript">
-                                        window.alert("ERROR! Tipe user hanya boleh mengandung angka 1 atau 2");
+                                        window.alert("ERROR! TIPE USER hanya boleh mengandung angka 1 atau 2");
                                         window.location.href="./admin.php?page=sett&sub=usr&act=add";
                                       </script>';
                             } else {
@@ -55,27 +55,48 @@
 
                                 if($result > 0){
                                     echo '<script language="javascript">
-                                            window.alert("ERROR! Username sudah terpakai. Gunakan yang lain.");
+                                            window.alert("ERROR! USERNAME sudah terpakai. Gunakan lainnya.");
                                             window.location.href="./admin.php?page=sett&sub=usr&act=add";
                                           </script>';
                                 } else {
 
-                            $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,nip,admin) VALUES('$username',MD5('$password'),'$nama','$nip','$admin')");
+                                    if(strlen($username) < 5){
+                                        echo '<script language="javascript">
+                                                window.alert("ERROR! USERNAME minimal 5 karakter.");
+                                                window.location.href="./admin.php?page=sett&sub=usr&act=add";
+                                              </script>';
+                                    } else {
 
-                if($query != false){
-                    echo '<script language="javascript">
-                    window.alert("SUKSES! User baru berhasil ditambahkan.");
-                    window.location.href="./admin.php?page=sett&sub=usr";
-                    </script>';
-                } else {
-                    echo '<script language="javascript">
-                    window.alert("ERROR! Periksa penulisan querynya.");
-                    window.location.href="./admin.php?page=sett&sub=usr&act=add";
-                    </script>';
+                                        if(strlen($password) < 5){
+                                            echo '<script language="javascript">
+                                                    window.alert("ERROR! PASSWORD minimal 5 karakter.");
+                                                    window.location.href="./admin.php?page=sett&sub=usr&act=add";
+                                                  </script>';
+                                        } else {
+
+                                            $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,nip,admin) VALUES('$username',MD5('$password'),'$nama','$nip','$admin')");
+
+                                            if($query != false){
+                                                echo '<script language="javascript">
+                                                        window.alert("SUKSES! User baru berhasil ditambahkan.");
+                                                        window.location.href="./admin.php?page=sett&sub=usr";
+                                                      </script>';
+                                            } else {
+                                                echo '<script language="javascript">
+                                                        window.alert("ERROR! Periksa penulisan querynya.");
+                                                        window.location.href="./admin.php?page=sett&sub=usr&act=add";
+                                                      </script>';
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-            }}}
-        }}
-    }}else { ?>
+            }
+        } else {
+?>
 <!-- Row Start -->
 <div class="row">
     <!-- Secondary Nav START -->
