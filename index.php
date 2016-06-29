@@ -114,12 +114,19 @@
 
                     <?php
                         $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
-                        while ($data = mysqli_fetch_array($query)){?>
+                        while ($data = mysqli_fetch_array($query)) {
+                    ?>
                     <!-- Logo and title START -->
                     <div class="col s12">
                         <div class="card-content">
                             <h5 class="center" id="title">Aplikasi Manajemen Surat Menyurat</h5>
-                            <img id="logo" src="./asset/img/logo.png"/>
+                            <?php
+                                if (!empty($data['logo'])) {
+                                    echo '<img id="logo" src="'.$data['logo'].'"/>';
+                                } else {
+                                    echo '<img id="logo" src="./asset/img/logo.png"/>';
+                                }
+                            ?>
                             <h4 class="center" id="smk"><?php echo $data['nama']; ?></h4>
                         </div>
                     </div>
@@ -130,10 +137,10 @@
 
                     <?php
 
-                        if(isset($_REQUEST['submit'])){
+                        if (isset($_REQUEST['submit'])) {
 
                             /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika ada isinya proses akan dilanjutkan */
-                            if($_REQUEST['username'] == "" || $_REQUEST['password'] == ""){
+                            if ($_REQUEST['username'] == "" || $_REQUEST['password'] == "") {
                                 echo '<div class="upss red-text"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.
                                 <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke halaman login</a></div>';
                             } else {
@@ -145,13 +152,15 @@
                                 $query = mysqli_query($config, "SELECT id_user, nama, admin FROM tbl_user WHERE username=BINARY'$username' AND password=MD5('$password')");
 
                                 //Apabila data ditemukan dan ada kecocokan data akan melist data
-                                if(mysqli_num_rows($query) > 0) {
+                                if (mysqli_num_rows($query) > 0) {
                                     list($id_user, $nama, $admin) = mysqli_fetch_array($query);
 
                                     //Mengeset session
                                     session_start();
                                     $_SESSION['id_user'] = $id_user;
+                                    $_SESSION['username'] = $username;
                                     $_SESSION['nama'] = $nama;
+                                    $_SESSION['nip'] = $nip;
                                     $_SESSION['admin'] = $admin;
 
                                     //Apabila ditemukan data yang cocok akan diarahkan ke halaman admin
@@ -172,7 +181,7 @@
                     <form class="col s12 m12 offset-4 offset-4" method="POST" action="" >
                         <div class="row">
                             <?php
-                                if(isset($_SESSION['err'])){
+                                if (isset($_SESSION['err'])) {
                                     $err = $_SESSION['err'];
 
                                     //Menampilkan pesan error

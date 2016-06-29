@@ -53,21 +53,21 @@
                                 $cek = mysqli_query($config, "SELECT * FROM tbl_user WHERE username='$username'");
                                 $result = mysqli_num_rows($cek);
 
-                                if($result > 0){
+                                if ($result > 0) {
                                     echo '<script language="javascript">
                                             window.alert("ERROR! USERNAME sudah terpakai. Gunakan lainnya.");
                                             window.location.href="./admin.php?page=sett&sub=usr&act=add";
                                           </script>';
                                 } else {
 
-                                    if(strlen($username) < 5){
+                                    if (strlen($username) < 5) {
                                         echo '<script language="javascript">
                                                 window.alert("ERROR! USERNAME minimal 5 karakter.");
                                                 window.location.href="./admin.php?page=sett&sub=usr&act=add";
                                               </script>';
                                     } else {
 
-                                        if(strlen($password) < 5){
+                                        if (strlen($password) < 5) {
                                             echo '<script language="javascript">
                                                     window.alert("ERROR! PASSWORD minimal 5 karakter.");
                                                     window.location.href="./admin.php?page=sett&sub=usr&act=add";
@@ -76,7 +76,7 @@
 
                                             $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,nip,admin) VALUES('$username',MD5('$password'),'$nama','$nip','$admin')");
 
-                                            if($query != false){
+                                            if ($query != false) {
                                                 echo '<script language="javascript">
                                                         window.alert("SUKSES! User baru berhasil ditambahkan.");
                                                         window.location.href="./admin.php?page=sett&sub=usr";
