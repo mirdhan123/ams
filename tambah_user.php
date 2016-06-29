@@ -121,7 +121,7 @@
 
         <!-- Row in form START -->
         <div class="row">
-            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username hanya boleh mengandung karakter huruf, angka dan underscore (_)">
+            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter dan hanya boleh mengandung karakter huruf, angka dan underscore (_)">
                 <i class="material-icons prefix md-prefix">account_circle</i>
                 <input id="username" type="text" class="validate" name="username">
                 <label for="username">Username</label>
@@ -131,7 +131,7 @@
                 <input id="nama" type="text" class="validate" name="nama">
                 <label for="nama">Nama</label>
             </div>
-            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Password akan dienkripsi.">
+            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter dan akan dienkripsi.">
                 <i class="material-icons prefix md-prefix">lock</i>
                 <input id="password" type="password" class="validate" name="password">
                 <label for="password">Password</label>
@@ -142,7 +142,7 @@
                 <label for="nip">NIP</label>
             </div>
             <div class="input-field col s6">
-                <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih tipe user</label><br/>
+                <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Tipe User</label><br/>
                 <div class="input-field col s11 right">
                     <select class="browser-default validate" name="admin" id="admin">
                         <option value="1">Admin</option>

@@ -114,48 +114,48 @@ echo '
 <!-- Row form END -->';
 
             //Query database untuk pagging
-            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk");
+            $query = mysqli_query($config, "SELECT * FROM tbl_user");
             $cdata = mysqli_num_rows($query);
             $cpg = ceil($cdata/$limit);
 
             echo '<br/><!-- Pagination START -->
                   <ul class="pagination">';
 
-            if($cdata > 5){
+            if($cdata > $limit){
 
-            //First and previous pagging
-            if($pg > 1){
-                $prev = $pg - 1;
-                echo '<li><a href="?page=tsm&pg=1"><i class="material-icons md-48">first_page</i></a></li>
-                      <li><a href="?page=tsm&pg='.$prev.'"><i class="material-icons md-48">chevron_left</i></a></li>';
-            } else {
-                echo '<li class="disabled"><a href=""><i class="material-icons md-48">first_page</i></a></li>
-                      <li class="disabled"><a href=""><i class="material-icons md-48">chevron_left</i></a></li>';
-            }
-
-            //Perulangan pagging
-            for($i=1; $i <= $cpg; $i++)
-                if($i != $pg){
-                    echo '<li class="waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
+                //First and previous pagging
+                if($pg > 1){
+                    $prev = $pg - 1;
+                    echo '<li><a href="?page=sett&sub=usr&pg=1"><i class="material-icons md-48">first_page</i></a></li>
+                          <li><a href="?page=sett&sub=usr&pg='.$prev.'"><i class="material-icons md-48">chevron_left</i></a></li>';
                 } else {
-                    echo '<li class="active waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
+                    echo '<li class="disabled"><a href=""><i class="material-icons md-48">first_page</i></a></li>
+                          <li class="disabled"><a href=""><i class="material-icons md-48">chevron_left</i></a></li>';
                 }
 
-            //Last and next pagging
-            if($pg < $cpg){
-                $next = $pg + 1;
-                echo '<li><a href="?page=tsm&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
-                      <li><a href="?page=tsm&pg='.$cpg.'"><i class="material-icons md-48">last_page</i></a></li>';
-            } else {
-                echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
-                      <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
-            }
-            echo '
-            </ul>
-            <br/>
-            <!-- Pagination END -->';
-    } else {
-        echo '';
+                    //Perulangan pagging
+                    for($i=1; $i <= $cpg; $i++)
+                        if($i != $pg){
+                            echo '<li class="waves-effect waves-dark"><a href="?page=sett&sub=usr&pg='.$i.'"> '.$i.' </a></li>';
+                        } else {
+                            echo '<li class="active waves-effect waves-dark"><a href="?page=sett&sub=usr&pg='.$i.'"> '.$i.' </a></li>';
+                        }
+
+                    //Last and next pagging
+                    if($pg < $cpg){
+                        $next = $pg + 1;
+                        echo '<li><a href="?page=sett&sub=usr&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
+                              <li><a href="?page=sett&sub=usr&pg='.$cpg.'"><i class="material-icons md-48">last_page</i></a></li>';
+                    } else {
+                        echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
+                              <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
+                    }
+                    echo '
+                    </ul>
+                    <br/>
+                    <!-- Pagination END -->';
+        } else {
+            echo '';
     }
 }
 

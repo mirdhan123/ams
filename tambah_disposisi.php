@@ -112,28 +112,30 @@
                 <label for="tujuan">Tujuan Disposisi</label>
             </div>
             <div class="input-field col s6">
-                <i class="material-icons prefix md-prefix">featured_play_list   </i>
-                <input id="catatan" type="text" class="validate" name="catatan">
-                <label for="catatan">Catatan</label>
+                <i class="material-icons prefix md-prefix">date_range</i>
+                <input id="batas_waktu" type="date" name="tgl_surat" class="datepicker" required>
+                <label for="batas_waktu">Batas Waktu</label>
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">description</i>
                 <textarea id="isi" class="materialize-textarea validate" name="isi"></textarea>
                 <label for="isi">Isi Disposisi</label>
             </div>
+
             <div class="input-field col s6">
-                <i class="material-icons prefix md-prefix">date_range</i>
-                <input id="batas_waktu" type="date" name="tgl_surat" class="datepicker" required>
-                <label for="batas_waktu">Batas Waktu</label>
+                <i class="material-icons prefix md-prefix">featured_play_list   </i>
+                <input id="catatan" type="text" class="validate" name="catatan">
+                <label for="catatan">Catatan</label>
             </div>
             <div class="input-field col s6">
-                <select class="browser-default validate" name="sifat">
-                    <option value="" disabled selected>Pilih Sifat Disposisi</option>
-                    <option value="1">Biasa</option>
-                    <option value="2">Penting</option>
-                    <option value="3">Segera</option>
-                    <option value="4">Perlu Perhatian Khusus</option>
-                    <option value="5">Perhatian Batas Waktu</option>
+                <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Sifat Disposisi</label><br/>
+                <div class="input-field col s11 right">
+                    <select class="browser-default validate" name="sifat" id="sifat">
+                        <option value="1">Biasa</option>
+                        <option value="2">Penting</option>
+                        <option value="3">Segera</option>
+                        <option value="4">Perlu Perhatian Khusus</option>
+                        <option value="5">Perhatian Batas Waktu</option>
                 </select>
             </div>
         </div>

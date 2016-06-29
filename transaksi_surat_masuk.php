@@ -129,7 +129,7 @@ echo '<!-- Row Start -->
         echo '<br/><!-- Pagination START -->
               <ul class="pagination">';
 
-        if($cdata > 5 ){
+        if($cdata > $limit ){
 
         //First and previous pagging
         if($pg > 1){
