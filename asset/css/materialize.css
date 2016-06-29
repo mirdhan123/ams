@@ -1683,6 +1683,7 @@ html {
  * Remove default margin.
  */
 body {
+font-size: 1em;
   margin: 0; }
 
 /* HTML5 display definitions
@@ -2208,6 +2209,7 @@ footer.page-footer {
   footer.page-footer .footer-copyright {
     overflow: hidden;
     height: 50px;
+    font-size: 1em;
     line-height: 50px;
     color: rgba(255, 255, 255, 0.8);
     background-color: rgba(51, 51, 51, 0.08); }
@@ -5310,7 +5312,7 @@ small {
   font-size: 80%; }
 
 .light, footer.page-footer .footer-copyright {
-  font-weight: 300; }
+  font-weight: 400; }
 
 .flow-text {
   font-weight: 300; }
@@ -6579,7 +6581,8 @@ select.browser-default {
   display: block;
   background: #fff;
   color: #444;
-  font-size: 18px;
+  font-size: 16px;
+  margin-top: 10px;
   border: none;
   padding-left: 0;
   margin-left: 0;

@@ -1,16 +1,25 @@
 <?php
     //Cek session login
     if(!empty($_SESSION['admin'])){
-?>
-<div class="col s12" id="header-instansi">
-    <div class="card blue-grey white-text">
-        <div class="card-content"><div class="circle left"><img src="asset/img/logo.png"/></div>
-            <h5>SMK Al - Husna Loceret Nganjuk</h5>
-            <p>Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471</p>
-        </div>
-    </div>
-</div>
-<?php 
+
+        $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+        while ($data = mysqli_fetch_array($query)){
+            echo '<div class="col s12" id="header-instansi">
+                    <div class="card blue-grey white-text">
+                        <div class="card-content">
+                            <div class="circle left">';
+                            if(!empty($data['logo'])){
+                                echo '<img src="'.$data['logo'].'"/>';
+                            } else {
+                                echo '<img src="./asset/img/logo.png"/>
+                            </div>
+                            <h5>'.$data['nama'].'</h5>
+                            <p>'.$data['alamat'].'</p>
+                        </div>
+                    </div>
+                </div>';
+                            }
+        }
     } else {
         header("Location:../");
         die();

@@ -47,7 +47,7 @@
         <br/><br/>
         <div class="row">
             <div class="col m12">
-                <a href="http://localhost/ams/admin.php?page=epro" class="btn-large blue waves-effect waves-light">EDIT PROFIL<i class="material-icons">mode_edit</i></a>
+                <a href="?page=epro" class="btn-large blue waves-effect waves-light">EDIT PROFIL<i class="material-icons">mode_edit</i></a>
             </div>
         </div>
 

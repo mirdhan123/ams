@@ -16,11 +16,11 @@
     <!-- Meta END -->
 
     <!--[if lt IE 9]>
-    <script src="../asset/js/html5shiv.min.js"></script>
+    <script src="./asset/js/html5shiv.min.js"></script>
     <![endif]-->
 
     <!-- Global style START -->
-    <link type="text/css" rel="stylesheet" href="asset/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./asset/css/materialize.css"  media="screen,projection"/>
     <style type="text/css">
         #menu {
             margin-left: 20px;

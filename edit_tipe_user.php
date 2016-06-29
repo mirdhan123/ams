@@ -23,14 +23,22 @@
         <!-- Row in form START -->
         <div class="row">
             <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">account_circle</i>
+                <input id="username" type="text" value="admin" readonly class="grey-text">
+                <label  for="username">Username</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">text_fields</i>
+                <input id="username" type="text" value="M. Rudianto" readonly class="grey-text">
+                <label for="username">Username</label>
+            </div>
+            <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih tipe user</label><br/>
-                <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Memiliki akses penuh pada aplikasi">
-                    <input class="with-gap" name="admin" type="radio" id="admin"/>
-                    <label for="admin">Admin</label>
-                </div>
-                <div class="input-field col s3  tooltipped" data-position="top" data-tooltip="Memiliki akses terbatas pada aplikasi">
-                    <input class="with-gap" name="admin" type="radio" id="user"/>
-                    <label for="user">user</label>
+                <div class="input-field col s11 right">
+                    <select class="browser-default">
+                        <option value="1">Admin</option>
+                        <option value="2">User Biasa</option>
+                    </select>
                 </div>
             </div>
         </div>

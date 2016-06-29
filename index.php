@@ -1,6 +1,4 @@
 <?php
-    ob_start();
-
     //Memulai session
     session_start();
 
@@ -9,6 +7,8 @@
         header("Location: ./admin.php");
         die();
     }
+    require('include/config.php');
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -27,11 +27,11 @@
     <!-- Meta END -->
 
     <!--[if lt IE 9]>
-    <script src="asset/js/html5shiv.min.js"></script>
+    <script src="./asset/js/html5shiv.min.js"></script>
     <![endif]-->
 
     <!-- Global style START -->
-    <link type="text/css" rel="stylesheet" href="asset/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./asset/css/materialize.css"  media="screen,projection"/>
     <style type="text/css">
         @media only screen and (min-width: 993px) {
             .container {
@@ -112,20 +112,24 @@
                     <!-- Row Form START -->
                     <div class="row">
 
+                    <?php
+                        $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                        while ($data = mysqli_fetch_array($query)){?>
                     <!-- Logo and title START -->
                     <div class="col s12">
                         <div class="card-content">
                             <h5 class="center" id="title">Aplikasi Manajemen Surat Menyurat</h5>
                             <img id="logo" src="./asset/img/logo.png"/>
-                            <h4 class="center" id="smk">SMK Al - Husna Loceret Nganjuk</h4>
+                            <h4 class="center" id="smk"><?php echo $data['nama']; ?></h4>
                         </div>
                     </div>
                     <!-- Logo and title END -->
+                    <?php
+                        }
+                    ?>
 
                     <?php
-                        require('include/config.php');
 
-                        //Apabila tombol login ditekan akan mengirimkan data username dan password
                         if(isset($_REQUEST['submit'])){
 
                             /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika ada isinya proses akan dilanjutkan */
@@ -133,6 +137,7 @@
                                 echo '<div class="upss red-text"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.
                                 <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke halaman login</a></div>';
                             } else {
+
                                 $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
                                 $password = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password'])));
 

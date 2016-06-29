@@ -1,6 +1,4 @@
 <?php
-ob_start();
-
     //Cek session login
     if(!empty($_SESSION['admin'])){
 ?>

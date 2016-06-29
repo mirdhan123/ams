@@ -18,9 +18,14 @@
         <div class="container">
             &copy; <?php echo date("Y"); ?>
             <div class="right hide-on-small-only">
-                <i class="material-icons md-12">language</i> <a href="http://www.smkalhusnaloceret.sch.id/" target="_blank" class="white-text">www.smkalhusnaloceret.sch.id</a> &nbsp;&nbsp;
-                <i class="material-icons">mail</i> <a href="mailto:info@smkalhusnaloceret.sch.id" class="white-text">
-            info@smkalhusnaloceret.sch.id</a>
+                <?php
+                    $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                    while ($data = mysqli_fetch_array($query)){
+                        echo '
+                <i class="material-icons md-12">language</i> '.$data['website'].' &nbsp;&nbsp;
+                <i class="material-icons">mail_outline</i>  '.$data['email'].'';
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -37,15 +42,15 @@ $(".dropdown-button").dropdown();
 
 //jquery sidenav on mobile
 $('.button-collapse').sideNav({
-    menuWidth: 240, // Default is 240
-    edge: 'left', // Choose the horizontal origin
-    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    menuWidth: 240,
+    edge: 'left',
+    closeOnClick: true
 });
 
 //jquery datepicker
 $('#tgl_surat,#batas_waktu,#dari_tanggal,#sampai_tanggal').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 10, // Creates a dropdown of 15 years to control year
+    selectMonths: true,
+    selectYears: 10,
     format: "yyyy-mm-dd"
 });
 
