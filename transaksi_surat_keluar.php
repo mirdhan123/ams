@@ -24,7 +24,7 @@
             }
         } else {
 
-            $limit = 10;
+            $limit = 5;
             $pg = @$_GET['pg'];
                 if(empty($pg)){
                     $posisi = 0;
@@ -114,11 +114,13 @@ echo '<!-- Row Start -->
 
         //Query database untuk pagging
         $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar");
-        $jmldata = mysqli_num_rows($query);
-        $jmlhalaman = ceil($jmldata/$limit);
+        $cdata = mysqli_num_rows($query);
+        $cpg = ceil($cdata/$limit);
 
         echo '<br/><!-- Pagination START -->
               <ul class="pagination">';
+
+        if($cdata > 5 ){
 
         //First and previous pagging
         if($pg > 1){
@@ -131,7 +133,7 @@ echo '<!-- Row Start -->
         }
 
         //Perulangan pagging
-        for($i=1; $i <= $jmlhalaman; $i++)
+        for($i=1; $i <= $cpg; $i++)
             if($i != $pg){
                 echo '<li class="waves-effect waves-dark"><a href="?page=tsk&pg='.$i.'"> '.$i.' </a></li>';
             } else {
@@ -139,10 +141,10 @@ echo '<!-- Row Start -->
             }
 
         //Last and next pagging
-        if($pg < $jmlhalaman){
+        if($pg < $cpg){
             $next = $pg + 1;
             echo '<li><a href="?page=tsk&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
-                  <li><a href="?page=tsk&pg='.$jmlhalaman.'"><i class="material-icons md-48">last_page</i></a></li>';
+                  <li><a href="?page=tsk&pg='.$cpg.'"><i class="material-icons md-48">last_page</i></a></li>';
         } else {
             echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
                   <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
@@ -151,6 +153,9 @@ echo '<!-- Row Start -->
         </ul>
         <br/>
         <!-- Pagination END -->';
+    } else {
+        echo '';
     }
+}
 }
 ?>

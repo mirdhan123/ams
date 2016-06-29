@@ -1,4 +1,6 @@
 <?php
+    ob_start();
+
     //Memulai session
     session_start();
 

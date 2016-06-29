@@ -77,24 +77,12 @@
                         </script>';
                 }
 
-                    //Cek apakah nomor agenda sudah ada di database
-                    $cek1 = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE no_agenda='$no_agenda'");
-                    $result1 = mysqli_num_rows($cek1);
-
-                    //Jika nomor agenda sudah ada di database akan menampilkan pesan error
-                    if($result1 > 0){
-                        echo '<script language="javascript">
-                        window.alert("ERROR! Terjadi duplikasi data NOMOR AGENDA.");
-                        window.location.href="./admin.php?page=tsk&act=add";
-                        </script>';
-                    } else {
-
                         //Cek apakah nomor surat sudah ada di database
-                        $cek2 = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE no_surat='$no_surat'");
-                        $result2 = mysqli_num_rows($cek2);
+                        $cek = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE no_surat='$no_surat'");
+                        $result = mysqli_num_rows($cek);
 
                         //Jika nomor surat sudah ada di database akan menampilkan pesan error
-                        if($result2 > 0){
+                        if($result > 0){
                             echo '<script language="javascript">
                             window.alert("ERROR! Terjadi duplikasi data NOMOR SURAT.");
                             window.location.href="./admin.php?page=tsk&act=add";
@@ -153,7 +141,6 @@
                 }
                 }
                 }
-                }
             }
             }
             }
@@ -167,7 +154,7 @@
         <nav class="secondary-nav">
             <div class="nav-wrapper blue-grey darken-1">
                 <ul class="left">
-                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error. Khusus form file gambar/scan surat boleh tidak diisi. "><a href="#" class="judul"><i class="material-icons">drafts</i> Tambah Data Surat Keluar</a></li>
+                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error. Khusus form file gambar/scan surat boleh tidak diisi"><a href="#" class="judul"><i class="material-icons">drafts</i> Tambah Data Surat Keluar</a></li>
                 </ul>
             </div>
         </nav>

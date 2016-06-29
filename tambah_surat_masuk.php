@@ -85,24 +85,12 @@
                         </script>';
                 }
 
-                    //Cek apakah nomor agenda sudah ada di database
-                    $cek1 = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_agenda='$no_agenda'");
-                    $result1 = mysqli_num_rows($cek1);
-
-                    //Jika nomor agenda sudah ada di database akan menampilkan pesan error
-                    if($result1 > 0){
-                        echo '<script language="javascript">
-                        window.alert("ERROR! Terjadi duplikasi data NOMOR AGENDA.");
-                        window.location.href="./admin.php?page=tsm&act=add";
-                        </script>';
-                    } else {
-
                         //Cek apakah nomor surat sudah ada di database
-                        $cek2 = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_surat='$no_surat'");
-                        $result2 = mysqli_num_rows($cek2);
+                        $cek = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_surat='$no_surat'");
+                        $result = mysqli_num_rows($cek);
 
                         //Jika nomor surat sudah ada di database akan menampilkan pesan error
-                        if($result2 > 0){
+                        if($result > 0){
                             echo '<script language="javascript">
                             window.alert("ERROR! Terjadi duplikasi data NOMOR SURAT.");
                             window.location.href="./admin.php?page=tsm&act=add";
@@ -158,7 +146,6 @@
                                 }
                         }
                     }
-                }
                 }
                 }
                 }

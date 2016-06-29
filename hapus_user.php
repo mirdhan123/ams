@@ -8,9 +8,10 @@
         die();
     } else {
 
-        //Menampilkan data sesuai id_surat
-    	$id_surat = $_REQUEST['id_surat'];
-    	$query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
+        //Menampilkan data sesuai id_user
+    	$id_user = $_REQUEST['id_user'];
+
+    	$query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
 
     	if(mysqli_num_rows($query) > 0){
             $no = 1;
@@ -79,20 +80,19 @@
 
                 //Jika tombol hapus diklik akan mengirimkan id_surat dan melakukan query penghapusan data
             	if(isset($_REQUEST['submit'])){
-            		$id_surat = $_REQUEST['id_surat'];
+            		$id_user = $_REQUEST['id_user'];
 
-                    unlink("upload/surat_keluar/".$row['file']);
-                    $query = mysqli_query($config, "DELETE FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
+                    $query = mysqli_query($config, "DELETE FROM tbl_user WHERE id_user='$id_user'");
 
             		if($query == true){
                         echo '<script language="javascript">
-                        window.alert("SUKSES! Data berhasil dihapus.");
-                        window.location.href="./admin.php?page=tsk";
+                        window.alert("SUKSES! User berhasil dihapus.");
+                        window.location.href="./admin.php?page=sett&sub=usr";
                         </script>';
             		} else {
                         echo '<script language="javascript">
                         window.alert("ERROR! Periksa penulisan querynya.");
-                        window.location.href="./admin.php?page=tsk&act=del&id_surat='.$id_surat.'";
+                        window.location.href="./admin.php?page=sett&sub=usr&act=del&id_user='.$id_user.'";
                         </script>';
             		}
             	}

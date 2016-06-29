@@ -5,7 +5,7 @@
         <nav class="secondary-nav">
             <div class="nav-wrapper blue-grey darken-1">
                 <ul class="left">
-                    <li class="waves-effect waves-light  tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error. Jika belum memiliki NIP, isi dengan tanda minus (-)"><a href="#" class="judul"><i class="material-icons">person_add</i> Tambah User</a></li>
+                    <li class="waves-effect waves-light  tooltipped" data-position="right" data-tooltip="Edit profil user"><a href="#" class="judul"><i class="material-icons">mode_edit</i> Edit Profil</a></li>
                 </ul>
             </div>
         </nav>
@@ -42,17 +42,6 @@
                 <input id="nip" type="text" class="validate" required>
                 <label for="nip">NIP</label>
             </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih tipe user</label><br/>
-                <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Memiliki akses penuh pada aplikasi">
-                    <input class="with-gap" name="admin" type="radio" id="admin"/>
-                    <label for="admin">Admin</label>
-                </div>
-                <div class="input-field col s3  tooltipped" data-position="top" data-tooltip="Memiliki akses terbatas pada aplikasi">
-                    <input class="with-gap" name="admin" type="radio" id="user"/>
-                    <label for="user">user</label>
-                </div>
-            </div>
         </div>
         <!-- Row in form END -->
         <br/><br/>
@@ -61,7 +50,7 @@
                 <button type="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
             </div>
             <div class="col 6">
-                <button type="reset" onclick="window.history.back();" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></button>
+                <a href="?page=pro" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
             </div>
         </div>
 

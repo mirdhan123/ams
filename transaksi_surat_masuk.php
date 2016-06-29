@@ -30,17 +30,17 @@
             }
         } else {
 
-            $limit = 10;
+            $limit = 5;
             $pg = @$_GET['pg'];
                 if(empty($pg)){
-                    $posisi = 0;
+                    $curr = 0;
                     $pg = 1;
                 } else {
-                    $posisi = ($pg - 1) * $limit;
+                    $curr = ($pg - 1) * $limit;
                 }
 
                     //Melakukan query ke tabel surat masuk
-                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC LIMIT $posisi, $limit");
+                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC LIMIT $curr, $limit");
 
 echo '<!-- Row Start -->
 <div class="row">
@@ -104,7 +104,7 @@ echo '<!-- Row Start -->
                         <ul id="dropdown1" class="dropdown-content">
                             <li class="cyan"><a href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
                             <li class="lime darken-2 tooltipped" data-position="left" data-tooltip="Klik untuk menambahkan disposisi surat"><a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">add_circle</i> DISPOSISI</a></a></li>
-                            <li class="yellow darken-3 tooltipped" data-position="left" data-tooltip="Klik untuk mencetak disposisi surat"><a href="?page=tsm&act=print"><i class="material-icons">print</i> CETAK</a></li>
+                            <li class="yellow darken-3 tooltipped" data-position="left" data-tooltip="Klik untuk mencetak discurr surat"><a href="?page=tsm&act=print"><i class="material-icons">print</i> CETAK</a></li>
                             <li class="divider"></li>
                             <li class="deep-orange"><a href="?page=tsm&act=del&id_surat='.$row['id_surat'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
                         </ul>
@@ -123,11 +123,13 @@ echo '<!-- Row Start -->
 
         //Query database untuk pagging
         $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk");
-        $jmldata = mysqli_num_rows($query);
-        $jmlhalaman = ceil($jmldata/$limit);
+        $cdata = mysqli_num_rows($query);
+        $cpg = ceil($cdata/$limit);
 
         echo '<br/><!-- Pagination START -->
               <ul class="pagination">';
+
+        if($cdata > 5 ){
 
         //First and previous pagging
         if($pg > 1){
@@ -140,7 +142,7 @@ echo '<!-- Row Start -->
         }
 
         //Perulangan pagging
-        for($i=1; $i <= $jmlhalaman; $i++)
+        for($i=1; $i <= $cpg; $i++)
             if($i != $pg){
                 echo '<li class="waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
             } else {
@@ -148,10 +150,10 @@ echo '<!-- Row Start -->
             }
 
         //Last and next pagging
-        if($pg < $jmlhalaman){
+        if($pg < $cpg){
             $next = $pg + 1;
             echo '<li><a href="?page=tsm&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
-                  <li><a href="?page=tsm&pg='.$jmlhalaman.'"><i class="material-icons md-48">last_page</i></a></li>';
+                  <li><a href="?page=tsm&pg='.$cpg.'"><i class="material-icons md-48">last_page</i></a></li>';
         } else {
             echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
                   <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
@@ -160,6 +162,9 @@ echo '<!-- Row Start -->
         </ul>
         <br/>
         <!-- Pagination END -->';
+    } else {
+        echo '';
     }
+}
 }
 ?>

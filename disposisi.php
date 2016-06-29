@@ -24,6 +24,15 @@
             }
         } else {
 
+            $limit = 5;
+            $pg = @$_GET['pg'];
+                if(empty($pg)){
+                    $curr = 0;
+                    $pg = 1;
+                } else {
+                    $curr = ($pg - 1) * $limit;
+                }
+
             //Menampilkan data sesuai id_surat
             $id_surat = $_REQUEST['id_surat'];
 
@@ -42,7 +51,7 @@
         <div class="z-depth-1">
             <nav class="secondary-nav">
                 <div class="nav-wrapper blue-grey darken-1">
-                    <div class="col m7">
+                    <div class="col m12">
                         <ul class="left">
                             <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">description</i> Disposisi  Surat</a></li>
                             <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Klik untuk menambahkan data disposisi surat">
@@ -50,14 +59,6 @@
                             </li>
                             <li class="waves-effect waves-light hide-on-small-only tooltipped" data-position="bottom" data-tooltip="Klik untuk kembali ke halaman transaksi surat masuk"><a href="?page=tsm"><i class="material-icons">arrow_back</i> Kembali</a></li>
                         </ul>
-                    </div>
-                    <div class="col m5 hide-on-med-and-down">
-                        <form>
-                            <div class="input-field round-in-box tooltipped" data-position="bottom" data-tooltip="Ketik dan tekan enter mencari data disposisi surat yang telah tersimpan">
-                                <input id="search" type="search" placeholder="Ketik dan tekan enter mencari data..." required>
-                                <label for="search"><i class="material-icons">search</i></label>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </nav>
@@ -120,15 +121,60 @@
             </tbody>';
             }
         } else {
-    echo '<tr><td colspan="5"><center><h5>Tida ada data untuk ditampilkan.</h5></center></td></tr>';
+    echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan.</h5></center></td></tr>';
         }
     echo '</table>
     </div>
 
 </div>
 <!-- Row form END -->';
-}
-}
+
+            //Query database untuk pagging
+            $query = mysqli_query($config, "SELECT * FROM tbl_disposisi");
+            $cdata = mysqli_num_rows($query);
+            $cpg = ceil($cdata/$limit);
+
+            echo '<br/><!-- Pagination START -->
+                  <ul class="pagination">';
+
+          if($cdata > 5 ){
+
+            //First and previous pagging
+            if($pg > 1){
+                $prev = $pg - 1;
+                echo '<li><a href="?page=tsm&pg=1"><i class="material-icons md-48">first_page</i></a></li>
+                      <li><a href="?page=tsm&pg='.$prev.'"><i class="material-icons md-48">chevron_left</i></a></li>';
+            } else {
+                echo '<li class="disabled"><a href=""><i class="material-icons md-48">first_page</i></a></li>
+                      <li class="disabled"><a href=""><i class="material-icons md-48">chevron_left</i></a></li>';
+            }
+
+            //Perulangan pagging
+            for($i=1; $i <= $cpg; $i++)
+                if($i != $pg){
+                    echo '<li class="waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
+                } else {
+                    echo '<li class="active waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
+                }
+
+            //Last and next pagging
+            if($pg < $cpg){
+                $next = $pg + 1;
+                echo '<li><a href="?page=tsm&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
+                      <li><a href="?page=tsm&pg='.$cpg.'"><i class="material-icons md-48">last_page</i></a></li>';
+            } else {
+                echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
+                      <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
+            }
+            echo '
+            </ul>
+            <br/>
+            <!-- Pagination END -->';
+        } else {
+            echo '';
+        }
+        }
+    }
 }
 }
 ?>

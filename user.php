@@ -1,117 +1,163 @@
- <!doctype html>
-<html lang="en">
+<?php
+    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
+    if(empty($_SESSION['admin'])){
 
-<!-- Include Head BEGIN -->
-<?php include('include/head.php'); ?>
-<!-- Include Head END -->
+        //Menampilkan pesan error dan mengarahkan ke halaman login
+        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        header("Location: ./");
+        die();
+    } else {
 
-<!-- Body BEGIN -->
-<body>
+        //Request url aksi menggunakan fungsi switch case
+        if(isset($_REQUEST['act'])){
+            $act = $_REQUEST['act'];
+            switch ($act) {
+                case 'add':
+                    include "tambah_user.php";
+                    break;
+                case 'edit':
+                    include "edit_tipe_user.php";
+                    break;
+                case 'del':
+                    include "hapus_user.php";
+                    break;
+            }
+        } else {
 
-<!-- Header START -->
-<header>
+            $limit = 5;
+            $pg = @$_GET['pg'];
+                if(empty($pg)){
+                    $curr = 0;
+                    $pg = 1;
+                } else {
+                    $curr = ($pg - 1) * $limit;
+                }
 
-<!-- Include Navigation START -->
-<?php include('include/menu.php'); ?>
-<!-- Include Navigation END --> 
-
-</header>
-<!-- Header END --> 
-
-<!-- Main START -->
-<main>
-
-    <!-- container START --> 
-    <div class="container">
-
-        <!-- Row Start -->
-        <div class="row">
-            <!-- Secondary Nav START -->
-            <div class="col s12">
-                <div class="z-depth-1">
-                    <nav class="secondary-nav">
-                        <div class="nav-wrapper blue-grey darken-1">
-                            <div class="col m12">
-                                <ul class="left">
-                                    <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">people</i> Manajemen User</a></li>
-                                    <li class="waves-effect waves-light">
-                                        <a href="tambah_user.php"><i class="material-icons md-24">add_circle</i> Tambah User</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
+                    //Melakukan query ke tabel user
+                    $query = mysqli_query($config, "SELECT * FROM tbl_user LIMIT $curr, $limit");
+echo '
+<!-- Row Start -->
+<div class="row">
+    <!-- Secondary Nav START -->
+    <div class="col s12">
+        <div class="z-depth-1">
+            <nav class="secondary-nav">
+                <div class="nav-wrapper blue-grey darken-1">
+                    <div class="col m12">
+                        <ul class="left">
+                            <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">people</i> Manajemen User</a></li>
+                            <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Klik untuk menambahkan user baru">
+                                <a href="?page=sett&sub=usr&act=add"><i class="material-icons md-24">person_add</i> Tambah User</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <!-- Secondary Nav END -->
+            </nav>
         </div>
-        <!-- Row END -->
+    </div>
+    <!-- Secondary Nav END -->
+</div>
+<!-- Row END -->
 
-        <!-- Row form Start -->
-        <div class="row jarak-form">
+<!-- Row form Start -->
+<div class="row jarak-form">
 
-            <div class="col m12">
-                <!-- Table START -->
-                <table class="responsive bordered">
-                    <thead>
-                        <tr>
-                            <th width="80">ID</th>
-                            <th width="200">Username</th>
-                            <th width="250">Nama, NIP</th>
-                            <th width="150">Level</th>
-                            <th width="120">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>admin</td>
-                            <td>M. Rudianto<br/>19951205 2001601 01</td>
-                            <td>administrator</td>
-                            <td>
-                                <!-- Dropdown Trigger -->
-                                <a class='dropdown-button btn deep-orange' href='#' data-activates='dropdown1'>Aksi</a>
+    <div class="col m12" id="colres">
+        <!-- Table START -->
+        <table class="responsive bordered" id="tbl">
+            <thead class="blue lighten-4" id="head">
+                <tr>
+                    <th width="10%">ID</th>
+                    <th width="25%">Username</th>
+                    <th width="30%">Nama<br/>NIP</th>
+                    <th width="22%">Level</th>
+                    <th width="13%">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>';
 
-                                <!-- Dropdown Structure -->
-                                <ul id='dropdown1' class='dropdown-content'>
-                                    <li class="cyan"><a href="edit_user_admin.php"><i class="material-icons">edit</i> EDIT</a></a></li>
-                                    <li class="divider"></li>
-                                    <li class="deep-orange"><a href="#hapus" class=" modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- Table END -->
-            </div>
-
-            <!-- Delete modal trigger START -->
-            <div id="hapus" class="modal">
-                <div class="modal-content">
-                    <h5 class="redtext"><i class="material-icons md-36">error_outline</i> Konfirmasi</h5>
-                    <p>Apakah Anda yakin akan menghapus user ini?</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">BATAL</a>
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">HAPUS</a>
-                </div>
-            </div>
-            <!-- Delete modal trigger END -->
-
-        </div>
-        <!-- Row form END -->
+                if(mysqli_num_rows($query) > 0){
+                    $no = 1;
+                    while($row = mysqli_fetch_array($query)){
+              echo '<td>'.$row['id_user'].'</td>';
+                    if($row['admin'] == 1){
+                        $row['admin'] = 'Administrator';
+                    } else {
+                        $row['admin'] = 'User Biasa';
+                    }
+                echo '
+                    <td>'.$row['username'].'</td>
+                    <td>'.$row['nama'].'<br/>'.$row['nip'].'</td>
+                    <td>'.$row['admin'].'</td>
+                    <td>
+                        <a class="dropdown-button btn deep-orange" href="#" data-activates="dropdown1">Aksi</a>
+                        <ul id="dropdown1" class="dropdown-content">
+                            <li class="cyan"><a href="?page=sett&sub=usr&act=edit&id='.$row['id_user'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
+                            <li class="divider"></li>
+                            <li class="deep-orange"><a href="?page=sett&sub=usr&act=del&id='.$row['id_user'].'"><i class="material-icons">delete</i> HAPUS</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>';
+            }
+        } else {
+    echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
+        }
+  echo '
+        </table>
+        <!-- Table END -->
 
     </div>
-    <!-- container END --> 
 
-</main>
-<!-- Main END --> 
+</div>
+<!-- Row form END -->';
 
-<!-- Include Footer START -->
-<?php include('include/footer.php'); ?>
-<!-- Include Footer END -->
+            //Query database untuk pagging
+            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk");
+            $cdata = mysqli_num_rows($query);
+            $cpg = ceil($cdata/$limit);
 
-</body>
-<!-- Body END -->
+            echo '<br/><!-- Pagination START -->
+                  <ul class="pagination">';
 
-</html>
+            if($cdata > 5 ){
+
+            //First and previous pagging
+            if($pg > 1){
+                $prev = $pg - 1;
+                echo '<li><a href="?page=tsm&pg=1"><i class="material-icons md-48">first_page</i></a></li>
+                      <li><a href="?page=tsm&pg='.$prev.'"><i class="material-icons md-48">chevron_left</i></a></li>';
+            } else {
+                echo '<li class="disabled"><a href=""><i class="material-icons md-48">first_page</i></a></li>
+                      <li class="disabled"><a href=""><i class="material-icons md-48">chevron_left</i></a></li>';
+            }
+
+            //Perulangan pagging
+            for($i=1; $i <= $cpg; $i++)
+                if($i != $pg){
+                    echo '<li class="waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
+                } else {
+                    echo '<li class="active waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
+                }
+
+            //Last and next pagging
+            if($pg < $cpg){
+                $next = $pg + 1;
+                echo '<li><a href="?page=tsm&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
+                      <li><a href="?page=tsm&pg='.$cpg.'"><i class="material-icons md-48">last_page</i></a></li>';
+            } else {
+                echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
+                      <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
+            }
+            echo '
+            </ul>
+            <br/>
+            <!-- Pagination END -->';
+    } else {
+        echo '';
+    }
+}
+
+}
+?>

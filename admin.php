@@ -79,6 +79,9 @@
                 case 'pro':
                     include "profil.php";
                     break;
+                case 'epro':
+                    include "edit_profil.php";
+                    break;
             }
         } else {
     ?>
