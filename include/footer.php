@@ -20,7 +20,7 @@
             <div class="right hide-on-small-only">
                 <?php
                     $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
-                    while ($data = mysqli_fetch_array($query)){
+                    while($data = mysqli_fetch_array($query)){
                         echo '
                 <i class="material-icons md-12">language</i> '.$data['website'].' &nbsp;&nbsp;
                 <i class="material-icons">mail_outline</i>  '.$data['email'].'';

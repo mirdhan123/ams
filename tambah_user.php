@@ -131,7 +131,7 @@
                 <input id="nama" type="text" class="validate" name="nama">
                 <label for="nama">Nama</label>
             </div>
-            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter dan akan dienkripsi.">
+            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter dan akan dienkripsi secara otomatis.">
                 <i class="material-icons prefix md-prefix">lock</i>
                 <input id="password" type="password" class="validate" name="password">
                 <label for="password">Password</label>

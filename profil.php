@@ -1,3 +1,121 @@
+<?php
+
+    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
+    if(empty($_SESSION['admin'])){
+
+        //Menampilkan pesan error dan mengarahkan ke halaman login
+        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        header("Location: ./");
+        die();
+    } else {
+
+        if(isset($_REQUEST['sub'])){
+
+            $id_user = $_SESSION['id_user'];
+
+            if(isset($_REQUEST['submit'])){
+                $username = $_REQUEST['username'];
+                $password_lama = $_REQUEST['password_lama'];
+                $password = $_REQUEST['password'];
+                $nama = $_REQUEST['nama'];
+                $nip = $_REQUEST['nip'];
+
+                $query = mysqli_query($config, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password=MD5('$password_lama')");
+                if(mysqli_num_rows($query) > 0){
+                    $do = mysqli_query($config, "UPDATE tbl_user SET username='$username', password=MD5('$password'), nama='$nama', nip='$nip' WHERE id_user='$id_user'");
+                        if($query == true){
+                            echo '<script language="javascript">
+                                    window.location.href="./logout.php";
+                                  </script>';
+                        } else {
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Ada yang salah dengan querynya.");
+                                    window.location.href="./admin.php?page=pro&sub=pass";
+                                  </script>';
+                        }
+                    } else {
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Password Lama tidak sesuai.");
+                                window.location.href="./admin.php?page=pro&sub=pass";
+                              </script>';
+                    }
+            } else {
+?>
+
+
+<!-- Row Start -->
+<div class="row">
+    <!-- Secondary Nav START -->
+    <div class="col s12">
+        <nav class="secondary-nav">
+            <div class="nav-wrapper blue-grey darken-1">
+                <ul class="left">
+                    <li class="waves-effect waves-light  tooltipped" data-position="right" data-tooltip="Edit profil user"><a href="#" class="judul"><i class="material-icons">mode_edit</i> Edit Profil</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- Secondary Nav END -->
+</div>
+<!-- Row END -->
+
+<!-- Row form Start -->
+<div class="row jarak-form">
+
+    <!-- Form START -->
+    <form class="col s12" method="post" action="?page=pro&sub=pass">
+
+        <!-- Row in form START -->
+        <div class="row">
+            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter dan hanya boleh mengandung karakter huruf, angka dan underscore (_)">
+                <i class="material-icons prefix md-prefix">account_circle</i>
+                <input id="username" type="text" class="validate" name="username" value="<?php echo $_SESSION['username']; ?>">
+                <label for="username">Username</label>
+            </div>
+            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Nama hanya boleh mengandung karakter huruf, spasi dan titik (.)">
+                <i class="material-icons prefix md-prefix">text_fields</i>
+                <input id="nama" type="text" class="validate" name="nama" value="<?php echo $_SESSION['nama']; ?>">
+                <label for="nama">Nama</label>
+            </div>
+            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isikan password lama Anda.">
+                <i class="material-icons prefix md-prefix">lock_open</i>
+                <input id="password_lama" type="password" class="validate" name="password_lama">
+                <label for="password_lama">Password Lama</label>
+            </div>
+            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="NIP hanya boleh mengandung karakter angka, spasi, titik (.) dan minus (-)">
+                <i class="material-icons prefix md-prefix">looks_one</i>
+                <input id="nip" type="text" class="validate" name="nip" value="<?php echo $_SESSION['nip']; ?>">
+                <label for="nip">NIP</label>
+            </div>
+            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter dan akan dienkripsi secara otomatis.">
+                <i class="material-icons prefix md-prefix">lock</i>
+                <input id="password" type="password" class="validate" name="password">
+                <label for="password">Password Baru</label>
+                <small class="red-text" style="margin-left: 40px;">*Setelah menekan tombol "Simpan", Anda akan diminta melakukan Login ulang.</small>
+            </div>
+        </div>
+        <!-- Row in form END -->
+        <br/><br/>
+        <div class="row">
+            <div class="col 6">
+                <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
+            </div>
+            <div class="col 6">
+                <a href="?page=pro" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+            </div>
+        </div>
+
+    </form>
+    <!-- Form END -->
+
+</div>
+<!-- Row form END -->
+
+<?php
+            }
+        } else {
+?>
+
 <!-- Row Start -->
 <div class="row">
     <!-- Secondary Nav START -->
@@ -24,22 +142,22 @@
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">account_circle</i>
-                <input id="username" type="text" class="validate" required>
+                <input id="username" type="text" value="<?php echo $_SESSION['username']; ?>" readonly disable>
                 <label for="username">Username</label>
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">text_fields</i>
-                <input id="nama" type="text" class="validate" required>
+                <input id="nama" type="text" value="<?php echo $_SESSION['nama']; ?>" readonly disable>
                 <label for="nama">Nama</label>
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">lock</i>
-                <input id="password" type="password" class="validate" required>
+                <input id="password" type="text" value="*" readonly disable>
                 <label for="password">Password</label>
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">looks_one</i>
-                <input id="nip" type="text" class="validate" required>
+                <input id="nip" type="text" value="<?php echo $_SESSION['nip']; ?>" readonly disable>
                 <label for="nip">NIP</label>
             </div>
         </div>
@@ -47,7 +165,7 @@
         <br/><br/>
         <div class="row">
             <div class="col m12">
-                <a href="?page=epro" class="btn-large blue waves-effect waves-light">EDIT PROFIL<i class="material-icons">mode_edit</i></a>
+                <a href="?page=pro&sub=pass" class="btn-large blue waves-effect waves-light">EDIT PROFIL<i class="material-icons">mode_edit</i></a>
             </div>
         </div>
 
@@ -56,3 +174,7 @@
 
 </div>
 <!-- Row form END -->
+<?php
+                }
+            }
+?>

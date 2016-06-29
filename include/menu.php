@@ -28,7 +28,7 @@
                     <div class="collapsible-body">
                         <ul>
                             <li><a href="?page=pro">Profil</a></li>
-                            <li><a href="?page=epro">Ubah Password</a></li>
+                            <li><a href="?page=pro&sub=pass">Ubah Password</a></li>
                             <li><a href="logout.php">Logout</a></li>
                         </ul>
                     </div>
@@ -143,7 +143,7 @@
                 <i class="material-icons md-18">arrow_drop_down</i></a></li>
             <ul id='logout' class='dropdown-content'>
                 <li><a href="?page=pro">Profil</a></li>
-                <li><a href="?page=epro">Ubah Password</a></li>
+                <li><a href="?page=pro&sub=pass">Ubah Password</a></li>
                 <li class="divider"></li>
                 <li><a href="logout.php"><i class="material-icons">settings_power</i> Logout</a></li>
             </ul>
