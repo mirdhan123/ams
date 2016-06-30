@@ -1,8 +1,6 @@
 <?php
-    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
     if(empty($_SESSION['admin'])){
 
-        //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
         header("Location: ./");
         die();
@@ -95,78 +93,77 @@
                     }
                 }
             }
-        } else {
-?>
-<!-- Row Start -->
-<div class="row">
-    <!-- Secondary Nav START -->
-    <div class="col s12">
-        <nav class="secondary-nav">
-            <div class="nav-wrapper blue-grey darken-1">
-                <ul class="left">
-                    <li class="waves-effect waves-light  tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error. Jika belum memiliki NIP, bisa diisi dengan tanda minus (-)"><a href="#" class="judul"><i class="material-icons">person_add</i> Tambah User</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <!-- Secondary Nav END -->
-</div>
-<!-- Row END -->
-
-<!-- Row form Start -->
-<div class="row jarak-form">
-
-    <!-- Form START -->
-    <form class="col s12" method="POST" action="?page=sett&sub=usr&act=add">
-
-        <!-- Row in form START -->
-        <div class="row">
-            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter dan hanya boleh mengandung karakter huruf, angka dan underscore (_)">
-                <i class="material-icons prefix md-prefix">account_circle</i>
-                <input id="username" type="text" class="validate" name="username">
-                <label for="username">Username</label>
-            </div>
-            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Nama hanya boleh mengandung karakter huruf, spasi dan titik (.)">
-                <i class="material-icons prefix md-prefix">text_fields</i>
-                <input id="nama" type="text" class="validate" name="nama">
-                <label for="nama">Nama</label>
-            </div>
-            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter dan akan dienkripsi secara otomatis.">
-                <i class="material-icons prefix md-prefix">lock</i>
-                <input id="password" type="password" class="validate" name="password">
-                <label for="password">Password</label>
-            </div>
-            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="NIP hanya boleh mengandung karakter angka, spasi, titik (.) dan minus (-)">
-                <i class="material-icons prefix md-prefix">looks_one</i>
-                <input id="nip" type="text" class="validate" name="nip">
-                <label for="nip">NIP</label>
-            </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Tipe User</label><br/>
-                <div class="input-field col s11 right">
-                    <select class="browser-default validate" name="admin" id="admin">
-                        <option value="1">Admin</option>
-                        <option value="2">User Biasa</option>
-                    </select>
+        } else {?>
+            <!-- Row Start -->
+            <div class="row">
+                <!-- Secondary Nav START -->
+                <div class="col s12">
+                    <nav class="secondary-nav">
+                        <div class="nav-wrapper blue-grey darken-1">
+                            <ul class="left">
+                                <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">person_add</i> Tambah User</a></li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
+                <!-- Secondary Nav END -->
             </div>
-        </div>
-        <!-- Row in form END -->
-        <br/><br/>
-        <div class="row">
-            <div class="col 6">
-                <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
-            </div>
-            <div class="col 6">
-                <a href="?page=sett&sub=usr" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
-            </div>
-        </div>
+            <!-- Row END -->
 
-    </form>
-    <!-- Form END -->
+            <!-- Row form Start -->
+            <div class="row jarak-form">
 
-</div>
-<!-- Row form END -->
+                <!-- Form START -->
+                <form class="col s12" method="post" action="?page=sett&sub=usr&act=add">
+
+                    <!-- Row in form START -->
+                    <div class="row">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter">
+                            <i class="material-icons prefix md-prefix">account_circle</i>
+                            <input id="username" type="text" class="validate" name="username" required>
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix md-prefix">text_fields</i>
+                            <input id="nama" type="text" class="validate" name="nama" required>
+                            <label for="nama">Nama</label>
+                        </div>
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter">
+                            <i class="material-icons prefix md-prefix">lock</i>
+                            <input id="password" type="password" class="validate" name="password" required>
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix md-prefix">looks_one</i>
+                            <input id="nip" type="text" class="validate" name="nip" required>
+                            <label for="nip">NIP</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Tipe User</label><br/>
+                            <div class="input-field col s11 right">
+                                <select class="browser-default validate" name="admin" id="admin" required>
+                                    <option value="2">User Biasa</option>
+                                    <option value="1">Admin</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row in form END -->
+                    <br/><br/>
+                    <div class="row">
+                        <div class="col 6">
+                            <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
+                        </div>
+                        <div class="col 6">
+                            <a href="?page=sett&sub=usr" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+                        </div>
+                    </div>
+
+                </form>
+                <!-- Form END -->
+
+            </div>
+            <!-- Row form END -->
 <?php
 }
 }

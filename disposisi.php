@@ -97,7 +97,7 @@
                 <tr>';
 
                 //Melakukan query ke tabel surat masuk
-                $query2 = "SELECT * FROM tbl_disposisi WHERE id_surat IN(SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat')";
+                $query2 = "SELECT * FROM tbl_disposisi JOIN tbl_surat_masuk ON tbl_disposisi.id_surat = tbl_surat_masuk.id_surat WHERE tbl_disposisi.id_surat='$id_surat'";
 
                 $result2 = mysqli_query($config, $query2);
 

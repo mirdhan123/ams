@@ -52,14 +52,14 @@ echo '<!-- Row Start -->
                     <div class="col m7">
                         <ul class="left">
                             <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">mail</i> Surat Masuk</a></li>
-                            <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Klik untuk menambahkan data surat masuk">
+                            <li class="waves-effect waves-light">
                                 <a href="?page=tsm&act=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col m5 hide-on-med-and-down">
                         <form>
-                            <div class="input-field round-in-box tooltipped" data-position="bottom" data-tooltip="Ketik dan tekan enter mencari data surat masuk yang telah tersimpan">
+                            <div class="input-field round-in-box">
                                 <input id="search" type="search" placeholder="Ketik dan tekan enter mencari data..." required>
                                 <label for="search"><i class="material-icons">search</i></label>
                             </div>
@@ -103,8 +103,8 @@ echo '<!-- Row Start -->
                         <a class="dropdown-button btn deep-orange" href="#" data-activates="dropdown1">Aksi</a>
                         <ul id="dropdown1" class="dropdown-content">
                             <li class="cyan"><a href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
-                            <li class="lime darken-2 tooltipped" data-position="left" data-tooltip="Klik untuk menambahkan disposisi surat"><a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">add_circle</i> DISPOSISI</a></a></li>
-                            <li class="yellow darken-3 tooltipped" data-position="left" data-tooltip="Klik untuk mencetak discurr surat"><a href="?page=tsm&act=print"><i class="material-icons">print</i> CETAK</a></li>
+                            <li class="lime darken-2"><a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">add_circle</i> DISPOSISI</a></a></li>
+                            <li class="yellow darken-3"><a href="?page=tsm&act=print"><i class="material-icons">print</i> CETAK</a></li>
                             <li class="divider"></li>
                             <li class="deep-orange"><a href="?page=tsm&act=del&id_surat='.$row['id_surat'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
                         </ul>

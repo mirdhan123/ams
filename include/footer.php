@@ -38,7 +38,7 @@
 <script type="text/javascript">
 
 //jquery dropdown
-$(".dropdown-button").dropdown();
+$(".dropdown-button").dropdown({ hover: false });
 
 //jquery sidenav on mobile
 $('.button-collapse').sideNav({
