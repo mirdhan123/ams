@@ -125,7 +125,7 @@
                                 <input id="nama" type="text" class="validate" name="nama" value="<?php echo $_SESSION['nama']; ?>" required>
                                 <label for="nama">Nama</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isikan password lama Anda.">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isikan password lama Anda">
                                 <i class="material-icons prefix md-prefix">lock_open</i>
                                 <input id="password_lama" type="password" class="validate" name="password_lama" required>
                                 <label for="password_lama">Password Lama</label>

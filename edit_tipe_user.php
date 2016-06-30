@@ -78,8 +78,8 @@
                                     <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih tipe user</label><br/>
                                     <div class="input-field col s11 right">
                                         <select class="browser-default" name="admin" id="admin" required>
-                                            <option value="1">Admin</option>
                                             <option value="2">User Biasa</option>
+                                            <option value="1">Admin</option>
                                         </select>
                                     </div>
                                 </div>
