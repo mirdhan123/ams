@@ -28,7 +28,8 @@
                 }
             } else {
 
-                $query = mysqli_query($config, "SELECT * FROM tbl_user");
+                $id_user = $_REQUEST['id_user'];
+                $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
                 if (mysqli_num_rows($query) > 0) {
                     $no = 1;
                     while ($row = mysqli_fetch_array($query)) {?>
@@ -53,24 +54,25 @@
 <div class="row jarak-form">
 
     <!-- Form START -->
-    <form class="col s12" method="post" action="save.php">
+    <form class="col s12" method="post" action="?page=sett&sub=usr&act=edit">
 
         <!-- Row in form START -->
         <div class="row">
             <div class="input-field col s6">
+                <input type="hidden" value="<?php echo $row['id_user'] ;?>" name="id_user">
                 <i class="material-icons prefix md-prefix">account_circle</i>
-                <input id="username" type="text" value="<?php echo $username ;?>" readonly class="grey-text">
+                <input id="username" type="text" value="<?php echo $row['username'] ;?>" readonly class="grey-text">
                 <label  for="username">Username</label>
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">text_fields</i>
-                <input id="username" type="text" value="wefwe" readonly class="grey-text">
-                <label for="username">Username</label>
+                <input id="username" type="text" value="<?php echo $row['nama'] ;?>" readonly class="grey-text">
+                <label for="username">Nama</label>
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih tipe user</label><br/>
                 <div class="input-field col s11 right">
-                    <select class="browser-default">
+                    <select class="browser-default" name="admin" id="admin">
                         <option value="1">Admin</option>
                         <option value="2">User Biasa</option>
                     </select>

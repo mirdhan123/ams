@@ -7,7 +7,7 @@
                 <div class="nav-wrapper blue-grey darken-1">
                     <div class="col 12">
                         <ul class="left">
-                            <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Cetak daftar agenda surat masuk berdasarkan tanggal tertentu"><a href="#" class="judul"><i class="material-icons">print</i> Cetak Agenda Surat Masuk<a></li>
+                            <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Cetak daftar agenda surat masuk berdasarkan range tanggal tertentu"><a href="#" class="judul"><i class="material-icons">print</i> Cetak Agenda Surat Masuk<a></li>
                         </ul>
                     </div>
                 </div>
