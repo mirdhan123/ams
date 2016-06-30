@@ -92,6 +92,7 @@ echo '
                     <td>'.$row['nama'].'<br/>'.$row['nip'].'</td>
                     <td>'.$row['admin'].'</td>
                     <td>';
+                    
                     if($_SESSION['username'] == $row['username']){
                         echo '';
                     } else {

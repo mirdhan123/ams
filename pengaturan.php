@@ -21,44 +21,55 @@
                 }
             } else {
 
-            $limit = 10;
-            $pg = @$_GET['pg'];
-                if(empty($pg)){
-                    $posisi = 0;
-                    $pg = 1;
-                } else {
-                    $posisi = ($pg - 1) * $limit;
-                }
+                if(isset($_REQUEST['submit'])){
 
-                    //Melakukan query ke tabel surat masuk
-                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC LIMIT $posisi, $limit");
+                    $id_instansi = "1";
+                    $nama = $_REQUEST['nama'];
+                    $alamat = $_REQUEST['alamat'];
+                    $kepsek = $_REQUEST['kepsek'];
+                    $nip = $_REQUEST['nip'];
+                    $website = $_REQUEST['website'];
+                    $email = $_REQUEST['email'];
 
-echo '<!-- Row Start -->
+                    $logo = $_FILES['logo']['name'];
+                    $target_dir = "upload/";
+                    $imageFileType = pathinfo($logo, PATHINFO_EXTENSION);
+
+                    //Cek apakah file yang di upload adalah benar-benar file gambar
+
+                    move_uploaded_file($_FILES['logo']['tmp_name'], 'upload/'.$logo);
+
+                    $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$logo' WHERE id_instansi='$id_instansi'");
+
+                    if($query == true){
+                        echo '<script language="javascript">
+                        window.alert("SUKSES! Data berhasil diupdate.");
+                        window.location.href="./admin.php?page=sett&sub=ins";
+                        </script>';
+                    } else {
+                        echo '<script language="javascript">
+                        window.alert("ERROR! Periksa penulisan querynya.");
+                        window.location.href="./admin.php?page=sett&sub=ins";
+                        </script>';
+                        }
+                    } else {
+
+                        $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                        if(mysqli_num_rows($query) > 0){
+                            $no = 1;
+                            while ($row = mysqli_fetch_array($query)){?>
+
+<!-- Row Start -->
 <div class="row">
     <!-- Secondary Nav START -->
     <div class="col s12">
-        <div class="z-depth-1">
-            <nav class="secondary-nav">
-                <div class="nav-wrapper blue-grey darken-1">
-                    <div class="col m7">
-                        <ul class="left">
-                            <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">mail</i> Surat Masuk</a></li>
-                            <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Klik untuk menambahkan data surat masuk">
-                                <a href="?page=tsm&sub=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col m5 hide-on-med-and-down">
-                        <form>
-                            <div class="input-field round-in-box tooltipped" data-position="bottom" data-tooltip="Ketik dan tekan enter mencari data surat masuk yang telah tersimpan">
-                                <input id="search" type="search" placeholder="Ketik dan tekan enter mencari data..." required>
-                                <label for="search"><i class="material-icons">search</i></label>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-        </div>
+        <nav class="secondary-nav">
+            <div class="nav-wrapper blue-grey darken-1">
+                <ul class="left">
+                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Kelola nama instansi, alamat dan logo instansi pada aplikasi. Mohon isi semua form agar tidak terjadi error"><a href="#" class="judul"><i class="material-icons">work</i> Manajemen Instansi</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
     <!-- Secondary Nav END -->
 </div>
@@ -67,90 +78,73 @@ echo '<!-- Row Start -->
 <!-- Row form Start -->
 <div class="row jarak-form">
 
-    <div class="col m12" id="colres">
-        <table class="responsive bordered" id="tbl">
-            <thead class="blue lighten-4" id="head">
-                <tr>
-                    <th width="10%">No. Agenda<br/>Kode</th>
-                    <th width="36%">Isi Ringkas<br/> File</th>
-                    <th width="24%">Asal Surat</th>
-                    <th width="20%">No. Surat<br/>Tgl Surat</th>
-                    <th width="10%">sub</th>
-                </tr>
-            </thead>
+    <!-- Form START -->
+    <form class="col s12" method="POST" action="?page=sett&sub=ins">
 
-            <tbody>
-                <tr>';
+        <!-- Row in form START -->
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">school</i>
+                <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>">
+                <label for="nama">Nama Instansi</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">account_box</i>
+                <input id="kepsek" type="text" class="validate" name="kepsek" value="<?php echo $row['kepsek']; ?>">
+                <label for="kepsek">Nama Kepala Sekolah</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">place</i>
+                <input id="alamat" type="text" class="validate" name="alamat" value="<?php echo $row['alamat']; ?>">
+                <label for="alamat">Alamat</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">looks_one</i>
+                <input id="nip" type="text" class="validate" name="nip" value="<?php echo $row['nip']; ?>">
+                <label for="nip">NIP Kepala Sekolah</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">language</i>
+                <input id="website" type="url" class="validate" name="website" value="<?php echo $row['website']; ?>">
+                <label for="website">Website</label>
+            </div>
+            <div class="input-field col s6">
+                <div class="file-field input-field">
+                    <div class="btn light-green darken-1">
+                        <span>File</span>
+                        <input type="file" id="logo" name="logo">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload Logo instansi">
+                    </div>
+                </div>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">mail</i>
+                <input id="email" type="email" class="validate" name="email" value="<?php echo $row['email']; ?>">
+                <label for="email">Email Instansi</label>
+            </div>
+            </div>
+            <!-- Row in form END -->
 
-        if(mysqli_num_rows($query) > 0){
-            $no = 1;
-            while($row = mysqli_fetch_array($query)){
-              echo '<td>'.$row['no_agenda'].'<br/>'.$row['kode'].'</td>
-                    <td>'.$row['isi'].'<br/><br/><strong>File: <a href="upload/surat_masuk/'.$row['file'].'">'.$row['file'].'</a></strong></td>
-                    <td>'.$row['asal_surat'].'</td>
-                    <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
-                    <td>
+        <div class="row">
+            <div class="col 6">
+                <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
+            </div>
+            <div class="col 6">
+                <a href="./admin.php" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+            </div>
+        </div>
 
-                        <a class="dropdown-button btn deep-orange" href="#" data-activates="dropdown1">sub</a>
-                        <ul id="dropdown1" class="dropdown-content">
-                            <li class="cyan"><a href="?page=tsm&sub=edit&id_surat='.$row['id_surat'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
-                            <li class="lime darken-2 tooltipped" data-position="left" data-tooltip="Klik untuk menambahkan disposisi surat"><a href="?page=tsm&sub=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">add_circle</i> DISPOSISI</a></a></li>
-                            <li class="yellow darken-3 tooltipped" data-position="left" data-tooltip="Klik untuk mencetak disposisi surat"><a href="?page=tsm&sub=print"><i class="material-icons">print</i> CETAK</a></li>
-                            <li class="divider"></li>
-                            <li class="deep-orange"><a href="?page=tsm&sub=del&id_surat='.$row['id_surat'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>';
-            }
-        } else {
-    echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
-        }
-  echo '</table>
-    </div>
+    </form>
+    <!-- Form END -->
 
 </div>
-<!-- Row form END -->';
-
-        //Query database untuk pagging
-        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk");
-        $jmldata = mysqli_num_rows($query);
-        $jmlhalaman = ceil($jmldata/$limit);
-
-        echo '<br/><!-- Pagination START -->
-              <ul class="pagination">';
-
-        //First and previous pagging
-        if($pg > 1){
-            $prev = $pg - 1;
-            echo '<li><a href="?page=tsm&pg=1"><i class="material-icons md-48">first_page</i></a></li>
-                  <li><a href="?page=tsm&pg='.$prev.'"><i class="material-icons md-48">chevron_left</i></a></li>';
-        } else {
-            echo '<li class="disabled"><a href=""><i class="material-icons md-48">first_page</i></a></li>
-                  <li class="disabled"><a href=""><i class="material-icons md-48">chevron_left</i></a></li>';
-        }
-
-        //Perulangan pagging
-        for($i=1; $i <= $jmlhalaman; $i++)
-            if($i != $pg){
-                echo '<li class="waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
-            } else {
-                echo '<li class="active waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
-            }
-
-        //Last and next pagging
-        if($pg < $jmlhalaman){
-            $next = $pg + 1;
-            echo '<li><a href="?page=tsm&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
-                  <li><a href="?page=tsm&pg='.$jmlhalaman.'"><i class="material-icons md-48">last_page</i></a></li>';
-        } else {
-            echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
-                  <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
-        }
-        echo '
-        </ul>
-        <br/>
-        <!-- Pagination END -->';
-    }
+<!-- Row form END -->
+<?php
+}
+}
+}
+}
 }
 ?>

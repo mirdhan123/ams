@@ -1,6 +1,6 @@
 <?php
     //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
-    if (empty($_SESSION['admin'])) {
+    if(empty($_SESSION['admin'])){
 
         //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -8,7 +8,7 @@
         die();
     } else {
 
-        if (isset($_REQUEST['submit'])) {
+        if(isset($_REQUEST['submit'])){
 
             $id_instansi = "1";
             $nama = $_REQUEST['nama'];
@@ -28,7 +28,7 @@
 
             $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$logo' WHERE id_instansi='$id_instansi'");
 
-            if ($query == true) {
+            if($query == true){
                 echo '<script language="javascript">
                 window.alert("SUKSES! Data berhasil diupdate.");
                 window.location.href="./admin.php?page=sett&sub=ins";
@@ -42,9 +42,9 @@
             } else {
 
                 $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
-                if (mysqli_num_rows($query) > 0) {
+                if(mysqli_num_rows($query) > 0){
                     $no = 1;
-                    while ($row = mysqli_fetch_array($query)) {?>
+                    while($row = mysqli_fetch_array($query)){?>
 
 <!-- Row Start -->
 <div class="row">

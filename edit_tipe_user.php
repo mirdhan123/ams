@@ -1,6 +1,6 @@
 <?php
     //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
-    if (empty($_SESSION['admin'])) {
+    if(empty($_SESSION['admin'])){
 
         //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -8,31 +8,38 @@
         die();
     } else {
 
-        if (isset($_REQUEST['submit'])) {
+        if($_REQUEST['id_user'] == 1){
+            echo '<script language="javascript">
+            window.alert("ERROR! User utama tidak boleh diedit.");
+            window.location.href="./admin.php?page=sett&sub=usr";
+            </script>';
+        } else {
 
-            $id_user = $_REQUEST['id_user'];
-            $admin = $_REQUEST['admin'];
+            if(isset($_REQUEST['submit'])){
 
-            $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
+                $id_user = $_REQUEST['id_user'];
+                $admin = $_REQUEST['admin'];
 
-            if ($query == true) {
-                echo '<script language="javascript">
-                window.alert("SUKSES! Tipe User berhasil diupdate.");
-                window.location.href="./admin.php?page=sett&sub=usr";
-                </script>';
-            } else {
-                echo '<script language="javascript">
-                window.alert("ERROR! Periksa penulisan querynya.");
-                window.location.href="./admin.php?page=sett&sub=usr";
-                </script>';
+                $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
+
+                if($query == true){
+                    echo '<script language="javascript">
+                    window.alert("SUKSES! Tipe User berhasil diupdate.");
+                    window.location.href="./admin.php?page=sett&sub=usr";
+                    </script>';
+                } else {
+                    echo '<script language="javascript">
+                    window.alert("ERROR! Periksa penulisan querynya.");
+                    window.location.href="./admin.php?page=sett&sub=usr";
+                    </script>';
                 }
             } else {
 
                 $id_user = $_REQUEST['id_user'];
                 $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
-                if (mysqli_num_rows($query) > 0) {
+                if(mysqli_num_rows($query) > 0){
                     $no = 1;
-                    while ($row = mysqli_fetch_array($query)) {?>
+                    while($row = mysqli_fetch_array($query)){?>
 
 <!-- Row Start -->
 <div class="row">
@@ -96,6 +103,7 @@
 </div>
 <!-- Row form END -->
 <?php
+}
 }
 }
 }
