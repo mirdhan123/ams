@@ -127,7 +127,15 @@
                                     echo '<img id="logo" src="./asset/img/logo.png"/>';
                                 }
                             ?>
-                            <h4 class="center" id="smk"><?php echo $data['nama']; ?></h4>
+                            <h4 class="center" id="smk">
+                            <?php
+                                if(!empty($data['nama'])){
+                                    echo ''.$data['nama'].'';
+                                } else {
+                                    echo 'SMK AL - Husna Loceret Nganjuk';
+                                }
+                             ?>
+                            </h4>
                         </div>
                     </div>
                     <!-- Logo and title END -->

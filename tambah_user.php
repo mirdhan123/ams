@@ -1,15 +1,15 @@
 <?php
     //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
-    if (empty($_SESSION['admin'])) {
+    if(empty($_SESSION['admin'])){
 
         //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
         header("Location: ./");
         die();
     } else {
-        if (isset($_REQUEST['submit'])) {
+        if(isset($_REQUEST['submit'])){
 
-            if ($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == "" || $_REQUEST['admin'] == "") {
+            if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == "" || $_REQUEST['admin'] == ""){
                 echo '<script language="javascript">
                         window.alert("ERROR! Semua form wajib diisi.");
                         window.location.href="./admin.php?page=sett&sub=usr&act=add";
@@ -22,28 +22,28 @@
                 $nip = $_REQUEST['nip'];
                 $admin = $_REQUEST['admin'];
 
-                if (!preg_match("/^[a-zA-Z0-9_]*$/", $username)) {
+                if(!preg_match("/^[a-zA-Z0-9_]*$/", $username)){
                     echo '<script language="javascript">
                             window.alert("ERROR! Form USERNAME hanya boleh mengandung karakter huruf, angka dan underscore (_)");
                             window.location.href="./admin.php?page=sett&sub=usr&act=add";
                           </script>';
                 } else {
 
-                    if (!preg_match("/^[a-zA-Z. ]*$/", $nama)) {
+                    if(!preg_match("/^[a-zA-Z. ]*$/", $nama)){
                         echo '<script language="javascript">
                                 window.alert("ERROR! Form NAMA hanya boleh mengandung karakter huruf, spasi dan titik (.)");
                                 window.location.href="./admin.php?page=sett&sub=usr&act=add";
                               </script>';
                     } else {
 
-                        if (!preg_match("/^[0-9. -]*$/", $nip)) {
+                        if(!preg_match("/^[0-9. -]*$/", $nip)){
                             echo '<script language="javascript">
                                     window.alert("ERROR! Form NIP hanya boleh mengandung karakter angka, spasi dan titik (.)");
                                     window.location.href="./admin.php?page=sett&sub=usr&act=add";
                                   </script>';
                         } else {
 
-                            if (!preg_match("/^[1-2]*$/", $admin)) {
+                            if(!preg_match("/^[1-2]*$/", $admin)){
                                 echo '<script language="javascript">
                                         window.alert("ERROR! TIPE USER hanya boleh mengandung angka 1 atau 2");
                                         window.location.href="./admin.php?page=sett&sub=usr&act=add";
@@ -53,21 +53,21 @@
                                 $cek = mysqli_query($config, "SELECT * FROM tbl_user WHERE username='$username'");
                                 $result = mysqli_num_rows($cek);
 
-                                if ($result > 0) {
+                                if($result > 0){
                                     echo '<script language="javascript">
                                             window.alert("ERROR! USERNAME sudah terpakai. Gunakan lainnya.");
                                             window.location.href="./admin.php?page=sett&sub=usr&act=add";
                                           </script>';
                                 } else {
 
-                                    if (strlen($username) < 5) {
+                                    if(strlen($username) < 5){
                                         echo '<script language="javascript">
                                                 window.alert("ERROR! USERNAME minimal 5 karakter.");
                                                 window.location.href="./admin.php?page=sett&sub=usr&act=add";
                                               </script>';
                                     } else {
 
-                                        if (strlen($password) < 5) {
+                                        if(strlen($password) < 5){
                                             echo '<script language="javascript">
                                                     window.alert("ERROR! PASSWORD minimal 5 karakter.");
                                                     window.location.href="./admin.php?page=sett&sub=usr&act=add";
@@ -76,7 +76,7 @@
 
                                             $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,nip,admin) VALUES('$username',MD5('$password'),'$nama','$nip','$admin')");
 
-                                            if ($query != false) {
+                                            if($query != false){
                                                 echo '<script language="javascript">
                                                         window.alert("SUKSES! User baru berhasil ditambahkan.");
                                                         window.location.href="./admin.php?page=sett&sub=usr";

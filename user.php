@@ -67,11 +67,11 @@ echo '
         <table class="responsive bordered" id="tbl">
             <thead class="blue lighten-4" id="head">
                 <tr>
-                    <th width="10%">ID</th>
+                    <th width="10%">No</th>
                     <th width="25%">Username</th>
                     <th width="30%">Nama<br/>NIP</th>
-                    <th width="22%">Level</th>
-                    <th width="13%">Aksi</th>
+                    <th width="20%">Level</th>
+                    <th width="15%">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,7 +80,8 @@ echo '
                 if(mysqli_num_rows($query) > 0){
                     $no = 1;
                     while($row = mysqli_fetch_array($query)){
-              echo '<td>'.$row['id_user'].'</td>';
+              echo '<td>'.$no++.'</td>';
+
                     if($row['admin'] == 1){
                         $row['admin'] = 'Administrator';
                     } else {
@@ -90,20 +91,30 @@ echo '
                     <td>'.$row['username'].'</td>
                     <td>'.$row['nama'].'<br/>'.$row['nip'].'</td>
                     <td>'.$row['admin'].'</td>
-                    <td>
+                    <td>';
+                    if($_SESSION['username'] == $row['username']){
+                        echo '';
+                    } else {
+
+                        if($row['id_user'] == 1){
+                            echo '';
+                        } else {
+                            echo '
                         <a class="dropdown-button btn deep-orange" href="#" data-activates="dropdown1">Aksi</a>
                         <ul id="dropdown1" class="dropdown-content">
-                            <li class="cyan"><a href="?page=sett&sub=usr&act=edit&id='.$row['id_user'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
+                            <li class="cyan"><a href="?page=sett&sub=usr&act=edit&id_user='.$row['id_user'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
                             <li class="divider"></li>
-                            <li class="deep-orange"><a href="?page=sett&sub=usr&act=del&id='.$row['id_user'].'"><i class="material-icons">delete</i> HAPUS</a></li>
-                        </ul>
+                            <li class="deep-orange"><a href="?page=sett&sub=usr&act=del&id_user='.$row['id_user'].'"><i class="material-icons">delete</i> HAPUS</a></li>
+                        </ul>';
+                    }
+                } echo '
                     </td>
                 </tr>
             </tbody>';
-            }
-        } else {
+                    }
+                } else {
     echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
-        }
+                }
   echo '
         </table>
         <!-- Table END -->

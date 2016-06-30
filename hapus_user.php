@@ -8,14 +8,19 @@
         die();
     } else {
 
-        //Menampilkan data sesuai id_user
-    	$id_user = $_REQUEST['id_user'];
+        $id_user = $_REQUEST['id_user'];
+        if($id_user == 1){
+            echo '<script language="javascript">
+            window.alert("ERROR! User utama tidak boleh dihapus.");
+            window.location.href="./admin.php?page=sett&sub=usr";
+            </script>';
+        } else {
 
-    	$query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
+            $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
 
-    	if(mysqli_num_rows($query) > 0){
-            $no = 1;
-            while($row = mysqli_fetch_array($query)){
+        	if(mysqli_num_rows($query) > 0){
+                $no = 1;
+                while($row = mysqli_fetch_array($query)){
 
     		  echo '<!-- Row form Start -->
 				<div class="row jarak-form">
@@ -24,44 +29,34 @@
 				        <table class="responsive">
 				            <thead class="red lighten-5 red-text">
 				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
-				                Apakah Anda yakin akan menghapus data ini?</div>
+				                Apakah Anda yakin akan menghapus user ini?</div>
 				            </thead>
 
 				            <tbody>
 				                <tr>
-				                    <td width="13%">No. Agenda</td>
+				                    <td width="13%">Username</td>
 				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['no_agenda'].'</td>
+				                    <td width="86%"><strong>'.$row['username'].'</strong></td>
 				                </tr>
 				                <tr>
-				                    <td width="13%">Kode Klasifikasi</td>
+				                    <td width="13%">Nama</td>
 				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['kode'].'</td>
+				                    <td width="86%"><strong>'.$row['nama'].'</strong></td>
 				                </tr>
 				                <tr>
-				                    <td width="13%">No. Isi</td>
+				                    <td width="13%">NIP</td>
 				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['isi'].'</td>
+				                    <td width="86%"><strong>'.$row['nip'].'</strong></td>
 				                </tr>
 				                <tr>
-				                    <td width="13%">File</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%"><a href="upload/surat_keluar/'.$row['file'].'">'.$row['file'].'</a></a></td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">Tujuan </td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['tujuan'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">No. Surat</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['no_surat'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">Tanggal Surat</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</td>
+				                    <td width="13%">Tipe User</td>
+				                    <td width="1%">:</td>';
+                                    if($row['admin'] == 1){
+                                        $row['admin'] = "Administrator";
+                                    } else {
+                                        $row['admin'] = "User Biasa";
+                                    } echo '
+				                    <td width="86%"><strong>'.$row['admin'].'<strong></td>
 				                </tr>
 				            </tbody>
 				   		</table>
@@ -71,10 +66,10 @@
 
 		        <div class="row bts">
 		            <div class="col 6">
-		                <a href="?page=tsk&act=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
+		                <a href="?page=sett&sub=usr&act=del&submit=yes&id_user='.$row['id_user'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
 		            </div>
 		            <div class="col 6">
-		                <a href="?page=tsk" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+		                <a href="?page=sett&sub=usr" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
 		            </div>
 		        </div><br/>';
 
@@ -96,7 +91,8 @@
                         </script>';
             		}
             	}
-		    }
-	    }
+		        }
+	        }
+        }
     }
 ?>

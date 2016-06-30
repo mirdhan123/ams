@@ -13,8 +13,20 @@
                             } else {
                                 echo '<img src="./asset/img/logo.png"/>
                             </div>
-                            <h5>'.$data['nama'].'</h5>
-                            <p>'.$data['alamat'].'</p>
+                            <h5>';
+                            if(!empty($data['nama'])){
+                                echo ''.$data['nama'].'';
+                            } else {
+                                echo 'SMK AL - Husna Loceret Nganjuk';
+                            }
+                            echo '</h5>
+                            <p>';
+                            if(!empty($data['alamat'])){
+                                echo ''.$data['alamat'].'';
+                            } else {
+                                echo 'Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471';
+                            }
+                            echo '</p>
                         </div>
                     </div>
                 </div>';
