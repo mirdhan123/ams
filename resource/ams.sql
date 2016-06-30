@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 30, 2016 at 04:04 
+-- Generation Time: Jun 30, 2016 at 04:00 
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -36,13 +36,6 @@ CREATE TABLE IF NOT EXISTS `tbl_disposisi` (
   `catatatn` varchar(250) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbl_disposisi`
---
-
-INSERT INTO `tbl_disposisi` (`id_disposisi`, `id_surat`, `tujuan`, `isi`, `sifat`, `batas_waktu`, `catatatn`) VALUES
-(1, 2, 'Guru', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', 'Penting, Segera, Khusus', '2016-06-01', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ');
-
 -- --------------------------------------------------------
 
 --
@@ -65,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `tbl_instansi` (
 --
 
 INSERT INTO `tbl_instansi` (`id_instansi`, `nama`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`) VALUES
-(1, 'SMK AL - Husna Loceret Nganjuk', 'Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471', 'Dodik Meiloyan', '-', 'http://www.smkalhusnaloceret.sch.id ', 'info@smkalhusna.sch.id', '');
+(1, 'SMK AL - Husna Loceret Nganjuk', 'Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471', 'Dodik Meiloyan', '-', 'http://www.smkalhusnaloceret.sch.id', 'info@smkalhusna.sch.id', '');
 
 -- --------------------------------------------------------
 
@@ -86,22 +79,6 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
   `keterangan` varchar(250) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbl_surat_keluar`
---
-
-INSERT INTO `tbl_surat_keluar` (`id_surat`, `no_agenda`, `tujuan`, `no_surat`, `isi`, `kode`, `tgl_surat`, `tgl_catat`, `file`, `keterangan`) VALUES
-(1, 1, '1', '1', '1', '1', '2012-02-24', '2016-06-29', '1 (2).JPG', '1'),
-(2, 2, '2', '2', '2', '2', '2016-06-29', '2016-06-29', 'IMG_20160611_103621.jpg', '2'),
-(3, 65456, '654', '564', 'yutuy', '54', '2016-06-29', '2016-06-29', '', 'tyty'),
-(4, 3535, '34534', '534534', '34534', '345', '2016-06-01', '2016-06-29', '', '34543'),
-(5, 656, '56756', '7675675', 'ytuuy', '675675', '2016-06-29', '2016-06-29', '', 'ttyut'),
-(6, 87767, '67867', '78678678', '545456', '86786786', '2016-06-29', '2016-06-29', '', 'r6665'),
-(8, 64, '456456', '456456465', '6567567', '456456', '2016-06-29', '2016-06-29', 'IMG_20160611_103632.jpg', '56756757'),
-(9, 667, '6786786', '786786', '78678678', '678678', '2016-06-29', '2016-06-29', 'IMG_20160611_103621.jpg', 'y786786'),
-(10, 6778678, '687687', '876786', 'yutyutu', '7878', '2016-06-29', '2016-06-29', '', 'tuyt'),
-(11, 2147483647, '67567', '567', '7687678', '765', '2016-06-30', '2016-06-30', '6tag_310715-165628.jpg', 'ui6786');
-
 -- --------------------------------------------------------
 
 --
@@ -119,21 +96,9 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
   `tgl_surat` date NOT NULL,
   `tgl_diterima` date NOT NULL,
   `file` varchar(250) NOT NULL,
-  `keterangan` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_surat_masuk`
---
-
-INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`) VALUES
-(1, 1, '1', '1', '1', '1', '1', '2012-09-14', '2016-06-29', 'IMG_20160611_103621.jpg', '1'),
-(2, 2, '2', '2', '2', '2', '2', '2016-06-29', '2016-06-29', 'IMG_20160611_103623.jpg', '2'),
-(3, 786786, '6786786', '78678', 'tt76', '76786', '678678', '2016-06-29', '2016-06-29', 'IMG_20160611_103636.jpg', '5jgyg'),
-(4, 1, 'erert', 'e', 'gjg', '2', 'ert', '2016-06-29', '2016-06-29', '', 'hjghjg'),
-(7, 76786, '786786', '678678', 'tyutyu', '678', '786', '2016-06-29', '2016-06-29', '', 'ytytuyy'),
-(8, 7656, '756576', '75675', 'tyyutuy', '76756', '675675', '2016-06-29', '2016-06-29', '', 'tyutyu'),
-(9, 865675, '676756', '5675', 'ytyty', '67567', '765675', '2016-06-30', '2016-06-30', '6tag_270815-141635.jpg', 'yutyutu');
+  `keterangan` varchar(250) NOT NULL,
+  `id_user` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -148,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `nama` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_user`
@@ -156,11 +121,10 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'M. Rudianto', '-', 1),
-(2, 'disposisi', '13bb8b589473803f26a02e338f949b8c', 'Petugas disposisi', '234783237647823 23647823', 2),
-(5, 'tamu', 'f8829935a87192f3f9fab79856122c0f', 'User tamu', '-', 2),
-(6, 'dodik', '82b00125c2ec05d38220ed4e1774e084', 'Dodik Meiloyan', '-', 1),
+(6, 'dodik', '82b00125c2ec05d38220ed4e1774e084', 'Dodik Meiloyan', '-', 2),
 (7, 'staff', '1253208465b1efa876f982d8a9e73eef', 'Staff TU', '19770404 200801 1 010', 2),
-(9, 'kepsek', '8561863b55faf85b9ad67c52b3b851ac', 'Kepala Sekolah', '-', 2);
+(9, 'kepsek', '8561863b55faf85b9ad67c52b3b851ac', 'Kepala Sekolah', '-', 2),
+(10, 'muhaji', '3c38c489c741097aad43b6663b8b523c', 'Muhaji Saputro', '-', 1);
 
 --
 -- Indexes for dumped tables
@@ -219,12 +183,12 @@ MODIFY `id_surat` int(7) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-MODIFY `id_user` tinyint(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id_user` tinyint(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
