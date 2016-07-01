@@ -32,12 +32,11 @@
 
                 $id_surat = $_REQUEST['id_surat'];
 
-                $query = "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'";
-                $result = mysqli_query($config, $query);
+                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
-                if(mysqli_num_rows($result) > 0){
+                if(mysqli_num_rows($query) > 0){
                     $no = 1;
-                    while($row = mysqli_fetch_array($result)){
+                    while($row = mysqli_fetch_array($query)){
                       echo '<!-- Row Start -->
                             <div class="row">
                                 <!-- Secondary Nav START -->

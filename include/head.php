@@ -44,10 +44,56 @@
             color: #444;
         }
         .agenda {
-            font-size: 18px;
+            font-size: 19px;
             padding-left: 8px;
-
         }
+        .hid {
+            display: none;
+        }
+        @media print{
+            .side-nav,
+            .secondary-nav,
+            .jarak-form,
+            .center,
+            .hide-on-med-and-down,
+            .dropdown-content,
+            .button-collapse,
+            .btn-large,
+            .page-footer {
+                display: none;
+            }
+            body {
+                font-size: 12px;
+            }
+            .hid {
+                display: block;
+                font-size: 16px;
+                text-transform: uppercase;
+                margin-bottom: 0;
+            }
+            .agenda {
+                font-size: 12px;
+                text-align: center;
+            }
+            th, td{
+                border: 0.8px solid #444;
+            }
+            th{
+                padding: 3px 5px;
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
+            }
+            td{
+                padding: 0 4px;
+            }
+            table {
+              border-collapse: collapse;
+              border-spacing: 0;
+            }
+        }
+
+
         noscript{
             color: #fff;
         }

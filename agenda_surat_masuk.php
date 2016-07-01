@@ -11,7 +11,11 @@
             $dari_tanggal = $_REQUEST['dari_tanggal'];
             $sampai_tanggal = $_REQUEST['sampai_tanggal'];
 
-            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE tgl_terima BETWEEN '$dari_tanggal' AND '$sampai_tanggal'");
+            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE tgl_diterima BETWEEN '$dari_tanggal' AND '$sampai_tanggal'");
+
+            $query2 = mysqli_query($config, "SELECT nama FROM tbl_instansi");
+            list($nama) = mysqli_fetch_array($query2);
+
               echo '
                     <!-- SHOW DAFTAR AGENDA -->
                     <!-- Row Start -->
@@ -56,23 +60,24 @@
 
                     <div class="row agenda">
                         <div class="col s10">
-                            <p class="warna agenda">Agenda Surat Masuk dari tanggal <strong>1 Juli 2015</strong> sampai tanggal <strong>1 Juli 2016</strong></p>
+                            <h5 class="hid">CETAK AGENDA SURAT MASUK<br/>'.$nama.'</h5>
+                            <p class="warna agenda">Agenda Surat Masuk dari tanggal <strong>'.date('d M Y', strtotime($dari_tanggal)).'</strong> sampai tanggal <strong>'.date('d M Y', strtotime($sampai_tanggal)).'</strong></p>
                         </div>
                         <div class="col s2">
                             <button type="submit" onClick="window.print()" class="btn-large deep-orange waves-effect waves-light right"> <i class="material-icons">print</i> CETAK</button>
                         </div>
                     </div>
-                    <div id="colres" class="warna">
+                    <div id="colres" class="warna cetak">
                         <table class="bordered" id="tbl">
                             <thead>
                                 <tr>
                                     <th width="3%">No</th>
                                     <th width="5%">Kode</th>
-                                    <th width="21%">Isi<br/>Ringkas</th>
+                                    <th width="21%">Isi Ringkas</th>
                                     <th width="18%">Asal Surat</th>
                                     <th width="15%">Nomor Surat</th>
                                     <th width="8%">Tanggal<br/> Surat</th>
-                                    <th width="10%">Pengelola</th>
+                                    <th width="10%">Penerima</th>
                                     <th width="8%">Tanggal <br/>Paraf</th>
                                     <th width="10%">Keterangan</th>
                                 </tr>
@@ -80,25 +85,29 @@
 
                             <tbody>
                                 <tr>';
-                                if(mysqli_num_rows($query) > 0){
-                                    $no = 1;
-                                    while($row = mysqli_fetch_array($query)){
-                                        echo '
-                                <td>1</td>
-                                <td>Column</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
+
+                            if(mysqli_num_rows($query) > 0){
+                                $no = 0;
+                                while($row = mysqli_fetch_array($query)){
+                                    $no++;
+                                 echo ' <td>'.$no.'</td>
+                                        <td>'.$row['kode'].'</td>
+                                        <td>'.$row['isi'].'</td>
+                                        <td>'.$row['asal_surat'].'</td>
+                                        <td>'.$row['no_surat'].'</td>
+                                        <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
+                                        <td>'.$_SESSION['nama'].'</td>
+                                        <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
+                                        <td>'.$row['keterangan'].'';
+                                 echo '</td>
                                 </tr>
-                            </tbody>
+                            </tbody>';
+                                }
+                            } else {
+                               echo '<tr><td colspan="9"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
+                            } echo '
                         </table>
                     </div>';
-                                    }
-                                }
         } else {
             echo '<!-- Row Start -->
                 <div class="row">
