@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 30, 2016 at 04:00 
+-- Generation Time: Jul 01, 2016 at 11:38 
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -27,14 +27,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_disposisi` (
-`id_disposisi` int(7) NOT NULL,
-  `id_surat` int(7) NOT NULL,
+`id_disposisi` int(5) NOT NULL,
   `tujuan` varchar(250) NOT NULL,
   `isi` mediumtext NOT NULL,
-  `sifat` enum('Penting, Segera, Khusus') NOT NULL,
+  `sifat` varchar(100) NOT NULL,
   `batas_waktu` date NOT NULL,
-  `catatatn` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `catatan` varchar(250) NOT NULL,
+  `id_surat` int(10) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `tbl_instansi` (
 --
 
 INSERT INTO `tbl_instansi` (`id_instansi`, `nama`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`) VALUES
-(1, 'SMK AL - Husna Loceret Nganjuk', 'Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471', 'Dodik Meiloyan', '-', 'http://www.smkalhusnaloceret.sch.id', 'info@smkalhusna.sch.id', '');
+(1, 'SMK AL - Husna Loceret Nganjuk', 'Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471', 'Dodik Meiloyan', '-', 'http://www.smkalhusnaloceret.sch.id', 'info@smkalhusnaloceret.sch.id', '');
 
 -- --------------------------------------------------------
 
@@ -67,8 +67,8 @@ INSERT INTO `tbl_instansi` (`id_instansi`, `nama`, `alamat`, `kepsek`, `nip`, `w
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
-`id_surat` int(7) NOT NULL,
-  `no_agenda` int(7) NOT NULL,
+`id_surat` int(10) NOT NULL,
+  `no_agenda` int(10) NOT NULL,
   `tujuan` varchar(250) NOT NULL,
   `no_surat` varchar(50) NOT NULL,
   `isi` mediumtext NOT NULL,
@@ -76,8 +76,9 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
   `tgl_surat` date NOT NULL,
   `tgl_catat` date NOT NULL,
   `file` varchar(250) NOT NULL,
-  `keterangan` varchar(250) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+  `keterangan` varchar(250) NOT NULL,
+  `id_user` tinyint(2) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -97,8 +98,8 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
   `tgl_diterima` date NOT NULL,
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
-  `id_user` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `id_user` tinyint(2) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -107,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_user` (
-`id_user` tinyint(1) NOT NULL,
+`id_user` tinyint(2) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(35) NOT NULL,
   `nama` varchar(50) NOT NULL,
@@ -121,10 +122,10 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'M. Rudianto', '-', 1),
-(6, 'dodik', '82b00125c2ec05d38220ed4e1774e084', 'Dodik Meiloyan', '-', 2),
+(6, 'dodik', '82b00125c2ec05d38220ed4e1774e084', 'Dodik Meiloyan', '-', 1),
 (7, 'staff', '1253208465b1efa876f982d8a9e73eef', 'Staff TU', '19770404 200801 1 010', 2),
-(9, 'kepsek', '8561863b55faf85b9ad67c52b3b851ac', 'Kepala Sekolah', '-', 2),
-(10, 'muhaji', '3c38c489c741097aad43b6663b8b523c', 'Muhaji Saputro', '-', 1);
+(9, 'kepsek', '8561863b55faf85b9ad67c52b3b851ac', 'Kepala Sekolah', '19770704 2008011 010', 2),
+(10, 'muhaji', '3c38c489c741097aad43b6663b8b523c', 'Muhaji Saputro', '-', 2);
 
 --
 -- Indexes for dumped tables
@@ -168,7 +169,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
-MODIFY `id_disposisi` int(7) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id_disposisi` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `tbl_instansi`
 --
@@ -178,17 +179,17 @@ MODIFY `id_instansi` tinyint(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
-MODIFY `id_surat` int(7) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-MODIFY `id_user` tinyint(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

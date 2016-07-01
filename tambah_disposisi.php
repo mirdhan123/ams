@@ -110,7 +110,7 @@
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">place</i>
-                <input id="tujuan" type="text" class="validate" name="tujuan">
+                <input id="tujuan" type="text" class="validate" name="tujuan" required>
                 <label for="tujuan">Tujuan Disposisi</label>
             </div>
             <div class="input-field col s6">
@@ -120,19 +120,19 @@
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">description</i>
-                <textarea id="isi" class="materialize-textarea validate" name="isi"></textarea>
+                <textarea id="isi" class="materialize-textarea validate" name="isi" required></textarea>
                 <label for="isi">Isi Disposisi</label>
             </div>
 
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">featured_play_list   </i>
-                <input id="catatan" type="text" class="validate" name="catatan">
+                <input id="catatan" type="text" class="validate" name="catatan" required>
                 <label for="catatan">Catatan</label>
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Sifat Disposisi</label><br/>
                 <div class="input-field col s11 right">
-                    <select class="browser-default validate" name="sifat" id="sifat">
+                    <select class="browser-default validate" name="sifat" id="sifat" required>
                         <option value="Biasa">Biasa</option>
                         <option value="Penting">Penting</option>
                         <option value="Segera">Segera</option>
