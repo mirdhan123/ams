@@ -135,7 +135,7 @@
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">looks_one</i>
-                            <input id="nip" type="text" class="validate" name="nip" required>
+                            <input id="nip" type="text" class="validate" name="nip" required autocomplete="off">
                             <label for="nip">NIP</label>
                         </div>
                         <div class="input-field col s6">

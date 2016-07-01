@@ -82,6 +82,9 @@
                 case 'epro':
                     include "edit_profil.php";
                     break;
+                    case 'prnt':
+                        include "cetak_agenda_surat_masuk.php";
+                        break;
             }
         } else {
     ?>

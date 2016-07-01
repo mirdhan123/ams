@@ -1,8 +1,6 @@
 <?php
-    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
     if(empty($_SESSION['admin'])){
 
-        //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
         header("Location: ./");
         die();
@@ -14,14 +12,12 @@
             $no = 1;
             list($id_surat) = mysqli_fetch_array($query);
 
-            /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika
-            ada isinya proses akan dilanjutkan */
             if ($_REQUEST['tujuan'] == "" || $_REQUEST['isi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
                 || $_REQUEST['catatan'] == ""){
                 echo '<script language="javascript">
-                window.alert("ERROR! Semua form wajib diisi.");
-                window.location.href="./admin.php?page=tsm&act=add";
-                </script>';
+                        window.alert("ERROR! Semua form wajib diisi.");
+                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
+                      </script>';
             } else {
 
                 $tujuan = $_REQUEST['tujuan'];
@@ -30,56 +26,62 @@
                 $batas_waktu = $_REQUEST['batas_waktu'];
                 $catatan = $_REQUEST['catatan'];
 
-                //Validasi input data
                 if(!preg_match("/^[a-zA-Z0-9.,\/ ]*$/", $tujuan)){
                     echo '<script language="javascript">
-                    window.alert("ERROR! Form TUJUAN DISPOSISI hanya boleh mengandung huruf, angka, spasi tanda titik(.), koma(,) dan garis miring(/).");
-                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                    </script>';
+                            window.alert("ERROR! Form TUJUAN DISPOSISI hanya boleh mengandung huruf, angka, spasi tanda titik(.), koma(,) dan garis miring(/)");
+                            window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
+                          </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $isi)){
                         echo '<script language="javascript">
-                        window.alert("ERROR! Form ISI DISPOSISI hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
-                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                        </script>';
-                } else {
-
-                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $sifat)){
-                        echo '<script language="javascript">
-                        window.alert("ERROR! Form SIFAT hanya boleh mengandung huruf dan spasi.");
-                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                        </script>';
-                } else {
-
-                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $catatan)){
-                        echo '<script language="javascript">
-                        window.alert("ERROR! Form CATATAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
-                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                        </script>';
-                }
-
-                    //Query insert data
-                    $query = mysqli_query($config, "INSERT INTO tbl_disposisi(tujuan,isi,sifat,batas_waktu,catatan)
-                        VALUES('$tujuan','$isi','$sifat','$batas_waktu','$catatan')");
-
-                    //Jika query berhasil user akan diarahkan kembali ke halaman transaksi surat masuk
-                    if($query == true){
-                        echo '<script language="javascript">
-                        window.alert("SUKSES! Data berhasil ditambahkan.");
-                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
-                        </script>';
+                                window.alert("ERROR! Form ISI DISPOSISI hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@)");
+                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
+                              </script>';
                     } else {
-                        echo '<script language="javascript">
-                        window.alert("ERROR! Periksa penulisan querynya.");
-                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                        </script>';
+
+                        if(!preg_match("/^[0-9 -]*$/", $batas_waktu)){
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Form BATAS WAKTU hanya boleh mengandung angka dan tanda minus (-)");
+                                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
+                                  </script>';
+                        } else {
+
+                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $catatan)){
+                                echo '<script language="javascript">
+                                        window.alert("ERROR! Form CATATAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung()");
+                                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
+                                      </script>';
+                            } else {
+
+                                if(!preg_match("/^[a-zA-Z0 ]*$/", $sifat)){
+                                    echo '<script language="javascript">
+                                            window.alert("ERROR! Form SIFAT hanya boleh mengandung huruf dan spasi");
+                                            window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
+                                          </script>';
+                                } else {
+
+                                    $query = mysqli_query($config, "INSERT INTO tbl_disposisi(tujuan,isi,sifat,batas_waktu,catatan,id_surat)
+                                        VALUES('$tujuan','$isi','$sifat','$batas_waktu','$catatan','$id_surat')");
+
+                                    if($query == true){
+                                        echo '<script language="javascript">
+                                                window.alert("SUKSES! Data berhasil ditambahkan");
+                                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
+                                              </script>';
+                                    } else {
+                                        echo '<script language="javascript">
+                                                window.alert("ERROR! Periksa penulisan querynya");
+                                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
+                                              </script>';
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
-    }
-} else {
+        } else {
 ?>
 
 <!-- Row Start -->
@@ -113,7 +115,7 @@
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">date_range</i>
-                <input id="batas_waktu" type="date" name="tgl_surat" class="datepicker" required>
+                <input id="batas_waktu" type="date" name="batas_waktu" class="datepicker" required>
                 <label for="batas_waktu">Batas Waktu</label>
             </div>
             <div class="input-field col s6">
@@ -131,11 +133,11 @@
                 <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Sifat Disposisi</label><br/>
                 <div class="input-field col s11 right">
                     <select class="browser-default validate" name="sifat" id="sifat">
-                        <option value="1">Biasa</option>
-                        <option value="2">Penting</option>
-                        <option value="3">Segera</option>
-                        <option value="4">Perlu Perhatian Khusus</option>
-                        <option value="5">Perhatian Batas Waktu</option>
+                        <option value="Biasa">Biasa</option>
+                        <option value="Penting">Penting</option>
+                        <option value="Segera">Segera</option>
+                        <option value="Perlu Perhatian Khusus">Perlu Perhatian Khusus</option>
+                        <option value="Perhatian Batas Waktu">Perhatian Batas Waktu</option>
                 </select>
             </div>
         </div>

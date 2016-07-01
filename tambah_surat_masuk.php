@@ -27,6 +27,7 @@
                 $indeks = $_REQUEST['indeks'];
                 $tgl_surat = $_REQUEST['tgl_surat'];
                 $keterangan = $_REQUEST['keterangan'];
+                $id_user = $_SESSION['id_user'];
 
                 //Validasi input data
                 if(!preg_match("/^[0-9]*$/", $no_agenda)){
@@ -129,8 +130,8 @@
 
                             //Query insert data
                             $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
-                                tgl_diterima,file,keterangan)
-                                VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$file','$keterangan')");
+                                tgl_diterima,file,keterangan,id_user)
+                                VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$file','$keterangan','$id_user')");
 
                             //Jika query berhasil user akan diarahkan kembali ke halaman transaksi surat masuk
                             if($query == true){

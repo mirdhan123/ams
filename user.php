@@ -59,14 +59,14 @@
 
                         <div class="col m12" id="colres">
                             <!-- Table START -->
-                            <table class="responsive bordered" id="tbl">
+                            <table class="bordered" id="tbl">
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
-                                        <th width="7%">No</th>
-                                        <th width="18%">Username</th>
+                                        <th width="8%">No</th>
+                                        <th width="23%">Username</th>
                                         <th width="30%">Nama<br/>NIP</th>
-                                        <th width="20%">Level</th>
-                                        <th width="25%">Aksi</th>
+                                        <th width="22%">Level</th>
+                                        <th width="16%">Tindakan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,15 +87,15 @@
                                             <td>';
 
                                     if($_SESSION['username'] == $row['username']){
-                                        echo '<button class="btn blue-grey waves-effect waves-light"><i class="material-icons">error</i> Tidak ada aksi</button>';
+                                        echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
                                     } else {
 
                                         if($row['id_user'] == 1){
-                                            echo '<button class="btn blue-grey waves-effect waves-light"><i class="material-icons">error</i> Tidak ada aksi</button>';
+                                            echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
                                         } else {
-                                          echo ' <a class="btn blue waves-effect waves-light" href="?page=sett&sub=usr&act=edit&id_user='.$row['id_user'].'">
+                                          echo ' <a class="btn small blue waves-effect waves-light" href="?page=sett&sub=usr&act=edit&id_user='.$row['id_user'].'">
                                                  <i class="material-icons">edit</i> EDIT</a>
-                                                 <a class="btn deep-orange waves-effect waves-light" href="?page=sett&sub=usr&act=del&id_user='.$row['id_user'].'"><i class="material-icons">delete</i> HAPUS</a>';
+                                                 <a class="btn small deep-orange waves-effect waves-light" href="?page=sett&sub=usr&act=del&id_user='.$row['id_user'].'"><i class="material-icons">delete</i> DEL</a>';
                                         }
                                     } echo '</td>
                                     </tr>

@@ -16,15 +16,7 @@
         <li class="no-padding blue-grey darken-4">
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a class="collapsible-header"><i class="material-icons">account_circle</i>
-                    <?php
-                        if($_SESSION['admin'] == 1 ){
-                            echo "Administrator";
-                        } else {
-                            echo "Petugas Disposisi";
-                        }
-                    ?>
-                        </a>
+                    <a class="collapsible-header"><i class="material-icons">account_circle</i><?php echo $_SESSION['nama']; ?></a>
                     <div class="collapsible-body">
                         <ul>
                             <li><a href="?page=pro">Profil</a></li>
@@ -132,15 +124,7 @@
         <?php
             }
         ?>
-        <li class="right"><a class="dropdown-button" href="#!" data-activates="logout"><i class="material-icons">account_circle</i>
-        <?php
-            if($_SESSION['admin'] == 1) {
-                echo "Administrator";
-            } else {
-                echo "Petugas Disposisi";
-            }
-        ?>
-                <i class="material-icons md-18">arrow_drop_down</i></a></li>
+        <li class="right" style="margin-right: 10px;"><a class="dropdown-button" href="#!" data-activates="logout"><i class="material-icons">account_circle</i> <?php echo $_SESSION['nama']; ?><i class="material-icons md-18">arrow_drop_down</i></a></li>
             <ul id='logout' class='dropdown-content'>
                 <li><a href="?page=pro">Profil</a></li>
                 <li><a href="?page=pro&sub=pass">Ubah Password</a></li>

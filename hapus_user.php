@@ -26,7 +26,7 @@
 				<div class="row jarak-form">
 
 				    <div class="col m12">
-				        <table class="responsive">
+				        <table>
 				            <thead class="red lighten-5 red-text">
 				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
 				                Apakah Anda yakin akan menghapus user ini?</div>

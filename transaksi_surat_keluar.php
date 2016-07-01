@@ -46,14 +46,14 @@ echo '<!-- Row Start -->
                     <div class="col m7">
                         <ul class="left">
                             <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">drafts</i> Surat Keluar</a></li>
-                            <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Klik untuk menambahkan data surat keluar">
+                            <li class="waves-effect waves-light">
                                 <a href="?page=tsk&act=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col m5 hide-on-med-and-down">
                         <form>
-                            <div class="input-field round-in-box tooltipped" data-position="bottom" data-tooltip="Ketik dan tekan enter mencari data surat keluar yang telah tersimpan">
+                            <div class="input-field round-in-box">
                                 <input id="search" type="search" placeholder="Ketik dan tekan enter mencari data..." required>
                                 <label for="search"><i class="material-icons">search</i></label>
                             </div>
@@ -71,14 +71,14 @@ echo '<!-- Row Start -->
 <div class="row jarak-form">
 
     <div class="col m12" id="colres">
-        <table class="responsive bordered" id="tbl">
+        <table class="bordered" id="tbl">
             <thead class="blue lighten-4" id="head">
                 <tr>
                     <th width="10%">No. Agenda<br/>Kode</th>
-                    <th width="36%">Isi Ringkas<br/> File</th>
+                    <th width="31%">Isi Ringkas<br/> File</th>
                     <th width="24%">Tujuan</th>
-                    <th width="20%">No. Surat<br/>Tgl Surat</th>
-                    <th width="10%">Aksi</th>
+                    <th width="19%">No. Surat<br/>Tgl Surat</th>
+                    <th width="16%">Tindakan</th>
                 </tr>
             </thead>
 
@@ -92,13 +92,16 @@ echo '<!-- Row Start -->
                     <td>'.$row['isi'].'<br/><br/><strong>File: <a href="upload/surat_keluar/'.$row['file'].'">'.$row['file'].'</a></strong></td>
                     <td>'.$row['tujuan'].'</td>
                     <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
-                    <td>
-                        <a class="dropdown-button btn deep-orange" href="#" data-activates="dropdown1">Aksi</a>
-                        <ul id="dropdown1" class="dropdown-content">
-                            <li class="cyan "><a href="?page=tsk&act=edit&id_surat='.$row['id_surat'].'"><i class="material-icons">edit</i> EDIT</a></a></li>
-                            <li class="divider"></li>
-                            <li class="deep-orange"><a href="?page=tsk&act=del&id_surat='.$row['id_surat'].'" class="modal-trigger"><i class="material-icons">delete</i> HAPUS</a></li>
-                        </ul>
+                    <td>';
+
+                    if($_SESSION['id_user'] != $row['id_user']){
+                        echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
+                    } else {
+                      echo '<a class="btn small blue waves-effect waves-light" href="?page=tsk&act=edit&id_surat='.$row['id_surat'].'">
+                            <i class="material-icons">edit</i> EDIT</a>
+                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsk&act=del&id_surat='.$row['id_surat'].'">
+                            <i class="material-icons">delete</i> DEL</a>';
+                    } echo '
                     </td>
                 </tr>
             </tbody>';
