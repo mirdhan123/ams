@@ -11,3 +11,4 @@ http://www.nulis-ilmu.com/2014/10/membuat-validasi-input-text-pada-form.html
 http://stackoverflow.com/questions/5023181/php-move-uploaded-file-unable-to-move
 http://www.w3schools.com/php/php_file_upload.asp
 http://forums.phpfreaks.com/topic/129396-solved-why-warning-mysqli-fetch-array-expects-parameter-1-to-be-mysqli-result/
+http://www.sistemphp.com/cara-menghapus-2-tabel-atau-lebih-dalam-1-query/
