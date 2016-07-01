@@ -69,7 +69,7 @@
                     </div>
                     <div id="colres" class="warna cetak">
                         <table class="bordered" id="tbl">
-                            <thead>
+                            <thead class="blue lighten-4">
                                 <tr>
                                     <th width="3%">No</th>
                                     <th width="5%">Kode</th>
@@ -96,7 +96,7 @@
                                         <td>'.$row['asal_surat'].'</td>
                                         <td>'.$row['no_surat'].'</td>
                                         <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
-                                        <td>'.$_SESSION['nama'].'</td>
+                                        <td>'.$row['id_user'].'</td>
                                         <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                                         <td>'.$row['keterangan'].'';
                                  echo '</td>
@@ -104,7 +104,7 @@
                             </tbody>';
                                 }
                             } else {
-                               echo '<tr><td colspan="9"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
+                               echo '<tr><td colspan="9"><center><h5>Tidak ada agenda surat</h5></center></td></tr>';
                             } echo '
                         </table>
                     </div>';
