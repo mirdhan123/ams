@@ -33,7 +33,7 @@
     				                <tr>
     				                    <td width="13%">Isi Disposis</td>
     				                    <td width="1%">:</td>
-    				                    <td width="86%">'.$row['isi'].'</td>
+    				                    <td width="86%">'.$row['isi_disposisi'].'</td>
     				                </tr>
     				                <tr>
     				                    <td width="13%">Sifat</td>

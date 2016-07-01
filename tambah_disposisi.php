@@ -12,7 +12,7 @@
             $no = 1;
             list($id_surat) = mysqli_fetch_array($query);
 
-            if ($_REQUEST['tujuan'] == "" || $_REQUEST['isi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
+            if ($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
                 || $_REQUEST['catatan'] == ""){
                 echo '<script language="javascript">
                         window.alert("ERROR! Semua form wajib diisi.");
@@ -21,7 +21,7 @@
             } else {
 
                 $tujuan = $_REQUEST['tujuan'];
-                $isi = $_REQUEST['isi'];
+                $isi_disposisi = $_REQUEST['isi_disposisi'];
                 $sifat = $_REQUEST['sifat'];
                 $batas_waktu = $_REQUEST['batas_waktu'];
                 $catatan = $_REQUEST['catatan'];
@@ -33,7 +33,7 @@
                           </script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $isi)){
+                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $isi_disposisi)){
                         echo '<script language="javascript">
                                 window.alert("ERROR! Form ISI DISPOSISI hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@)");
                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
@@ -61,8 +61,8 @@
                                           </script>';
                                 } else {
 
-                                    $query = mysqli_query($config, "INSERT INTO tbl_disposisi(tujuan,isi,sifat,batas_waktu,catatan,id_surat)
-                                        VALUES('$tujuan','$isi','$sifat','$batas_waktu','$catatan','$id_surat')");
+                                    $query = mysqli_query($config, "INSERT INTO tbl_disposisi(tujuan,isi_disposisi,sifat,batas_waktu,catatan,id_surat)
+                                        VALUES('$tujuan','$isi_disposisi','$sifat','$batas_waktu','$catatan','$id_surat')");
 
                                     if($query == true){
                                         echo '<script language="javascript">
@@ -120,8 +120,8 @@
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">description</i>
-                <textarea id="isi" class="materialize-textarea validate" name="isi" required></textarea>
-                <label for="isi">Isi Disposisi</label>
+                <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required></textarea>
+                <label for="isi_disposisi">Isi Disposisi</label>
             </div>
 
             <div class="input-field col s6">

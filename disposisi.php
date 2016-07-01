@@ -98,7 +98,7 @@
                                                 $no++;
                                              echo ' <td>'.$no.'</td>
                                                     <td>'.$row['tujuan'].'</td>
-                                                    <td>'.$row['isi'].'</td>
+                                                    <td>'.$row['isi_disposisi'].'</td>
                                                     <td>'.$row['sifat'].'<br/>'.date('d M Y', strtotime($row['batas_waktu'])).'</td>
                                                     <td><a class="btn small blue waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$row['id_disposisi'].'">
                                                             <i class="material-icons">edit</i> EDIT</a>
