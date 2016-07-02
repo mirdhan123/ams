@@ -143,7 +143,7 @@
                             </div>
                         </div>
                         <!-- Row in form END -->
-                        <br/><br/>
+                        <br/>
                         <div class="row">
                             <div class="col 6">
                                 <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
@@ -212,7 +212,7 @@
                         </div>
                     </div>
                     <!-- Row in form END -->
-                    <br/><br/>
+                    <br/>
                     <div class="row">
                         <div class="col m12">
                             <a href="?page=pro&sub=pass" class="btn-large blue waves-effect waves-light">EDIT PROFIL<i class="material-icons">mode_edit</i></a>

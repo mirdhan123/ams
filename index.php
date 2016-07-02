@@ -1,8 +1,6 @@
 <?php
-    //Memulai session
     session_start();
 
-    //Apabila ditemukan session login, maka akan diarahkan ke halaman dashboard
     if(isset($_SESSION['admin'])){
         header("Location: ./admin.php");
         die();
@@ -48,7 +46,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            opacity: 0.15;
+            opacity: 0.18;
             filter:alpha(opacity=40);
             height:100%;
             width:100%;
@@ -60,7 +58,7 @@
         }
         .container {
             max-width: 100%;
-            padding-top: 4.6%;
+            padding-top: 4%;
         }
         #logo {
             display: block;
@@ -167,7 +165,6 @@
 
                         if(isset($_REQUEST['submit'])){
 
-                            /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika ada isinya proses akan dilanjutkan */
                             if($_REQUEST['username'] == "" || $_REQUEST['password'] == ""){
                                 echo '<div class="upss red-text"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.
                                 <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke halaman login</a></div>';
@@ -176,14 +173,11 @@
                                 $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
                                 $password = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password'])));
 
-                                //Melakukan query terhadap database
                                 $query = mysqli_query($config, "SELECT id_user, username, nama, nip, admin FROM tbl_user WHERE username=BINARY'$username' AND password=MD5('$password')");
 
-                                //Apabila data ditemukan dan ada kecocokan data akan melist data
                                 if(mysqli_num_rows($query) > 0){
                                     list($id_user, $username, $nama, $nip, $admin) = mysqli_fetch_array($query);
 
-                                    //Mengeset session
                                     session_start();
                                     $_SESSION['id_user'] = $id_user;
                                     $_SESSION['username'] = $username;
@@ -191,12 +185,10 @@
                                     $_SESSION['nip'] = $nip;
                                     $_SESSION['admin'] = $admin;
 
-                                    //Apabila ditemukan data yang cocok akan diarahkan ke halaman admin
                                     header("Location: ./admin.php");
                                     die();
                                 } else {
 
-                                    //Apabila tidak ditemukan data yang cocok akan diarahkan kembali ke halaman login dan menampilkan pesan error
                                     $_SESSION['err'] = '<strong>ERROR!</strong> Username dan Password tidak ditemukan.';
                                     header("Location: ./");
                                     die();
@@ -212,7 +204,6 @@
                                 if(isset($_SESSION['err'])){
                                     $err = $_SESSION['err'];
 
-                                    //Menampilkan pesan error
                                     echo '<div id="alert-message" class="error red lighten-5"><i class="material-icons">error_outline</i> '.$err.'</div>';
                                     unset($_SESSION['err']);
                                 }

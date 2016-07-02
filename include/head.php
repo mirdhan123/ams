@@ -37,7 +37,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            opacity: 0.18;
+            opacity: 0.2;
             filter:alpha(opacity=40);
         }
         #header-instansi {
@@ -61,6 +61,9 @@
         .description {
             font-size: 20px;
         }
+        .jarak {
+            height: 13.4rem;
+        }
         #footer {
             background: #546e7a;
         }
@@ -83,7 +86,7 @@
             .dropdown-content,
             .button-collapse,
             .btn-large,
-            .page-footer {
+            .footer-copyright {
                 display: none;
             }
             body {
@@ -116,8 +119,9 @@
               border-spacing: 0;
             }
         }
-
-
+        .footer-copyright {
+            margin-top: 6rem;
+        }
         noscript{
             color: #fff;
         }

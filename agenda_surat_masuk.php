@@ -114,7 +114,9 @@
                                echo '<tr><td colspan="9"><center><h5>Tidak ada agenda surat</h5></center></td></tr>';
                             } echo '
                         </table>
-                    </div>';
+                    </div>
+                    <div class="jarak2"></div>';
+
         } else {
             echo '<!-- Row Start -->
                 <div class="row">
@@ -154,7 +156,8 @@
                         </div>
                     </form>
                 </div>
-                <!-- Row form END -->';
+                <!-- Row form END -->
+                <div class="jarak"></div>';
         }
     }
 ?>

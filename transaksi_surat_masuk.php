@@ -157,7 +157,6 @@ echo '<!-- Row Start -->
         }
         echo '
         </ul>
-        <br/>
         <!-- Pagination END -->';
     } else {
         echo '';

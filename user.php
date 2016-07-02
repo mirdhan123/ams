@@ -147,7 +147,6 @@
                                       <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
                             }
                                 echo ' </ul>
-                                       <br/>
                                        <!-- Pagination END -->';
                     } else {
                         echo '';
