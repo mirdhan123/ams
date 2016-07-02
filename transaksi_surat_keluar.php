@@ -34,7 +34,7 @@
                 }
 
                     //Melakukan query ke tabel surat masuk
-                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar ORDER BY id_surat DESC LIMIT $posisi, $limit");
+                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar LIMIT $posisi, $limit");
 
 echo '<!-- Row Start -->
 <div class="row">

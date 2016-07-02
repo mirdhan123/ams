@@ -30,7 +30,7 @@
                     $curr = ($pg - 1) * $limit;
                 }
 
-                    $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi ORDER BY id_klasifikasi DESC LIMIT $curr, $limit");
+                    $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi ORDER BY id_klasifikasi ASC LIMIT $curr, $limit");
 
                     echo '<!-- Row Start -->
                     <div class="row">
@@ -93,7 +93,7 @@
                                         <td>'.$row['uraian'].'</td>
                                         <td>';
 
-                                        if($_SESSION['admin'] != 2 AND $_SESSION['admin'] != 1){
+                                        if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
                                             echo '<a class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> NO ACTION</a>';
                                         } else {
                                           echo '<a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.$row['id_klasifikasi'].'">

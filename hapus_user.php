@@ -34,17 +34,17 @@
 				                <tr>
 				                    <td width="13%">Username</td>
 				                    <td width="1%">:</td>
-				                    <td width="86%"><strong>'.$row['username'].'</strong></td>
+				                    <td width="86%">'.$row['username'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">Nama</td>
 				                    <td width="1%">:</td>
-				                    <td width="86%"><strong>'.$row['nama'].'</strong></td>
+				                    <td width="86%">'.$row['nama'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">NIP</td>
 				                    <td width="1%">:</td>
-				                    <td width="86%"><strong>'.$row['nip'].'</strong></td>
+				                    <td width="86%">'.$row['nip'].'</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">Tipe User</td>
@@ -56,7 +56,7 @@
                                         $row['admin'] = "User Biasa";
                                     }
                                 } echo '
-				                    <td width="86%"><strong>'.$row['admin'].'<strong></td>
+				                    <td width="86%">'.$row['admin'].'</td>
 				                </tr>
 				            </tbody>
 				   		</table>
