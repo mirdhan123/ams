@@ -1,11 +1,8 @@
 <?php
-    //Memulai session
     session_start();
 
-    //Cek session user yang login. Jika tidak ditemukan id_user yang login akan menampilkan pesan error
     if(empty($_SESSION['admin'])){
 
-        //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
         header("Location: ./");
         die();
@@ -39,7 +36,6 @@
 
     <?php
 
-        //Request url page menggunakan fungsi switch case
         if(isset($_REQUEST['page'])){
             $page = $_REQUEST['page'];
             switch ($page) {
@@ -102,13 +98,13 @@
                         <h4>Selamat Datang <?php echo $_SESSION['nama']; ?></h4>
                         <p class="description">Anda login sebagai
                         <?php
-                            if($_SESSION['admin'] == 1 ){
-                                echo "<strong>Administrator</strong>";
+                            if($_SESSION['admin'] == 1){
+                                echo "<strong>Super Admin</strong>. Anda memiliki akses penuh terhadap sistem.";
+                            } elseif($_SESSION['admin'] == 2){
+                                echo "<strong>Administrator</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
                             } else {
-                                echo "<strong>Petugas Disposisi</strong>";
-                            }
-                        ?>
-                            . Berikut adalah statistik data yang tersimpan dalam sistem.</p>
+                                echo "<strong>Petugas Disposisi</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
+                            }?></p>
                     </div>
                 </div>
             </div>
@@ -157,8 +153,7 @@
             </div>
 
         <?php
-            //Menampilkan informasi jumlah pengguna (Hanya admin)
-            if($_SESSION['admin'] == 1){?>
+            if($_SESSION['id_user'] == 1 || $_SESSION['admin'] == 2){?>
             <div class="col s12 m4">
                 <div class="card deep-orange">
                     <div class="card-content">

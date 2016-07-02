@@ -94,7 +94,7 @@ echo '<!-- Row Start -->
                     <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                     <td>';
 
-                    if($_SESSION['id_user'] != $row['id_user']){
+                    if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
                         echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
                     } else {
                       echo '<a class="btn small blue waves-effect waves-light" href="?page=tsk&act=edit&id_surat='.$row['id_surat'].'">

@@ -1,14 +1,11 @@
 <?php
-    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
     if(empty($_SESSION['admin'])){
 
-        //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
         header("Location: ./");
         die();
     } else {
 
-        //Menampilkan data sesuai id_surat
     	$id_surat = $_REQUEST['id_surat'];
     	$query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
@@ -81,7 +78,6 @@
 		            </div>
 		        </div><br/>';
 
-                //Jika tombol hapus diklik akan mengirimkan id_surat dan melakukan query penghapusan data
             	if(isset($_REQUEST['submit'])){
             		$id_surat = $_REQUEST['id_surat'];
 

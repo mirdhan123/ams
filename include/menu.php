@@ -115,7 +115,7 @@
         <li><a href="?page=ref">Referensi</a></li>
         <li><a href="?page=dg">Data Guru</a></li>
         <?php
-            if($_SESSION['admin'] == 1){ ?>
+            if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){ ?>
         <li><a class="dropdown-button" href="#!" data-activates="pengaturan">Pengaturan <i class="material-icons md-18">arrow_drop_down</i></a></li>
             <ul id='pengaturan' class='dropdown-content'>
                 <li><a href="?page=sett&sub=ins">Instansi</a></li>

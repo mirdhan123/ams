@@ -8,7 +8,7 @@
 
         if($_REQUEST['id_user'] == 1){
             echo '<script language="javascript">
-                    window.alert("ERROR! User utama tidak boleh diedit.");
+                    window.alert("ERROR! Super Admin tidak boleh diedit.");
                     window.location.href="./admin.php?page=sett&sub=usr";
                   </script>';
         } else {
@@ -17,6 +17,13 @@
 
                 $id_user = $_REQUEST['id_user'];
                 $admin = $_REQUEST['admin'];
+
+                if($id_user == $_SESSION['id_user']){
+                    echo '<script language="javascript">
+                            window.alert("ERROR! Anda tidak boleh mengedit akun Anda sendiri. Hubungi super admin untuk mengeditnya.");
+                            window.location.href="./admin.php?page=sett&sub=usr";
+                          </script>';
+                } else {
 
                 $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
 
@@ -31,6 +38,7 @@
                             window.location.href="./admin.php?page=sett&sub=usr";
                           </script>';
                 }
+            }
             } else {
 
                 $id_user = $_REQUEST['id_user'];
@@ -78,8 +86,8 @@
                                     <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih tipe user</label><br/>
                                     <div class="input-field col s11 right">
                                         <select class="browser-default" name="admin" id="admin" required>
-                                            <option value="2">User Biasa</option>
-                                            <option value="1">Admin</option>
+                                            <option value="3">User Biasa</option>
+                                            <option value="2">Admin</option>
                                         </select>
                                     </div>
                                 </div>

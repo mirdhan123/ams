@@ -78,6 +78,8 @@
                                     echo '<td>'.$no++.'</td>';
 
                                     if($row['admin'] == 1){
+                                        $row['admin'] = 'Super Admin';
+                                    } elseif($row['admin'] == 2){
                                         $row['admin'] = 'Administrator';
                                     } else {
                                         $row['admin'] = 'User Biasa';

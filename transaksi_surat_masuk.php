@@ -1,14 +1,11 @@
 <?php
-    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
     if(empty($_SESSION['admin'])){
 
-        //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
         header("Location: ./");
         die();
     } else {
 
-        //Request url aksi menggunakan fungsi switch case
         if(isset($_REQUEST['act'])){
             $act = $_REQUEST['act'];
             switch ($act) {
@@ -39,7 +36,6 @@
                     $curr = ($pg - 1) * $limit;
                 }
 
-                    //Melakukan query ke tabel surat masuk
                     $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC LIMIT $curr, $limit");
 
 echo '<!-- Row Start -->
@@ -100,12 +96,13 @@ echo '<!-- Row Start -->
                     <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                     <td>';
 
-                    if($_SESSION['id_user'] != $row['id_user']){
-                        echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
+                    if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
+                        echo '<a class="btn small yellow darken-3 waves-effect waves-light" href="?page=sett&sub=usr&act=edit&id_user='.$row['id_user'].'">
+                                <i class="material-icons">print</i> PRINT</a>';
                     } else {
                       echo '<a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
                                 <i class="material-icons">edit</i> EDIT</a>
-                            <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Klik DISP untuk menambahkan disposisi Surat Masuk" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">
+                            <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Klik DISP untuk menambahkan disposisi" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">
                                 <i class="material-icons">description</i> DISP</a>
                             <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=sett&sub=usr&act=edit&id_user='.$row['id_user'].'">
                                 <i class="material-icons">print</i> PRINT</a>
@@ -125,7 +122,6 @@ echo '<!-- Row Start -->
 </div>
 <!-- Row form END -->';
 
-        //Query database untuk pagging
         $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk");
         $cdata = mysqli_num_rows($query);
         $cpg = ceil($cdata/$limit);
@@ -135,7 +131,6 @@ echo '<!-- Row Start -->
 
         if($cdata > $limit ){
 
-        //First and previous pagging
         if($pg > 1){
             $prev = $pg - 1;
             echo '<li><a href="?page=tsm&pg=1"><i class="material-icons md-48">first_page</i></a></li>
@@ -145,7 +140,6 @@ echo '<!-- Row Start -->
                   <li class="disabled"><a href=""><i class="material-icons md-48">chevron_left</i></a></li>';
         }
 
-        //Perulangan pagging
         for($i=1; $i <= $cpg; $i++)
             if($i != $pg){
                 echo '<li class="waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
@@ -153,7 +147,6 @@ echo '<!-- Row Start -->
                 echo '<li class="active waves-effect waves-dark"><a href="?page=tsm&pg='.$i.'"> '.$i.' </a></li>';
             }
 
-        //Last and next pagging
         if($pg < $cpg){
             $next = $pg + 1;
             echo '<li><a href="?page=tsm&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>

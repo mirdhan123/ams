@@ -1,8 +1,6 @@
 <?php
-    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
     if(empty($_SESSION['admin'])){
 
-        //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
         header("Location: ./");
         die();
@@ -11,9 +9,9 @@
         $id_user = $_REQUEST['id_user'];
         if($id_user == 1){
             echo '<script language="javascript">
-            window.alert("ERROR! User utama tidak boleh dihapus.");
-            window.location.href="./admin.php?page=sett&sub=usr";
-            </script>';
+                    window.alert("ERROR! Super Admin tidak boleh dihapus.");
+                    window.location.href="./admin.php?page=sett&sub=usr";
+                  </script>';
         } else {
 
             $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
@@ -51,11 +49,13 @@
 				                <tr>
 				                    <td width="13%">Tipe User</td>
 				                    <td width="1%">:</td>';
-                                    if($row['admin'] == 1){
+                                    if($row['admin'] == 2){
                                         $row['admin'] = "Administrator";
                                     } else {
+                                        if($row['admin'] == 3){
                                         $row['admin'] = "User Biasa";
-                                    } echo '
+                                    }
+                                } echo '
 				                    <td width="86%"><strong>'.$row['admin'].'<strong></td>
 				                </tr>
 				            </tbody>
@@ -73,26 +73,33 @@
 		            </div>
 		        </div><br/>';
 
-                //Jika tombol hapus diklik akan mengirimkan id_surat dan melakukan query penghapusan data
             	if(isset($_REQUEST['submit'])){
             		$id_user = $_REQUEST['id_user'];
 
-                    $query = mysqli_query($config, "DELETE FROM tbl_user WHERE id_user='$id_user'");
+                    if($id_user == $_SESSION['id_user']){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Anda tidak boleh menghapus akun Anda sendiri. Hubungi super admin untuk menghapusnya.");
+                                window.location.href="./admin.php?page=sett&sub=usr";
+                              </script>';
+                    } else {
 
-            		if($query == true){
-                        echo '<script language="javascript">
-                        window.alert("SUKSES! User berhasil dihapus.");
-                        window.location.href="./admin.php?page=sett&sub=usr";
-                        </script>';
-            		} else {
-                        echo '<script language="javascript">
-                        window.alert("ERROR! Periksa penulisan querynya.");
-                        window.location.href="./admin.php?page=sett&sub=usr&act=del&id_user='.$id_user.'";
-                        </script>';
-            		}
-            	}
+                        $query = mysqli_query($config, "DELETE FROM tbl_user WHERE id_user='$id_user'");
+
+                		if($query == true){
+                            echo '<script language="javascript">
+                                    window.alert("SUKSES! User berhasil dihapus.");
+                                    window.location.href="./admin.php?page=sett&sub=usr";
+                                  </script>';
+                		} else {
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Periksa penulisan querynya.");
+                                    window.location.href="./admin.php?page=sett&sub=usr&act=del&id_user='.$id_user.'";
+                                  </script>';
+                		}
+                	}
 		        }
 	        }
         }
     }
+}
 ?>

@@ -41,9 +41,9 @@
                                   </script>';
                         } else {
 
-                            if(!preg_match("/^[1-2]*$/", $admin)){
+                            if(!preg_match("/^[2-3]*$/", $admin)){
                                 echo '<script language="javascript">
-                                        window.alert("ERROR! TIPE USER hanya boleh mengandung angka 1 atau 2");
+                                        window.alert("ERROR! TIPE USER hanya boleh mengandung angka 2 atau 3");
                                         window.location.href="./admin.php?page=sett&sub=usr&act=add";
                                       </script>';
                             } else {
@@ -142,8 +142,8 @@
                             <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Tipe User</label><br/>
                             <div class="input-field col s11 right">
                                 <select class="browser-default validate" name="admin" id="admin" required>
-                                    <option value="2">User Biasa</option>
-                                    <option value="1">Admin</option>
+                                    <option value="3">User Biasa</option>
+                                    <option value="2">Admin</option>
                                 </select>
                             </div>
                         </div>
