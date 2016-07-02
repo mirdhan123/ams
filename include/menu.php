@@ -93,7 +93,7 @@
     <!-- Menu on medium and small screen END -->
 
     <!-- Menu on large screen START -->
-    <ul class="center hide-on-med-and-down">
+    <ul class="center hide-on-med-and-down" id="nv">
         <li><a href="./admin.php"><i class="material-icons">dashboard</i>&nbsp; Beranda</a></li>
         <li><a class="dropdown-button" href="#!" data-activates="transaksi">Transaksi Surat <i class="material-icons md-18">arrow_drop_down</i></a></li>
             <ul id='transaksi' class='dropdown-content'>

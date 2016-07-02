@@ -77,7 +77,7 @@
                                     <th width="18%">Asal Surat</th>
                                     <th width="15%">Nomor Surat</th>
                                     <th width="8%">Tanggal<br/> Surat</th>
-                                    <th width="10%">Penerima</th>
+                                    <th width="10%">Pengelola</th>
                                     <th width="8%">Tanggal <br/>Paraf</th>
                                     <th width="10%">Keterangan</th>
                                 </tr>
@@ -96,7 +96,14 @@
                                         <td>'.$row['asal_surat'].'</td>
                                         <td>'.$row['no_surat'].'</td>
                                         <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
-                                        <td>'.$row['id_user'].'</td>
+                                        <td>';
+
+                                        if($row['id_user'] == 2 || $row['id_user'] == 1){
+                                            $row['id_user'] = 'Administrator';
+                                        } else {
+                                            $row['id_user'] = 'Petugas Disposisi';
+                                        }
+                                        echo ''.$row['id_user'].'</td>
                                         <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                                         <td>'.$row['keterangan'].'';
                                  echo '</td>

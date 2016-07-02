@@ -95,8 +95,14 @@
                                         <td>'.$row['tujuan'].'</td>
                                         <td>'.$row['no_surat'].'</td>
                                         <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
-                                        <td>'.$row['id_user'].'</td>
-                                        <td>'.$row['keterangan'].'';
+                                        <td>';
+
+                                        if($row['id_user'] == 2 || $row['id_user'] == 1){
+                                            $row['id_user'] = 'Administrator';
+                                        } else {
+                                            $row['id_user'] = 'Petugas Disposisi';
+                                        }
+                                        echo ''.$row['id_user'].'</td>                                        <td>'.$row['keterangan'].'';
                                  echo '</td>
                                 </tr>
                             </tbody>';

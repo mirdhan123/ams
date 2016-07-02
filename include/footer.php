@@ -8,28 +8,21 @@
 </noscript>
 
 <!-- Footer START -->
-<footer class="page-footer white">
-    <div class="container">
-        <div class="row white">
-            <div class="col 12"></div>
+<div class="footer-copyright blue-grey darken-1 white-text">
+    <div class="container" id="footer">
+        &copy; <?php echo date("Y"); ?>
+        <div class="right hide-on-small-only">
+            <?php
+                $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                while($data = mysqli_fetch_array($query)){
+                    echo '
+            <i class="material-icons md-12">language</i> '.$data['website'].' &nbsp;&nbsp;
+            <i class="material-icons">mail_outline</i>  '.$data['email'].'';
+                }
+            ?>
         </div>
     </div>
-    <div class="footer-copyright blue-grey darken-1 white-text">
-        <div class="container">
-            &copy; <?php echo date("Y"); ?>
-            <div class="right hide-on-small-only">
-                <?php
-                    $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
-                    while($data = mysqli_fetch_array($query)){
-                        echo '
-                <i class="material-icons md-12">language</i> '.$data['website'].' &nbsp;&nbsp;
-                <i class="material-icons">mail_outline</i>  '.$data['email'].'';
-                    }
-                ?>
-            </div>
-        </div>
-    </div>
-</footer>
+</div>
 <!-- Footer END -->
 
 <!-- Javascript START -->

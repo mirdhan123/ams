@@ -16,7 +16,7 @@
 <!-- Include Head END -->
 
 <!-- Body START -->
-<body>
+<body class="bg">
 
 <!-- Header START -->
 <header>

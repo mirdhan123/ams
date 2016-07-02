@@ -33,6 +33,26 @@
     <!-- Global style START -->
     <link type="text/css" rel="stylesheet" href="./asset/css/materialize.css"  media="screen,projection"/>
     <style type="text/css">
+        body {
+            background: #fff;
+        }
+        .bg::before {
+            content: '';
+            background-image: url('./asset/img/background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0.15;
+            filter:alpha(opacity=40);
+            height:100%;
+            width:100%;
+        }
         @media only screen and (min-width: 993px) {
             .container {
                 width: 70%!important;
@@ -95,7 +115,7 @@
 <!-- Head END -->
 
 <!-- Body START -->
-<body class="light-green">
+<body class="bg">
 
     <!-- Container START -->
     <div class="container">
