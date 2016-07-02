@@ -14,7 +14,7 @@
 <!-- Head START -->
 <head>
 
-    <title>Aplikasi Manajemen Surat Menyurat</title>
+    <title>Aplikasi Manajemen Surat</title>
 
     <!-- Meta START -->
     <meta charset="utf-8" />
@@ -53,7 +53,7 @@
         }
         @media only screen and (min-width: 993px) {
             .container {
-                width: 70%!important;
+                width: 60%!important;
             }
         }
         .container {
@@ -137,7 +137,7 @@
                     <!-- Logo and title START -->
                     <div class="col s12">
                         <div class="card-content">
-                            <h5 class="center" id="title">Aplikasi Manajemen Surat Menyurat</h5>
+                            <h5 class="center" id="title">Aplikasi Manajemen Surat</h5>
                             <?php
                                 if(!empty($data['logo'])){
                                     echo '<img id="logo" src="'.$data['logo'].'"/>';

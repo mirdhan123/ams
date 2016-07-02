@@ -9,7 +9,7 @@
         if(isset($_REQUEST['submit'])){
 
             if ($_REQUEST['nama'] == "" || $_REQUEST['alamat'] == "" || $_REQUEST['kepsek'] == "" || $_REQUEST['nip'] == ""
-                || $_REQUEST['website'] == "" || $_REQUEST['email'] == ""){
+                || $_REQUEST['website'] == "" || $_REQUEST['email'] == "" || $_REQUEST['file'] == ""){
                 echo '<script language="javascript">
                         window.alert("ERROR! Semua form wajib diisi.");
                         window.location.href="./admin.php?page=sett&sub=ins";
@@ -24,25 +24,45 @@
                 $website = $_REQUEST['website'];
                 $email = $_REQUEST['email'];
 
-                $logo = $_FILES['logo']['name'];
+                $ekstensi = array('png','jpg','');
+                $file = $_FILES['file']['name'];
+                $x = explode('.', $file);
+                $eks = strtolower(end($x));
+                $ukuran = $_FILES['file']['size'];
                 $target_dir = "upload/";
-                $imageFileType = pathinfo($logo, PATHINFO_EXTENSION);
 
-                move_uploaded_file($_FILES['logo']['tmp_name'], 'upload/'.$logo);
+                if(move_uploaded_file($file))
 
-                $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$logo' WHERE id_instansi='$id_instansi'");
+                if(in_array($eks, $ekstensi) == true){
+                    if($ukuran < 2000000){
 
-                if($query == true){
+                        move_uploaded_file($_FILES['file']['tmp_name'], 'upload/'.$file);
+
+                        $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',file='$file' WHERE id_instansi='$id_instansi'");
+
+                        if($query == true){
+                            echo '<script language="javascript">
+                                    window.alert("SUKSES! Data berhasil diupdate.");
+                                    window.location.href="./admin.php?page=sett&sub=ins";
+                                  </script>';
+                        } else {
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Periksa penulisan querynya.");
+                                    window.location.href="./admin.php?page=sett&sub=ins";
+                                  </script>';
+                        }
+                    } else {
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Ukuran file yang diupload maksimal 2 MB.");
+                                window.location.href="./admin.php?page=tsm&act=add";
+                              </script>';
+                }
+            } else {
                     echo '<script language="javascript">
-                            window.alert("SUKSES! Data berhasil diupdate.");
-                            window.location.href="./admin.php?page=sett&sub=ins";
+                            window.alert("ERROR! File yang diupload bukan gambar. Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG.");
+                            window.location.href="./admin.php?page=tsm&act=add";
                           </script>';
-                } else {
-                    echo '<script language="javascript">
-                            window.alert("ERROR! Periksa penulisan querynya.");
-                            window.location.href="./admin.php?page=sett&sub=ins";
-                          </script>';
-                    }
+            }
             }
         } else {
 
@@ -76,6 +96,7 @@
                         <!-- Row in form START -->
                         <div class="row">
                             <div class="input-field col s6">
+                                <input type="hidden" value="<?php echo $id_instansi; ?>" name="id_instansi">
                                 <i class="material-icons prefix md-prefix">school</i>
                                 <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>" required>
                                 <label for="nama">Nama Instansi</label>
@@ -104,10 +125,10 @@
                                 <div class="file-field input-field">
                                     <div class="btn light-green darken-1">
                                         <span>File</span>
-                                        <input type="file" id="logo" name="logo">
+                                        <input type="file" id="file" name="file">
                                     </div>
                                     <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text" placeholder="Upload Logo instansi">
+                                        <input class="file-path validate" type="text" value="<?php echo $row['file']; ?>" placeholder="Upload Logo instansi">
                                     </div>
                                 </div>
                             </div>

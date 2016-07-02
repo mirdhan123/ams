@@ -5,7 +5,7 @@
 <?php require('include/config.php'); ?>
 <head>
 
-    <title>Aplikasi Manajemen Surat Menyurat</title>
+    <title>Aplikasi Manajemen Surat</title>
 
     <!-- Meta START -->
     <meta charset="utf-8" />
@@ -38,7 +38,7 @@
             left: 0;
             right: 0;
             opacity: 0.2;
-            filter:alpha(opacity=40);
+            filter:alpha(opacity=20);
         }
         #header-instansi {
             margin-top: 1%;

@@ -81,22 +81,39 @@
             	if(isset($_REQUEST['submit'])){
             		$id_surat = $_REQUEST['id_surat'];
 
-                    unlink("upload/surat_masuk/".$row['file']);
-                    $query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-                    $query2 = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_surat='$id_surat'");
+                    if(!empty($row['file'])){
+                        unlink("upload/surat_masuk/".$row['file']);
+                        $query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+                        $query2 = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_surat='$id_surat'");
 
-            		if($query == true){
-                        echo '<script language="javascript">
-                        window.alert("SUKSES! Data berhasil dihapus.");
-                        window.location.href="./admin.php?page=tsm";
-                        </script>';
-            		} else {
-                        echo '<script language="javascript">
-                        window.alert("ERROR! Periksa penulisan querynya.");
-                        window.location.href="./admin.php?page=tsm&act=del&id_surat='.$id_surat.'";
-                        </script>';
-            		}
-            	}
+                		if($query == true){
+                            echo '<script language="javascript">
+                                    window.alert("SUKSES! Data berhasil dihapus.");
+                                    window.location.href="./admin.php?page=tsm";
+                                  </script>';
+                		} else {
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Periksa penulisan querynya.");
+                                    window.location.href="./admin.php?page=tsm&act=del&id_surat='.$id_surat.'";
+                                  </script>';
+                		}
+                	} else {
+                        $query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+                        $query2 = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_surat='$id_surat'");
+
+                        if($query == true){
+                            echo '<script language="javascript">
+                                    window.alert("SUKSES! Data berhasil dihapus.");
+                                    window.location.href="./admin.php?page=tsm";
+                                  </script>';
+                        } else {
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Periksa penulisan querynya.");
+                                    window.location.href="./admin.php?page=tsm&act=del&id_surat='.$id_surat.'";
+                                  </script>';
+                        }
+                    }
+                }
 		    }
 	    }
     }
