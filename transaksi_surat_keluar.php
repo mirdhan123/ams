@@ -89,7 +89,12 @@ echo '<!-- Row Start -->
             $no = 1;
             while($row = mysqli_fetch_array($query)){
               echo '<td>'.$row['no_agenda'].'<br/>'.$row['kode'].'</td>
-                    <td>'.$row['isi'].'<br/><br/><strong>File: <a href="upload/surat_keluar/'.$row['file'].'">'.$row['file'].'</a></strong></td>
+                    <td>'.$row['isi'].'<br/><br/><strong>File:';
+                    if(!empty($row['file'])){
+                        echo ' <a href="upload/surat_keluar/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
+                    } else {
+                        echo ' Tidak ada file yang diupload</strong>';
+                    } echo '</td>
                     <td>'.$row['tujuan'].'</td>
                     <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                     <td>';

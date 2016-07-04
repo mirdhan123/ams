@@ -41,29 +41,18 @@
                                   </script>';
                         } else {
 
-                            $cek = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE kode='$kode'");
-                            $result = mysqli_num_rows($cek);
+                            $query = mysqli_query($config, "UPDATE tbl_klasifikasi SET kode='$kode', nama='$nama', uraian='$uraian', id_user='$id_user' WHERE id_klasifikasi='$id_klasifikasi'");
 
-                            if($result > 0){
+                            if($query != false){
                                 echo '<script language="javascript">
-                                        window.alert("ERROR! Terjadi duplikasi KODE REFERENSI");
-                                        window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
+                                        window.alert("SUKSES! Data berhasil diupdate.");
+                                        window.location.href="./admin.php?page=ref";
                                       </script>';
                             } else {
-
-                                $query = mysqli_query($config, "UPDATE tbl_klasifikasi SET kode='$kode', nama='$nama', uraian='$uraian', id_user='$id_user' WHERE id_klasifikasi='$id_klasifikasi'");
-
-                                if($query != false){
-                                    echo '<script language="javascript">
-                                            window.alert("SUKSES! Data berhasil diupdate.");
-                                            window.location.href="./admin.php?page=ref";
-                                          </script>';
-                                } else {
-                                    echo '<script language="javascript">
-                                            window.alert("ERROR! Periksa penulisan querynya.");
-                                            window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
-                                          </script>';
-                                }
+                                echo '<script language="javascript">
+                                        window.alert("ERROR! Periksa penulisan querynya.");
+                                        window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
+                                      </script>';
                             }
                         }
                     }

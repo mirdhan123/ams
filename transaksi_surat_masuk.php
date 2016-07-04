@@ -91,7 +91,12 @@ echo '<!-- Row Start -->
             $no = 1;
             while($row = mysqli_fetch_array($query)){
               echo '<td>'.$row['no_agenda'].'<br/>'.$row['kode'].'</td>
-                    <td>'.$row['isi'].'<br/><br/><strong>File: <a href="upload/surat_masuk/'.$row['file'].'">'.$row['file'].'</a></strong></td>
+                    <td>'.$row['isi'].'<br/><br/><strong>File:';
+                    if(!empty($row['file'])){
+                        echo ' <a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
+                    } else {
+                        echo ' Tidak ada file yang diupload</strong>';
+                    } echo '</td>
                     <td>'.$row['asal_surat'].'</td>
                     <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                     <td>';
@@ -104,7 +109,7 @@ echo '<!-- Row Start -->
                                 <i class="material-icons">edit</i> EDIT</a>
                             <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Klik DISP untuk menambahkan disposisi" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">
                                 <i class="material-icons">description</i> DISP</a>
-                            <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=sett&sub=usr&act=edit&id_user='.$row['id_user'].'">
+                            <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">
                                 <i class="material-icons">print</i> PRINT</a>
                             <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.$row['id_surat'].'">
                                 <i class="material-icons">delete</i> DEL</a>';

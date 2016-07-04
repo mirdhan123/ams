@@ -46,7 +46,12 @@
 				                <tr>
 				                    <td width="13%">File</td>
 				                    <td width="1%">:</td>
-				                    <td width="86%"><a href="upload/surat_masuk/'.$row['file'].'">'.$row['file'].'</a></a></td>
+				                    <td width="86%">';
+                                    if(!empty($row['file'])){
+                                        echo ' <a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a>';
+                                    } else {
+                                        echo ' Tidak ada file yang diupload';
+                                    } echo '</td>
 				                </tr>
 				                <tr>
 				                    <td width="13%">Asal Surat</td>

@@ -42,6 +42,9 @@
                 case 'tsm':
                     include "transaksi_surat_masuk.php";
                     break;
+                case 'ctk':
+                    include "cetak_disposisi.php";
+                    break;
                 case 'tsk':
                     include "transaksi_surat_keluar.php";
                     break;

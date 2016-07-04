@@ -96,12 +96,12 @@
                             $x = explode('.', $file);
                             $eks = strtolower(end($x));
                             $ukuran = $_FILES['file']['size'];
-                            $target_dir = "upload/keluar/";
+                            $target_dir = "upload/surat_masuk/";
 
                             if(in_array($eks, $ekstensi) == true){
                                 if($ukuran < 2000000){
 
-                                    move_uploaded_file($_FILES['file']['tmp_name'], 'upload/surat_masuk/'.$file);
+                                    move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$file);
 
                                     $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
                                         tgl_diterima,file,keterangan,id_user)
