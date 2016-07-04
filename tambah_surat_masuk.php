@@ -34,49 +34,49 @@
 
                     if(!preg_match("/^[a-zA-Z0-9.\/ ]*$/", $no_surat)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan garis miring(/).");
+                                window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, titik(.) dan garis miring(/).");
                                 window.location.href="./admin.php?page=tsm&act=add";
                               </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9. ]*$/", $asal_surat)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi dan tanda titik(.).");
+                                window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi dan titik(.).");
                                 window.location.href="./admin.php?page=tsm&act=add";
                               </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
+                                window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
                                 window.location.href="./admin.php?page=tsm&act=add";
                               </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
+                                window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,).");
                                 window.location.href="./admin.php?page=tsm&act=add";
                               </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $indeks)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
+                                window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,).");
                                 window.location.href="./admin.php?page=tsm&act=add";
                               </script>';
                 } else {
 
                     if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan tanda minus(-).");
+                                window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan minus(-).");
                                 window.location.href="./admin.php?page=tsm&act=add";
                               </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $keterangan)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
+                                window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), dan kurung().");
                                 window.location.href="./admin.php?page=tsm&act=add";
                               </script>';
                 }
@@ -172,7 +172,7 @@
             </div>
             <div class="input-field col s6">
                 <i class="material-icons prefix md-prefix">bookmark</i>
-                <input id="kode" type="text" class="validate" name="kode" required>
+                <input id="kode" type="text" class="validate" name="kode" autocomplete="off" required>
                 <label for="kode">Kode Klasifikasi</label>
             </div>
             <div class="input-field col s6">

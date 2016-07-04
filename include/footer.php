@@ -47,7 +47,6 @@ $('#tgl_surat,#batas_waktu,#dari_tanggal,#sampai_tanggal').pickadate({
     format: "yyyy-mm-dd"
 });
 
-
 //jquery teaxtarea
 $('#isi_ringkas').val('');
 $('#isi_ringkas').trigger('autoresize');
@@ -60,6 +59,13 @@ $('select').material_select();
 //jquery tooltip
 $(document).ready(function(){
 $('.tooltipped').tooltip({delay: 10});
+});
+
+//Jquery UI
+$(function() {
+    $( "#kode" ).autocomplete({
+        source: 'autocomplete.php'
+    });
 });
 
 </script>
