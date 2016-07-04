@@ -9,16 +9,80 @@ echo '
 <style type="text/css">
     table {
         background: #fff;
+        padding: 5px;
     }
     tr, td {
         border: table-cell;
-        border: 1px solid #444;
+        border: 1px  solid #444;
     }
     tr,td {
         vertical-align: top!important;
     }
     #isi {
-        height: 300px;
+        height: 400px;
+    }
+    .tgh {
+        text-align: center;
+    }
+    .up {
+        text-transform: uppercase;
+        margin: 15px 0 -15px 0;
+        font-size: 22px;
+    }
+    #right {
+        border-right: none !important;
+    }
+    #left {
+        border-left: none !important;
+    }
+    #nama {
+        font-size: 30px;
+    }
+    #alamat {
+        font-size: 16px;
+    }
+    #lbr {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    @media print{
+        body {
+            font-size: 12px;
+            color: #212121;
+        }
+        table {
+            font-size: 12px;
+            color: #212121;
+        }
+        tr, td {
+            border: table-cell;
+            border: 1px  solid #444;
+            padding: 8px!important;
+
+        }
+        tr,td {
+            vertical-align: top!important;
+        }
+        #lbr {
+            font-size: 20px;
+        }
+        #isi {
+            height: 300px;
+        }
+        .tgh {
+            text-align: center;
+        }
+        #nama {
+            font-size: 20px!important;
+            margin-bottom: -10px;
+        }
+        #alamat {
+            font-size: 13px;
+        }
+        #lbr {
+            font-size: 17px;
+            font-weight: bold;
+        }
     }
 </style>
 
@@ -37,40 +101,40 @@ echo '
                     $no = 0;
                     while($row = mysqli_fetch_array($query)){
                  echo ' <br/><tr>
-                            <td colspan="5">';
+                            <td class="tgh" colspan="5">';
                                 $query2 = mysqli_query($config, "SELECT nama, alamat FROM tbl_instansi");
                                 list($nama, $alamat) = mysqli_fetch_array($query2);
-                                echo '<h5>'.$nama.'</h5><br/>
-                                '.$alamat.'
+                                echo '<h5 class="up" id="nama">'.$nama.'</h5><br/>
+                                <span id="alamat">'.$alamat.'</span>
                             </td>
                         <tr>
-                            <td colspan="5"><h5>LEMBAR DISPOSISI</h5></td>
+                            <td class="tgh" id="lbr" colspan="5">LEMBAR DISPOSISI</td>
                         </tr>
                         <tr>
-                            <td width="18%"><strong>Indeks Berkas</strong></td>
-                            <td width="57%">: '.$row['indeks'].'</td>
-                            <td width="25"><strong>Kode</strong> : '.$row['kode'].'</td>
+                            <td id="right" width="18%"><strong>Indeks Berkas</strong></td>
+                            <td id="left" style="border-right: none;" width="57%">: '.$row['indeks'].'</td>
+                            <td id="left" iwidth="25"><strong>Kode</strong> : '.$row['kode'].'</td>
                         </tr>
                         <tr>
-                            <td><strong>Tanggal/Nomor</strong></td>
-                            <td colspan="2">: '.date('d M Y', strtotime($row['tgl_surat'])).' / '.$row['no_surat'].'</td>
+                            <td id="right"><strong>Tanggal/Nomor</strong></td>
+                            <td id="left" colspan="2">: '.date('d M Y', strtotime($row['tgl_surat'])).' / '.$row['no_surat'].'</td>
                         </tr>
                         <tr>
-                            <td><strong>Asal Surat</strong></td>
-                            <td colspan="2">: '.$row['asal_surat'].'</td>
+                            <td id="right"><strong>Asal Surat</strong></td>
+                            <td id="left" colspan="2">: '.$row['asal_surat'].'</td>
                         </tr>
                         <tr>
-                            <td><strong>Isi Ringkas</strong></td>
-                            <td colspan="2">: '.$row['isi'].'</td>
+                            <td id="right"><strong>Isi Ringkas</strong></td>
+                            <td id="left" colspan="2">: '.$row['isi'].'</td>
                         </tr>
                         <tr>
-                            <td><strong>Diterima Tanggal</strong></td>
-                            <td>: '.date('d M Y', strtotime($row['tgl_diterima'])).'</td>
-                            <td><strong>No. Agenda</strong> : '.$row['no_agenda'].'</td>
+                            <td id="right"><strong>Diterima Tanggal</strong></td>
+                            <td id="left" style="border-right: none;">: '.date('d M Y', strtotime($row['tgl_diterima'])).'</td>
+                            <td id="left"><strong>No. Agenda</strong> : '.$row['no_agenda'].'</td>
                         </tr>
                         <tr>
-                            <td><strong>Tanggal Penyelesaian</strong></td>
-                            <td colspan="2">: </td>
+                            <td id="right"><strong>Tanggal Penyelesaian</strong></td>
+                            <td id="left" colspan="2">: </td>
                         </tr>
                         <tr>';
                         $query3 = mysqli_query($config, "SELECT * FROM tbl_disposisi JOIN tbl_surat_masuk ON tbl_disposisi.id_surat = tbl_surat_masuk.id_surat WHERE tbl_disposisi.id_surat='$id_surat'");

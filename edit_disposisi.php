@@ -29,28 +29,28 @@
 
                 if(!preg_match("/^[a-zA-Z0-9.,\/ ]*$/", $tujuan)){
                     echo '<script language="javascript">
-                            window.alert("ERROR! Form TUJUAN DISPOSISI hanya boleh mengandung huruf, angka, spasi tanda titik(.), koma(,) dan garis miring(/)");
+                            window.alert("ERROR! Form TUJUAN DISPOSISI hanya boleh mengandung huruf, angka, spasi titik(.), koma(,) dan garis miring(/)");
                             window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$id_disposisi.'";
                           </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $isi_disposisi)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form ISI DISPOSISI hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@)");
+                                window.alert("ERROR! Form ISI DISPOSISI hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@)");
                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$id_disposisi.'";
                               </script>';
                     } else {
 
                         if(!preg_match("/^[0-9 -]*$/", $batas_waktu)){
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Form BATAS WAKTU hanya boleh mengandung angka dan tanda minus (-)");
+                                    window.alert("ERROR! Form BATAS WAKTU hanya boleh mengandung angka dan minus (-)");
                                     window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$id_disposisi.'";
                                   </script>';
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $catatan)){
                                 echo '<script language="javascript">
-                                        window.alert("ERROR! Form CATATAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung()");
+                                        window.alert("ERROR! Form CATATAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), dan kurung()");
                                         window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$id_disposisi.'";
                                       </script>';
                             } else {

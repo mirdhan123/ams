@@ -91,6 +91,7 @@
             }
             body {
                 font-size: 12px;
+                color: #212121;
             }
             .hid {
                 display: block;
@@ -101,6 +102,7 @@
             .agenda {
                 font-size: 12px;
                 text-align: center;
+                color: #212121;
             }
             th, td{
                 border: 0.8px solid #444;
@@ -117,6 +119,8 @@
             table {
               border-collapse: collapse;
               border-spacing: 0;
+              font-size: 12px;
+              color: #212121;
             }
         }
         .footer-copyright {
