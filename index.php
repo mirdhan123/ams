@@ -46,8 +46,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            opacity: 0.18;
-            filter:alpha(opacity=40);
+            opacity: 0.2;
+            filter:alpha(opacity=20);
             height:100%;
             width:100%;
         }
@@ -140,7 +140,7 @@
                             <h5 class="center" id="title">Aplikasi Manajemen Surat</h5>
                             <?php
                                 if(!empty($data['logo'])){
-                                    echo '<img id="logo" src="'.$data['logo'].'"/>';
+                                    echo '<img id="logo" src="./upload/'.$data['logo'].'"/>';
                                 } else {
                                     echo '<img id="logo" src="./asset/img/logo.png"/>';
                                 }

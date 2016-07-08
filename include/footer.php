@@ -15,9 +15,16 @@
             <?php
                 $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
                 while($data = mysqli_fetch_array($query)){
-                    echo '
-            <i class="material-icons md-12">language</i> '.$data['website'].' &nbsp;&nbsp;
-            <i class="material-icons">mail_outline</i>  '.$data['email'].'';
+                    if(!empty($data['website'])){
+                        echo '<i class="material-icons md-12">language</i> '.$data['website'].' &nbsp;&nbsp;';
+                    } else {
+                        echo '<i class="material-icons md-12">language</i> http://www.smkalhusnaloceret.sch.id &nbsp;&nbsp;';
+                    }
+                    if(!empty($data['email'])){
+                        echo '<i class="material-icons">mail_outline</i> '.$data['email'].'';
+                    } else {
+                        echo '<i class="material-icons">mail_outline</i>  info@smkalhusnaloceret.sch.id';
+                    }
                 }
             ?>
         </div>

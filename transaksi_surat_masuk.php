@@ -36,7 +36,7 @@
                     $curr = ($pg - 1) * $limit;
                 }
 
-                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk LIMIT $curr, $limit");
+                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC LIMIT $curr, $limit");
 
 echo '<!-- Row Start -->
 <div class="row">
@@ -91,11 +91,11 @@ echo '<!-- Row Start -->
             $no = 1;
             while($row = mysqli_fetch_array($query)){
               echo '<td>'.$row['no_agenda'].'<br/>'.$row['kode'].'</td>
-                    <td>'.$row['isi'].'<br/><br/><strong>File:';
+                    <td>'.$row['isi'].'<br/><br/><strong>File :</strong>';
                     if(!empty($row['file'])){
-                        echo ' <a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
+                        echo ' <strong><a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
                     } else {
-                        echo ' Tidak ada file yang diupload</strong>';
+                        echo '<em>Tidak ada file yang di upload</em>';
                     } echo '</td>
                     <td>'.$row['asal_surat'].'</td>
                     <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>

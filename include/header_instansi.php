@@ -9,10 +9,11 @@
                         <div class="card-content">
                             <div class="circle left">';
                             if(!empty($data['logo'])){
-                                echo '<img src="'.$data['logo'].'"/>';
+                                echo '<img src="./upload/'.$data['logo'].'"/>';
                             } else {
-                                echo '<img src="./asset/img/logo.png"/>
-                            </div>
+                                echo '<img src="./asset/img/logo.png"/>';
+                            }
+                             echo '</div>
                             <h5>';
                             if(!empty($data['nama'])){
                                 echo ''.$data['nama'].'';
@@ -30,7 +31,6 @@
                         </div>
                     </div>
                 </div>';
-                            }
         }
     } else {
         header("Location:../");

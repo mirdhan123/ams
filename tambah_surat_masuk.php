@@ -60,9 +60,9 @@
                               </script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z0-9., ]*$/", $indeks)){
+                    if(!preg_match("/^[a-zA-Z0-9., -]*$/", $indeks)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,).");
+                                window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,) dan minus (-)");
                                 window.location.href="./admin.php?page=tsm&act=add";
                               </script>';
                 } else {
@@ -91,21 +91,25 @@
                                   </script>';
                         } else {
 
-                            $ekstensi = array('jpg','png','jpeg','');
-                            $file = rand(1,10000)."-".$_FILES['file']['name'];
+                            $ekstensi = array('jpg','png','jpeg');
+                            $file = $_FILES['file']['name'];
                             $x = explode('.', $file);
                             $eks = strtolower(end($x));
                             $ukuran = $_FILES['file']['size'];
                             $target_dir = "upload/surat_masuk/";
 
+                            if($file != ""){
+
+                            $rand = rand(1,10000);
+                            $nfile = $rand."-".$file;
                             if(in_array($eks, $ekstensi) == true){
                                 if($ukuran < 2000000){
 
-                                    move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$file);
+                                    move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
                                     $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
                                         tgl_diterima,file,keterangan,id_user)
-                                        VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$file','$keterangan','$id_user')");
+                                        VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$nfile','$keterangan','$id_user')");
 
                                     if($query == true){
                                         echo '<script language="javascript">
@@ -130,7 +134,24 @@
                                         window.location.href="./admin.php?page=tsm&act=add";
                                       </script>';
                         }
+                    } else {
+                        $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
+                            tgl_diterima,keterangan,id_user)
+                            VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan','$id_user')");
+
+                        if($query == true){
+                            echo '<script language="javascript">
+                                    window.alert("SUKSES! Data berhasil ditambahkan.");
+                                    window.location.href="./admin.php?page=tsm";
+                                  </script>';
+                        } else {
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Periksa penulisan querynya.");
+                                    window.location.href="./admin.php?page=tsm&act=add";
+                                  </script>';
                         }
+                    }
+                }
                 }
                 }
                 }

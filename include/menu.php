@@ -8,9 +8,26 @@
     <ul id="slide-out" class="side-nav" data-simplebar-direction="vertical">
         <li class="no-padding">
             <div class="logo-side center blue-grey darken-3">
-                <img src="./asset/img/logo.png"/>
-                <h5 class="smk-side">SMK  Al - Husna Loceret Nganjuk</h5>
-                <p class="description-side">Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471</p>
+                <?php
+                    $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                    while($data = mysqli_fetch_array($query)){
+                        if(!empty($data['logo'])){
+                            echo '<img src="./upload/'.$data['logo'].'"/>';
+                        } else {
+                            echo '<img src="./asset/img/logo.png"/>';
+                        }
+                        if(!empty($data['nama'])){
+                            echo '<h5 class="smk-side">'.$data['nama'].'</h5>';
+                        } else {
+                            echo '<h5 class="smk-side">SMK  Al - Husna Loceret Nganjuk</h5>';
+                        }
+                        if(!empty($data['alamat'])){
+                            echo '<p class="description-side">'.$data['alamat'].'</p>';
+                        } else {
+                            echo '<p class="description-side">Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471</p>';
+                        }
+                    }
+                ?>
             </div>
         </li>
         <li class="no-padding blue-grey darken-4">
@@ -79,7 +96,7 @@
                     <a class="collapsible-header"><i class="material-icons">settings</i> Pengaturan</a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="?page=sett&sub=ins">Instansi</a></li>
+                            <li><a href="?page=sett">Instansi</a></li>
                             <li><a href="?page=sett&sub=usr">User</a></li>
                         </ul>
                     </div>
@@ -118,7 +135,7 @@
             if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){ ?>
         <li><a class="dropdown-button" href="#!" data-activates="pengaturan">Pengaturan <i class="material-icons md-18">arrow_drop_down</i></a></li>
             <ul id='pengaturan' class='dropdown-content'>
-                <li><a href="?page=sett&sub=ins">Instansi</a></li>
+                <li><a href="?page=sett">Instansi</a></li>
                 <li><a href="?page=sett&sub=usr">User</a></li>
             </ul>
         <?php
