@@ -10,9 +10,9 @@
             if ($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == ""
                 || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
                 echo '<script language="javascript">
-                window.alert("ERROR! Semua form wajib diisi.");
-                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                </script>';
+                        window.alert("ERROR! Semua form wajib diisi.");
+                        window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                      </script>';
             } else {
 
                 $id_surat = $_REQUEST['id_surat'];
@@ -56,28 +56,28 @@
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,).");
+                                window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,)");
                                 window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
                               </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., -]*$/", $indeks)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,) dan minus (-)");
+                                window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, titik(.) koma(,) dan minus (-)");
                                 window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
                               </script>';
                 } else {
 
                     if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan minus(-).");
+                                window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan minus(-)");
                                 window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
                               </script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $keterangan)){
+                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $keterangan)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), dan kurung().");
+                                window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), minus (-) dan kurung()");
                                 window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
                               </script>';
                 }
@@ -101,7 +101,7 @@
                                 list($file) = mysqli_fetch_array($query);
 
                                 if(!empty($file)){
-                                    unlink("./upload/surat_masuk/".$file);
+                                    unlink($target_dir.$file);
 
                                     move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
@@ -186,7 +186,7 @@
                 <nav class="secondary-nav">
                     <div class="nav-wrapper blue-grey darken-1">
                         <ul class="left">
-                            <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">edit</i> Edit Surat Masuk</a></li>
+                            <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">edit</i> Edit Data Surat Masuk</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -251,7 +251,7 @@
                             <input type="file" id="file" name="file">
                           </div>
                           <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Upload file scan Surat Masuk">
+                            <input class="file-path validate" type="text" value="<?php echo $file ;?>" placeholder="Upload file scan Surat Masuk">
                           </div>
                         </div>
                     </div>

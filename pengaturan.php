@@ -42,41 +42,41 @@
 
                         if(!empty($logo)){
 
-                        if(in_array($eks, $ekstensi) == true){
-                            if($ukuran < 2000000){
+                            if(in_array($eks, $ekstensi) == true){
+                                if($ukuran < 2000000){
 
-                                $query = mysqli_query($config, "SELECT logo FROM tbl_instansi");
-                                list($logo) = mysqli_fetch_array($query);
+                                    $query = mysqli_query($config, "SELECT logo FROM tbl_instansi");
+                                    list($logo) = mysqli_fetch_array($query);
 
-                                unlink("upload/".$logo);
+                                    unlink("upload/".$logo);
 
-                                move_uploaded_file($_FILES['logo']['tmp_name'], 'upload/'.$logo);
+                                    move_uploaded_file($_FILES['logo']['tmp_name'], 'upload/'.$logo);
 
-                                $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$logo' WHERE id_instansi='$id_instansi'");
+                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$logo' WHERE id_instansi='$id_instansi'");
 
-                                if($query == true){
-                                    echo '<script language="javascript">
-                                            window.alert("SUKSES! Data berhasil diupdate.");
-                                            window.location.href="./admin.php?page=sett";
-                                          </script>';
+                                    if($query == true){
+                                        echo '<script language="javascript">
+                                                window.alert("SUKSES! Data berhasil diupdate.");
+                                                window.location.href="./admin.php?page=sett";
+                                              </script>';
+                                    } else {
+                                        echo '<script language="javascript">
+                                                window.alert("ERROR! Periksa penulisan querynya.");
+                                                window.location.href="./admin.php?page=sett";
+                                              </script>';
+                                    }
                                 } else {
                                     echo '<script language="javascript">
-                                            window.alert("ERROR! Periksa penulisan querynya.");
+                                            window.alert("ERROR! Ukuran file yang diupload maksimal 2 MB.");
                                             window.location.href="./admin.php?page=sett";
                                           </script>';
-                                }
-                            } else {
-                                echo '<script language="javascript">
-                                        window.alert("ERROR! Ukuran file yang diupload maksimal 2 MB.");
-                                        window.location.href="./admin.php?page=sett";
-                                      </script>';
+                            }
+                        } else {
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! File yang diupload bukan gambar. Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG.");
+                                    window.location.href="./admin.php?page=sett";
+                                  </script>';
                         }
-                    } else {
-                        echo '<script language="javascript">
-                                window.alert("ERROR! File yang diupload bukan gambar. Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG.");
-                                window.location.href="./admin.php?page=sett";
-                              </script>';
-                    }
                 } else {
 
                     $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email' WHERE id_instansi='$id_instansi'");

@@ -1,22 +1,18 @@
 <?php
-    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
     if(empty($_SESSION['admin'])){
 
-        //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
         header("Location: ./");
         die();
     } else {
         if(isset($_REQUEST['submit'])){
 
-            /* Memeriksa apakah form diisi atau tidak, jika kosong maka akan menampilkan pesan untuk mengisinya dan jika
-            ada isinya proses akan dilanjutkan */
             if ($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['tujuan'] == "" || $_REQUEST['isi'] == ""
                 || $_REQUEST['kode'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
                 echo '<script language="javascript">
-                window.alert("ERROR! Semua form wajib diisi.");
-                window.location.href="./admin.php?page=tsk&act=add";
-                </script>';
+                        window.alert("ERROR! Semua form wajib diisi.");
+                        window.location.href="./admin.php?page=tsk&act=add";
+                      </script>';
             } else {
 
                 $no_agenda = $_REQUEST['no_agenda'];
@@ -28,115 +24,124 @@
                 $keterangan = $_REQUEST['keterangan'];
                 $id_user = $_SESSION['id_user'];
 
-                //Validasi input data
                 if(!preg_match("/^[0-9]*$/", $no_agenda)){
                     echo '<script language="javascript">
-                    window.alert("ERROR! Form NOMOR AGENDA harus diisi angka.");
-                    window.location.href="./admin.php?page=tsk&act=add";
-                    </script>';
+                            window.alert("ERROR! Form NOMOR AGENDA harus diisi angka.");
+                            window.location.href="./admin.php?page=tsk&act=add";
+                          </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.\/ ]*$/", $no_surat)){
                         echo '<script language="javascript">
-                        window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan garis miring(/).");
-                        window.location.href="./admin.php?page=tsk&act=add";
-                        </script>';
+                                window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan garis miring(/).");
+                                window.location.href="./admin.php?page=tsk&act=add";
+                              </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9. ]*$/", $tujuan)){
                         echo '<script language="javascript">
-                        window.alert("ERROR! Form TUJUAN SURAT hanya boleh mengandung huruf, angka, spasi dan tanda titik(.).");
-                        window.location.href="./admin.php?page=tsk&act=add";
-                        </script>';
+                                window.alert("ERROR! Form TUJUAN SURAT hanya boleh mengandung huruf, angka, spasi dan tanda titik(.).");
+                                window.location.href="./admin.php?page=tsk&act=add";
+                              </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi)){
                         echo '<script language="javascript">
-                        window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
-                        window.location.href="./admin.php?page=tsk&act=add";
-                        </script>';
+                                window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
+                                window.location.href="./admin.php?page=tsk&act=add";
+                              </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
                         echo '<script language="javascript">
-                        window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
-                        window.location.href="./admin.php?page=tsk&act=add";
-                        </script>';
+                                window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
+                                window.location.href="./admin.php?page=tsk&act=add";
+                              </script>';
                 } else {
 
                     if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
                         echo '<script language="javascript">
-                        window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan tanda minus(-).");
-                        window.location.href="./admin.php?page=tsk&act=add";
-                        </script>';
+                                window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan tanda minus(-).");
+                                window.location.href="./admin.php?page=tsk&act=add";
+                              </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $keterangan)){
                         echo '<script language="javascript">
-                        window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
-                        window.location.href="./admin.php?page=tsk&act=add";
-                        </script>';
+                                window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
+                                window.location.href="./admin.php?page=tsk&act=add";
+                              </script>';
                 }
 
-                        //Cek apakah nomor surat sudah ada di database
-                        $cek = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE no_surat='$no_surat'");
-                        $result = mysqli_num_rows($cek);
+                    $cek = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE no_surat='$no_surat'");
+                    $result = mysqli_num_rows($cek);
 
-                        //Jika nomor surat sudah ada di database akan menampilkan pesan error
-                        if($result > 0){
-                            echo '<script language="javascript">
-                            window.alert("ERROR! Terjadi duplikasi data NOMOR SURAT.");
-                            window.location.href="./admin.php?page=tsk&act=add";
-                            </script>';
+                    if($result > 0){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Terjadi duplikasi data NOMOR SURAT.");
+                                window.location.href="./admin.php?page=tsk&act=add";
+                              </script>';
                         } else {
 
-                            //Query upload image
+                            $ekstensi = array('jpg','png','jpeg');
                             $file = $_FILES['file']['name'];
-                            $target_dir = "upload/keluar/";
-                            $imageFileType = pathinfo($file, PATHINFO_EXTENSION);
+                            $x = explode('.', $file);
+                            $eks = strtolower(end($x));
+                            $ukuran = $_FILES['file']['size'];
+                            $target_dir = "upload/surat_keluar/";
 
-                            //Cek apakah file yang di upload adalah benar-benar file gambar
-                            if (isset($_POST['submit'])){
-                                /*
-                                $check = getimagesize($_FILES['file']['tmp_name']);
-                                if($check == false){
-                                    echo '<script language="javascript">window.alert("ERROR! File yang diupload bukan gambar.");window.location.href="./admin.php?page=tsk&act=add";</script>';
-                                } */
+                            if($file != ""){
 
-                            //Cek apakah file sudah ada
-                            if(file_exists($file)){
-                                echo '<script language="javascript">window.alert("ERROR! File yang diupload sudah ada dalam database.");window.location.href="./admin.php?page=tsk&act=add";</script>';
+                                $rand = rand(1,10000);
+                                $nfile = $rand."-".$file;
+                                if(in_array($eks, $ekstensi) == true){
+                                    if($ukuran < 2000000){
+
+                                        move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
+
+                                        $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda,tujuan,no_surat,isi,kode,tgl_surat,
+                                            tgl_catat,file,keterangan,id_user)
+                                            VALUES('$no_agenda','$tujuan','$no_surat','$isi','$kode','$tgl_surat',NOW(),'$nfile','$keterangan','$id_user')");
+
+                                        if($query == true){
+                                            echo '<script language="javascript">
+                                            window.location.href="./admin.php?page=tsk";
+                                                    window.alert("SUKSES! Data berhasil ditambahkan.");
+                                                  </script>';
+                                        } else {
+                                            echo '<script language="javascript">
+                                                    window.alert("ERROR! Periksa penulisan querynya.");
+                                                    window.location.href="./admin.php?page=tsk&act=add";
+                                                  </script>';
+                                        }
+                                    } else {
+                                        echo '<script language="javascript">
+                                                window.alert("ERROR! Ukuran file yang diupload maksimal 2 MB.");
+                                                window.location.href="./admin.php?page=tsk&act=add";
+                                              </script>';
+                                }
+                            } else {
+                                    echo '<script language="javascript">
+                                            window.alert("ERROR! File yang diupload bukan gambar. Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG.");
+                                            window.location.href="./admin.php?page=tsk&act=add";
+                                          </script>';
                             }
+                        } else {
+                            $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda,tujuan,no_surat,isi,kode,tgl_surat,
+                                tgl_catat,keterangan,id_user)
+                                VALUES('$no_agenda','$tujuan','$no_surat','$isi','$kode','$tgl_surat',NOW(),'$keterangan','$id_user')");
 
-                            //Cek ukuran file
-                            if($_FILES['file']['size'] > 2000000){
-                                echo '<script language="javascript">window.alert("ERROR! Ukuran file yang diupload terlalu besar.");window.location.href="./admin.php?page=tsk&act=add";</script>';
-                            }
-
-                            //Cek format gambar
-                            if($imageFileType != "" && $imageFileType != "JPG" && $imageFileType != "jpg" && $imageFileType != "JPEG" && $imageFileType != "jpeg" && $imageFileType != "PNG" && $imageFileType != "png"){
-                                echo '<script language="javascript">window.alert("ERROR! Format file yang diperbolehkan hanya *.JPG, *.JPEG dan *.PNG.");window.location.href="./admin.php?page=tsk&act=add";</script>';
-                            }
-
-                            move_uploaded_file($_FILES['file']['tmp_name'], 'upload/surat_keluar/'.$file);
-
-                            //Query insert data
-                            $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda,no_surat,tujuan,isi,kode,tgl_surat,
-                                tgl_catat,file,keterangan,id_user)
-                                VALUES('$no_agenda','$no_surat','$tujuan','$isi','$kode','$tgl_surat',NOW(),'$file','$keterangan','$id_user')");
-
-                            //Jika query berhasil user akan diarahkan kembali ke halaman transact surat masuk
                             if($query == true){
                                 echo '<script language="javascript">
-                                window.alert("SUKSES! Data berhasil ditambahkan.");
-                                window.location.href="./admin.php?page=tsk";
-                                </script>';
+                                        window.alert("SUKSES! Data berhasil ditambahkan.");
+                                        window.location.href="./admin.php?page=tsk";
+                                      </script>';
                             } else {
                                 echo '<script language="javascript">
-                                window.alert("ERROR! Periksa penulisan querynya.");
-                                window.location.href="./admin.php?page=tsk&act=add";
-                                </script>';
-                                }
+                                        window.alert("ERROR! Periksa penulisan querynya.");
+                                        window.location.href="./admin.php?page=tsk&act=add";
+                                      </script>';
+                            }
                         }
                     }
                 }
@@ -144,9 +149,9 @@
                 }
             }
             }
-            }
         }
-    } else {
+    }
+} else {
 ?>
 <!-- Row Start -->
 <div class="row">
@@ -155,7 +160,7 @@
         <nav class="secondary-nav">
             <div class="nav-wrapper blue-grey darken-1">
                 <ul class="left">
-                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error. Khusus form file gambar/scan surat boleh tidak diisi"><a href="#" class="judul"><i class="material-icons">drafts</i> Tambah Data Surat Keluar</a></li>
+                    <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">drafts</i> Tambah Data Surat Keluar</a></li>
                 </ul>
             </div>
         </nav>
@@ -208,7 +213,7 @@
                 <label for="isi">Isi Ringkas</label>
             </div>
             <div class="input-field col s6">
-                <div class="file-field input-field">
+                <div class="file-field input-field tooltipped" data-position="top" data-tooltip="Jika tidak ada file scan/gambar surat, biarkan kosong">
                   <div class="btn light-green darken-1">
                     <span>File</span>
                     <input type="file" id="file" name="file">
@@ -232,8 +237,6 @@
 
     </form>
     <!-- Form END -->
-
-
 
 </div>
 <!-- Row form END -->

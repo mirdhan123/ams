@@ -37,8 +37,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            opacity: 0.2;
-            filter:alpha(opacity=20);
+            opacity: 0.18;
+            filter:alpha(opacity=18);
         }
         #header-instansi {
             margin-top: 1%;
@@ -105,22 +105,25 @@
                 color: #212121;
             }
             th, td{
-                border: 0.8px solid #444;
+                border: 1px solid #444 !important;
             }
             th{
-                padding: 3px 5px;
+                padding: 5px;
                 display: table-cell;
                 text-align: center;
                 vertical-align: middle;
             }
             td{
-                padding: 0 4px;
+                padding: 5px;
             }
             table {
               border-collapse: collapse;
               border-spacing: 0;
               font-size: 12px;
               color: #212121;
+            }
+            .container {
+                margin-top: -20px !important;
             }
         }
         .footer-copyright {

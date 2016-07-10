@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div id="colres" class="warna cetak">
-                        <table class="bordered" id="tbl">
+                        <table class="bordered" id="tbl" width="100%">
                             <thead class="blue lighten-4">
                                 <tr>
                                     <th width="3%">No</th>

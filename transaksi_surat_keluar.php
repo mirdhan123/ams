@@ -1,14 +1,11 @@
 <?php
-    //Cek session user yang login. Jika tidak ditemukan user yang login akan menampilkan pesan error
     if(empty($_SESSION['admin'])){
 
-        //Menampilkan pesan error dan mengarahkan ke halaman login
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
         header("Location: ./");
         die();
     } else {
 
-        //Request url aksi menggunakan fungsi switch case
         if(isset($_REQUEST['act'])){
             $act = $_REQUEST['act'];
             switch ($act) {
@@ -27,14 +24,13 @@
             $limit = 5;
             $pg = @$_GET['pg'];
                 if(empty($pg)){
-                    $posisi = 0;
+                    $curr = 0;
                     $pg = 1;
                 } else {
-                    $posisi = ($pg - 1) * $limit;
+                    $curr = ($pg - 1) * $limit;
                 }
 
-                    //Melakukan query ke tabel surat masuk
-                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar LIMIT $posisi, $limit");
+                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar LIMIT $curr, $limit");
 
 echo '<!-- Row Start -->
 <div class="row">
@@ -89,11 +85,11 @@ echo '<!-- Row Start -->
             $no = 1;
             while($row = mysqli_fetch_array($query)){
               echo '<td>'.$row['no_agenda'].'<br/>'.$row['kode'].'</td>
-                    <td>'.$row['isi'].'<br/><br/><strong>File:';
+                    <td>'.$row['isi'].'<br/><br/><strong>File :</strong>';
                     if(!empty($row['file'])){
-                        echo ' <a href="upload/surat_keluar/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
+                        echo ' <strong><a href="upload/surat_keluar/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
                     } else {
-                        echo ' Tidak ada file yang diupload</strong>';
+                        echo ' <em>Tidak ada file yang diupload</em>';
                     } echo '</td>
                     <td>'.$row['tujuan'].'</td>
                     <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>

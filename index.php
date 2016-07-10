@@ -46,8 +46,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            opacity: 0.2;
-            filter:alpha(opacity=20);
+            opacity: 0.18;
+            filter:alpha(opacity=18);
             height:100%;
             width:100%;
         }

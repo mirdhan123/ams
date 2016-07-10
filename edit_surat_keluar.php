@@ -1,127 +1,267 @@
- <!doctype html>
-<html lang="en">
+<?php
+    if(empty($_SESSION['admin'])){
 
-<!-- Include Head BEGIN -->
-<?php include('include/head.php'); ?>
-<!-- Include Head END -->
+        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        header("Location: ./");
+        die();
+    } else {
+        if(isset($_REQUEST['submit'])){
 
-<!-- Body BEGIN -->
-<body>
+            if ($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['tujuan'] == "" || $_REQUEST['isi'] == ""
+                || $_REQUEST['kode'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
+                echo '<script language="javascript">
+                        window.alert("ERROR! Semua form wajib diisi.");
+                        window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                      </script>';
+            } else {
 
-<!-- Header START -->
-<header>
+                $id_surat = $_REQUEST['id_surat'];
+                $no_agenda = $_REQUEST['no_agenda'];
+                $no_surat = $_REQUEST['no_surat'];
+                $tujuan = $_REQUEST['tujuan'];
+                $isi = $_REQUEST['isi'];
+                $kode = $_REQUEST['kode'];
+                $tgl_surat = $_REQUEST['tgl_surat'];
+                $keterangan = $_REQUEST['keterangan'];
+                $id_user = $_SESSION['id_user'];
 
-<!-- Include Navigation START -->
-<?php include('include/menu.php'); ?>
-<!-- Include Navigation END --> 
+                if(!preg_match("/^[0-9]*$/", $no_agenda)){
+                    echo '<script language="javascript">
+                            window.alert("ERROR! Form NOMOR AGENDA harus diisi angka.");
+                            window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                          </script>';
+                } else {
 
-</header>
-<!-- Header END --> 
+                    if(!preg_match("/^[a-zA-Z0-9.\/ ]*$/", $no_surat)){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan garis miring(/).");
+                                window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                              </script>';
+                } else {
 
-<!-- Main START -->
-<main>
+                    if(!preg_match("/^[a-zA-Z0-9. ]*$/", $tujuan)){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Form TUJUAN SURAT hanya boleh mengandung huruf, angka, spasi dan tanda titik(.).");
+                                window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                              </script>';
+                } else {
 
-    <!-- container START --> 
-    <div class="container">
+                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi)){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
+                                window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                              </script>';
+                } else {
 
-        <!-- Row Start -->
-        <div class="row">
-            <!-- Secondary Nav START -->
-            <div class="col s12">
-                <nav class="secondary-nav">
-                    <div class="nav-wrapper blue-grey darken-1">
-                        <ul class="left">
-                            <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">edit</i> Edit Data Surat Keluar</a></li>
-                        </ul>
-                    </div>
-                </nav>
+                    if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,).");
+                                window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                              </script>';
+                } else {
+
+                    if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan tanda minus(-).");
+                                window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                              </script>';
+                } else {
+
+                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $keterangan)){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), minus(-) dan kurung().");
+                                window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                              </script>';
+                } else {
+
+
+                    $ekstensi = array('jpg','png','jpeg');
+                    $file = $_FILES['file']['name'];
+                    $x = explode('.', $file);
+                    $eks = strtolower(end($x));
+                    $ukuran = $_FILES['file']['size'];
+                    $target_dir = "upload/surat_keluar/";
+
+                    if($file != ""){
+
+                        $rand = rand(1,10000);
+                        $nfile = $rand."-".$file;
+                        if(in_array($eks, $ekstensi) == true){
+                            if($ukuran < 2000000){
+
+                                $id_surat = $_REQUEST['id_surat'];
+                                $query = mysqli_query($config, "SELECT file FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
+                                list($file) = mysqli_fetch_array($query);
+
+                                if(!empty($file)){
+                                    unlink($target_dir.$file);
+
+                                    move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
+
+                                    $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda',tujuan='$tujuan',no_surat='$no_surat',isi='$isi',kode='$kode',tgl_surat='$tgl_surat',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+
+                                    if($query == true){
+                                        echo '<script language="javascript">
+                                                window.alert("SUKSES! Data berhasil diupdate.");
+                                                window.location.href="./admin.php?page=tsk";
+                                              </script>';
+                                    } else {
+                                        echo '<script language="javascript">
+                                                window.alert("ERROR! Periksa penulisan querynya.");
+                                                window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                                              </script>';
+                                    }
+                                } else {
+                                    move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
+
+                                    $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda',tujuan='$tujuan',no_surat='$no_surat',isi='$isi',kode='$kode',tgl_surat='$tgl_surat',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+
+                                    if($query == true){
+                                        echo '<script language="javascript">
+                                                window.alert("SUKSES! Data berhasil diupdate.");
+                                                window.location.href="./admin.php?page=tsk";
+                                              </script>';
+                                    } else {
+                                        echo '<script language="javascript">
+                                                window.alert("ERROR! Periksa penulisan querynya.");
+                                                window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                                              </script>';
+                                    }
+                                }
+                            } else {
+                                echo '<script language="javascript">
+                                        window.alert("ERROR! Ukuran file yang diupload maksimal 2 MB.");
+                                        window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                                      </script>';
+                        }
+                    } else {
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! File yang diupload bukan gambar. Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG.");
+                                    window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                                  </script>';
+                    }
+                } else {
+
+                    $id_surat = $_REQUEST['id_surat'];
+
+                    $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda',tujuan='$tujuan',no_surat='$no_surat',isi='$isi',kode='$kode',tgl_surat='$tgl_surat',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+
+                    if($query == true){
+                        echo '<script language="javascript">
+                                window.alert("SUKSES! Data berhasil diupdate.");
+                                window.location.href="./admin.php?page=tsk";
+                              </script>';
+                    } else {
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Periksa penulisan querynya.");
+                                window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
+                              </script>';
+                    }
+                }
+            }
+            }
+            }
+        }
+    }
+    }
+    }
+}
+} else {
+
+    $id_surat = $_REQUEST['id_surat'];
+    $query = mysqli_query($config, "SELECT id_surat, no_agenda, tujuan, no_surat, isi, kode, tgl_surat, file, keterangan, id_user FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
+    list($id_surat, $no_agenda, $tujuan, $no_surat, $isi, $kode, $tgl_surat, $file, $keterangan, $id_user) = mysqli_fetch_array($query);{
+?>
+<!-- Row Start -->
+<div class="row">
+    <!-- Secondary Nav START -->
+    <div class="col s12">
+        <nav class="secondary-nav">
+            <div class="nav-wrapper blue-grey darken-1">
+                <ul class="left">
+                    <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">edit</i> Edit Data Surat Keluar</a></li>
+                </ul>
             </div>
-            <!-- Secondary Nav END -->
-        </div>
-        <!-- Row END -->
-
-        <!-- Row form Start -->
-        <div class="row jarak-form">
-
-            <!-- Form START -->
-            <form class="col s12" method="POST" action="ceklogin.php">
-
-                <!-- Row in form START -->
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input id="nomor_agenda" type="number" class="validate">
-                        <label for="nomor_agenda">Nomor Agenda</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="kode_klasifikasi" type="text" class="validate" required>
-                        <label for="kode_klasifikasi">Kode Klasifikasi</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="asal_surat" type="text" class="validate" required>
-                        <label for="asal_surat">Asal Surat</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="indeks_berkas" type="text" class="validate"required>
-                        <label for="indeks_berkas">Indeks Berkas</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="nomor_surat" type="text" class="validate"required>
-                        <label for="nomor_surat">Nomor Surat</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="tanggal_surat" type="date" class="datepicker"required>
-                        <label for="tanggal_surat">Tanggal Surat</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <textarea id="isi_ringkas" class="materialize-textarea" required></textarea>
-                        <label for="isi_ringkas">Isi Ringkas</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <form action="#">
-                            <div class="file-field input-field">
-                                <div class="btn waves-effect waves-light">
-                                    <span>File</span>
-                                    <input type="file" required>
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Upload file scan surat">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="keterangan" type="text" class="validate" required>
-                        <label for="keterangan">Keterangan</label>
-                    </div>             
-                </div>
-                <!-- Row in form END -->
-
-                <div class="row">
-                    <div class="col 6">
-                        <button type="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
-                    </div>
-                    <div class="col 6">
-                        <button type="reset" onclick="window.history.back();" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></button>
-                    </div>
-                </div>
-
-            </form>
-            <!-- Form END -->
-
-        </div>
-        <!-- Row form END -->
-
+        </nav>
     </div>
-    <!-- container END --> 
+    <!-- Secondary Nav END -->
+</div>
+<!-- Row END -->
 
-</main>
-<!-- Main END --> 
+<!-- Row form Start -->
+<div class="row jarak-form">
 
-<!-- Include Footer START -->
-<?php include('include/footer.php'); ?>
-<!-- Include Footer END -->
+    <!-- Form START -->
+    <form class="col s12" method="POST" action="?page=tsk&act=edit" enctype="multipart/form-data">
 
-</body>
-<!-- Body END -->
+        <!-- Row in form START -->
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="hidden" name="id_surat" value="<?php echo $id_surat ;?>">
+                <i class="material-icons prefix md-prefix">looks_one</i>
+                <input id="no_agenda" type="number" class="validate" name="no_agenda" value="<?php echo $no_agenda ;?>" required>
+                <label for="no_agenda">Nomor Agenda</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">bookmark</i>
+                <input id="kode" type="text" class="validate" name="kode" value="<?php echo $kode ;?>" required>
+                <label for="kode">Kode Klasifikasi</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">place</i>
+                <input id="tujuan" type="text" class="validate" name="tujuan" value="<?php echo $tujuan ;?>" required>
+                <label for="tujuan">Tujuan Surat</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">looks_two</i>
+                <input id="no_surat" type="text" class="validate" name="no_surat" value="<?php echo $no_surat ;?>" required>
+                <label for="no_surat">Nomor Surat</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">date_range</i>
+                <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker" value="<?php echo $tgl_surat ;?>" required>
+                <label for="tgl_surat">Tanggal Surat</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">featured_play_list</i>
+                <input id="keterangan" type="text" class="validate" name="keterangan" value="<?php echo $keterangan ;?>" required>
+                <label for="keterangan">Keterangan</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix md-prefix">description</i>
+                <textarea id="isi" class="materialize-textarea validate" name="isi" required><?php echo $isi ;?></textarea>
+                <label for="isi">Isi Ringkas</label>
+            </div>
+            <div class="input-field col s6">
+                <div class="file-field input-field tooltipped" data-position="top" data-tooltip="Jika tidak ada file scan/gambar surat, biarkan kosong">
+                  <div class="btn light-green darken-1">
+                    <span>File</span>
+                    <input type="file" id="file" name="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" value="<?php echo $file ;?>" placeholder="Upload file scan Surat Keluar">
+                  </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row in form END -->
 
-</html>
+        <div class="row">
+            <div class="col 6">
+                <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
+            </div>
+            <div class="col 6">
+                <a href="?page=tsk" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+            </div>
+        </div>
+
+    </form>
+    <!-- Form END -->
+
+</div>
+<!-- Row form END -->
+<?php
+}
+}
+}
+?>
