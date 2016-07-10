@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     session_start();
 
     if(empty($_SESSION['admin'])){
@@ -16,7 +17,7 @@
 <!-- Include Head END -->
 
 <!-- Body START -->
-<body>
+<body class="bg">
 
 <!-- Header START -->
 <header>
