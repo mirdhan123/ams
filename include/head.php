@@ -22,24 +22,6 @@
     <!-- Global style START -->
     <link type="text/css" rel="stylesheet" href="./asset/css/materialize.css"  media="screen,projection"/>
     <style type="text/css">
-        body {
-            background: #fff;
-        }
-        .bg::before {
-            content: '';
-            background-image: url('./asset/img/bg.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            position: absolute;
-            z-index: -1;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            opacity: 0.18;
-            filter:alpha(opacity=18);
-        }
         #header-instansi {
             margin-top: 1%;
         }
