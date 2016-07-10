@@ -113,7 +113,7 @@ echo '
                         <tr>
                             <td id="right" width="18%"><strong>Indeks Berkas</strong></td>
                             <td id="left" style="border-right: none;" width="57%">: '.$row['indeks'].'</td>
-                            <td id="left" iwidth="25"><strong>Kode</strong> : '.$row['kode'].'</td>
+                            <td id="left" width="25"><strong>Kode</strong> : '.$row['kode'].'</td>
                         </tr>
                         <tr>
                             <td id="right"><strong>Tanggal/Nomor</strong></td>

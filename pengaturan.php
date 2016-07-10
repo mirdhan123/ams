@@ -42,17 +42,18 @@
 
                         if(!empty($logo)){
 
+                            $nlogo = $logo;
                             if(in_array($eks, $ekstensi) == true){
                                 if($ukuran < 2000000){
 
                                     $query = mysqli_query($config, "SELECT logo FROM tbl_instansi");
                                     list($logo) = mysqli_fetch_array($query);
 
-                                    unlink("upload/".$logo);
+                                    unlink($target_dir.$logo);
 
-                                    move_uploaded_file($_FILES['logo']['tmp_name'], 'upload/'.$logo);
+                                    move_uploaded_file($_FILES['logo']['tmp_name'], $target_dir.$nlogo);
 
-                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$logo' WHERE id_instansi='$id_instansi'");
+                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$nlogo' WHERE id_instansi='$id_instansi'");
 
                                     if($query == true){
                                         echo '<script language="javascript">
