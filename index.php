@@ -46,8 +46,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            opacity: 0.18;
-            filter:alpha(opacity=18);
+            opacity: 0.12;
+            filter:alpha(opacity=12);
             height:100%;
             width:100%;
         }
@@ -113,7 +113,7 @@
 <!-- Head END -->
 
 <!-- Body START -->
-<body class="bg">
+<body class="grey lighten-1 bg">
 
     <!-- Container START -->
     <div class="container">
