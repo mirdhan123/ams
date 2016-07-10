@@ -34,7 +34,7 @@
                           </script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $isi_disposisi)){
+                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi_disposisi)){
                         echo '<script language="javascript">
                                 window.alert("ERROR! Form ISI DISPOSISI hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@)");
                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$id_disposisi.'";
