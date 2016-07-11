@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -12,10 +13,11 @@
             $no = 1;
             list($id_surat) = mysqli_fetch_array($query);
 
+            //validasi form kosong
             if ($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
                 || $_REQUEST['catatan'] == ""){
                 echo '<script language="javascript">
-                        window.alert("ERROR! Semua form wajib diisi.");
+                        window.alert("ERROR! Semua form wajib diisi");
                         window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                       </script>';
             } else {
@@ -26,6 +28,7 @@
                 $batas_waktu = $_REQUEST['batas_waktu'];
                 $catatan = $_REQUEST['catatan'];
 
+                //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9.,\/ ]*$/", $tujuan)){
                     echo '<script language="javascript">
                             window.alert("ERROR! Form TUJUAN DISPOSISI hanya boleh mengandung huruf, angka, spasi titik(.), koma(,) dan garis miring(/)");
@@ -81,83 +84,82 @@
                     }
                 }
             }
-        } else {
-?>
+        } else {?>
 
-<!-- Row Start -->
-<div class="row">
-    <!-- Secondary Nav START -->
-    <div class="col s12">
-        <nav class="secondary-nav">
-            <div class="nav-wrapper blue-grey darken-1">
-                <ul class="left">
-                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error."><a href="#" class="judul"><i class="material-icons">description</i> Tambah Disposisi Surat</a></li>
-                </ul>
+            <!-- Row Start -->
+            <div class="row">
+                <!-- Secondary Nav START -->
+                <div class="col s12">
+                    <nav class="secondary-nav">
+                        <div class="nav-wrapper blue-grey darken-1">
+                            <ul class="left">
+                                <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error."><a href="#" class="judul"><i class="material-icons">description</i> Tambah Disposisi Surat</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!-- Secondary Nav END -->
             </div>
-        </nav>
-    </div>
-    <!-- Secondary Nav END -->
-</div>
-<!-- Row END -->
+            <!-- Row END -->
 
-<!-- Row form Start -->
-<div class="row jarak-form">
+            <!-- Row form Start -->
+            <div class="row jarak-form">
 
-    <!-- Form START -->
-    <form class="col s12" method="post" action="">
+                <!-- Form START -->
+                <form class="col s12" method="post" action="">
 
-        <!-- Row in form START -->
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix md-prefix">place</i>
-                <input id="tujuan" type="text" class="validate" name="tujuan" required>
-                <label for="tujuan">Tujuan Disposisi</label>
-            </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix md-prefix">date_range</i>
-                <input id="batas_waktu" type="date" name="batas_waktu" class="datepicker" required>
-                <label for="batas_waktu">Batas Waktu</label>
-            </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix md-prefix">description</i>
-                <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required></textarea>
-                <label for="isi_disposisi">Isi Disposisi</label>
-            </div>
+                    <!-- Row in form START -->
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix md-prefix">place</i>
+                            <input id="tujuan" type="text" class="validate" name="tujuan" required>
+                            <label for="tujuan">Tujuan Disposisi</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix md-prefix">date_range</i>
+                            <input id="batas_waktu" type="date" name="batas_waktu" class="datepicker" required>
+                            <label for="batas_waktu">Batas Waktu</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix md-prefix">description</i>
+                            <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required></textarea>
+                            <label for="isi_disposisi">Isi Disposisi</label>
+                        </div>
 
-            <div class="input-field col s6">
-                <i class="material-icons prefix md-prefix">featured_play_list   </i>
-                <input id="catatan" type="text" class="validate" name="catatan" required>
-                <label for="catatan">Catatan</label>
-            </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Sifat Disposisi</label><br/>
-                <div class="input-field col s11 right">
-                    <select class="browser-default validate" name="sifat" id="sifat" required>
-                        <option value="Biasa">Biasa</option>
-                        <option value="Penting">Penting</option>
-                        <option value="Segera">Segera</option>
-                        <option value="Perlu Perhatian Khusus">Perlu Perhatian Khusus</option>
-                        <option value="Perhatian Batas Waktu">Perhatian Batas Waktu</option>
-                </select>
-            </div>
-        </div>
-        <!-- Row in form END -->
-        <br/>
-        <div class="row">
-            <div class="col 6">
-                <button type="submit" name ="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
-            </div>
-            <div class="col 6">
-                <button type="reset" onclick="window.history.back();" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></button>
-            </div>
-        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix md-prefix">featured_play_list   </i>
+                            <input id="catatan" type="text" class="validate" name="catatan" required>
+                            <label for="catatan">Catatan</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Sifat Disposisi</label><br/>
+                            <div class="input-field col s11 right">
+                                <select class="browser-default validate" name="sifat" id="sifat" required>
+                                    <option value="Biasa">Biasa</option>
+                                    <option value="Penting">Penting</option>
+                                    <option value="Segera">Segera</option>
+                                    <option value="Perlu Perhatian Khusus">Perlu Perhatian Khusus</option>
+                                    <option value="Perhatian Batas Waktu">Perhatian Batas Waktu</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Row in form END -->
+                    <br/>
+                    <div class="row">
+                        <div class="col 6">
+                            <button type="submit" name ="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
+                        </div>
+                        <div class="col 6">
+                            <button type="reset" onclick="window.history.back();" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></button>
+                        </div>
+                    </div>
 
-    </form>
-    <!-- Form END -->
+                </form>
+                <!-- Form END -->
 
-</div>
-<!-- Row form END -->
+            </div>
+            <!-- Row form END -->
 <?php
-}
-}
+        }
+    }
 ?>

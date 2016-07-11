@@ -1,5 +1,6 @@
 <?php
     ob_start();
+    //cek session
     session_start();
 
     if(empty($_SESSION['admin'])){
@@ -118,16 +119,16 @@
             <!-- Welcome Message END -->
 
             <?php
-                //Menghitung jumlah surat masuk
+                //menghitung jumlah surat masuk
                 $count1 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk"));
 
-                //Menghitung jumlah surat masuk
+                //menghitung jumlah surat masuk
                 $count2 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_keluar"));
 
-                //Menghitung jumlah surat masuk
+                //menghitung jumlah surat masuk
                 $count3 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_disposisi"));
 
-                //Menghitung jumlah pengguna
+                //menghitung jumlah pengguna
                 $count4 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
             ?>
 

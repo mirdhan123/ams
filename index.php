@@ -1,6 +1,7 @@
 <?php
     session_start();
 
+    //cek session
     if(isset($_SESSION['admin'])){
         header("Location: ./admin.php");
         die();
@@ -174,6 +175,7 @@
 
                         if(isset($_REQUEST['submit'])){
 
+                            //validasi form kosong
                             if($_REQUEST['username'] == "" || $_REQUEST['password'] == ""){
                                 echo '<div class="upss red-text"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.
                                 <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke halaman login</a></div>';
@@ -188,6 +190,8 @@
                                     list($id_user, $username, $nama, $nip, $admin) = mysqli_fetch_array($query);
 
                                     session_start();
+
+                                    //buat session
                                     $_SESSION['id_user'] = $id_user;
                                     $_SESSION['username'] = $username;
                                     $_SESSION['nama'] = $nama;
@@ -198,6 +202,7 @@
                                     die();
                                 } else {
 
+                                    //session error
                                     $_SESSION['err'] = '<strong>ERROR!</strong> Username dan Password tidak ditemukan.';
                                     header("Location: ./");
                                     die();

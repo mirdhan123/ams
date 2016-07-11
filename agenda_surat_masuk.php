@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -106,7 +107,7 @@
                                         echo ''.$row['id_user'].'</td>
                                         <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                                         <td>'.$row['keterangan'].'';
-                                 echo '</td>
+                                  echo ' </td>
                                 </tr>
                             </tbody>';
                                 }
@@ -116,7 +117,6 @@
                         </table>
                     </div>
                     <div class="jarak2"></div>';
-
         } else {
             echo '<!-- Row Start -->
                 <div class="row">

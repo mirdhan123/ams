@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -13,13 +14,15 @@
                 $uraian = $_REQUEST['uraian'];
                 $id_user = $_SESSION['admin'];
 
+                //validasi form kosong
                 if($_REQUEST['kode'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['uraian'] == ""){
                     echo '<script language="javascript">
-                            window.alert("ERROR! Semua form wajib diisi.");
+                            window.alert("ERROR! Semua form wajib diisi");
                             window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
                           </script>';
                 } else {
 
+                //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9. ]*$/", $kode)){
                     echo '<script language="javascript">
                             window.alert("ERROR! Form KODE hanya boleh mengandung karakter huruf, angka, spasi dan titik (.)");
@@ -36,7 +39,7 @@
 
                         if(!preg_match("/^[a-zA-Z0-9.,()\/\r\n  ]*$/", $uraian)){
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Form URAIAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung().");
+                                    window.alert("ERROR! Form URAIAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), dan kurung()");
                                     window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
                                   </script>';
                         } else {
@@ -45,12 +48,12 @@
 
                             if($query != false){
                                 echo '<script language="javascript">
-                                        window.alert("SUKSES! Data berhasil diupdate.");
+                                        window.alert("SUKSES! Data berhasil diupdate");
                                         window.location.href="./admin.php?page=ref";
                                       </script>';
                             } else {
                                 echo '<script language="javascript">
-                                        window.alert("ERROR! Periksa penulisan querynya.");
+                                        window.alert("ERROR! Periksa penulisan querynya");
                                         window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
                                       </script>';
                             }
@@ -123,8 +126,8 @@
             </div>
             <!-- Row form END -->
 <?php
-}
-}
-}
-}
+                }
+            }
+        }
+    }
 ?>

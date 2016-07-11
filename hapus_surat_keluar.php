@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -82,6 +83,7 @@
             	if(isset($_REQUEST['submit'])){
             		$id_surat = $_REQUEST['id_surat'];
 
+                    //jika ada file akan mengekseskusi script dibawah ini
                     if(!empty($row['file'])){
 
                         unlink("upload/surat_keluar/".$row['file']);
@@ -89,26 +91,28 @@
 
                 		if($query == true){
                             echo '<script language="javascript">
-                                    window.alert("SUKSES! Data berhasil dihapus.");
+                                    window.alert("SUKSES! Data berhasil dihapus");
                                     window.location.href="./admin.php?page=tsk";
                                   </script>';
                 		} else {
                             echo '<script language="javascript">
-                                window.alert("ERROR! Periksa penulisan querynya.");
+                                window.alert("ERROR! Periksa penulisan querynya");
                                 window.location.href="./admin.php?page=tsk&act=del&id_surat='.$id_surat.'";
                               </script>';
                 		}
                 	} else {
+
+                        //jika tidak ada file akan mengekseskusi script dibawah ini
                         $query = mysqli_query($config, "DELETE FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
 
                         if($query == true){
                             echo '<script language="javascript">
-                                    window.alert("SUKSES! Data berhasil dihapus.");
+                                    window.alert("SUKSES! Data berhasil dihapus");
                                     window.location.href="./admin.php?page=tsk";
                                   </script>';
                         } else {
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Periksa penulisan querynya.");
+                                    window.alert("ERROR! Periksa penulisan querynya");
                                     window.location.href="./admin.php?page=tsk&act=del&id_surat='.$id_surat.'";
                                   </script>';
                         }

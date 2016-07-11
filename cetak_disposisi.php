@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -100,7 +101,7 @@ echo '
                 if(mysqli_num_rows($query) > 0){
                     $no = 0;
                     while($row = mysqli_fetch_array($query)){
-                 echo ' <br/><tr>
+                        echo ' <br/><tr>
                             <td class="tgh" colspan="5">';
                                 $query2 = mysqli_query($config, "SELECT nama, alamat FROM tbl_instansi");
                                 list($nama, $alamat) = mysqli_fetch_array($query2);
@@ -152,15 +153,15 @@ echo '
                             </td>
                             <td><strong>Diteruskan Kepada</strong> : <br/>'.$row['tujuan'].'</td>
                         </tr>';
-                    }
-                    } else {
-                        echo '
-                        <tr height="300px">
-                            <td colspan="2"><strong>Isi Disposisi :</strong>
-                            </td>
-                            <td><strong>Diteruskan Kepada</strong> : </td>
-                        </tr>';
-                    }
+                            }
+                        } else {
+                            echo '
+                            <tr height="300px">
+                                <td colspan="2"><strong>Isi Disposisi :</strong>
+                                </td>
+                                <td><strong>Diteruskan Kepada</strong> : </td>
+                            </tr>';
+                        }
                     } echo '
             </tbody>
         </table>

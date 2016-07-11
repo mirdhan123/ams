@@ -1,5 +1,5 @@
 <?php
-    //Cek session login
+    //cek session
     if(!empty($_SESSION['admin'])){
 
         $query = mysqli_query($config, "SELECT * FROM tbl_instansi");

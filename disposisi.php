@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -21,6 +22,7 @@
             }
         } else {
 
+            //pagging
             $limit = 5;
             $pg = @$_GET['pg'];
                 if(empty($pg)){
@@ -105,10 +107,10 @@
                                                     </td>
                                             </tr>
                                         </tbody>';
-                                    }
-                                } else {
-                                    echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
-                                }
+                                                }
+                                            } else {
+                                                echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
+                                            }
                                 echo '</table>
                                 </div>
 
@@ -118,5 +120,4 @@
                 }
             }
         }
-
 ?>

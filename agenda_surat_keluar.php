@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -102,16 +103,17 @@
                                         } else {
                                             $row['id_user'] = 'Petugas Disposisi';
                                         }
-                                        echo ''.$row['id_user'].'</td>                                        <td>'.$row['keterangan'].'';
-                                 echo '</td>
+                                        echo ''.$row['id_user'].'</td>
+                                        <td>'.$row['keterangan'].'';
+                                 echo ' </td>
                                 </tr>
                             </tbody>';
-                                }
-                            } else {
-                               echo '<tr><td colspan="9"><center><h5>Tidak ada agenda surat</h5></center></td></tr>';
-                            } echo '
-                        </table>
-                    </div>
+                                    }
+                                } else {
+                                    echo '<tr><td colspan="9"><center><h5>Tidak ada agenda surat</h5></center></td></tr>';
+                                } echo '
+                            </table>
+                        </div>
                     <div class="jarak2"></div>';
         } else {
             echo '<!-- Row Start -->

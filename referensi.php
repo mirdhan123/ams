@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -21,6 +22,7 @@
             }
         } else {
 
+            //pagging
             $limit = 5;
             $pg = @$_GET['pg'];
                 if(empty($pg)){

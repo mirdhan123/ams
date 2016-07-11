@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -12,9 +13,10 @@
 
             if(isset($_REQUEST['submit'])){
 
+                //validasi form kosong
                 if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == ""){
                     echo '<script language="javascript">
-                            window.alert("ERROR! Semua form wajib diisi.");
+                            window.alert("ERROR! Semua form wajib diisi");
                             window.location.href="./admin.php?page=pro&sub=pass";
                           </script>';
                 } else {
@@ -25,6 +27,7 @@
                     $nama = $_REQUEST['nama'];
                     $nip = $_REQUEST['nip'];
 
+                    //validasi input data
                     if(!preg_match("/^[a-zA-Z0-9_]*$/", $username)){
                         echo '<script language="javascript">
                                 window.alert("ERROR! Form USERNAME hanya boleh mengandung karakter huruf, angka dan underscore (_)");
@@ -48,14 +51,14 @@
 
                                 if(strlen($username) < 5){
                                     echo '<script language="javascript">
-                                            window.alert("ERROR! USERNAME minimal 5 karakter.");
+                                            window.alert("ERROR! USERNAME minimal 5 karakter");
                                             window.location.href="./admin.php?page=pro&sub=pass";
                                           </script>';
                                 } else {
 
                                     if(strlen($password) < 5){
                                         echo '<script language="javascript">
-                                                window.alert("ERROR! PASSWORD minimal 5 karakter.");
+                                                window.alert("ERROR! PASSWORD minimal 5 karakter");
                                                 window.location.href="./admin.php?page=pro&sub=pass";
                                               </script>';
                                     } else {
@@ -63,25 +66,23 @@
                                         $query = mysqli_query($config, "SELECT password FROM tbl_user WHERE id_user='$id_user'
                                             AND password=MD5('$password_lama')");
                                         if(mysqli_num_rows($query) > 0){
-                                            $do = mysqli_query($config, "UPDATE tbl_user SET username='$username',
-                                                password=MD5('$password'), nama='$nama', nip='$nip' WHERE id_user='$id_user'");
-                                                if($query == true){
-                                                    echo '<script language="javascript">
-                                                            window.location.href="./logout.php";
-                                                          </script>';
-                                                } else {
-                                                    echo '<script language="javascript">
-                                                            window.alert("ERROR! Ada yang salah dengan querynya.");
-                                                            window.location.href="./admin.php?page=pro&sub=pass";
-                                                          </script>';
-                                                }
-                                            } else {
+                                            $do = mysqli_query($config, "UPDATE tbl_user SET username='$username', password=MD5('$password'), nama='$nama', nip='$nip' WHERE id_user='$id_user'");
+                                            if($query == true){
                                                 echo '<script language="javascript">
-                                                        window.alert("ERROR! Password lama tidak sesuai. Anda mungkin tidak memiliki akses ke halaman ini");
                                                         window.location.href="./logout.php";
                                                       </script>';
+                                            } else {
+                                                echo '<script language="javascript">
+                                                        window.alert("ERROR! Ada yang salah dengan querynya");
+                                                        window.location.href="./admin.php?page=pro&sub=pass";
+                                                      </script>';
                                             }
-
+                                        } else {
+                                            echo '<script language="javascript">
+                                                    window.alert("ERROR! Password lama tidak sesuai. Anda mungkin tidak memiliki akses ke halaman ini");
+                                                    window.location.href="./logout.php";
+                                                  </script>';
+                                        }
                                     }
                                 }
                             }
@@ -161,7 +162,7 @@
                 <!-- UPDATE PROFIL PAGE END-->
 
 <?php
-                    }
+            }
         } else {
 ?>
 
@@ -227,6 +228,6 @@
             <!-- SHOW PROFIL PAGE START-->
 
 <?php
-                }
-            }
+        }
+    }
 ?>

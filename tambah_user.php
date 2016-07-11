@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -7,6 +8,7 @@
     } else {
         if(isset($_REQUEST['submit'])){
 
+            //validasi form kosong
             if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == "" || $_REQUEST['admin'] == ""){
                 echo '<script language="javascript">
                         window.alert("ERROR! Semua form wajib diisi.");
@@ -20,6 +22,7 @@
                 $nip = $_REQUEST['nip'];
                 $admin = $_REQUEST['admin'];
 
+                //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9_]*$/", $username)){
                     echo '<script language="javascript">
                             window.alert("ERROR! Form USERNAME hanya boleh mengandung karakter huruf, angka dan underscore (_)");
@@ -165,6 +168,6 @@
             </div>
             <!-- Row form END -->
 <?php
-}
-}
+        }
+    }
 ?>

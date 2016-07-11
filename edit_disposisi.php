@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -12,6 +13,7 @@
             $no = 1;
             list($id_surat) = mysqli_fetch_array($query);
 
+            //validasi form kosong
             if ($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
                 || $_REQUEST['catatan'] == ""){
                 echo '<script language="javascript">
@@ -27,6 +29,7 @@
                 $batas_waktu = $_REQUEST['batas_waktu'];
                 $catatan = $_REQUEST['catatan'];
 
+                //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9.,\/ ]*$/", $tujuan)){
                     echo '<script language="javascript">
                             window.alert("ERROR! Form TUJUAN DISPOSISI hanya boleh mengandung huruf, angka, spasi titik(.), koma(,) dan garis miring(/)");
@@ -115,7 +118,7 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <input type="hidden" value="<?php echo $row['id_disposisi'] ;?>">
-                                <i class="material-icons prefix md-prefix">place</i>
+                                <i class="material-icons prefix md-prefix">account_box</i>
                                 <input id="tujuan" type="text" class="validate" name="tujuan" value="<?php echo $row['tujuan'] ;?>" required>
                                 <label for="tujuan">Tujuan Disposisi</label>
                             </div>
@@ -164,8 +167,8 @@
                 </div>
                 <!-- Row form END -->
 <?php
-}
-}
-}
-}
+                }
+            }
+        }
+    }
 ?>

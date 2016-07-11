@@ -1,4 +1,5 @@
 <?php
+    //session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -21,6 +22,7 @@
             }
         } else {
 
+            //pagging
             $limit = 5;
             $pg = @$_GET['pg'];
                 if(empty($pg)){
@@ -131,26 +133,28 @@
                                   <li class="disabled"><a href=""><i class="material-icons md-48">chevron_left</i></a></li>';
                         }
 
-                            for($i=1; $i <= $cpg; $i++)
-                                if($i != $pg){
-                                    echo '<li class="waves-effect waves-dark"><a href="?page=sett&sub=usr&pg='.$i.'"> '.$i.' </a></li>';
-                                } else {
-                                    echo '<li class="active waves-effect waves-dark"><a href="?page=sett&sub=usr&pg='.$i.'"> '.$i.' </a></li>';
-                                }
-
-                            if($pg < $cpg){
-                                $next = $pg + 1;
-                                echo '<li><a href="?page=sett&sub=usr&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
-                                      <li><a href="?page=sett&sub=usr&pg='.$cpg.'"><i class="material-icons md-48">last_page</i></a></li>';
+                        //perulangan pagging
+                        for($i=1; $i <= $cpg; $i++)
+                            if($i != $pg){
+                                echo '<li class="waves-effect waves-dark"><a href="?page=sett&sub=usr&pg='.$i.'"> '.$i.' </a></li>';
                             } else {
-                                echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
-                                      <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
+                                echo '<li class="active waves-effect waves-dark"><a href="?page=sett&sub=usr&pg='.$i.'"> '.$i.' </a></li>';
                             }
-                                echo ' </ul>
-                                       <!-- Pagination END -->';
+
+                        //last and next pagging
+                        if($pg < $cpg){
+                            $next = $pg + 1;
+                            echo '<li><a href="?page=sett&sub=usr&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
+                                  <li><a href="?page=sett&sub=usr&pg='.$cpg.'"><i class="material-icons md-48">last_page</i></a></li>';
+                        } else {
+                            echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
+                                  <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';
+                        }
+                            echo ' </ul>
+                                   <!-- Pagination END -->';
                     } else {
                         echo '';
-                    }
                 }
+        }
     }
 ?>

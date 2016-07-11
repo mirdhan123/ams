@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -7,10 +8,11 @@
     } else {
         if(isset($_REQUEST['submit'])){
 
+            //validasi form kosong
             if ($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == ""
                 || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
                 echo '<script language="javascript">
-                        window.alert("ERROR! Semua form wajib diisi.");
+                        window.alert("ERROR! Semua form wajib diisi");
                         window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
                       </script>';
             } else {
@@ -26,158 +28,166 @@
                 $keterangan = $_REQUEST['keterangan'];
                 $id_user = $_SESSION['id_user'];
 
+                //validasi input data
                 if(!preg_match("/^[0-9]*$/", $no_agenda)){
                     echo '<script language="javascript">
-                            window.alert("ERROR! Form NOMOR AGENDA harus diisi angka.");
+                            window.alert("ERROR! Form NOMOR AGENDA harus diisi angka");
                             window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
                           </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.\/ ]*$/", $no_surat)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, titik(.) dan garis miring(/).");
+                                window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, titik(.) dan garis miring(/)");
                                 window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
                               </script>';
-                } else {
-
-                    if(!preg_match("/^[a-zA-Z0-9. ]*$/", $asal_surat)){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi dan titik(.).");
-                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                              </script>';
-                } else {
-
-                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi)){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@).");
-                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                              </script>';
-                } else {
-
-                    if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,)");
-                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                              </script>';
-                } else {
-
-                    if(!preg_match("/^[a-zA-Z0-9., -]*$/", $indeks)){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, titik(.) koma(,) dan minus (-)");
-                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                              </script>';
-                } else {
-
-                    if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan minus(-)");
-                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                              </script>';
-                } else {
-
-                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $keterangan)){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), minus (-) dan kurung()");
-                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                              </script>';
-                }
-
-                    $ekstensi = array('jpg','png','jpeg');
-                    $file = $_FILES['file']['name'];
-                    $x = explode('.', $file);
-                    $eks = strtolower(end($x));
-                    $ukuran = $_FILES['file']['size'];
-                    $target_dir = "upload/surat_masuk/";
-
-                    if($file != ""){
-
-                        $rand = rand(1,10000);
-                        $nfile = $rand."-".$file;
-                        if(in_array($eks, $ekstensi) == true){
-                            if($ukuran < 2000000){
-
-                                $id_surat = $_REQUEST['id_surat'];
-                                $query = mysqli_query($config, "SELECT file FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-                                list($file) = mysqli_fetch_array($query);
-
-                                if(!empty($file)){
-                                    unlink($target_dir.$file);
-
-                                    move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
-
-                                    $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET no_agenda='$no_agenda',no_surat='$no_surat',asal_surat='$asal_surat',isi='$isi',kode='$kode',indeks='$indeks',tgl_surat='$tgl_surat',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
-
-                                    if($query == true){
-                                        echo '<script language="javascript">
-                                                window.alert("SUKSES! Data berhasil diupdate.");
-                                                window.location.href="./admin.php?page=tsm";
-                                              </script>';
-                                    } else {
-                                        echo '<script language="javascript">
-                                                window.alert("ERROR! Periksa penulisan querynya.");
-                                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                                              </script>';
-                                    }
-                                } else {
-                                    move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
-
-                                    $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET no_agenda='$no_agenda',no_surat='$no_surat',asal_surat='$asal_surat',isi='$isi',kode='$kode',indeks='$indeks',tgl_surat='$tgl_surat',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
-
-                                    if($query == true){
-                                        echo '<script language="javascript">
-                                                window.alert("SUKSES! Data berhasil diupdate.");
-                                                window.location.href="./admin.php?page=tsm";
-                                              </script>';
-                                    } else {
-                                        echo '<script language="javascript">
-                                                window.alert("ERROR! Periksa penulisan querynya.");
-                                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                                              </script>';
-                                    }
-                                }
-                            } else {
-                                echo '<script language="javascript">
-                                        window.alert("ERROR! Ukuran file yang diupload maksimal 2 MB.");
-                                        window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                                      </script>';
-                        }
                     } else {
+
+                        if(!preg_match("/^[a-zA-Z0-9. ]*$/", $asal_surat)){
                             echo '<script language="javascript">
-                                    window.alert("ERROR! File yang diupload bukan gambar. Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG.");
+                                    window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi dan titik(.)");
                                     window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
                                   </script>';
-                    }
-                } else {
+                        } else {
 
-                    $id_surat = $_REQUEST['id_surat'];
+                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi)){
+                                echo '<script language="javascript">
+                                        window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@)");
+                                        window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                                      </script>';
+                            } else {
 
-                    $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET no_agenda='$no_agenda',no_surat='$no_surat',asal_surat='$asal_surat',isi='$isi',kode='$kode',indeks='$indeks',tgl_surat='$tgl_surat',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
+                                    echo '<script language="javascript">
+                                            window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,)");
+                                            window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                                          </script>';
+                                } else {
 
-                    if($query == true){
-                        echo '<script language="javascript">
-                                window.alert("SUKSES! Data berhasil diupdate.");
-                                window.location.href="./admin.php?page=tsm";
-                              </script>';
-                    } else {
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Periksa penulisan querynya.");
-                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
-                              </script>';
+                                    if(!preg_match("/^[a-zA-Z0-9., -]*$/", $indeks)){
+                                        echo '<script language="javascript">
+                                                window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, titik(.) koma(,) dan minus (-)");
+                                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                                              </script>';
+                                    } else {
+
+                                        if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
+                                            echo '<script language="javascript">
+                                                    window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan minus(-)");
+                                                    window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                                                  </script>';
+                                        } else {
+
+                                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $keterangan)){
+                                                echo '<script language="javascript">
+                                                        window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), minus (-) dan kurung()");
+                                                        window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                                                      </script>';
+                                            }
+
+                                            $ekstensi = array('jpg','png','jpeg');
+                                            $file = $_FILES['file']['name'];
+                                            $x = explode('.', $file);
+                                            $eks = strtolower(end($x));
+                                            $ukuran = $_FILES['file']['size'];
+                                            $target_dir = "upload/surat_masuk/";
+
+                                            //jika form file tidak kosong akan mengeksekusi script dibawah ini
+                                            if($file != ""){
+
+                                                $rand = rand(1,10000);
+                                                $nfile = $rand."-".$file;
+
+                                                //validasi gambar
+                                                if(in_array($eks, $ekstensi) == true){
+                                                    if($ukuran < 2000000){
+
+                                                        $id_surat = $_REQUEST['id_surat'];
+                                                        $query = mysqli_query($config, "SELECT file FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+                                                        list($file) = mysqli_fetch_array($query);
+
+                                                        //jika file tidak kosong akan mengeksekusi script dibawah ini
+                                                        if(!empty($file)){
+                                                            unlink($target_dir.$file);
+
+                                                            move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
+
+                                                            $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET no_agenda='$no_agenda',no_surat='$no_surat',asal_surat='$asal_surat',isi='$isi',kode='$kode',indeks='$indeks',tgl_surat='$tgl_surat',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+
+                                                            if($query == true){
+                                                                echo '<script language="javascript">
+                                                                        window.alert("SUKSES! Data berhasil diupdate");
+                                                                        window.location.href="./admin.php?page=tsm";
+                                                                      </script>';
+                                                            } else {
+                                                                echo '<script language="javascript">
+                                                                        window.alert("ERROR! Periksa penulisan querynya");
+                                                                        window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                                                                      </script>';
+                                                            }
+                                                        } else {
+
+                                                            //jika file kosong akan mengeksekusi script dibawah ini
+                                                            move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
+
+                                                            $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET no_agenda='$no_agenda',no_surat='$no_surat',asal_surat='$asal_surat',isi='$isi',kode='$kode',indeks='$indeks',tgl_surat='$tgl_surat',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+
+                                                            if($query == true){
+                                                                echo '<script language="javascript">
+                                                                        window.alert("SUKSES! Data berhasil diupdate");
+                                                                        window.location.href="./admin.php?page=tsm";
+                                                                      </script>';
+                                                            } else {
+                                                                echo '<script language="javascript">
+                                                                        window.alert("ERROR! Periksa penulisan querynya");
+                                                                        window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                                                                      </script>';
+                                                            }
+                                                        }
+                                                    } else {
+                                                        echo '<script language="javascript">
+                                                                window.alert("ERROR! Ukuran file yang diupload maksimal 2 MB");
+                                                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                                                              </script>';
+                                                    }
+                                                } else {
+                                                        echo '<script language="javascript">
+                                                                window.alert("ERROR! File yang diupload bukan gambar. Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG");
+                                                                window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                                                              </script>';
+                                                }
+                                            } else {
+
+                                                //jika form file kosong akan mengeksekusi script dibawah ini
+                                                $id_surat = $_REQUEST['id_surat'];
+
+                                                $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET no_agenda='$no_agenda',no_surat='$no_surat',asal_surat='$asal_surat',isi='$isi',kode='$kode',indeks='$indeks',tgl_surat='$tgl_surat',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+
+                                                if($query == true){
+                                                    echo '<script language="javascript">
+                                                            window.alert("SUKSES! Data berhasil diupdate");
+                                                            window.location.href="./admin.php?page=tsm";
+                                                          </script>';
+                                                } else {
+                                                    echo '<script language="javascript">
+                                                            window.alert("ERROR! Periksa penulisan querynya");
+                                                            window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
+                                                          </script>';
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-            }
-            }
-        }
-    }
-    }
-    }
-}
-} else {
+        } else {
 
-    $id_surat = $_REQUEST['id_surat'];
-    $query = mysqli_query($config, "SELECT id_surat, no_agenda, no_surat, asal_surat, isi, kode, indeks, tgl_surat, file, keterangan, id_user FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-    list($id_surat, $no_agenda, $no_surat, $asal_surat, $isi, $kode, $indeks, $tgl_surat, $file, $keterangan, $id_user) = mysqli_fetch_array($query);{
+            $id_surat = $_REQUEST['id_surat'];
+            $query = mysqli_query($config, "SELECT id_surat, no_agenda, no_surat, asal_surat, isi, kode, indeks, tgl_surat, file, keterangan, id_user FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+            list($id_surat, $no_agenda, $no_surat, $asal_surat, $isi, $kode, $indeks, $tgl_surat, $file, $keterangan, $id_user) = mysqli_fetch_array($query);{
 ?>
         <!-- Row Start -->
         <div class="row">
@@ -273,7 +283,7 @@
         </div>
         <!-- Row form END -->
 <?php
-}
-}
-}
+            }
+        }
+    }
 ?>

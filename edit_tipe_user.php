@@ -1,4 +1,6 @@
 <?php
+
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -8,7 +10,7 @@
 
         if($_REQUEST['id_user'] == 1){
             echo '<script language="javascript">
-                    window.alert("ERROR! Super Admin tidak boleh diedit.");
+                    window.alert("ERROR! Super Admin tidak boleh diedit");
                     window.location.href="./admin.php?page=sett&sub=usr";
                   </script>';
         } else {
@@ -20,25 +22,25 @@
 
                 if($id_user == $_SESSION['id_user']){
                     echo '<script language="javascript">
-                            window.alert("ERROR! Anda tidak boleh mengedit akun Anda sendiri. Hubungi super admin untuk mengeditnya.");
+                            window.alert("ERROR! Anda tidak boleh mengedit akun Anda sendiri. Hubungi super admin untuk mengeditnya");
                             window.location.href="./admin.php?page=sett&sub=usr";
                           </script>';
                 } else {
 
-                $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
+                    $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
 
-                if($query == true){
-                    echo '<script language="javascript">
-                            window.alert("SUKSES! Tipe User berhasil diupdate.");
-                            window.location.href="./admin.php?page=sett&sub=usr";
-                          </script>';
-                } else {
-                    echo '<script language="javascript">
-                            window.alert("ERROR! Periksa penulisan querynya.");
-                            window.location.href="./admin.php?page=sett&sub=usr";
-                          </script>';
+                    if($query == true){
+                        echo '<script language="javascript">
+                                window.alert("SUKSES! Tipe User berhasil diupdate");
+                                window.location.href="./admin.php?page=sett&sub=usr";
+                              </script>';
+                    } else {
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Periksa penulisan querynya");
+                                window.location.href="./admin.php?page=sett&sub=usr";
+                              </script>';
+                    }
                 }
-            }
             } else {
 
                 $id_user = $_REQUEST['id_user'];

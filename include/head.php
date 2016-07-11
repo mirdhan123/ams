@@ -1,5 +1,5 @@
 <?php
-    //Cek session login
+    //cek session
     if(!empty($_SESSION['admin'])){
 ?>
 <?php require('include/config.php'); ?>

@@ -1,4 +1,5 @@
 <?php
+    //cek session
     if(empty($_SESSION['admin'])){
 
         $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
@@ -9,7 +10,7 @@
         $id_user = $_REQUEST['id_user'];
         if($id_user == 1){
             echo '<script language="javascript">
-                    window.alert("ERROR! Super Admin tidak boleh dihapus.");
+                    window.alert("ERROR! Super Admin tidak boleh dihapus");
                     window.location.href="./admin.php?page=sett&sub=usr";
                   </script>';
         } else {
@@ -78,7 +79,7 @@
 
                     if($id_user == $_SESSION['id_user']){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Anda tidak boleh menghapus akun Anda sendiri. Hubungi super admin untuk menghapusnya.");
+                                window.alert("ERROR! Anda tidak boleh menghapus akun Anda sendiri. Hubungi super admin untuk menghapusnya");
                                 window.location.href="./admin.php?page=sett&sub=usr";
                               </script>';
                     } else {
@@ -87,12 +88,12 @@
 
                 		if($query == true){
                             echo '<script language="javascript">
-                                    window.alert("SUKSES! User berhasil dihapus.");
+                                    window.alert("SUKSES! User berhasil dihapus");
                                     window.location.href="./admin.php?page=sett&sub=usr";
                                   </script>';
                 		} else {
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Periksa penulisan querynya.");
+                                    window.alert("ERROR! Periksa penulisan querynya");
                                     window.location.href="./admin.php?page=sett&sub=usr&act=del&id_user='.$id_user.'";
                                   </script>';
                 		}
