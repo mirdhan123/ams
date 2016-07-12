@@ -32,7 +32,7 @@
                     $curr = ($pg - 1) * $limit;
                 }
 
-                $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar LIMIT $curr, $limit");
+                $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar ORDER by id_surat DESC LIMIT $curr, $limit");
                     echo '<!-- Row Start -->
                     <div class="row">
                         <!-- Secondary Nav START -->
@@ -85,7 +85,7 @@
                             if(mysqli_num_rows($query) > 0){
                                 $no = 1;
                                 while($row = mysqli_fetch_array($query)){
-                                  echo '<td>'.$row['no_agenda'].'<br/>'.$row['kode'].'</td>
+                                  echo '<td>'.$row['no_agenda'].'<br/><br/>'.$row['kode'].'</td>
                                         <td>'.$row['isi'].'<br/><br/><strong>File :</strong>';
                                         if(!empty($row['file'])){
                                             echo ' <strong><a href="upload/surat_keluar/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
@@ -93,7 +93,7 @@
                                             echo ' <em>Tidak ada file yang diupload</em>';
                                         } echo '</td>
                                         <td>'.$row['tujuan'].'</td>
-                                        <td>'.$row['no_surat'].'<br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
+                                        <td>'.$row['no_surat'].'<br/><br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                                         <td>';
 
                                         if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){

@@ -14,13 +14,13 @@
             $no = 1;
             while($row = mysqli_fetch_array($query)){
 
-            if($_SESSION['id_user'] != $row['id_user']){
+            if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
                 echo '<script language="javascript">
-                        window.alert("ERROR! Anda tidak memiliki hak akses menghapus data ini");
-                        window.location.href="./admin.php?page=tsm";
+                        window.alert("ERROR! Anda tidak memiliki hak akses untuk menghapus data ini");
+                        window.location.href="./admin.php?page=tsk";
                       </script>';
             } else {
-                    
+
     		  echo '<!-- Row form Start -->
 				<div class="row jarak-form">
 
@@ -128,4 +128,5 @@
 		    }
 	    }
     }
+}
 ?>

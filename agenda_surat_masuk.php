@@ -105,9 +105,9 @@
                                             $id_user = $row['id_user'];
                                             $query3 = mysqli_query($config, "SELECT nama FROM tbl_user WHERE id_user='$id_user'");
                                             list($nama) = mysqli_fetch_array($query3);
-                                            $row['id_user'] = ''.$nama.' (Petugas Disposisi)';
+                                            $row['id_user'] = ''.$nama.'';
                                         }
-                                        
+
                                         echo ''.$row['id_user'].'</td>
                                         <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                                         <td>'.$row['keterangan'].'';

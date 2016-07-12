@@ -180,8 +180,14 @@
 
             $id_surat = $_REQUEST['id_surat'];
             $query = mysqli_query($config, "SELECT id_surat, no_agenda, tujuan, no_surat, isi, kode, tgl_surat, file, keterangan, id_user FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
-            list($id_surat, $no_agenda, $tujuan, $no_surat, $isi, $kode, $tgl_surat, $file, $keterangan, $id_user) = mysqli_fetch_array($query);{
-?>
+            list($id_surat, $no_agenda, $tujuan, $no_surat, $isi, $kode, $tgl_surat, $file, $keterangan, $id_user) = mysqli_fetch_array($query);
+            if($_SESSION['id_user'] != $id_user AND $_SESSION['id_user'] != 1){
+                echo '<script language="javascript">
+                        window.alert("ERROR! Anda tidak memiliki hak akses untuk mengedit data ini");
+                        window.location.href="./admin.php?page=tsk";
+                      </script>';
+            } else {?>
+
 <!-- Row Start -->
 <div class="row">
     <!-- Secondary Nav START -->
