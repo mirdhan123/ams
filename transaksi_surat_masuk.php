@@ -115,6 +115,7 @@
                                           echo '
                                             <td>'.$row['no_agenda'].'<br/><br/>'.$row['kode'].'</td>
                                             <td>'.$row['isi'].'<br/><br/><strong>File :</strong>';
+
                                             if(!empty($row['file'])){
                                                 echo ' <strong><a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
                                             } else {
@@ -172,8 +173,10 @@
                                     if(mysqli_num_rows($query) > 0){
                                         $no = 1;
                                         while($row = mysqli_fetch_array($query)){
-                                          echo '<td>'.$row['no_agenda'].'<br/><br/>'.$row['kode'].'</td>
-                                                <td>'.$row['isi'].'<br/><br/><strong>File :</strong>';
+                                          echo '
+                                            <td>'.$row['no_agenda'].'<br/><br/>'.$row['kode'].'</td>
+                                            <td>'.$row['isi'].'<br/><br/><strong>File :</strong>';
+
                                             if(!empty($row['file'])){
                                                 echo ' <strong><a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
                                             } else {
