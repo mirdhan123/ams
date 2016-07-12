@@ -200,7 +200,7 @@
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">bookmark</i>
-                            <input id="kode" type="text" class="validate" name="kode" autocomplete="off" required>
+                            <input id="kode" type="text" class="validate" name="kode" required>
                             <label for="kode">Kode Klasifikasi</label>
                         </div>
                         <div class="input-field col s6">

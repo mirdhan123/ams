@@ -1,6 +1,5 @@
 # ams
 
-Aplikasi Manjemen Surat Menyurat dengan PHP dan MySQLi
+Aplikasi Manjemen Surat dengan PHP dan MySQLi
 
 Inspired by Nur Akhwam
-

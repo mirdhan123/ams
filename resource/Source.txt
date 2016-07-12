@@ -16,3 +16,4 @@ http://stackoverflow.com/questions/29444206/make-html-body-background-image-tran
 http://www.artsfon.com/download/8949/2560x1440/
 http://www.jurnalweb.com/tutorial-cara-upload-gambar-foto-dengan-php/
 http://www.malasngoding.com/membuat-upload-file-dengan-php-dan-mysql/
+http://www.w3schools.com/php/php_form_url_email.asp

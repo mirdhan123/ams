@@ -30,6 +30,7 @@
 
     <!-- Global style START -->
     <link type="text/css" rel="stylesheet" href="./asset/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./asset/css/jquery-ui.css"  media="screen,projection"/>
     <style type="text/css">
         body {
             background: #fff;
