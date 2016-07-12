@@ -46,6 +46,8 @@
         </li>
         <li><a href="admin.php"><i class="material-icons middle">dashboard</i> Beranda</a></li>
         <li class="no-padding">
+            <?php
+                if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){ ?>
             <ul class="collapsible collapsible-accordion">
                 <li>
                     <a class="collapsible-header"><i class="material-icons">repeat</i> Transaksi Surat</a>
@@ -57,6 +59,9 @@
                     </div>
                </li>
             </ul>
+            <?php
+                }
+            ?>
         </li>
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
@@ -90,7 +95,7 @@
         <li><a href="?page=dg.php"><i class="material-icons middle">people</i> Data Guru</a></li>
         <li class="no-padding">
         <?php
-            if($_SESSION['admin'] == 1 ){?>
+            if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){ ?>
             <ul class="collapsible collapsible-accordion">
                 <li>
                     <a class="collapsible-header"><i class="material-icons">settings</i> Pengaturan</a>
@@ -112,11 +117,16 @@
     <!-- Menu on large screen START -->
     <ul class="center hide-on-med-and-down" id="nv">
         <li><a href="./admin.php"><i class="material-icons">dashboard</i>&nbsp; Beranda</a></li>
+        <?php
+            if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3){ ?>
         <li><a class="dropdown-button" href="#!" data-activates="transaksi">Transaksi Surat <i class="material-icons md-18">arrow_drop_down</i></a></li>
             <ul id='transaksi' class='dropdown-content'>
                 <li><a href="?page=tsm">Surat Masuk</a></li>
                 <li><a href="?page=tsk">Surat Keluar</a></li>
             </ul>
+        <?php
+            }
+        ?>
         <li><a class="dropdown-button" href="#!" data-activates="agenda">Buku Agenda <i class="material-icons md-18">arrow_drop_down</i></a></li>
             <ul id='agenda' class='dropdown-content'>
                 <li><a href="?page=asm">Surat Masuk</a></li>

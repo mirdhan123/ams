@@ -78,7 +78,7 @@
                                                   </script>';
                                         } else {
 
-                                            $ekstensi = array('jpg','png','jpeg');
+                                            $ekstensi = array('jpg','png','jpeg','doc','docx','pdf');
                                             $file = $_FILES['file']['name'];
                                             $x = explode('.', $file);
                                             $eks = strtolower(end($x));
@@ -91,9 +91,9 @@
                                                 $rand = rand(1,10000);
                                                 $nfile = $rand."-".$file;
 
-                                                //validasi gambar
+                                                //validasi file
                                                 if(in_array($eks, $ekstensi) == true){
-                                                    if($ukuran < 2000000){
+                                                    if($ukuran < 2500000){
 
                                                         $id_surat = $_REQUEST['id_surat'];
                                                         $query = mysqli_query($config, "SELECT file FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
@@ -145,7 +145,7 @@
                                                     }
                                                 } else {
                                                     echo '<script language="javascript">
-                                                            window.alert("ERROR! File yang diupload bukan gambar. Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG");
+                                                            window.alert("ERROR! File yang diupload harus berformat *.JPG, *.PNG, *.DOC, *.DOCX atau *.PDF");
                                                             window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
                                                           </script>';
                                                 }
@@ -243,13 +243,14 @@
                 <label for="isi">Isi Ringkas</label>
             </div>
             <div class="input-field col s6">
-                <div class="file-field input-field tooltipped" data-position="top" data-tooltip="Jika tidak ada file scan/gambar surat, biarkan kosong">
+                <div class="file-field input-field tooltipped" data-position="top" data-tooltip="Jika tidak ada file/scan gambar surat, biarkan kosong">
                   <div class="btn light-green darken-1">
                     <span>File</span>
                     <input type="file" id="file" name="file">
                   </div>
                   <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" value="<?php echo $file ;?>" placeholder="Upload file scan Surat Keluar">
+                    <input class="file-path validate" type="text" value="<?php echo $file ;?>" placeholder="Upload file/scan gambar surat keluar">
+                    <small class="red-text">*Format yang diperbolehkan *.JPG, *.PNG, *.DOC, *.DOCX dan *.PDF</small>
                   </div>
                 </div>
             </div>

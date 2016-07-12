@@ -99,11 +99,15 @@
                                         <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                                         <td>';
 
-                                        if($row['id_user'] == 2 || $row['id_user'] == 1){
+                                        if($row['id_user'] == 1){
                                             $row['id_user'] = 'Administrator';
                                         } else {
-                                            $row['id_user'] = 'Petugas Disposisi';
+                                            $id_user = $row['id_user'];
+                                            $query3 = mysqli_query($config, "SELECT nama FROM tbl_user WHERE id_user='$id_user'");
+                                            list($nama) = mysqli_fetch_array($query3);
+                                            $row['id_user'] = ''.$nama.' (Petugas Disposisi)';
                                         }
+                                        
                                         echo ''.$row['id_user'].'</td>
                                         <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                                         <td>'.$row['keterangan'].'';
