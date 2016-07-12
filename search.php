@@ -1,4 +1,11 @@
 <?php
+//cek session
+if(empty($_SESSION['admin'])){
+
+    $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+    header("Location: ./");
+    die();
+} else {
     $host = "localhost";
     $username = "root";
     $password = "";
@@ -12,4 +19,5 @@
     }
 
     echo json_encode($data);
+}
 ?>

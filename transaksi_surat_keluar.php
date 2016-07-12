@@ -7,6 +7,13 @@
         die();
     } else {
 
+        if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
+            echo '<script language="javascript">
+                    window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                    window.location.href="./logout.php";
+                  </script>';
+        } else {
+
         if(isset($_REQUEST['act'])){
             $act = $_REQUEST['act'];
             switch ($act) {
@@ -161,4 +168,5 @@
             }
         }
     }
+}
 ?>
