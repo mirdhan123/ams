@@ -32,8 +32,6 @@
                     $curr = ($pg - 1) * $limit;
                 }
 
-                    $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi ORDER BY id_klasifikasi ASC LIMIT $curr, $limit");
-
                     echo '<!-- Row Start -->
                     <div class="row">
                         <!-- Secondary Nav START -->
@@ -52,10 +50,11 @@
                                             </ul>
                                         </div>
                                         <div class="col m5 hide-on-med-and-down">
-                                            <form>
+                                            <form method="post" action="?page=ref">
                                                 <div class="input-field round-in-box">
-                                                    <input id="search" type="search" placeholder="Ketik dan tekan enter mencari data..." required>
+                                                    <input id="search" type="search" name="cari" placeholder="Ketik dan tekan enter mencari data..." required>
                                                     <label for="search"><i class="material-icons">search</i></label>
+                                                    <input type="submit" name="submit" class="hidden">
                                                 </div>
                                             </form>
                                         </div>
@@ -68,7 +67,18 @@
                     <!-- Row END -->
 
                     <!-- Row form Start -->
-                    <div class="row jarak-form">
+                    <div class="row jarak-form">';
+
+                    if(isset($_REQUEST['submit'])){
+                    $cari = $_REQUEST['cari'];
+                        echo '
+                        <div class="col s12" style="margin-top: -18px;">
+                            <div class="card blue lighten-5">
+                                <div class="card-content">
+                                    <p class="description">Hasil pencarian untuk kata kunci <strong>"'.$cari.'"</strong></p>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="col m12" id="colres">
                             <table class="bordered" id="tbl">
@@ -85,36 +95,86 @@
                                 <tbody>
                                     <tr>';
 
-                            if(mysqli_num_rows($query) > 0){
-                                $no = 0;
-                                while($row = mysqli_fetch_array($query)){
-                                    $no++;
-                                  echo '<td>'.$no.'</td>
-                                        <td>'.$row['kode'].'</td>
-                                        <td>'.$row['nama'].'</td>
-                                        <td>'.$row['uraian'].'</td>
-                                        <td>';
+                                //script untuk menampilkan data
+                                $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE uraian LIKE '%$cari%' ORDER BY id_klasifikasi ASC LIMIT $curr, $limit");
+                                if(mysqli_num_rows($query) > 0){
+                                    $no = 0;
+                                    while($row = mysqli_fetch_array($query)){
+                                        $no++;
+                                        echo '<td>'.$no.'</td>
+                                            <td>'.$row['kode'].'</td>
+                                            <td>'.$row['nama'].'</td>
+                                            <td>'.$row['uraian'].'</td>
+                                            <td>';
 
-                                        if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
-                                            echo '<a class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> NO ACTION</a>';
-                                        } else {
-                                          echo '<a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.$row['id_klasifikasi'].'">
-                                                    <i class="material-icons">edit</i> EDIT</a>
-                                                <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.$row['id_klasifikasi'].'">
-                                                    <i class="material-icons">delete</i> DEL</a>';
-                                        } echo '
-                                        </td>
-                                    </tr>
-                                </tbody>';
+                                            if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
+                                                echo '<a class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> NO ACTION</a>';
+                                            } else {
+                                              echo '<a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.$row['id_klasifikasi'].'">
+                                                        <i class="material-icons">edit</i> EDIT</a>
+                                                    <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.$row['id_klasifikasi'].'">
+                                                        <i class="material-icons">delete</i> DEL</a>';
+                                            } echo '
+                                            </td>
+                                        </tr>
+                                    </tbody>';
+                                    }
+                                } else {
+                            echo '<tr><td colspan="5"><center><h5>Data tidak ditemukan</h5></center></td></tr>';
                                 }
-                            } else {
-                        echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
-                            }
-                      echo '</table>
-                        </div>
+                          echo '</table>
+                            </div>
 
-                    </div>
-                    <!-- Row form END -->';
+                        </div>
+                        <!-- Row form END -->';
+                    } else {
+                        echo '<div class="col m12" id="colres">
+                                <table class="bordered" id="tbl">
+                                    <thead class="blue lighten-4" id="head">
+                                        <tr>
+                                            <th width="7%">No</th>
+                                            <th width="10%">Kode</th>
+                                            <th width="25%">Nama</th>
+                                            <th width="40%">Uraian</th>
+                                            <th width="18%">Tindakan</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>';
+
+                                        //script untuk menampilkan data
+                                        $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi ORDER BY id_klasifikasi ASC LIMIT $curr, $limit");
+                                        if(mysqli_num_rows($query) > 0){
+                                            $no = 0;
+                                            while($row = mysqli_fetch_array($query)){
+                                                $no++;
+                                              echo '<td>'.$no.'</td>
+                                                    <td>'.$row['kode'].'</td>
+                                                    <td>'.$row['nama'].'</td>
+                                                    <td>'.$row['uraian'].'</td>
+                                                    <td>';
+
+                                                    if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
+                                                        echo '<a class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> NO ACTION</a>';
+                                                    } else {
+                                                      echo '<a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.$row['id_klasifikasi'].'">
+                                                                <i class="material-icons">edit</i> EDIT</a>
+                                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.$row['id_klasifikasi'].'">
+                                                                <i class="material-icons">delete</i> DEL</a>';
+                                                    } echo '
+                                                    </td>
+                                                </tr>
+                                            </tbody>';
+                                            }
+                                        } else {
+                                    echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
+                                        }
+                                  echo '</table>
+                                    </div>
+
+                                </div>
+                                <!-- Row form END -->';
 
                     $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi");
                     $cdata = mysqli_num_rows($query);
@@ -157,4 +217,5 @@
                 }
             }
         }
+    }
 ?>

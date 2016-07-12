@@ -106,7 +106,8 @@
 
                                 <tbody>
                                     <tr>';
-                                    //query untuk mencari data
+                                    
+                                    //script untuk mencari data
                                     $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE isi LIKE '%$cari%' ORDER by id_surat DESC LIMIT $curr, $limit");
                                     if(mysqli_num_rows($query) > 0){
                                         $no = 1;
@@ -166,7 +167,7 @@
                                     <tbody>
                                         <tr>';
 
-                                    //query untuk menampilkan data
+                                    //script untuk menampilkan data
                                     $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER by id_surat DESC LIMIT $curr, $limit");
                                     if(mysqli_num_rows($query) > 0){
                                         $no = 1;
