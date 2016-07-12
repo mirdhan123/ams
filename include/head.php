@@ -74,6 +74,12 @@
         .jarak {
             height: 13.4rem;
         }
+        .hidden {
+            display: none;
+        }
+        .tidak {
+            font-size: 20px;
+        }
         #footer {
             background: #546e7a;
         }

@@ -86,9 +86,6 @@
                 case 'prnt':
                     include "cetak_agenda_surat_masuk.php";
                     break;
-                case 's':
-                    include "cari_surat_masuk.php";
-                    break;
             }
         } else {
     ?>
