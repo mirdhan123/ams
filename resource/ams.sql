@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 12, 2016 at 09:05 
+-- Generation Time: Jul 12, 2016 at 03:24 
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `tbl_instansi` (
 --
 
 INSERT INTO `tbl_instansi` (`id_instansi`, `nama`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`) VALUES
-(1, 'SMK AL - Husna Loceret Nganjuk', 'Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471', 'Dodik Meiloyan', '-98989', 'http://www.smkalhusnaloceret.sch.id', 'info@smkalhusnaloceret.sch.id', 'logo.png');
+(1, 'SMK AL - Husna Loceret Nganjuk', 'Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471', 'Dodik Meiloyan', '-', 'http://www.smkalhusnaloceret.sch.id', 'info@smkalhusnaloceret.sch.id', 'logo.png');
 
 -- --------------------------------------------------------
 
@@ -72,17 +72,7 @@ CREATE TABLE IF NOT EXISTS `tbl_klasifikasi` (
   `nama` varchar(250) NOT NULL,
   `uraian` mediumtext NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_klasifikasi`
---
-
-INSERT INTO `tbl_klasifikasi` (`id_klasifikasi`, `kode`, `nama`, `uraian`, `id_user`) VALUES
-(7, 'A.1', 'Namaa', 'jhkgg', 1),
-(8, 'A.2', 'kuy', 'tuytuytu', 1),
-(9, 'A', 'K.Isi', 'isi', 1),
-(13, 'A.5', '656', '6567576', 1);
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -104,15 +94,6 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbl_surat_keluar`
---
-
-INSERT INTO `tbl_surat_keluar` (`id_surat`, `no_agenda`, `tujuan`, `no_surat`, `isi`, `kode`, `tgl_surat`, `tgl_catat`, `file`, `keterangan`, `id_user`) VALUES
-(2, 2, 'adminnnnn', 'admin', 'admin', 'A', '2016-07-12', '2016-07-12', '', 'admin', 1),
-(3, 765675, 'disposisi', 'disposisi', 'disposisi', 'A.2', '2016-07-12', '2016-07-12', '', 'disposisi', 17),
-(4, 876567, 'yanto', 'yanto', 'yanto', 'A.1', '2016-07-12', '2016-07-12', '', 'yanto', 18);
-
 -- --------------------------------------------------------
 
 --
@@ -132,18 +113,7 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_surat_masuk`
---
-
-INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`, `id_user`) VALUES
-(103, 7678, 'admin', 'admin', 'admin\r\n\r\n\r\n', 'A.2', 'admin', '2016-07-12', '2016-07-12', '', 'admin', 1),
-(104, 7856776, 'adminn', 'admin', 'admin', 'A', 'admin', '2016-07-12', '2016-07-12', '', 'admin', 1),
-(105, 2147483647, 'disposisi', 'disposisi', 'disposisi', 'A.5', 'disosisi', '2016-07-12', '2016-07-12', '', 'disosisiiiiiiiiiiiiiiii', 1),
-(106, 98687687, 'dapisisi', 'disposisi', 'disposisi', 'A', 'disposisi', '2016-07-12', '2016-07-12', '', 'disposisi', 17),
-(107, 5657, '4564', '65', 'liyiy', '576', '456', '2016-07-12', '2016-07-12', '', 'iuyuiyi', 18);
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -167,9 +137,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'M. Rudianto', '-', 1),
 (15, 'dodik', '82b00125c2ec05d38220ed4e1774e084', 'Dodik Meiloyan', '-', 2),
-(17, 'disposisi', '13bb8b589473803f26a02e338f949b8c', 'Petugas Disposisi', '-', 3),
-(18, 'yanto', '7849816e52e7d1596c51f3e36f21c498', 'Yanto Setiayoko', '-', 3),
-(19, 'muhaji', '3c38c489c741097aad43b6663b8b523c', 'muhaji', '-0-0-0', 3);
+(17, 'disposisi', '13bb8b589473803f26a02e338f949b8c', 'Petugas Disposisi', '-', 3);
 
 --
 -- Indexes for dumped tables
@@ -229,7 +197,7 @@ MODIFY `id_instansi` tinyint(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `tbl_klasifikasi`
 --
 ALTER TABLE `tbl_klasifikasi`
-MODIFY `id_klasifikasi` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+MODIFY `id_klasifikasi` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
 --
@@ -239,7 +207,7 @@ MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=108;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=110;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
