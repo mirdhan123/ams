@@ -14,6 +14,13 @@
             $no = 1;
             while($row = mysqli_fetch_array($query)){
 
+            if($_SESSION['id_user'] != $row['id_user']){
+                echo '<script language="javascript">
+                        window.alert("ERROR! Anda tidak memiliki hak akses menghapus data ini");
+                        window.location.href="./admin.php?page=tsm";
+                      </script>';
+            } else {
+                    
     		  echo '<!-- Row form Start -->
 				<div class="row jarak-form">
 

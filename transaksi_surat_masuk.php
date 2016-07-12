@@ -38,7 +38,7 @@
                     $curr = ($pg - 1) * $limit;
                 }
 
-                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk LIMIT $curr, $limit");
+                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER by id_surat DESC LIMIT $curr, $limit");
                     echo '<!-- Row Start -->
                     <div class="row">
                         <!-- Secondary Nav START -->

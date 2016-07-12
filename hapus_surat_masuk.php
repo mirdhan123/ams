@@ -14,6 +14,13 @@
             $no = 1;
             while($row = mysqli_fetch_array($query)){
 
+            if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
+                echo '<script language="javascript">
+                        window.alert("ERROR! Anda tidak memiliki hak akses untuk menghapus data ini");
+                        window.location.href="./admin.php?page=tsm";
+                      </script>';
+            } else {
+
     		  echo '<!-- Row form Start -->
 				<div class="row jarak-form">
 
@@ -39,50 +46,50 @@
                                 <td width="1%">:</td>
                                 <td width="86%">'.$row['indeks'].'</td>
                                 </tr>
-				                <tr>
-				                    <td width="13%">No. Isi</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['isi'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">File</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">';
+    			                <tr>
+    		                    <td width="13%">No. Isi</td>
+    		                    <td width="1%">:</td>
+    		                    <td width="86%">'.$row['isi'].'</td>
+    			                </tr>
+    			                <tr>
+    			                    <td width="13%">File</td>
+    			                    <td width="1%">:</td>
+    			                    <td width="86%">';
                                     if(!empty($row['file'])){
                                         echo ' <a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a>';
                                     } else {
                                         echo ' Tidak ada file yang diupload';
                                     } echo '</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">Asal Surat</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['asal_surat'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">No. Surat</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['no_surat'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">Tanggal Surat</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</td>
-				                </tr>
-				            </tbody>
-				   		</table>
-				    </div>
-				</div>
-				<!-- Row form END -->
+    			                </tr>
+    			                <tr>
+    			                    <td width="13%">Asal Surat</td>
+    			                    <td width="1%">:</td>
+    			                    <td width="86%">'.$row['asal_surat'].'</td>
+    			                </tr>
+    			                <tr>
+    			                    <td width="13%">No. Surat</td>
+    			                    <td width="1%">:</td>
+    			                    <td width="86%">'.$row['no_surat'].'</td>
+    			                </tr>
+    			                <tr>
+    			                    <td width="13%">Tanggal Surat</td>
+    			                    <td width="1%">:</td>
+    			                    <td width="86%">'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</td>
+    			                </tr>
+    			            </tbody>
+    			   		</table>
+    			    </div>
+    			</div>
+    			<!-- Row form END -->
 
-		        <div class="row bts">
-		            <div class="col 6">
-		                <a href="?page=tsm&act=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
-		            </div>
-		            <div class="col 6">
-		                <a href="?page=tsm" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
-		            </div>
-		        </div><br/>';
+    	        <div class="row bts">
+    	            <div class="col 6">
+    	                <a href="?page=tsm&act=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
+    	            </div>
+    	            <div class="col 6">
+    	                <a href="?page=tsm" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+    	            </div>
+    	        </div><br/>';
 
             	if(isset($_REQUEST['submit'])){
             		$id_surat = $_REQUEST['id_surat'];
@@ -123,7 +130,8 @@
                         }
                     }
                 }
-		    }
-	    }
+    	    }
+        }
     }
+}
 ?>

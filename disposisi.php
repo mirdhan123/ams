@@ -39,6 +39,14 @@
                 if(mysqli_num_rows($query) > 0){
                     $no = 1;
                     while($row = mysqli_fetch_array($query)){
+
+                    if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Anda tidak memiliki hak akses untuk melihat data ini");
+                                window.location.href="./admin.php?page=tsm";
+                              </script>';
+                    } else {
+
                       echo '<!-- Row Start -->
                             <div class="row">
                                 <!-- Secondary Nav START -->
@@ -120,4 +128,5 @@
                 }
             }
         }
+    }
 ?>
