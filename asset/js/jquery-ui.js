@@ -1,6 +1,6 @@
 /*! jQuery UI - v1.11.4 - 2015-03-11
 * http://jqueryui.com
-* Includes: core.js, widget.js, mouse.js, position.js, accordion.js, autocomplete.js, button.js, datepicker.js, dialog.js, draggable.js, droppable.js, effect.js, effect-blind.js, effect-bounce.js, effect-clip.js, effect-drop.js, effect-explode.js, effect-fade.js, effect-fold.js, effect-highlight.js, effect-puff.js, effect-pulsate.js, effect-scale.js, effect-shake.js, effect-size.js, effect-slide.js, effect-transfer.js, menu.js, progressbar.js, resizable.js, selectable.js, selectmenu.js, slider.js, sortable.js, spinner.js, tabs.js, tooltip.js
+* Includes: core.js, widget.js, mouse.js, position.js, accordion.js, autocomplete.js, button.js, datepicker.js, dialog.js, draggable.js, droppable.js, effect.js, effect-blind.js, effect-bounce.js, effect-clip.js, effect-drop.js, effect-explode.js, effect-fade.js, effect-fold.js, effect-highlight.js, effect-puff.js, effect-pulsate.js, effect-scale.js, effect-shake.js, effect-size.js, effect-slide.js, effect-transfer.js, menu.js, progressbar.js, resizable.js, selectable.js, selectmenu.js, slider.js, sortable.js, spinner.js, tabs.js, tpl.js
 * Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
 
 (function( factory ) {
@@ -16156,18 +16156,18 @@ var tabs = $.widget( "ui.tabs", {
 
 
 /*!
- * jQuery UI Tooltip 1.11.4
+ * jQuery UI tpl 1.11.4
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
- * http://api.jqueryui.com/tooltip/
+ * http://api.jqueryui.com/tpl/
  */
 
 
-var tooltip = $.widget( "ui.tooltip", {
+var tpl = $.widget( "ui.tpl", {
 	version: "1.11.4",
 	options: {
 		content: function() {
@@ -16186,7 +16186,7 @@ var tooltip = $.widget( "ui.tooltip", {
 			collision: "flipfit flip"
 		},
 		show: true,
-		tooltipClass: null,
+		tplClass: null,
 		track: false,
 
 		// callbacks
@@ -16198,12 +16198,12 @@ var tooltip = $.widget( "ui.tooltip", {
 		var describedby = (elem.attr( "aria-describedby" ) || "").split( /\s+/ );
 		describedby.push( id );
 		elem
-			.data( "ui-tooltip-id", id )
+			.data( "ui-tpl-id", id )
 			.attr( "aria-describedby", $.trim( describedby.join( " " ) ) );
 	},
 
 	_removeDescribedBy: function( elem ) {
-		var id = elem.data( "ui-tooltip-id" ),
+		var id = elem.data( "ui-tpl-id" ),
 			describedby = (elem.attr( "aria-describedby" ) || "").split( /\s+/ ),
 			index = $.inArray( id, describedby );
 
@@ -16211,7 +16211,7 @@ var tooltip = $.widget( "ui.tooltip", {
 			describedby.splice( index, 1 );
 		}
 
-		elem.removeData( "ui-tooltip-id" );
+		elem.removeData( "ui-tpl-id" );
 		describedby = $.trim( describedby.join( " " ) );
 		if ( describedby ) {
 			elem.attr( "aria-describedby", describedby );
@@ -16226,17 +16226,17 @@ var tooltip = $.widget( "ui.tooltip", {
 			focusin: "open"
 		});
 
-		// IDs of generated tooltips, needed for destroy
-		this.tooltips = {};
+		// IDs of generated tpls, needed for destroy
+		this.tpls = {};
 
-		// IDs of parent tooltips where we removed the title attribute
+		// IDs of parent tpls where we removed the title attribute
 		this.parents = {};
 
 		if ( this.options.disabled ) {
 			this._disable();
 		}
 
-		// Append the aria-live region so tooltips announce correctly
+		// Append the aria-live region so tpls announce correctly
 		this.liveRegion = $( "<div>" )
 			.attr({
 				role: "log",
@@ -16260,8 +16260,8 @@ var tooltip = $.widget( "ui.tooltip", {
 		this._super( key, value );
 
 		if ( key === "content" ) {
-			$.each( this.tooltips, function( id, tooltipData ) {
-				that._updateContent( tooltipData.element );
+			$.each( this.tpls, function( id, tplData ) {
+				that._updateContent( tplData.element );
 			});
 		}
 	},
@@ -16269,19 +16269,19 @@ var tooltip = $.widget( "ui.tooltip", {
 	_disable: function() {
 		var that = this;
 
-		// close open tooltips
-		$.each( this.tooltips, function( id, tooltipData ) {
+		// close open tpls
+		$.each( this.tpls, function( id, tplData ) {
 			var event = $.Event( "blur" );
-			event.target = event.currentTarget = tooltipData.element[ 0 ];
+			event.target = event.currentTarget = tplData.element[ 0 ];
 			that.close( event, true );
 		});
 
-		// remove title attributes to prevent native tooltips
+		// remove title attributes to prevent native tpls
 		this.element.find( this.options.items ).addBack().each(function() {
 			var element = $( this );
 			if ( element.is( "[title]" ) ) {
 				element
-					.data( "ui-tooltip-title", element.attr( "title" ) )
+					.data( "ui-tpl-title", element.attr( "title" ) )
 					.removeAttr( "title" );
 			}
 		});
@@ -16291,8 +16291,8 @@ var tooltip = $.widget( "ui.tooltip", {
 		// restore title attributes
 		this.element.find( this.options.items ).addBack().each(function() {
 			var element = $( this );
-			if ( element.data( "ui-tooltip-title" ) ) {
-				element.attr( "title", element.data( "ui-tooltip-title" ) );
+			if ( element.data( "ui-tpl-title" ) ) {
+				element.attr( "title", element.data( "ui-tpl-title" ) );
 			}
 		});
 	},
@@ -16304,23 +16304,23 @@ var tooltip = $.widget( "ui.tooltip", {
 				// but always pointing at the same event target
 				.closest( this.options.items );
 
-		// No element to show a tooltip for or the tooltip is already open
-		if ( !target.length || target.data( "ui-tooltip-id" ) ) {
+		// No element to show a tpl for or the tpl is already open
+		if ( !target.length || target.data( "ui-tpl-id" ) ) {
 			return;
 		}
 
 		if ( target.attr( "title" ) ) {
-			target.data( "ui-tooltip-title", target.attr( "title" ) );
+			target.data( "ui-tpl-title", target.attr( "title" ) );
 		}
 
-		target.data( "ui-tooltip-open", true );
+		target.data( "ui-tpl-open", true );
 
-		// kill parent tooltips, custom or native, for hover
+		// kill parent tpls, custom or native, for hover
 		if ( event && event.type === "mouseover" ) {
 			target.parents().each(function() {
 				var parent = $( this ),
 					blurEvent;
-				if ( parent.data( "ui-tooltip-open" ) ) {
+				if ( parent.data( "ui-tpl-open" ) ) {
 					blurEvent = $.Event( "blur" );
 					blurEvent.target = blurEvent.currentTarget = this;
 					that.close( blurEvent, true );
@@ -16356,8 +16356,8 @@ var tooltip = $.widget( "ui.tooltip", {
 			// delay this call to _open so the other call to _open runs first
 			that._delay(function() {
 
-				// Ignore async response if tooltip was closed already
-				if ( !target.data( "ui-tooltip-open" ) ) {
+				// Ignore async response if tpl was closed already
+				if ( !target.data( "ui-tpl-open" ) ) {
 					return;
 				}
 
@@ -16378,28 +16378,28 @@ var tooltip = $.widget( "ui.tooltip", {
 	},
 
 	_open: function( event, target, content ) {
-		var tooltipData, tooltip, delayedShow, a11yContent,
+		var tplData, tpl, delayedShow, a11yContent,
 			positionOption = $.extend( {}, this.options.position );
 
 		if ( !content ) {
 			return;
 		}
 
-		// Content can be updated multiple times. If the tooltip already
+		// Content can be updated multiple times. If the tpl already
 		// exists, then just update the content and bail.
-		tooltipData = this._find( target );
-		if ( tooltipData ) {
-			tooltipData.tooltip.find( ".ui-tooltip-content" ).html( content );
+		tplData = this._find( target );
+		if ( tplData ) {
+			tplData.tpl.find( ".ui-tpl-content" ).html( content );
 			return;
 		}
 
-		// if we have a title, clear it to prevent the native tooltip
+		// if we have a title, clear it to prevent the native tpl
 		// we have to check first to avoid defining a title if none exists
 		// (we don't want to cause an element to start matching [title])
 		//
 		// We use removeAttr only for key events, to allow IE to export the correct
 		// accessible attributes. For mouse events, set to empty string to avoid
-		// native tooltip showing up (happens only when removing inside mouseover).
+		// native tpl showing up (happens only when removing inside mouseover).
 		if ( target.is( "[title]" ) ) {
 			if ( event && event.type === "mouseover" ) {
 				target.attr( "title", "" );
@@ -16408,10 +16408,10 @@ var tooltip = $.widget( "ui.tooltip", {
 			}
 		}
 
-		tooltipData = this._tooltip( target );
-		tooltip = tooltipData.tooltip;
-		this._addDescribedBy( target, tooltip.attr( "id" ) );
-		tooltip.find( ".ui-tooltip-content" ).html( content );
+		tplData = this._tpl( target );
+		tpl = tplData.tpl;
+		this._addDescribedBy( target, tpl.attr( "id" ) );
+		tpl.find( ".ui-tpl-content" ).html( content );
 
 		// Support: Voiceover on OS X, JAWS on IE <= 9
 		// JAWS announces deletions even when aria-relevant="additions"
@@ -16427,10 +16427,10 @@ var tooltip = $.widget( "ui.tooltip", {
 
 		function position( event ) {
 			positionOption.of = event;
-			if ( tooltip.is( ":hidden" ) ) {
+			if ( tpl.is( ":hidden" ) ) {
 				return;
 			}
-			tooltip.position( positionOption );
+			tpl.position( positionOption );
 		}
 		if ( this.options.track && event && /^mouse/.test( event.type ) ) {
 			this._on( this.document, {
@@ -16439,27 +16439,27 @@ var tooltip = $.widget( "ui.tooltip", {
 			// trigger once to override element-relative positioning
 			position( event );
 		} else {
-			tooltip.position( $.extend({
+			tpl.position( $.extend({
 				of: target
 			}, this.options.position ) );
 		}
 
-		tooltip.hide();
+		tpl.hide();
 
-		this._show( tooltip, this.options.show );
-		// Handle tracking tooltips that are shown with a delay (#8644). As soon
-		// as the tooltip is visible, position the tooltip using the most recent
+		this._show( tpl, this.options.show );
+		// Handle tracking tpls that are shown with a delay (#8644). As soon
+		// as the tpl is visible, position the tpl using the most recent
 		// event.
 		if ( this.options.show && this.options.show.delay ) {
 			delayedShow = this.delayedShow = setInterval(function() {
-				if ( tooltip.is( ":visible" ) ) {
+				if ( tpl.is( ":visible" ) ) {
 					position( positionOption.of );
 					clearInterval( delayedShow );
 				}
 			}, $.fx.interval );
 		}
 
-		this._trigger( "open", event, { tooltip: tooltip } );
+		this._trigger( "open", event, { tpl: tpl } );
 	},
 
 	_registerCloseHandlers: function( event, target ) {
@@ -16474,10 +16474,10 @@ var tooltip = $.widget( "ui.tooltip", {
 		};
 
 		// Only bind remove handler for delegated targets. Non-delegated
-		// tooltips will handle this in destroy.
+		// tpls will handle this in destroy.
 		if ( target[ 0 ] !== this.element[ 0 ] ) {
 			events.remove = function() {
-				this._removeTooltip( this._find( target ).tooltip );
+				this._removetpl( this._find( target ).tpl );
 			};
 		}
 
@@ -16491,48 +16491,48 @@ var tooltip = $.widget( "ui.tooltip", {
 	},
 
 	close: function( event ) {
-		var tooltip,
+		var tpl,
 			that = this,
 			target = $( event ? event.currentTarget : this.element ),
-			tooltipData = this._find( target );
+			tplData = this._find( target );
 
-		// The tooltip may already be closed
-		if ( !tooltipData ) {
+		// The tpl may already be closed
+		if ( !tplData ) {
 
-			// We set ui-tooltip-open immediately upon open (in open()), but only set the
+			// We set ui-tpl-open immediately upon open (in open()), but only set the
 			// additional data once there's actually content to show (in _open()). So even if the
-			// tooltip doesn't have full data, we always remove ui-tooltip-open in case we're in
+			// tpl doesn't have full data, we always remove ui-tpl-open in case we're in
 			// the period between open() and _open().
-			target.removeData( "ui-tooltip-open" );
+			target.removeData( "ui-tpl-open" );
 			return;
 		}
 
-		tooltip = tooltipData.tooltip;
+		tpl = tplData.tpl;
 
-		// disabling closes the tooltip, so we need to track when we're closing
-		// to avoid an infinite loop in case the tooltip becomes disabled on close
-		if ( tooltipData.closing ) {
+		// disabling closes the tpl, so we need to track when we're closing
+		// to avoid an infinite loop in case the tpl becomes disabled on close
+		if ( tplData.closing ) {
 			return;
 		}
 
-		// Clear the interval for delayed tracking tooltips
+		// Clear the interval for delayed tracking tpls
 		clearInterval( this.delayedShow );
 
 		// only set title if we had one before (see comment in _open())
 		// If the title attribute has changed since open(), don't restore
-		if ( target.data( "ui-tooltip-title" ) && !target.attr( "title" ) ) {
-			target.attr( "title", target.data( "ui-tooltip-title" ) );
+		if ( target.data( "ui-tpl-title" ) && !target.attr( "title" ) ) {
+			target.attr( "title", target.data( "ui-tpl-title" ) );
 		}
 
 		this._removeDescribedBy( target );
 
-		tooltipData.hiding = true;
-		tooltip.stop( true );
-		this._hide( tooltip, this.options.hide, function() {
-			that._removeTooltip( $( this ) );
+		tplData.hiding = true;
+		tpl.stop( true );
+		this._hide( tpl, this.options.hide, function() {
+			that._removetpl( $( this ) );
 		});
 
-		target.removeData( "ui-tooltip-open" );
+		target.removeData( "ui-tpl-open" );
 		this._off( target, "mouseleave focusout keyup" );
 
 		// Remove 'remove' binding only on delegated targets
@@ -16548,64 +16548,64 @@ var tooltip = $.widget( "ui.tooltip", {
 			});
 		}
 
-		tooltipData.closing = true;
-		this._trigger( "close", event, { tooltip: tooltip } );
-		if ( !tooltipData.hiding ) {
-			tooltipData.closing = false;
+		tplData.closing = true;
+		this._trigger( "close", event, { tpl: tpl } );
+		if ( !tplData.hiding ) {
+			tplData.closing = false;
 		}
 	},
 
-	_tooltip: function( element ) {
-		var tooltip = $( "<div>" )
-				.attr( "role", "tooltip" )
-				.addClass( "ui-tooltip ui-widget ui-corner-all ui-widget-content " +
-					( this.options.tooltipClass || "" ) ),
-			id = tooltip.uniqueId().attr( "id" );
+	_tpl: function( element ) {
+		var tpl = $( "<div>" )
+				.attr( "role", "tpl" )
+				.addClass( "ui-tpl ui-widget ui-corner-all ui-widget-content " +
+					( this.options.tplClass || "" ) ),
+			id = tpl.uniqueId().attr( "id" );
 
 		$( "<div>" )
-			.addClass( "ui-tooltip-content" )
-			.appendTo( tooltip );
+			.addClass( "ui-tpl-content" )
+			.appendTo( tpl );
 
-		tooltip.appendTo( this.document[0].body );
+		tpl.appendTo( this.document[0].body );
 
-		return this.tooltips[ id ] = {
+		return this.tpls[ id ] = {
 			element: element,
-			tooltip: tooltip
+			tpl: tpl
 		};
 	},
 
 	_find: function( target ) {
-		var id = target.data( "ui-tooltip-id" );
-		return id ? this.tooltips[ id ] : null;
+		var id = target.data( "ui-tpl-id" );
+		return id ? this.tpls[ id ] : null;
 	},
 
-	_removeTooltip: function( tooltip ) {
-		tooltip.remove();
-		delete this.tooltips[ tooltip.attr( "id" ) ];
+	_removetpl: function( tpl ) {
+		tpl.remove();
+		delete this.tpls[ tpl.attr( "id" ) ];
 	},
 
 	_destroy: function() {
 		var that = this;
 
-		// close open tooltips
-		$.each( this.tooltips, function( id, tooltipData ) {
+		// close open tpls
+		$.each( this.tpls, function( id, tplData ) {
 			// Delegate to close method to handle common cleanup
 			var event = $.Event( "blur" ),
-				element = tooltipData.element;
+				element = tplData.element;
 			event.target = event.currentTarget = element[ 0 ];
 			that.close( event, true );
 
-			// Remove immediately; destroying an open tooltip doesn't use the
+			// Remove immediately; destroying an open tpl doesn't use the
 			// hide animation
 			$( "#" + id ).remove();
 
 			// Restore the title
-			if ( element.data( "ui-tooltip-title" ) ) {
+			if ( element.data( "ui-tpl-title" ) ) {
 				// If the title attribute has changed since open(), don't restore
 				if ( !element.attr( "title" ) ) {
-					element.attr( "title", element.data( "ui-tooltip-title" ) );
+					element.attr( "title", element.data( "ui-tpl-title" ) );
 				}
-				element.removeData( "ui-tooltip-title" );
+				element.removeData( "ui-tpl-title" );
 			}
 		});
 		this.liveRegion.remove();

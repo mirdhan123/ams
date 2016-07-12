@@ -1,15 +1,14 @@
 <?php
-$dbHost = 'localhost';
-$dbUsername = 'root';
-$dbPassword = '';
-$dbName = 'ams';
-//connect with the database
-$config = mysqli_connect($dbHost,$dbUsername,$dbPassword,$dbName);
+    $host = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "ams";
+    $config = mysqli_connect($host, $username, $password, $database);
 
     $searchTerm = $_GET['term'];
-    $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE kode LIKE '%".$searchTerm."%' ORDER BY kode ASC");
-    while($row = mysqli_fetch_assoc($query)){
-        $data[] = $row['kode'];
+    $query = mysqli_query($config, "SELECT kode, nama FROM tbl_klasifikasi WHERE kode LIKE '%".$searchTerm."%' ORDER BY kode ASC");
+    while(list($kode, $nama) = mysqli_fetch_array($query)){
+        $data[] = $kode."                                                                                                                                                                                                                                                       ".$nama;
     }
 
     echo json_encode($data);

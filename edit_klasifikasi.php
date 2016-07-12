@@ -93,13 +93,13 @@
 
                     <!-- Row in form START -->
                     <div class="row">
-                        <div class="input-field col s4 tooltipped" data-position="top" data-tooltip="Kode klasifikasi surat menggunakan huruf KAPITAL">
+                        <div class="input-field col s3">
                             <input type="hidden" value="<?php echo $row['id_klasifikasi']; ?>" name="id_klasifikasi">
                             <i class="material-icons prefix md-prefix">font_download</i>
-                            <input id="kode" type="text" class="validate" name="kode" value="<?php echo $row['kode']; ?>" required>
-                            <label for="kode">Kode</label>
+                            <input id="kd" type="text" class="validate" name="kode" maxlength="30" value="<?php echo $row['kode']; ?>" required>
+                            <label for="kd">Kode</label>
                         </div>
-                        <div class="input-field col s8">
+                        <div class="input-field col s9">
                             <i class="material-icons prefix md-prefix">text_fields</i>
                             <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>" required>
                             <label for="nama">Nama</label>

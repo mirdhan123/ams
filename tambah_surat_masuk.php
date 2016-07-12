@@ -21,7 +21,8 @@
                 $no_surat = $_REQUEST['no_surat'];
                 $asal_surat = $_REQUEST['asal_surat'];
                 $isi = $_REQUEST['isi'];
-                $kode = $_REQUEST['kode'];
+                $kode = substr($_REQUEST['kode'],0,30);
+                $nkode = trim($kode);
                 $indeks = $_REQUEST['indeks'];
                 $tgl_surat = $_REQUEST['tgl_surat'];
                 $keterangan = $_REQUEST['keterangan'];
@@ -56,7 +57,7 @@
                                       </script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
+                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
                                     echo '<script language="javascript">
                                             window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,)");
                                             window.location.href="./admin.php?page=tsm&act=add";
@@ -115,7 +116,7 @@
 
                                                             $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
                                                                 tgl_diterima,file,keterangan,id_user)
-                                                                    VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$nfile','$keterangan','$id_user')");
+                                                                    VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$nkode','$indeks','$tgl_surat',NOW(),'$nfile','$keterangan','$id_user')");
 
                                                             if($query == true){
                                                                 echo '<script language="javascript">
@@ -144,7 +145,7 @@
 
                                                     //jika form file kosong akan mengeksekusi script dibawah ini
                                                     $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat, tgl_diterima,keterangan,id_user)
-                                                        VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$kode','$indeks','$tgl_surat',NOW(),'$keterangan','$id_user')");
+                                                        VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$nkode','$indeks','$tgl_surat',NOW(),'$keterangan','$id_user')");
 
                                                     if($query == true){
                                                         echo '<script language="javascript">

@@ -21,7 +21,8 @@
                 $no_surat = $_REQUEST['no_surat'];
                 $tujuan = $_REQUEST['tujuan'];
                 $isi = $_REQUEST['isi'];
-                $kode = $_REQUEST['kode'];
+                $kode = substr($_REQUEST['kode'],0,30);
+                $nkode = trim($kode);
                 $tgl_surat = $_REQUEST['tgl_surat'];
                 $keterangan = $_REQUEST['keterangan'];
                 $id_user = $_SESSION['id_user'];
@@ -55,7 +56,7 @@
                                       </script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $kode)){
+                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
                                     echo '<script language="javascript">
                                             window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,)");
                                             window.location.href="./admin.php?page=tsk&act=add";
@@ -105,7 +106,7 @@
 
                                                         $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda,tujuan,no_surat,isi,kode,tgl_surat,
                                                             tgl_catat,file,keterangan,id_user)
-                                                            VALUES('$no_agenda','$tujuan','$no_surat','$isi','$kode','$tgl_surat',NOW(),'$nfile','$keterangan','$id_user')");
+                                                            VALUES('$no_agenda','$tujuan','$no_surat','$isi','$nkode','$tgl_surat',NOW(),'$nfile','$keterangan','$id_user')");
 
                                                         if($query == true){
                                                             echo '<script language="javascript">
@@ -133,7 +134,7 @@
                                             } else {
                                                 $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda,tujuan,no_surat,isi,kode,tgl_surat,
                                                     tgl_catat,keterangan,id_user)
-                                                    VALUES('$no_agenda','$tujuan','$no_surat','$isi','$kode','$tgl_surat',NOW(),'$keterangan','$id_user')");
+                                                    VALUES('$no_agenda','$tujuan','$no_surat','$isi','$nkode','$tgl_surat',NOW(),'$keterangan','$id_user')");
 
                                                 if($query == true){
                                                     echo '<script language="javascript">
