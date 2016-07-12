@@ -64,7 +64,7 @@
                                         <div class="col m5 hide-on-med-and-down">
                                             <form>
                                                 <div class="input-field round-in-box">
-                                                    <input id="search" type="text" name="s" placeholder="Ketik dan tekan enter mencari data..." required>
+                                                    <input id="search" type="search" name="s" placeholder="Ketik dan tekan enter mencari data..." required>
                                                     <label for="search"><i class="material-icons">search</i></label>
                                                 </div>
                                             </form>
