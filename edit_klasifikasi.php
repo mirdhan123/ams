@@ -67,7 +67,13 @@
             $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
             if(mysqli_num_rows($query) > 0){
                 $no = 1;
-                while($row = mysqli_fetch_array($query)){?>
+                while($row = mysqli_fetch_array($query))
+                if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
+                    echo '<script language="javascript">
+                            window.alert("ERROR! Anda tidak memiliki hak akses untuk mengedit data ini");
+                            window.location.href="./admin.php?page=ref";
+                          </script>';
+                } else {?>
 
             <!-- Row Start -->
             <div class="row">

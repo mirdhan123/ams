@@ -14,6 +14,12 @@
             $no = 1;
             while($row = mysqli_fetch_array($query)){
 
+            if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
+                echo '<script language="javascript">
+                        window.alert("ERROR! Anda tidak memiliki hak akses untuk menghapus data ini");
+                        window.location.href="./admin.php?page=ref";
+                      </script>';
+            } else {
 		  echo '<!-- Row form Start -->
 			<div class="row jarak-form">
 
@@ -58,21 +64,22 @@
         	if(isset($_REQUEST['submit'])){
         		$id_klasifikasi = $_REQUEST['id_klasifikasi'];
 
-                    $query = mysqli_query($config, "DELETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
+                $query = mysqli_query($config, "DELETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
 
-            		if($query == true){
-                        echo '<script language="javascript">
-                                window.alert("SUKSES! Data berhasil dihapus.");
-                                window.location.href="./admin.php?page=ref";
-                              </script>';
-            		} else {
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Periksa penulisan querynya.");
-                                window.location.href="./admin.php?page=ref&act=del&id_klasifikasi='.$id_klasifikasi.'";
-                              </script>';
-            		}
+            	if($query == true){
+                    echo '<script language="javascript">
+                            window.alert("SUKSES! Data berhasil dihapus.");
+                            window.location.href="./admin.php?page=ref";
+                          </script>';
+            	} else {
+                    echo '<script language="javascript">
+                            window.alert("ERROR! Periksa penulisan querynya.");
+                            window.location.href="./admin.php?page=ref&act=del&id_klasifikasi='.$id_klasifikasi.'";
+                          </script>';
             	}
-	        }
-        }
+            }
+	    }
     }
+}
+}
 ?>
