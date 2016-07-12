@@ -49,7 +49,7 @@
                                     <div class="nav-wrapper blue-grey darken-1">
                                         <div class="col m7">
                                             <ul class="left">
-                                                <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">drafts</i> Surat Keluar</a></li>
+                                                <li class="waves-effect waves-light hide-on-small-only"><a href="?page=tsk" class="judul"><i class="material-icons">drafts</i> Surat Keluar</a></li>
                                                 <li class="waves-effect waves-light">
                                                     <a href="?page=tsk&act=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
                                                 </li>

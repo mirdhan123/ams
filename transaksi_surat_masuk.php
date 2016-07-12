@@ -54,7 +54,7 @@
                                     <div class="nav-wrapper blue-grey darken-1">
                                         <div class="col m7">
                                             <ul class="left">
-                                                <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">mail</i> Surat Masuk</a></li>
+                                                <li class="waves-effect waves-light hide-on-small-only"><a href="?page=tsm" class="judul"><i class="material-icons">mail</i> Surat Masuk</a></li>
                                                 <li class="waves-effect waves-light">
                                                     <a href="?page=tsm&act=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
                                                 </li>
@@ -106,7 +106,7 @@
 
                                 <tbody>
                                     <tr>';
-                                    
+
                                     //script untuk mencari data
                                     $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE isi LIKE '%$cari%' ORDER by id_surat DESC LIMIT $curr, $limit");
                                     if(mysqli_num_rows($query) > 0){

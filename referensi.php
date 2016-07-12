@@ -41,7 +41,7 @@
                                     <div class="nav-wrapper blue-grey darken-1">
                                         <div class="col m7">
                                             <ul class="left">
-                                                <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">class</i> Klasifikasi Surat</a></li>';
+                                                <li class="waves-effect waves-light hide-on-small-only"><a href="?page=ref" class="judul"><i class="material-icons">class</i> Klasifikasi Surat</a></li>';
                                                 if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){
                                                     echo '<li class="waves-effect waves-light"><a href="?page=ref&act=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>';
                                                 } else {

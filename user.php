@@ -42,7 +42,7 @@
                                     <div class="nav-wrapper blue-grey darken-1">
                                         <div class="col m12">
                                             <ul class="left">
-                                                <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">people</i> Manajemen User</a></li>
+                                                <li class="waves-effect waves-light hide-on-small-only"><a href="?page=sett&sub=usr" class="judul"><i class="material-icons">people</i> Manajemen User</a></li>
                                                 <li class="waves-effect waves-light">
                                                     <a href="?page=sett&sub=usr&act=add"><i class="material-icons md-24">person_add</i> Tambah User</a>
                                                 </li>
