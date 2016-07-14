@@ -47,7 +47,7 @@
         <li><a href="admin.php"><i class="material-icons middle">dashboard</i> Beranda</a></li>
         <li class="no-padding">
             <?php
-                if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){ ?>
+                if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3){ ?>
             <ul class="collapsible collapsible-accordion">
                 <li>
                     <a class="collapsible-header"><i class="material-icons">repeat</i> Transaksi Surat</a>
@@ -76,7 +76,7 @@
                 </li>
             </ul>
         </li>
-        <li class="no-padding">
+        <!-- <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li>
                     <a class="collapsible-header"><i class="material-icons">description</i> Buat Surat Baru</a>
@@ -90,9 +90,9 @@
                     </div>
                 </li>
             </ul>
-        </li>
+        </li> -->
         <li><a href="?page=ref"><i class="material-icons middle">bookmark</i> Referensi</a></li>
-        <li><a href="?page=dg.php"><i class="material-icons middle">people</i> Data Guru</a></li>
+        <!-- <li><a href="?page=dg.php"><i class="material-icons middle">people</i> Data Guru</a></li> -->
         <li class="no-padding">
         <?php
             if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){ ?>
