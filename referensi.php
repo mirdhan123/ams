@@ -70,12 +70,12 @@
                     <div class="row jarak-form">';
 
                     if(isset($_REQUEST['submit'])){
-                    $cari = $_REQUEST['cari'];
+                    $cari = mysqli_real_escape_string($config, $_REQUEST['cari']);
                         echo '
                         <div class="col s12" style="margin-top: -18px;">
                             <div class="card blue lighten-5">
                                 <div class="card-content">
-                                    <p class="description">Hasil pencarian untuk kata kunci <strong>"'.$cari.'"</strong></p>
+                                    <p class="description">Hasil pencarian untuk kata kunci <strong>"'.stripslashes($cari).'"</strong></p>
                                 </div>
                             </div>
                         </div>

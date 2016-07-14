@@ -76,12 +76,12 @@
 
                     <?php
                         if(isset($_REQUEST['submit'])){
-                        $cari = $_REQUEST['cari'];
+                        $cari = mysqli_real_escape_string($config, $_REQUEST['cari']);
                             echo '
                             <div class="col s12" style="margin-top: -18px;">
                                 <div class="card blue lighten-5">
                                     <div class="card-content">
-                                        <p class="description">Hasil pencarian untuk kata kunci <strong>"'.$cari.'"</strong></p>
+                                        <p class="description">Hasil pencarian untuk kata kunci <strong>"'.stripslashes($cari).'"</strong></p>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                                         $no = 1;
                                         while($row = mysqli_fetch_array($query)){
                                           echo '
-                                            <td>'.$row['no_agenda'].'<br/><br/>'.$row['kode'].'</td>
+                                            <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
                                             <td>'.$row['isi'].'<br/><br/><strong>File :</strong>';
 
                                             if(!empty($row['file'])){
@@ -116,7 +116,7 @@
                                                 echo ' <em>Tidak ada file yang diupload</em>';
                                             } echo '</td>
                                             <td>'.$row['tujuan'].'</td>
-                                            <td>'.$row['no_surat'].'<br/><br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
+                                            <td>'.$row['no_surat'].'<br/><hr/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                                             <td>';
 
                                             if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
@@ -163,7 +163,7 @@
                                     $no = 1;
                                     while($row = mysqli_fetch_array($query)){
                                       echo '
-                                        <td>'.$row['no_agenda'].'<br/><br/>'.$row['kode'].'</td>
+                                        <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
                                         <td>'.$row['isi'].'<br/><br/><strong>File :</strong>';
 
                                         if(!empty($row['file'])){
@@ -172,7 +172,7 @@
                                             echo ' <em>Tidak ada file yang diupload</em>';
                                         } echo '</td>
                                         <td>'.$row['tujuan'].'</td>
-                                        <td>'.$row['no_surat'].'<br/><br/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
+                                        <td>'.$row['no_surat'].'<br/><hr/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
                                         <td>';
 
                                         if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
