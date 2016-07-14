@@ -35,9 +35,9 @@
                           </script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z0-9.\/ ]*$/", $no_surat)){
+                    if(!preg_match("/^[a-zA-Z0-9.\/ -]*$/", $no_surat)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan garis miring(/)");
+                                window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, titik(.), minus(-) dan garis miring(/)");
                                 window.location.href="./admin.php?page=tsk&act=add";
                               </script>';
                     } else {
