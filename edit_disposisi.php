@@ -10,7 +10,6 @@
 
             $id_surat = $_REQUEST['id_surat'];
             $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-            $no = 1;
             list($id_surat) = mysqli_fetch_array($query);
 
             //validasi form kosong
@@ -86,7 +85,7 @@
             }
         } else {
 
-            $id_disposisi = $_REQUEST['id_disposisi'];
+            $id_disposisi = mysqli_real_escape_string($config, $_REQUEST['id_disposisi']);
             $query = mysqli_query($config, "SELECT * FROM tbl_disposisi WHERE id_disposisi='$id_disposisi'");
             if(mysqli_num_rows($query) > 0){
                 $no = 1;
