@@ -50,7 +50,7 @@
                     }
                 } else {
 
-                    $id_user = $_REQUEST['id_user'];
+                    $id_user = mysqli_real_escape_string($config, $_REQUEST['id_user']);
                     $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
                     if(mysqli_num_rows($query) > 0){
                         $no = 1;

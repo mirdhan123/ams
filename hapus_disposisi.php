@@ -7,7 +7,7 @@
         die();
     } else {
 
-    	$id_disposisi = $_REQUEST['id_disposisi'];
+    	$id_disposisi = mysqli_real_escape_string($config, $_REQUEST['id_disposisi']);
 
     	$query = mysqli_query($config, "SELECT * FROM tbl_disposisi WHERE id_disposisi='$id_disposisi'");
 

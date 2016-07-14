@@ -7,7 +7,7 @@
         die();
     } else {
 
-    	$id_surat = $_REQUEST['id_surat'];
+    	$id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
     	$query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
 
     	if(mysqli_num_rows($query) > 0){

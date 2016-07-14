@@ -186,7 +186,7 @@
             }
         } else {
 
-            $id_surat = $_REQUEST['id_surat'];
+            $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
             $query = mysqli_query($config, "SELECT id_surat, no_agenda, no_surat, asal_surat, isi, kode, indeks, tgl_surat, file, keterangan, id_user FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
             list($id_surat, $no_agenda, $no_surat, $asal_surat, $isi, $kode, $indeks, $tgl_surat, $file, $keterangan, $id_user) = mysqli_fetch_array($query);
 

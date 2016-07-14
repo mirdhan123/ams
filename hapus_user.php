@@ -7,7 +7,7 @@
         die();
     } else {
 
-        $id_user = $_REQUEST['id_user'];
+        $id_user = mysqli_real_escape_string($config, $_REQUEST['id_user']);
         if($id_user == 1){
             echo '<script language="javascript">
                     window.alert("ERROR! Super Admin tidak boleh dihapus");

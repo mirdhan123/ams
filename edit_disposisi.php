@@ -99,7 +99,7 @@
                         <nav class="secondary-nav">
                             <div class="nav-wrapper blue-grey darken-1">
                                 <ul class="left">
-                                    <li class="waves-effect waves-light tooltipped" data-position="right" data-tooltip="Mohon isi semua form agar tidak terjadi error."><a href="#" class="judul"><i class="material-icons">edit</i> Edit Disposisi Surat</a></li>
+                                    <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">edit</i> Edit Disposisi Surat</a></li>
                                 </ul>
                             </div>
                         </nav>

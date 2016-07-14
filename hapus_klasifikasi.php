@@ -7,7 +7,7 @@
         die();
     } else {
 
-        $id_klasifikasi = $_REQUEST['id_klasifikasi'];
+        $id_klasifikasi = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
         $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
 
     	if(mysqli_num_rows($query) > 0){
