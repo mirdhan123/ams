@@ -9,9 +9,9 @@
                         <div class="card-content">
                             <div class="circle left">';
                             if(!empty($data['logo'])){
-                                echo '<img src="./upload/'.$data['logo'].'"/>';
+                                echo '<img class="logo" src="./upload/'.$data['logo'].'"/>';
                             } else {
-                                echo '<img src="./asset/img/logo.png"/>';
+                                echo '<img class="logo" src="./asset/img/logo.png"/>';
                             }
                              echo '</div>
                             <h5>';

@@ -224,7 +224,7 @@
                                         </div>
                                     </div>
                                     <div class="input-field col s2">
-                                        <img src="upload/<?php echo $row['logo']; ?>"/>
+                                        <img class="logo" src="upload/<?php echo $row['logo']; ?>"/>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">mail</i>

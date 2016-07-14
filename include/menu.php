@@ -12,9 +12,9 @@
                     $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
                     while($data = mysqli_fetch_array($query)){
                         if(!empty($data['logo'])){
-                            echo '<img src="./upload/'.$data['logo'].'"/>';
+                            echo '<img class="logo" src="./upload/'.$data['logo'].'"/>';
                         } else {
-                            echo '<img src="./asset/img/logo.png"/>';
+                            echo '<img class="logo" src="./asset/img/logo.png"/>';
                         }
                         if(!empty($data['nama'])){
                             echo '<h5 class="smk-side">'.$data['nama'].'</h5>';
@@ -76,23 +76,7 @@
                 </li>
             </ul>
         </li>
-        <!-- <li class="no-padding">
-            <ul class="collapsible collapsible-accordion">
-                <li>
-                    <a class="collapsible-header"><i class="material-icons">description</i> Buat Surat Baru</a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li><a href="?page=bse">Surat Edaran</a></li>
-                            <li><a href="?page=bst">Surat Tugas</a></li>
-                            <li><a href="?page=bskt">Surat Keterangan</a></li>
-                            <li><a href="?page=bskp">Surat Keputusan</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </li> -->
         <li><a href="?page=ref"><i class="material-icons middle">bookmark</i> Referensi</a></li>
-        <!-- <li><a href="?page=dg.php"><i class="material-icons middle">people</i> Data Guru</a></li> -->
         <li class="no-padding">
         <?php
             if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){ ?>
@@ -131,16 +115,8 @@
             <ul id='agenda' class='dropdown-content'>
                 <li><a href="?page=asm">Surat Masuk</a></li>
                 <li><a href="?page=ask">Surat Keluar</a></li>
-            </ul><!--
-        <li><a class="dropdown-button" href="#!" data-activates="buat_surat">Buat Surat Baru<i class="material-icons md-18">arrow_drop_down</i></a></li>
-            <ul id='buat_surat' class='dropdown-content'>
-                <li><a href="?page=bse">Surat Edaran</a></li>
-                <li><a href="?page=bst">Surat Tugas</a></li>
-                <li><a href="?page=bskt">Surat Keterangan</a></li>
-                <li><a href="?page=bskp">Surat Keputusan</a></li>
-            </ul> -->
+            </ul>
         <li><a href="?page=ref">Referensi</a></li>
-        <!-- <li><a href="?page=dg">Data Guru</a></li> -->
         <?php
             if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){ ?>
         <li><a class="dropdown-button" href="#!" data-activates="pengaturan">Pengaturan <i class="material-icons md-18">arrow_drop_down</i></a></li>

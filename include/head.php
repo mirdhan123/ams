@@ -62,7 +62,7 @@
             margin: -20px -20px 25px;
             padding: 20px;
         }
-        img {
+        .logo {
             border-radius: 40px;
             margin: 0 15px -10px 0;
             max-width: 80px;

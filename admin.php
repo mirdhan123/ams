@@ -56,23 +56,8 @@
                 case 'ask':
                     include "agenda_surat_keluar.php";
                     break;
-                case 'bse':
-                    include "buat_surat_edaran.php";
-                    break;
-                case 'bst':
-                    include "buat_surat_tugas.php";
-                    break;
-                case 'bskt':
-                    include "buat_surat_keterangan.php";
-                    break;
-                case 'bskp':
-                    include "buat_surat_keputusan.php";
-                    break;
                 case 'ref':
                     include "referensi.php";
-                    break;
-                case 'dg':
-                    include "data_guru.php";
                     break;
                 case 'sett':
                     include "pengaturan.php";
@@ -82,9 +67,6 @@
                     break;
                 case 'epro':
                     include "edit_profil.php";
-                    break;
-                case 'prnt':
-                    include "cetak_agenda_surat_masuk.php";
                     break;
             }
         } else {
