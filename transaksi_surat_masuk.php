@@ -114,7 +114,7 @@
                                         while($row = mysqli_fetch_array($query)){
                                           echo '
                                             <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
-                                            <td>'.$row['isi'].'<br/><br/><strong>File :</strong>';
+                                            <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
                                             if(!empty($row['file'])){
                                                 echo ' <strong><a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
@@ -175,7 +175,7 @@
                                         while($row = mysqli_fetch_array($query)){
                                           echo '
                                             <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
-                                            <td>'.$row['isi'].'<br/><br/><strong>File :</strong>';
+                                            <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
                                             if(!empty($row['file'])){
                                                 echo ' <strong><a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
