@@ -36,9 +36,9 @@
                           </script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi_disposisi)){
+                    if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n -]*$/", $isi_disposisi)){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form ISI DISPOSISI hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@)");
+                                window.alert("ERROR! Form ISI DISPOSISI hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), persen(%) dan at(@)");
                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$id_disposisi.'";
                               </script>';
                     } else {
@@ -64,7 +64,7 @@
                                           </script>';
                                 } else {
 
-                                    $query = mysqli_query($config, "UPDATE tbl_disposisi SET tujuan='$tujuan', isi_disposisi='$isi_disposisi', sifat='$sifat', batas_waktu='$batas_waktu' WHERE id_disposisi='$id_disposisi'");
+                                    $query = mysqli_query($config, "UPDATE tbl_disposisi SET tujuan='$tujuan', isi_disposisi='$isi_disposisi', sifat='$sifat', batas_waktu='$batas_waktu', catatan='$catatan' WHERE id_disposisi='$id_disposisi'");
 
                                     if($query == true){
                                         echo '<script language="javascript">

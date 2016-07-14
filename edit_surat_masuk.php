@@ -51,9 +51,9 @@
                                   </script>';
                         } else {
 
-                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n ]*$/", $isi)){
+                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n -]*$/", $isi)){
                                 echo '<script language="javascript">
-                                        window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), kurung(), persen(%) dan at(@)");
+                                        window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), persen(%) dan at(@)");
                                         window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
                                       </script>';
                             } else {
