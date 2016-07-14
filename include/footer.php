@@ -10,7 +10,7 @@
 <!-- Footer START -->
 <div class="footer-copyright blue-grey darken-1 white-text">
     <div class="container" id="footer">
-        &copy; <?php echo date("Y"); ?> <!-- <a class="white-text" href="http://masrud.com" target="_blank">M. Rudianto</a> -->
+        &copy; <?php echo date("Y"); ?> <a class="white-text" href="http://masrud.com" target="_blank">M. Rudianto</a>
         <div class="right hide-on-small-only">
             <?php
                 $query = mysqli_query($config, "SELECT * FROM tbl_instansi");

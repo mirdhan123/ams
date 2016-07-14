@@ -89,8 +89,7 @@
                             if(mysqli_num_rows($query) > 0){
                                 $no = 0;
                                 while($row = mysqli_fetch_array($query)){
-                                    $no++;
-                                 echo ' <td>'.$no.'</td>
+                                 echo ' <td>'.$row['no_agenda'].'</td>
                                         <td>'.$row['kode'].'</td>
                                         <td>'.$row['isi'].'</td>
                                         <td>'.$row['tujuan'].'</td>

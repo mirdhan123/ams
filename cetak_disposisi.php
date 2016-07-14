@@ -117,7 +117,7 @@ echo '
                             <td id="left" width="25"><strong>Kode</strong> : '.$row['kode'].'</td>
                         </tr>
                         <tr>
-                            <td id="right"><strong>Tanggal/Nomor</strong></td>
+                            <td id="right"><strong>Tanggal/Nomor Surat</strong></td>
                             <td id="left" colspan="2">: '.date('d M Y', strtotime($row['tgl_surat'])).' / '.$row['no_surat'].'</td>
                         </tr>
                         <tr>
