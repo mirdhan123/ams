@@ -78,9 +78,9 @@
                                                   </script>';
                                         } else {
 
-                                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/ ]*$/", $keterangan)){
+                                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $keterangan)){
                                                 echo '<script language="javascript">
-                                                        window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), dan kurung()");
+                                                        window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()");
                                                         window.location.href="./admin.php?page=tsm&act=add";
                                                       </script>';
                                             }

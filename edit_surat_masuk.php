@@ -81,7 +81,7 @@
 
                                             if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $keterangan)){
                                                 echo '<script language="javascript">
-                                                        window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), minus (-) dan kurung()");
+                                                        window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), minus(-) dan kurung()");
                                                         window.location.href="./admin.php?page=tsm&act=edit&id_surat='.$id_surat.'";
                                                       </script>';
                                             }
