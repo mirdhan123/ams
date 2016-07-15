@@ -143,7 +143,7 @@
                                     </tbody>';
                                     }
                                 } else {
-                                    echo '<tr><td colspan="5"><center><h5>Data tidak ditemukan</h5></center></td></tr>';
+                                    echo '<tr><td colspan="5"><center><h5>Tidak ada data yang ditemukan</h5></center></td></tr>';
                                 }
                                  echo '</table>
                               </div>

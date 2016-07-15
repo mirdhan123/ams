@@ -33,19 +33,10 @@
                             <div class="z-depth-1">
                                 <nav class="secondary-nav">
                                     <div class="nav-wrapper blue-grey darken-1">
-                                        <div class="col m7">
+                                        <div class="col m12">
                                             <ul class="left">
                                                 <li class="waves-effect waves-light hide-on-small-only"><a href="?page=gsm" class="judul"><i class="material-icons">image</i> Galeri File Surat Masuk</a></li>
                                             </ul>
-                                        </div>
-                                        <div class="col m5 hide-on-med-and-down">
-                                            <form method="post" action="?page=gsm">
-                                                <div class="input-field round-in-box">
-                                                    <input id="search" type="search" name="cari" placeholder="Ketik dan tekan enter mencari data..." required>
-                                                    <label for="search"><i class="material-icons">search</i></label>
-                                                    <input type="submit" name="submit" class="hidden">
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </nav>
@@ -59,18 +50,37 @@
                     <div class="row jarak-form">';
 
                     if(isset($_REQUEST['submit'])){
-                    $cari = mysqli_real_escape_string($config, $_REQUEST['cari']);
-                        echo '
-                        <div class="col s12" style="margin-top: -18px;">
-                            <div class="card blue lighten-5">
-                                <div class="card-content">
-                                    <p class="description">Hasil pencarian untuk kata kunci <strong>"'.stripslashes($cari).'"</strong></p>
-                                </div>
-                            </div>
-                        </div>';
+                        $dari_tanggal = $_REQUEST['dari_tanggal'];
+                        $sampai_tanggal = $_REQUEST['sampai_tanggal'];
 
-                                //script mencari menampilkan data
-                                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE isi LIKE '%$cari%' ORDER BY id_surat DESC LIMIT $curr, $limit");
+                        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE tgl_diterima BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER By id_surat DESC");
+
+                        echo '<!-- Row form Start -->
+                            <div class="row jarak-form black-text">
+                                <form class="col s12" method="post" action="">
+                                    <div class="input-field col s3">
+                                        <i class="material-icons prefix md-prefix">date_range</i>
+                                        <input id="dari_tanggal" type="date" name="dari_tanggal" id="dari_tanggal" required>
+                                        <label for="dari_tanggal">Dari Tanggal</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <i class="material-icons prefix md-prefix">date_range</i>
+                                        <input id="sampai_tanggal" type="date" name="sampai_tanggal" id="sampai_tanggal" required>
+                                        <label for="sampai_tanggal">Sampai Tanggal</label>
+                                    </div>
+                                    <div class="col s6">
+                                        <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> <i class="material-icons">sort</i> FILTER</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Row form END -->
+
+                            <div class="row agenda">
+                                <div class="col s12">
+                                    <p class="warna agenda">Galeri file surat masuk antara tanggal <strong>'.date('d M Y', strtotime($dari_tanggal)).'</strong> sampai tanggal <strong>'.date('d M Y', strtotime($sampai_tanggal)).'</strong></p>
+                                </div>
+                            </div>';
+
                                 if(mysqli_num_rows($query) > 0){
                                     while($row = mysqli_fetch_array($query)){
                                         if(empty($row['file'])){
@@ -108,10 +118,31 @@
                                         }
                                     }
                                 } else {
-                                    echo '<p class="center tidak">Data tidak ditemukan</p>';
+                                    echo '<h5 class="warna center">Tidak ada file lampiran surat masuk yang ditemukan</h5>';
                                 } echo '
                                 </div>';
                     } else {
+
+                        echo '
+                        <!-- Row form Start -->
+                        <div class="row jarak-form black-text">
+                            <form class="col s12" method="post" action="">
+                                <div class="input-field col s3">
+                                    <i class="material-icons prefix md-prefix">date_range</i>
+                                    <input id="dari_tanggal" type="date" name="dari_tanggal" id="dari_tanggal" required>
+                                    <label for="dari_tanggal">Dari Tanggal</label>
+                                </div>
+                                <div class="input-field col s3">
+                                    <i class="material-icons prefix md-prefix">date_range</i>
+                                    <input id="sampai_tanggal" type="date" name="sampai_tanggal" id="sampai_tanggal" required>
+                                    <label for="sampai_tanggal">Sampai Tanggal</label>
+                                </div>
+                                <div class="col s6">
+                                    <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> <i class="material-icons">sort</i> FILTER</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Row form END -->';
 
                         //script untuk menampilkan data
                         $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC LIMIT $curr, $limit");
