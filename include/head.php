@@ -112,6 +112,19 @@
         .link {
             text-transform: capitalize!important;
         }
+        .confirr {
+          background: #e8f5e9;
+          -webkit-border-radius: px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          font-weight: 400;
+          padding: 3px 10px;
+          margin-bottom: 15px;
+        }
+        .kata {
+            font-size: 17px;
+            color: #444!important;
+        }
         @media print{
             .side-nav,
             .secondary-nav,
