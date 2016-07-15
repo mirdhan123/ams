@@ -69,7 +69,7 @@
                                         <label for="sampai_tanggal">Sampai Tanggal</label>
                                     </div>
                                     <div class="col s6">
-                                        <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> <i class="material-icons">sort</i> FILTER</button>
+                                        <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> <i class="material-icons">sort</i> FILTER</button>&nbsp;&nbsp;
 
                                         <button type="reset" onclick="window.history.back()" class="btn-large deep-orange waves-effect waves-light"> <i class="material-icons">refresh</i> RESET</button>
                                     </div>
@@ -121,7 +121,7 @@
                             } else {
                                 echo '<h5 class="warna center">Tidak ada file lampiran surat keluar yang ditemukan</h5>';
                             } echo '
-                                </div>';
+                                </div><br/><br/><br/>';
                     } else {
 
                         //script untuk menampilkan data

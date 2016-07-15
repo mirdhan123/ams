@@ -122,7 +122,7 @@
                             } else {
                                 echo '<h5 class="warna center">Tidak ada file lampiran surat masuk yang ditemukan</h5>';
                             } echo '
-                            </div>';
+                            </div><br/><br/><br/>';
                     } else {
 
                         //script untuk menampilkan data

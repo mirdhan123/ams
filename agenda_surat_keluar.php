@@ -117,7 +117,7 @@
                                 } echo '
                             </table>
                         </div>
-                    <div class="jarak2"></div>';
+                    <div class="jarak2"></div><br/><br/><br/>';
         } else {
             echo '<!-- Row Start -->
                 <div class="row">
