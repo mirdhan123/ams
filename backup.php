@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="card-action">
                                         <form method="post" name="postform" enctype="multipart/form-data" >
-                                            <a href="?page=bkcp&nama_file='.$file.'" class="btn-large blue waves-effect waves-light white-text" name="backup">DOWNLOAD <i class="material-icons">file_download</i></a>
+                                            <a href="?page=bckp&nama_file='.$file.'" class="btn-large blue waves-effect waves-light white-text" name="backup">DOWNLOAD <i class="material-icons">file_download</i></a>
                                         </form>
                                     </div>
                                 </div>
