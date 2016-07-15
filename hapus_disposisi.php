@@ -46,6 +46,11 @@
     				                    <td width="1%">:</td>
     				                    <td width="86%">'.date('d M Y', strtotime($row['batas_waktu'])).'</td>
     				                </tr>
+                                    <tr>
+                                        <td width="13%">Catatan</td>
+                                        <td width="1%">:</td>
+                                        <td width="86%">'.$row['catatan'].'</td>
+                                    </tr>
     				            </tbody>
     				   		</table>
     				    </div>

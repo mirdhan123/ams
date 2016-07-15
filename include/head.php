@@ -93,6 +93,19 @@
         .hid {
             display: none;
         }
+        .galeri {
+            width: 100%;
+            height: 26rem;
+        }
+        .gbr {
+            float: right;
+            width: 80%;
+            height: auto;
+        }
+        .file {
+            width: 70%;
+            height: auto;
+        }
         @media print{
             .side-nav,
             .secondary-nav,

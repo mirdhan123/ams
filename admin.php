@@ -65,8 +65,11 @@
                 case 'pro':
                     include "profil.php";
                     break;
-                case 'epro':
-                    include "edit_profil.php";
+                case 'gsm':
+                    include "galeri_sm.php";
+                    break;
+                case 'gsk':
+                    include "galeri_sk.php";
                     break;
             }
         } else {

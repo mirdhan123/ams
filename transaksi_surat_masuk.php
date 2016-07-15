@@ -117,7 +117,7 @@
                                             <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
                                             if(!empty($row['file'])){
-                                                echo ' <strong><a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
+                                                echo ' <strong><a href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a></strong>';
                                             } else {
                                                 echo '<em>Tidak ada file yang di upload</em>';
                                             } echo '</td>
@@ -178,7 +178,7 @@
                                             <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
                                             if(!empty($row['file'])){
-                                                echo ' <strong><a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a></strong>';
+                                                echo ' <strong><a href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a></strong>';
                                             } else {
                                                 echo '<em>Tidak ada file yang di upload</em>';
                                             } echo '</td>
