@@ -21,45 +21,43 @@
                       </script>';
             } else {
 		  echo '<!-- Row form Start -->
-			<div class="row jarak-form">
-
+			<div class="row jarak-card">
 			    <div class="col m12">
-			        <table>
-			            <thead class="red lighten-5 red-text">
-			                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
-			                Apakah Anda yakin akan menghapus data ini?</div>
-			            </thead>
+                    <div class="card">
+                        <div class="card-content">
+        			        <table>
+        			            <thead class="red lighten-5 red-text">
+        			                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
+        			                Apakah Anda yakin akan menghapus data ini?</div>
+        			            </thead>
 
-			            <tbody>
-			                <tr>
-			                    <td width="13%">Kode</td>
-			                    <td width="1%">:</td>
-			                    <td width="86%">'.$row['kode'].'</td>
-			                </tr>
-			                <tr>
-			                    <td width="13%">Nama</td>
-			                    <td width="1%">:</td>
-			                    <td width="86%">'.$row['nama'].'</td>
-			                </tr>
-			                <tr>
-			                    <td width="13%">Uraian</td>
-			                    <td width="1%">:</td>
-			                    <td width="86%">'.$row['uraian'].'</td>
-			                </tr>
-			            </tbody>
-			   		</table>
-			    </div>
-			</div>
-			<!-- Row form END -->
-
-	        <div class="row bts">
-	            <div class="col 6">
-	                <a href="?page=ref&act=del&submit=yes&id_klasifikasi='.$row['id_klasifikasi'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
-	            </div>
-	            <div class="col 6">
-	                <a href="?page=ref" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
-	            </div>
-	        </div><br/>';
+        			            <tbody>
+        			                <tr>
+        			                    <td width="13%">Kode</td>
+        			                    <td width="1%">:</td>
+        			                    <td width="86%">'.$row['kode'].'</td>
+        			                </tr>
+        			                <tr>
+        			                    <td width="13%">Nama</td>
+        			                    <td width="1%">:</td>
+        			                    <td width="86%">'.$row['nama'].'</td>
+        			                </tr>
+        			                <tr>
+        			                    <td width="13%">Uraian</td>
+        			                    <td width="1%">:</td>
+        			                    <td width="86%">'.$row['uraian'].'</td>
+        			                </tr>
+        			            </tbody>
+        			   		</table>
+    			        </div>
+                        <div class="card-action">
+        	                <a href="?page=ref&act=del&submit=yes&id_klasifikasi='.$row['id_klasifikasi'].'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
+        	                <a href="?page=ref" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
+        	            </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Row form END -->';
 
         	if(isset($_REQUEST['submit'])){
         		$id_klasifikasi = $_REQUEST['id_klasifikasi'];

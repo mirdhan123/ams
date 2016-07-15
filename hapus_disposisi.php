@@ -16,55 +16,53 @@
             while($row = mysqli_fetch_array($query)){
 
     		  echo '<!-- Row form Start -->
-    				<div class="row jarak-form">
-
+    				<div class="row jarak-card">
     				    <div class="col m12">
-    				        <table>
-    				            <thead class="red lighten-5 red-text">
-    				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
-    				                Apakah Anda yakin akan menghapus data ini?</div>
-    				            </thead>
+                            <div class="card">
+                                <div class="card-content">
+            				        <table>
+            				            <thead class="red lighten-5 red-text">
+            				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
+            				                Apakah Anda yakin akan menghapus data ini?</div>
+            				            </thead>
 
-    				            <tbody>
-    				                <tr>
-    				                    <td width="13%">Tujuan</td>
-    				                    <td width="1%">:</td>
-    				                    <td width="86%">'.$row['tujuan'].'</td>
-    				                </tr>
-    				                <tr>
-    				                    <td width="13%">Isi Disposis</td>
-    				                    <td width="1%">:</td>
-    				                    <td width="86%">'.$row['isi_disposisi'].'</td>
-    				                </tr>
-    				                <tr>
-    				                    <td width="13%">Sifat</td>
-    				                    <td width="1%">:</td>
-    				                    <td width="86%">'.$row['sifat'].'</td>
-    				                </tr>
-    				                <tr>
-    				                    <td width="13%">Batas Waktu</td>
-    				                    <td width="1%">:</td>
-    				                    <td width="86%">'.date('d M Y', strtotime($row['batas_waktu'])).'</td>
-    				                </tr>
-                                    <tr>
-                                        <td width="13%">Catatan</td>
-                                        <td width="1%">:</td>
-                                        <td width="86%">'.$row['catatan'].'</td>
-                                    </tr>
-    				            </tbody>
-    				   		</table>
-    				    </div>
-    				</div>
-    				<!-- Row form END -->
-
-    		        <div class="row bts">
-    		            <div class="col 6">
-    		                <a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=del&submit=yes&id_disposisi='.$row['id_disposisi'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
-    		            </div>
-    		            <div class="col 6">
-    		                <a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
-    		            </div>
-    		        </div><br/>';
+            				            <tbody>
+            				                <tr>
+            				                    <td width="13%">Tujuan</td>
+            				                    <td width="1%">:</td>
+            				                    <td width="86%">'.$row['tujuan'].'</td>
+            				                </tr>
+            				                <tr>
+            				                    <td width="13%">Isi Disposis</td>
+            				                    <td width="1%">:</td>
+            				                    <td width="86%">'.$row['isi_disposisi'].'</td>
+            				                </tr>
+            				                <tr>
+            				                    <td width="13%">Sifat</td>
+            				                    <td width="1%">:</td>
+            				                    <td width="86%">'.$row['sifat'].'</td>
+            				                </tr>
+            				                <tr>
+            				                    <td width="13%">Batas Waktu</td>
+            				                    <td width="1%">:</td>
+            				                    <td width="86%">'.date('d M Y', strtotime($row['batas_waktu'])).'</td>
+            				                </tr>
+                                            <tr>
+                                                <td width="13%">Catatan</td>
+                                                <td width="1%">:</td>
+                                                <td width="86%">'.$row['catatan'].'</td>
+                                            </tr>
+            				            </tbody>
+            				   		</table>
+        				        </div>
+                                <div class="card-action">
+        		                     <a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=del&submit=yes&id_disposisi='.$row['id_disposisi'].'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
+        		                    <a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row form END -->';
 
             	if(isset($_REQUEST['submit'])){
             		$id_disposisi = $_REQUEST['id_disposisi'];

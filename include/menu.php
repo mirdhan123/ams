@@ -141,6 +141,9 @@
             <ul id='pengaturan' class='dropdown-content'>
                 <li><a href="?page=sett">Instansi</a></li>
                 <li><a href="?page=sett&sub=usr">User</a></li>
+                <li class="divider"></li>
+                <li><a href="?page=bckp">Backup Database</a></li>
+                <li><a href="?page=rest">Restore Database</a></li>
             </ul>
         <?php
             }

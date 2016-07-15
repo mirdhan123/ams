@@ -22,9 +22,10 @@
             } else {
 
     		  echo '<!-- Row form Start -->
-				<div class="row jarak-form">
-
+				<div class="row jarak-card">
 				    <div class="col m12">
+                    <div class="card">
+                        <div class="card-content">
 				        <table>
 				            <thead class="red lighten-5 red-text">
 				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
@@ -56,7 +57,7 @@
     			                    <td width="1%">:</td>
     			                    <td width="86%">';
                                     if(!empty($row['file'])){
-                                        echo ' <a href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
+                                        echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
                                     } else {
                                         echo ' Tidak ada file yang diupload';
                                     } echo '</td>
@@ -83,18 +84,15 @@
                                 </tr>
     			            </tbody>
     			   		</table>
-    			    </div>
-    			</div>
-    			<!-- Row form END -->
-
-    	        <div class="row bts">
-    	            <div class="col 6">
-    	                <a href="?page=tsm&act=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
+                        </div>
+                        <div class="card-action">
+        	                <a href="?page=tsm&act=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
+        	                <a href="?page=tsm" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
+    	                </div>
     	            </div>
-    	            <div class="col 6">
-    	                <a href="?page=tsm" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
-    	            </div>
-    	        </div><br/>';
+                </div>
+            </div>
+            <!-- Row form END -->';
 
             	if(isset($_REQUEST['submit'])){
             		$id_surat = $_REQUEST['id_surat'];

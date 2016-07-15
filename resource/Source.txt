@@ -20,3 +20,4 @@ http://www.w3schools.com/php/php_form_url_email.asp
 http://www.duniailkom.com/tutorial-php-cara-memotong-atau-mengambil-sebagian-string-fungsi-substr/
 http://stackoverflow.com/questions/14838488/redirect-to-a-php-html-file-on-404-error-with-htaccess
 http://www.fahmi.my.id/htaccess-security.html
+http://canthafamily.blogspot.co.id/2014/06/backup-database-mysql-dengan-php.html

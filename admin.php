@@ -71,6 +71,9 @@
                 case 'gsk':
                     include "galeri_sk.php";
                     break;
+                case 'bckp':
+                    include "backup.php";
+                    break;
             }
         } else {
     ?>

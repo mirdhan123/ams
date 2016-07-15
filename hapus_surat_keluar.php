@@ -22,75 +22,73 @@
             } else {
 
     		  echo '<!-- Row form Start -->
-				<div class="row jarak-form">
-
+				<div class="row jarak-card">
 				    <div class="col m12">
-				        <table>
-				            <thead class="red lighten-5 red-text">
-				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
-				                Apakah Anda yakin akan menghapus data ini?</div>
-				            </thead>
+                        <div class="card">
+                            <div class="card-content">
+        				        <table>
+        				            <thead class="red lighten-5 red-text">
+        				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
+        				                Apakah Anda yakin akan menghapus data ini?</div>
+        				            </thead>
 
-				            <tbody>
-				                <tr>
-				                    <td width="13%">No. Agenda</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['no_agenda'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">Kode Klasifikasi</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['kode'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">No. Isi</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['isi'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">File</td>
-				                    <td width="1%">:</td>
-                                    <td width="86%">';
-                                    if(!empty($row['file'])){
-                                        echo ' <a href="?page=gsk&act=fsk&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
-                                    } else {
-                                        echo ' Tidak ada file yang diupload';
-                                    } echo '</td>
-                                </tr>
-				                <tr>
-				                    <td width="13%">Tujuan </td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['tujuan'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">No. Surat</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['no_surat'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">Tanggal Surat</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</td>
-				                </tr>
-                                <tr>
-                                    <td width="13%">Keterangan</td>
-                                    <td width="1%">:</td>
-                                    <td width="86%">'.$row['keterangan'].'</td>
-                                </tr>
-				            </tbody>
-				   		</table>
-				    </div>
-				</div>
-				<!-- Row form END -->
-
-		        <div class="row bts">
-		            <div class="col 6">
-		                <a href="?page=tsk&act=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light">HAPUS <i class="material-icons">delete</i></a>
-		            </div>
-		            <div class="col 6">
-		                <a href="?page=tsk" class="btn-large blue waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
-		            </div>
-		        </div><br/>';
+        				            <tbody>
+        				                <tr>
+        				                    <td width="13%">No. Agenda</td>
+        				                    <td width="1%">:</td>
+        				                    <td width="86%">'.$row['no_agenda'].'</td>
+        				                </tr>
+        				                <tr>
+        				                    <td width="13%">Kode Klasifikasi</td>
+        				                    <td width="1%">:</td>
+        				                    <td width="86%">'.$row['kode'].'</td>
+        				                </tr>
+        				                <tr>
+        				                    <td width="13%">No. Isi</td>
+        				                    <td width="1%">:</td>
+        				                    <td width="86%">'.$row['isi'].'</td>
+        				                </tr>
+        				                <tr>
+        				                    <td width="13%">File</td>
+        				                    <td width="1%">:</td>
+                                            <td width="86%">';
+                                            if(!empty($row['file'])){
+                                                echo ' <a class="blue-text" href="?page=gsk&act=fsk&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
+                                            } else {
+                                                echo ' Tidak ada file yang diupload';
+                                            } echo '</td>
+                                        </tr>
+        				                <tr>
+        				                    <td width="13%">Tujuan </td>
+        				                    <td width="1%">:</td>
+        				                    <td width="86%">'.$row['tujuan'].'</td>
+        				                </tr>
+        				                <tr>
+        				                    <td width="13%">No. Surat</td>
+        				                    <td width="1%">:</td>
+        				                    <td width="86%">'.$row['no_surat'].'</td>
+        				                </tr>
+        				                <tr>
+        				                    <td width="13%">Tanggal Surat</td>
+        				                    <td width="1%">:</td>
+        				                    <td width="86%">'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</td>
+        				                </tr>
+                                        <tr>
+                                            <td width="13%">Keterangan</td>
+                                            <td width="1%">:</td>
+                                            <td width="86%">'.$row['keterangan'].'</td>
+                                        </tr>
+        				            </tbody>
+    				   		    </table>
+				            </div>
+                            <div class="card-action">
+        		                <a href="?page=tsk&act=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
+        		                <a href="?page=tsk" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row form END -->';
 
             	if(isset($_REQUEST['submit'])){
             		$id_surat = $_REQUEST['id_surat'];

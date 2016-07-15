@@ -80,6 +80,9 @@
         .tidak {
             font-size: 20px;
         }
+        .jarak-card {
+            margin-top: 0.8rem;
+        }
         #footer {
             background: #546e7a;
         }
@@ -157,9 +160,6 @@
             .container {
                 margin-top: -20px !important;
             }
-        }
-        .footer-copyright {
-            margin-top: 6rem;
         }
         noscript{
             color: #fff;
