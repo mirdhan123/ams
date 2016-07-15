@@ -106,6 +106,9 @@
             width: 70%;
             height: auto;
         }
+        .link {
+            text-transform: capitalize!important;
+        }
         @media print{
             .side-nav,
             .secondary-nav,

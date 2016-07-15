@@ -69,7 +69,9 @@
                                         <label for="sampai_tanggal">Sampai Tanggal</label>
                                     </div>
                                     <div class="col s6">
-                                        <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> <i class="material-icons">sort</i> FILTER</button>
+                                        <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> <i class="material-icons">sort</i> FILTER</button>&nbsp;&nbsp;
+
+                                        <button type="reset" onclick="window.history.back()" class="btn-large deep-orange waves-effect waves-light"> <i class="material-icons">refresh</i> RESET</button>
                                     </div>
                                 </form>
                             </div>
@@ -123,30 +125,31 @@
                             </div>';
                     } else {
 
-                        echo '
-                        <!-- Row form Start -->
-                        <div class="row jarak-form black-text">
-                            <form class="col s12" method="post" action="">
-                                <div class="input-field col s3">
-                                    <i class="material-icons prefix md-prefix">date_range</i>
-                                    <input id="dari_tanggal" type="date" name="dari_tanggal" id="dari_tanggal" required>
-                                    <label for="dari_tanggal">Dari Tanggal</label>
-                                </div>
-                                <div class="input-field col s3">
-                                    <i class="material-icons prefix md-prefix">date_range</i>
-                                    <input id="sampai_tanggal" type="date" name="sampai_tanggal" id="sampai_tanggal" required>
-                                    <label for="sampai_tanggal">Sampai Tanggal</label>
-                                </div>
-                                <div class="col s6">
-                                    <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> <i class="material-icons">sort</i> FILTER</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- Row form END -->';
-
                         //script untuk menampilkan data
                         $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER BY id_surat DESC LIMIT $curr, $limit");
                         if(mysqli_num_rows($query) > 0){
+
+                            echo '
+                            <!-- Row form Start -->
+                            <div class="row jarak-form black-text">
+                                <form class="col s12" method="post" action="">
+                                    <div class="input-field col s3">
+                                        <i class="material-icons prefix md-prefix">date_range</i>
+                                        <input id="dari_tanggal" type="date" name="dari_tanggal" id="dari_tanggal" required>
+                                        <label for="dari_tanggal">Dari Tanggal</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <i class="material-icons prefix md-prefix">date_range</i>
+                                        <input id="sampai_tanggal" type="date" name="sampai_tanggal" id="sampai_tanggal" required>
+                                        <label for="sampai_tanggal">Sampai Tanggal</label>
+                                    </div>
+                                    <div class="col s6">
+                                        <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> <i class="material-icons">sort</i> FILTER</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Row form END -->';
+
                             while($row = mysqli_fetch_array($query)){
 
                                 if(empty($row['file'])){

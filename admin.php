@@ -119,7 +119,7 @@
                 <div class="card cyan">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">mail</i> Jumlah Surat Masuk</span>
-                        <?php echo '<h5 class="white-text">'.$count1.' Surat Masuk</h5>'; ?>
+                        <?php echo '<a href="?page=tsm"><h5 class="white-text link">'.$count1.' Surat Masuk</h5></a>'; ?>
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                 <div class="card lime darken-1">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Jumlah Surat Keluar</span>
-                        <?php echo '<h5 class="white-text">'.$count2.' Surat Keluar</h5>'; ?>
+                        <?php echo '<a href="?page=tsk"><h5 class="white-text link">'.$count2.' Surat Keluar</h5></a>'; ?>
                     </div>
                 </div>
             </div>
@@ -137,7 +137,7 @@
                 <div class="card yellow darken-3">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">description</i> Jumlah Disposisi</span>
-                        <?php echo '<h5 class="white-text">'.$count3.' Disposisi</h5>'; ?>
+                        <?php echo '<a href=""><h5 class="white-text link">'.$count3.' Disposisi</h5></a>'; ?>
                     </div>
                 </div>
             </div>
@@ -148,7 +148,7 @@
                 <div class="card deep-orange">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">people</i> Jumlah Pengguna</span>
-                        <?php echo '<h5 class="white-text">'.$count4.' Pengguna</h5>'; ?>
+                        <?php echo '<a href="?page=sett&sub=usr"><h5 class="white-text link">'.$count4.' Pengguna</h5></a>'; ?>
                     </div>
                 </div>
             </div>
