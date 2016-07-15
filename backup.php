@@ -6,17 +6,7 @@
         header("Location: ./");
         die();
     } else {
-
-        if(isset($_REQUEST['sub'])){
-            $sub = $_REQUEST['sub'];
-            switch ($sub) {
-                case 'rstr':
-                    include "restore.php";
-                    break;
-            }
-        } else {
-
-          echo '<!-- Row Start -->
+        echo '<!-- Row Start -->
                 <div class="row">
                     <!-- Secondary Nav START -->
                     <div class="col s12">
@@ -154,7 +144,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <span class="card-title black-text">Backup Database</span>
-                                    <p class="kata">Lakukan backup database sistem secara berkala untuk membuat cadangan database yang bisa direstore kapan saja ketika dibutuhkan. Silakan klik tombol <strong>backup</strong> untuk memulai backup data. Setelah proses backup selesai, silakan download file backup database tersebut.</p>
+                                    <p class="kata">Lakukan backup database sistem secara berkala untuk membuat cadangan database yang bisa direstore kapan saja ketika dibutuhkan. Silakan klik tombol <strong>"backup"</strong> untuk memulai backup data. Setelah proses backup selesai, silakan download file backup database tersebut.</p>
                                 </div>
                                 <div class="card-action">
                                     <form method="post" name="postform" enctype="multipart/form-data" >
@@ -164,7 +154,6 @@
                             </div>
                         </div>
                     </div>';
-                }
                 }
             }
 ?>

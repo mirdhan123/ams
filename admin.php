@@ -74,6 +74,9 @@
                 case 'bckp':
                     include "backup.php";
                     break;
+                case 'rest':
+                    include "restore.php";
+                    break;
             }
         } else {
     ?>

@@ -21,3 +21,5 @@ http://www.duniailkom.com/tutorial-php-cara-memotong-atau-mengambil-sebagian-str
 http://stackoverflow.com/questions/14838488/redirect-to-a-php-html-file-on-404-error-with-htaccess
 http://www.fahmi.my.id/htaccess-security.html
 http://canthafamily.blogspot.co.id/2014/06/backup-database-mysql-dengan-php.html
+http://www.walkswithme.net/how-to-backup-mysql-database-tables-using-php
+http://canthafamily.blogspot.co.id/2014/06/restore-database-mysql-dengan-php.html
