@@ -11,7 +11,7 @@
             $act = $_REQUEST['act'];
             switch ($act) {
                 case 'fsk':
-                    include "file_sm.php";
+                    include "file_sk.php";
                     break;
             }
         } else {
