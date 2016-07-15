@@ -56,7 +56,7 @@
     			                    <td width="1%">:</td>
     			                    <td width="86%">';
                                     if(!empty($row['file'])){
-                                        echo ' <a href="upload/surat_masuk/'.$row['file'].'" target="_blank">'.$row['file'].'</a>';
+                                        echo ' <a href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
                                     } else {
                                         echo ' Tidak ada file yang diupload';
                                     } echo '</td>
