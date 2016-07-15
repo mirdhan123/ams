@@ -71,7 +71,7 @@
                 case 'gsk':
                     include "galeri_sk.php";
                     break;
-                case 'bckp':
+                case 'back':
                     include "backup.php";
                     break;
                 case 'rest':

@@ -15,7 +15,7 @@
                                 <div class="nav-wrapper blue-grey darken-1">
                                     <div class="col m12">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light hide-on-small-only"><a href="?page=bckp" class="judul"><i class="material-icons">storage</i> Backup Database</a></li>
+                                            <li class="waves-effect waves-light hide-on-small-only"><a href="?page=back" class="judul"><i class="material-icons">storage</i> Backup Database</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="card-action">
                                         <form method="post" name="postform" enctype="multipart/form-data" >
-                                            <a href="?page=bckp&nama_file='.$file.'" class="btn-large blue waves-effect waves-light white-text" name="backup">DOWNLOAD <i class="material-icons">file_download</i></a>
+                                            <a href="?page=back&nama_file='.$file.'" class="btn-large blue waves-effect waves-light white-text" name="backup">DOWNLOAD <i class="material-icons">file_download</i></a>
                                         </form>
                                     </div>
                                 </div>
