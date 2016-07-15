@@ -15,7 +15,7 @@
                                 <div class="nav-wrapper blue-grey darken-1">
                                     <div class="col m12">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light hide-on-small-only"><a href="?page=bckp" class="judul"><i class="material-icons">storage</i> Backup Database Sistem</a></li>
+                                            <li class="waves-effect waves-light hide-on-small-only"><a href="?page=bckp" class="judul"><i class="material-icons">storage</i> Backup Database</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -144,7 +144,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <span class="card-title black-text">Backup Database</span>
-                                    <p class="kata">Lakukan backup database sistem secara berkala untuk membuat cadangan database yang bisa direstore kapan saja ketika dibutuhkan. Silakan klik tombol <strong>"backup"</strong> untuk memulai backup data. Setelah proses backup selesai, silakan download file backup database tersebut.</p>
+                                    <p class="kata">Lakukan backup database secara berkala untuk membuat cadangan database yang bisa direstore kapan saja ketika dibutuhkan. Silakan klik tombol <strong>"backup"</strong> untuk memulai backup data. Setelah proses backup selesai, silakan download file backup database tersebut.</p>
                                 </div>
                                 <div class="card-action">
                                     <form method="post" name="postform" enctype="multipart/form-data" >

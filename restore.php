@@ -16,7 +16,7 @@
                                 <div class="nav-wrapper blue-grey darken-1">
                                     <div class="col m12">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light hide-on-small-only"><a href="?page=rest" class="judul"><i class="material-icons">storage</i> Restore Database Sistem</a></li>
+                                            <li class="waves-effect waves-light hide-on-small-only"><a href="?page=rest" class="judul"><i class="material-icons">storage</i> Restore Database</a></li>
                                         </ul>
                                     </div>
                                 </div>

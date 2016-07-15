@@ -116,8 +116,11 @@
                 //menghitung jumlah surat masuk
                 $count3 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_disposisi"));
 
+                //menghitung jumlah klasifikasi
+                $count4 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_klasifikasi"));
+
                 //menghitung jumlah pengguna
-                $count4 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
+                $count5 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
             ?>
 
             <!-- Info Statistic START -->
@@ -148,13 +151,22 @@
                 </div>
             </div>
 
-        <?php
-            if($_SESSION['id_user'] == 1 || $_SESSION['admin'] == 2){?>
             <div class="col s12 m4">
                 <div class="card deep-orange">
                     <div class="card-content">
+                        <span class="card-title white-text"><i class="material-icons md-36">bookmark</i> Jumlah Klasifikasi</span>
+                        <?php echo '<a href="?page=ref"><h5 class="white-text link">'.$count4.' Klasifikasi</h5></a>'; ?>
+                    </div>
+                </div>
+            </div>
+
+        <?php
+            if($_SESSION['id_user'] == 1 || $_SESSION['admin'] == 2){?>
+            <div class="col s12 m4">
+                <div class="card indigo accent-2">
+                    <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">people</i> Jumlah Pengguna</span>
-                        <?php echo '<a href="?page=sett&sub=usr"><h5 class="white-text link">'.$count4.' Pengguna</h5></a>'; ?>
+                        <?php echo '<a href="?page=sett&sub=usr"><h5 class="white-text link">'.$count5.' Pengguna</h5></a>'; ?>
                     </div>
                 </div>
             </div>
