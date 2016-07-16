@@ -63,7 +63,7 @@
                             </li>
                         </ul>
 
-                        <button onclick="window.history.back()" class="btn blue waves-effect waves-light left"><i class="material-icons">arrow_back</i> KEMBALI</button>';
+                        <button onclick="window.history.back()" class="btn-large blue waves-effect waves-light left"><i class="material-icons">arrow_back</i> KEMBALI</button>';
 
                         if(empty($row['file'])){
                             echo '';

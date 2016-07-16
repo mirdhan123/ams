@@ -119,7 +119,7 @@
                     $cdata = mysqli_num_rows($query);
                     $cpg = ceil($cdata/$limit);
 
-                    echo '<br/><!-- Pagination START -->
+                    echo '<!-- Pagination START -->
                           <ul class="pagination">';
 
                     if($cdata > $limit){

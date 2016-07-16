@@ -99,12 +99,12 @@
                                         <tbody>
                                             <tr>';
 
-                                            $query2 = mysqli_query($config, "SELECT * FROM tbl_disposisi JOIN tbl_surat_masuk ON tbl_disposisi.id_surat = tbl_surat_masuk.id_surat WHERE tbl_disposisi.id_surat='$id_surat'");
+                                        $query2 = mysqli_query($config, "SELECT * FROM tbl_disposisi JOIN tbl_surat_masuk ON tbl_disposisi.id_surat = tbl_surat_masuk.id_surat WHERE tbl_disposisi.id_surat='$id_surat'");
 
-                                            if(mysqli_num_rows($query2) > 0){
-                                                $no = 0;
-                                                while($row = mysqli_fetch_array($query2)){
-                                                $no++;
+                                        if(mysqli_num_rows($query2) > 0){
+                                            $no = 0;
+                                            while($row = mysqli_fetch_array($query2)){
+                                            $no++;
                                              echo ' <td>'.$no.'</td>
                                                     <td>'.$row['tujuan'].'</td>
                                                     <td>'.$row['isi_disposisi'].'</td>
@@ -115,13 +115,12 @@
                                                     </td>
                                             </tr>
                                         </tbody>';
-                                                }
-                                            } else {
-                                                echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
                                             }
-                                echo '</table><br/><br/><br/>
+                                        } else {
+                                            echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
+                                        }
+                                echo '</table>
                                 </div>
-
                             </div>
                             <!-- Row form END -->';
                     }

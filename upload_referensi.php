@@ -68,7 +68,10 @@
 
                 //proses upload file
                 if(isset($_POST['submit'])){
-                    if (is_uploaded_file($_FILES['file']['tmp_name'])){
+
+                    $file = $_FILES['file']['tmp_name'];
+
+                    if (is_uploaded_file($file)){
                         echo '<script language="javascript">
                                 window.alert("SUKSES! Data berhasil diimport");
                                 window.location.href="./admin.php?page=ref";
@@ -80,8 +83,8 @@
                               </script>';
                     }
 
-                    //import file yang telah diupload ke dalam database 
-                    $handle = fopen($_FILES['file']['tmp_name'], "r");
+                    //import file yang telah diupload ke dalam database
+                    $handle = fopen($file, "r");
                     while(($data = fgetcsv($handle, 2000000, ",")) !== FALSE){
 
                         $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]')");

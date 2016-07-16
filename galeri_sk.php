@@ -121,7 +121,7 @@
                             } else {
                                 echo '<h5 class="warna center">Tidak ada file lampiran surat keluar yang ditemukan</h5>';
                             } echo '
-                                </div><br/><br/><br/>';
+                                </div>';
                     } else {
 
                         //script untuk menampilkan data
@@ -193,7 +193,7 @@
                         $cdata = mysqli_num_rows($query);
                         $cpg = ceil($cdata/$limit);
 
-                        echo '<br/><!-- Pagination START -->
+                        echo '<!-- Pagination START -->
                               <ul class="pagination">';
 
                         if($cdata > $limit ){

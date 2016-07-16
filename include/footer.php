@@ -11,6 +11,7 @@
 <footer class="page-footer">
     <div class="container">
            <div class="row">
+               <br/><br/>
            </div>
     </div>
 <div class="footer-copyright blue-grey darken-1 white-text">
