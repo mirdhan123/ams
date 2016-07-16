@@ -38,7 +38,7 @@
                 if(isset($_REQUEST['nama_file'])){
                 	$file = $back_dir.$_REQUEST['nama_file'];
 
-                	if (file_exists($file)){
+                	if(file_exists($file)){
                 		header('Content-Description: File Transfer');
                 		header('Content-Type: application/octet-stream');
                 		header('Content-Disposition: attachment; filename='.($file));
@@ -85,13 +85,15 @@
                         $return.= "\n\n".$row2[1].";\n\n";
 
                         //looping field table
-                        for ($i = 0; $i < $num_fields; $i++){
+                        for($i = 0; $i < $num_fields; $i++){
                             while($row = mysqli_fetch_row($result)){
                                 $return.= 'INSERT INTO '.$table.' VALUES(';
+
                                 for($j=0; $j<$num_fields; $j++){
                                     $row[$j] = addslashes($row[$j]);
                                     $row[$j] = ereg_replace("\n","\\n",$row[$j]);
-                                    if (isset($row[$j])){
+
+                                    if(isset($row[$j])){
                                         $return.= '"'.$row[$j].'"' ;
                                     } else {
                                         $return.= '""';

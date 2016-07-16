@@ -35,7 +35,7 @@
                 <!-- Row END -->';
 
                 // proses restore database dilakukan oleh fungsi
-                function restore($file) {
+                function restore($file){
                 	global $rest_dir;
                 	$koneksi=mysqli_connect("localhost","root","","ams");
 
@@ -43,7 +43,7 @@
                 	$ukrn_file	= $file['size'];
                 	$tmp_file	= $file['tmp_name'];
 
-                	if ($nama_file == ""){
+                	if($nama_file == ""){
                         echo '<script language="javascript">
                                 window.alert("ERROR! Form FILE tidak boleh kosong");
                                 window.location.href="./admin.php?page=rest";
@@ -57,35 +57,36 @@
                         $x = explode('.', $nama_file);
                         $eks = strtolower(end($x));
 
+                        //validasi tipe file
                         if(in_array($eks, $ekstensi) == true){
 
-                		if (move_uploaded_file($tmp_file , $alamatfile)){
+                    		if(move_uploaded_file($tmp_file , $alamatfile)){
 
-                			$templine	= '';
-                			$lines		= file($alamatfile);
+                    			$templine	= '';
+                    			$lines		= file($alamatfile);
 
-                			foreach ($lines as $line){
-                				if (substr($line, 0, 2) == '--' || $line == '')
-                					continue;
+                    			foreach ($lines as $line){
+                    				if(substr($line, 0, 2) == '--' || $line == '')
+                    					continue;
 
-                				$templine .= $line;
+                    				$templine .= $line;
 
-                				if (substr(trim($line), -1, 1) == ';'){
-                					mysqli_query($koneksi, $templine);
-                					$templine = '';
-                				}
-                			}
-                            echo '<script language="javascript">
-                                    window.alert("SUKSES! Database berhasil direstore");
-                                    window.location.href="./admin.php?page=rest";
-                                  </script>';
-                		} else {
+                    				if(substr(trim($line), -1, 1) == ';'){
+                    					mysqli_query($koneksi, $templine);
+                    					$templine = '';
+                    				}
+                    			}
+                                echo '<script language="javascript">
+                                        window.alert("SUKSES! Database berhasil direstore");
+                                        window.location.href="./admin.php?page=rest";
+                                      </script>';
+                    		} else {
                             echo '<script language="javascript">
                                     window.alert("ERROR! Proses upload gagal, kode error = '.$file['error'].'");
                                     window.location.href="./admin.php?page=rest";
                                   </script>';
-                		}
-                    } else {
+                		    }
+                        } else {
                             echo '<script language="javascript">
                                     window.alert("ERROR! File yang diupload buka database SQL");
                                     window.location.href="./admin.php?page=rest";

@@ -63,17 +63,26 @@
                     </div>
                 </div>';
 
+                //mengosongkan table klasifikasi
                 mysqli_query($config, "TRUNCATE TABLE tbl_klasifikasi");
 
-                if (isset($_POST['submit'])) {
-                    if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+                //proses upload file
+                if(isset($_POST['submit'])){
+                    if (is_uploaded_file($_FILES['file']['tmp_name'])){
                         echo '<script language="javascript">
                                 window.alert("SUKSES! Data berhasil diimport");
                                 window.location.href="./admin.php?page=ref";
                               </script>';
+                    } else {
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Proses upload data gagal");
+                                window.location.href="./admin.php?page=ref";
+                              </script>';
                     }
+
+                    //import file yang telah diupload ke dalam database 
                     $handle = fopen($_FILES['file']['tmp_name'], "r");
-                    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                    while(($data = fgetcsv($handle, 2000000, ",")) !== FALSE){
 
                         $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]')");
                     }
