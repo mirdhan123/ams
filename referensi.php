@@ -47,7 +47,7 @@
                                             <li class="waves-effect waves-light hide-on-small-only"><a href="?page=ref" class="judul"><i class="material-icons">class</i> Klasifikasi Surat</a></li>';
                                             if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){
                                                 echo '<li class="waves-effect waves-light"><a href="?page=ref&act=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a></li>
-                                                <li class="waves-effect waves-light tooltipped" data-position="bottom" data-tooltip="Import referensi kode klasifikasi CSV/Excel file"><a href="?page=ref&act=imp"><i class="material-icons md-24">file_upload</i> Import Data</a></li>';
+                                                <li class="waves-effect waves-light"><a href="?page=ref&act=imp"><i class="material-icons md-24">file_upload</i> Import Data</a></li>';
                                             } else {
                                                 echo '';
                                             } echo '

@@ -98,7 +98,7 @@
                 //restore database
                 if(isset($_POST['restore'])){
 
-                    restore($_FILES['datafile']);
+                    restore($_FILES['file']);
 
                 } else {
                     echo '
@@ -118,10 +118,10 @@
                                         <div class="file-field input-field col m6 tooltipped" data-position="top" data-tooltip="Format file database yang diperbolehkan hanya *.SQL">
                                             <div class="btn light-green darken-1">
                                                 <span>File</span>
-                                                <input type="file" name="datafile">
+                                                <input type="file" name="file" accept=".sql" required>
                                             </div>
                                             <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text">
+                                                <input class="file-path validate" placeholder="Upload file database sql" type="text">
                                              </div>
                                         </div>&nbsp;&nbsp;
                                         <button type="submit" class="btn-large blue waves-effect waves-light" name="restore">RESTORE <i class="material-icons">restore</i></button>
