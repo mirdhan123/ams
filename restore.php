@@ -37,6 +37,8 @@
                 // proses restore database dilakukan oleh fungsi
                 function restore($file){
                 	global $rest_dir;
+
+                    //konfigurasi database
                 	$koneksi=mysqli_connect("localhost","root","","ams");
 
                 	$nama_file	= $file['name'];

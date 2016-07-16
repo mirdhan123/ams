@@ -80,6 +80,7 @@
                     foreach($tables as $table){
                         $result = mysqli_query($link, 'SELECT * FROM '.$table);
                         $num_fields = mysqli_num_fields($result);
+
                         $return.= 'DROP TABLE '.$table.';';
                         $row2 = mysqli_fetch_row(mysqli_query($link, 'SHOW CREATE TABLE '.$table));
                         $return.= "\n\n".$row2[1].";\n\n";
@@ -122,7 +123,7 @@
                 //backup database
                 if(isset($_POST['backup'])){
 
-                    //backup semua tabel
+                    //konfigurasi database dan backup semua tabel
                     backup("localhost","root","","ams",$file,"*");
 
                     //backup hanya tabel tertentu
