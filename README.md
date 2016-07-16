@@ -1,8 +1,8 @@
 # ams
 
-<h4>Aplikasi Manajemen Surat PHP & MySQLi dengan Fitur Backup dan Restore Database.</h4>
+<h3>Aplikasi Manajemen Surat PHP & MySQLi dengan Fitur Backup dan Restore Database.</h3>
 
-Untuk menggunakan aplikasi ini silakan configurasi database terlebih dahulu.
+Untuk menggunakan aplikasi ini silakan lakukan beberapa konfigurasi terlebih dahulu.
 
 - konfigurasi database sistem: buka folder -> <b>config.php</b> lalu setting databasenya.
 - konfigurasi fitur backup database: buka file <b>backup.php</b> lalu setting databasenya.
