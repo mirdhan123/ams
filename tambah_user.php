@@ -104,7 +104,7 @@
                     <nav class="secondary-nav">
                         <div class="nav-wrapper blue-grey darken-1">
                             <ul class="left">
-                                <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">person_add</i> Tambah User</a></li>
+                                <li class="waves-effect waves-light"><a href="?page=sett&sub=usr&act=add" class="judul"><i class="material-icons">person_add</i> Tambah User</a></li>
                             </ul>
                         </div>
                     </nav>

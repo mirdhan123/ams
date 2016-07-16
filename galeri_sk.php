@@ -35,7 +35,7 @@
                                     <div class="nav-wrapper blue-grey darken-1">
                                         <div class="col m12">
                                             <ul class="left">
-                                                <li class="waves-effect waves-light hide-on-small-only"><a href="?page=gsk" class="judul"><i class="material-icons">image</i> Galeri File Surat Keluar</a></li>
+                                                <li class="waves-effect waves-light"><a href="?page=gsk" class="judul"><i class="material-icons">image</i> Galeri File Surat Keluar</a></li>
                                             </ul>
                                         </div>
                                     </div>

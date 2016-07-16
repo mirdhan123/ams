@@ -28,7 +28,7 @@
                                     <div class="nav-wrapper blue-grey darken-1">
                                         <div class="col 12">
                                             <ul class="left">
-                                                <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">print</i> Cetak Agenda Surat Masuk<a></li>
+                                                <li class="waves-effect waves-light"><a href="?page=asm" class="judul"><i class="material-icons">print</i> Cetak Agenda Surat Masuk<a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -130,7 +130,7 @@
                                 <div class="nav-wrapper blue-grey darken-1">
                                     <div class="col 12">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">print</i> Cetak Agenda Surat Masuk<a></li>
+                                            <li class="waves-effect waves-light"><a href="?page=ask" class="judul"><i class="material-icons">print</i> Cetak Agenda Surat Masuk<a></li>
                                         </ul>
                                     </div>
                                 </div>

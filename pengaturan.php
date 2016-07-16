@@ -169,7 +169,7 @@
                                 <nav class="secondary-nav">
                                     <div class="nav-wrapper blue-grey darken-1">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">work</i> Manajemen Instansi</a></li>
+                                            <li class="waves-effect waves-light"><a href="?page=sett" class="judul"><i class="material-icons">work</i> Manajemen Instansi</a></li>
                                         </ul>
                                     </div>
                                 </nav>

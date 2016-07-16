@@ -6,6 +6,14 @@
         header("Location: ./");
         die();
     } else {
+
+        if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
+            echo '<script language="javascript">
+                    window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                    window.location.href="./logout.php";
+                  </script>';
+        } else {
+
         echo '<!-- Row Start -->
                 <div class="row">
                     <!-- Secondary Nav START -->
@@ -15,7 +23,7 @@
                                 <div class="nav-wrapper blue-grey darken-1">
                                     <div class="col m12">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light hide-on-small-only"><a href="?page=back" class="judul"><i class="material-icons">storage</i> Backup Database</a></li>
+                                            <li class="waves-effect waves-light"><a href="?page=back" class="judul"><i class="material-icons">storage</i> Backup Database</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -156,4 +164,5 @@
                     </div>';
                 }
             }
+        }
 ?>

@@ -7,6 +7,13 @@
         die();
     } else {
 
+        if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
+            echo '<script language="javascript">
+                    window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                    window.location.href="./logout.php";
+                  </script>';
+        } else {
+
           echo '<!-- Row Start -->
                 <div class="row">
                     <!-- Secondary Nav START -->
@@ -16,7 +23,7 @@
                                 <div class="nav-wrapper blue-grey darken-1">
                                     <div class="col m12">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light hide-on-small-only"><a href="?page=rest" class="judul"><i class="material-icons">storage</i> Restore Database</a></li>
+                                            <li class="waves-effect waves-light"><a href="?page=rest" class="judul"><i class="material-icons">storage</i> Restore Database</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -68,35 +75,19 @@
                 					$templine = '';
                 				}
                 			}
-                            echo '<!-- Row form Start -->
-                                  <div class="row">
-                                      <div class="col m12">
-                                          <div class="card">
-                                              <div class="card-content">
-                                                  <span class="card-title black-text"><div class="confirr green-text"><i class="material-icons md-36">done</i>
-                                                  SUKSES</div></span>
-                                                  <p class="kata">Database berhasil direstore, silakan dicek.</p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>';
+                            echo '<script language="javascript">
+                                    window.alert("SUKSES! Database berhasil direstore");
+                                    window.location.href="./admin.php?page=rest";
+                                  </script>';
                 		} else {
-                            echo '<!-- Row form Start -->
-                                  <div class="row">
-                                      <div class="col m12">
-                                          <div class="card">
-                                              <div class="card-content">
-                                                  <span class="card-title black-text"><div class="confir red-text"><i class="material-icons md-36">error_outline</i>
-                                                  ERROR</div></span>
-                                                  <p class="kata">Proses upload gagal, kode error = '.$file['error'].'</p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>';
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Proses upload gagal, kode error = '.$file['error'].'");
+                                    window.location.href="./admin.php?page=rest";
+                                  </script>';
                 		}
                     } else {
                             echo '<script language="javascript">
-                                    window.alert("ERROR! File yang diupload buka database sql");
+                                    window.alert("ERROR! File yang diupload buka database SQL");
                                     window.location.href="./admin.php?page=rest";
                                   </script>';
                         }
@@ -117,8 +108,9 @@
                             <div class="card">
                                 <div class="card-content">
                                     <span class="card-title black-text">Restore Database</span>
-                                    <p class="kata">Silakan pilih file database lalu klik tombol <strong>"restore"</strong> untuk melakukan restore database dari hasil backup yang telah dibuat sebelumnya. Jika belum ada database hasil backup, silakan lakukan backup terlebih dahulu melalui menu <strong>"Backup Database"</strong>.</p>
+                                    <p class="kata">Silakan pilih file database lalu klik tombol <strong>"restore"</strong> untuk melakukan restore database dari hasil backup yang telah dibuat sebelumnya. Jika belum ada database hasil backup, silakan lakukan backup terlebih dahulu melalui menu <strong>"Backup Database"</strong>.</p><br/>
 
+                                    <p class="kata"><strong>PENTING!</strong> Data yang ada akan diganti dengan data yang baru.</p>
                                 </div>
                                 <div class="card-action">
                                     <form method="post" name="postform" enctype="multipart/form-data">
@@ -139,4 +131,5 @@
                     </div>';
                 }
             }
+        }
 ?>
