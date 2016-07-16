@@ -88,10 +88,9 @@
                         <table class="bordered" id="tbl">
                             <thead class="blue lighten-4" id="head">
                                 <tr>
-                                    <th width="7%">No</th>
                                     <th width="10%">Kode</th>
-                                    <th width="25%">Nama</th>
-                                    <th width="40%">Uraian</th>
+                                    <th width="30%">Nama</th>
+                                    <th width="42%">Uraian</th>
                                     <th width="18%">Tindakan</th>
                                 </tr>
                             </thead>
@@ -102,10 +101,8 @@
                             //script untuk menampilkan data
                             $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE uraian LIKE '%$cari%' ORDER BY id_klasifikasi ASC LIMIT $curr, $limit");
                             if(mysqli_num_rows($query) > 0){
-                                $no = 0;
                                 while($row = mysqli_fetch_array($query)){
-                                    $no++;
-                                    echo '<td>'.$no.'</td>
+                                    echo '
                                         <td>'.$row['kode'].'</td>
                                         <td>'.$row['nama'].'</td>
                                         <td>'.$row['uraian'].'</td>
@@ -180,10 +177,9 @@
                                 <table class="bordered" id="tbl">
                                     <thead class="blue lighten-4" id="head">
                                         <tr>
-                                            <th width="7%">No</th>
                                             <th width="10%">Kode</th>
-                                            <th width="25%">Nama</th>
-                                            <th width="40%">Uraian</th>
+                                            <th width="30%">Nama</th>
+                                            <th width="42%">Uraian</th>
                                             <th width="18%">Tindakan</th>
                                         </tr>
                                     </thead>
@@ -194,11 +190,8 @@
                                     //script untuk menampilkan data
                                     $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi ORDER BY id_klasifikasi ASC LIMIT $curr, $limit");
                                     if(mysqli_num_rows($query) > 0){
-                                        $no = 0;
                                         while($row = mysqli_fetch_array($query)){
-                                            $no++;
-                                          echo '<td>'.$no.'</td>
-                                                <td>'.$row['kode'].'</td>
+                                          echo '<td>'.$row['kode'].'</td>
                                                 <td>'.$row['nama'].'</td>
                                                 <td>'.$row['uraian'].'</td>
                                                 <td>';
