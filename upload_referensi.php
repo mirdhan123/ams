@@ -68,7 +68,6 @@
 
                     $file = $_FILES['file']['tmp_name'];
 
-
                     if($file == ""){
                         echo '<script language="javascript">
                                 window.alert("ERROR! Form FILE tidak boleh kosong");
@@ -76,37 +75,45 @@
                               </script>';
                     } else {
 
+                        $x = explode('.', $_FILES['file']['name']);
+                        $eks = strtolower(end($x));
 
+                        if($eks == 'csv'){
 
-                        //mengosongkan table klasifikasi
-                        mysqli_query($config, "TRUNCATE TABLE tbl_klasifikasi");
+                            //mengosongkan table klasifikasi
+                            mysqli_query($config, "TRUNCATE TABLE tbl_klasifikasi");
 
-                        //upload file
-                        if(is_uploaded_file($file)){
-                            echo '<script language="javascript">
-                                    window.alert("SUKSES! Data berhasil diimport");
-                                    window.location.href="./admin.php?page=ref";
-                                  </script>';
+                            //upload file
+                            if(is_uploaded_file($file)){
+                                echo '<script language="javascript">
+                                        window.alert("SUKSES! Data berhasil diimport");
+                                        window.location.href="./admin.php?page=ref";
+                                      </script>';
+                            } else {
+                                echo '<script language="javascript">
+                                        window.alert("ERROR! Proses upload data gagal");
+                                        window.location.href="./admin.php?page=ref";
+                                      </script>';
+                            }
+
+                            //membuka file csv
+                            $handle = fopen($file, "r");
+
+                            //parsing file csv
+                            while(($data = fgetcsv($handle, 1000, ";")) !== FALSE){
+
+                                //insert data ke dalam database
+                                $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values('$data[0]','$data[1]','$data[2]','$data[3]','1')");
+                            }
+                            fclose($handle);
                         } else {
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Proses upload data gagal");
-                                    window.location.href="./admin.php?page=ref";
+                                    window.alert("ERROR! Format file yang diperbolehkan hanya *.CSV");
+                                    window.location.href="./admin.php?page=ref&act=imp";
                                   </script>';
                         }
-
-                        //membuka file csv
-                        $handle = fopen($file, "r");
-
-                        //parsing file csv
-                        while(($data = fgetcsv($handle, 1000, ";")) !== FALSE){
-
-                            //insert data ke dalam database
-                            $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values('$data[0]','$data[1]','$data[2]','$data[3]','1')");
-                        }
-                        fclose($handle);
                     }
                 }
             }
-
-    }
+        }
 ?>
