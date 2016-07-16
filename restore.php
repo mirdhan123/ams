@@ -110,7 +110,7 @@
                                     <span class="card-title black-text">Restore Database</span>
                                     <p class="kata">Silakan pilih file database lalu klik tombol <strong>"restore"</strong> untuk melakukan restore database dari hasil backup yang telah dibuat sebelumnya. Jika belum ada database hasil backup, silakan lakukan backup terlebih dahulu melalui menu <strong>"Backup Database"</strong>.</p><br/>
 
-                                    <p class="kata"><strong>PENTING!</strong> Data yang ada akan diganti dengan data yang baru.</p>
+                                    <p class="kata"><strong>CATATAN PENTING!</strong><br/> Data yang ada akan diganti dengan data yang baru.</p>
                                 </div>
                                 <div class="card-action">
                                     <form method="post" name="postform" enctype="multipart/form-data">

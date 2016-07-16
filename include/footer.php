@@ -8,6 +8,11 @@
 </noscript>
 
 <!-- Footer START -->
+<footer class="page-footer">
+    <div class="container">
+           <div class="row">
+           </div>
+    </div>
 <div class="footer-copyright blue-grey darken-1 white-text">
     <div class="container" id="footer">
         <span class="white-text">&copy; <?php echo date("Y"); ?> <a class="white-text" href="http://masrud.com" target="_blank">M. Rudianto</a></span>
@@ -30,6 +35,7 @@
         </div>
     </div>
 </div>
+</footer>
 <!-- Footer END -->
 
 <!-- Javascript START -->
