@@ -116,7 +116,7 @@
                                     <p class="kata"><strong>CATATAN PENTING!</strong><br/> Data yang ada akan diganti dengan data yang baru.</p>
                                 </div>
                                 <div class="card-action">
-                                    <form method="post" name="postform" enctype="multipart/form-data">
+                                    <form method="post" enctype="multipart/form-data">
                                         <div class="file-field input-field col m6 tooltipped" data-position="top" data-tooltip="Format file database yang diperbolehkan hanya *.SQL">
                                             <div class="btn light-green darken-1">
                                                 <span>File</span>
@@ -125,7 +125,7 @@
                                             <div class="file-path-wrapper">
                                                 <input class="file-path validate" placeholder="Upload file database sql" type="text">
                                              </div>
-                                        </div>&nbsp;&nbsp;
+                                        </div>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <button type="submit" class="btn-large blue waves-effect waves-light" name="restore">RESTORE <i class="material-icons">restore</i></button>
                                     </form>
                                 </div>

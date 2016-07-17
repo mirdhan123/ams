@@ -36,24 +36,40 @@
 
                 // download file hasil backup
                 if(isset($_REQUEST['nama_file'])){
+
+                    $back_dir = "./";
                 	$file = $back_dir.$_REQUEST['nama_file'];
 
-                	if(file_exists($file)){
-                		header('Content-Description: File Transfer');
-                		header('Content-Type: application/octet-stream');
-                		header('Content-Disposition: attachment; filename='.($file));
-                		header('Content-Transfer-Encoding: binary');
-                		header('Expires: 0');
-                		header('Cache-Control: private');
-                		header('Pragma: private');
-                		header('Content-Length: ' . filesize($file));
-                		ob_clean();
-                		flush();
-                		readfile($file);
-                		exit;
-                	} else {
-                		echo "File {$_REQUEST['nama_file']} sudah tidak ada.";
-                	}
+                    $x = explode('.', $file);
+                    $eks = strtolower(end($x));
+
+                    if($eks == 'sql'){
+
+                    	if(file_exists($file)){
+                    		header('Content-Description: File Transfer');
+                    		header('Content-Type: application/octet-stream');
+                    		header('Content-Disposition: attachment; filename='.($file));
+                    		header('Content-Transfer-Encoding: binary');
+                    		header('Expires: 0');
+                    		header('Cache-Control: private');
+                    		header('Pragma: private');
+                    		header('Content-Length: ' . filesize($file));
+                    		ob_clean();
+                    		flush();
+                    		readfile($file);
+                    		exit;
+                    	} else {
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! File sudah tidak ada");
+                                    window.location.href="./admin.php?page=back";
+                                  </script>';
+                        }
+                    } else {
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Format file yang boleh didownload hanya *.SQL");
+                                window.location.href="./logout.php";
+                              </script>';
+                    }
                 }
 
                 // proses backup  database dilakukan oleh Fungsi
@@ -121,7 +137,7 @@
                 $file = $database.'_'.date("d_M_Y").'_'.time().'.sql';
 
                 //backup database
-                if(isset($_POST['backup'])){
+                if(isset($_REQUEST['backup'])){
 
                     //konfigurasi database dan backup semua tabel
                     backup("localhost","root","","ams",$file,"*");
@@ -139,8 +155,8 @@
                                         <p class="kata">Database berhasil dibackup. </p>
                                     </div>
                                     <div class="card-action">
-                                        <form method="post" name="postform" enctype="multipart/form-data" >
-                                            <a href="?page=back&nama_file='.$file.'" class="btn-large blue waves-effect waves-light white-text" name="backup">DOWNLOAD <i class="material-icons">file_download</i></a>
+                                        <form method="post" enctype="multipart/form-data" >
+                                            <a href="?page=back&nama_file='.$file.'" class="btn-large blue waves-effect waves-light white-text">DOWNLOAD <i class="material-icons">file_download</i></a>
                                         </form>
                                     </div>
                                 </div>
@@ -148,7 +164,6 @@
                         </div>';
                 } else {
                     echo '
-
                     <!-- Row form Start -->
                     <div class="row">
                         <div class="col m12">
@@ -158,7 +173,7 @@
                                     <p class="kata">Lakukan backup database secara berkala untuk membuat cadangan database yang bisa direstore kapan saja ketika dibutuhkan. Silakan klik tombol <strong>"backup"</strong> untuk memulai backup data. Setelah proses backup selesai, silakan download file backup database tersebut.</p>
                                 </div>
                                 <div class="card-action">
-                                    <form method="post" name="postform" enctype="multipart/form-data" >
+                                    <form method="post" enctype="multipart/form-data" >
                                         <button type="submit" class="btn-large blue waves-effect waves-light" name="backup">BACKUP <i class="material-icons">backup</i></button>
                                     </form>
                                 </div>

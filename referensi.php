@@ -99,7 +99,7 @@
                                 <tr>';
 
                             //script untuk menampilkan data
-                            $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE uraian LIKE '%$cari%' ORDER BY id_klasifikasi ASC LIMIT $curr, $limit");
+                            $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE uraian LIKE '%$cari%' ORDER BY id_klasifikasi DESC LIMIT $curr, $limit");
                             if(mysqli_num_rows($query) > 0){
                                 while($row = mysqli_fetch_array($query)){
                                     echo '
@@ -188,7 +188,7 @@
                                         <tr>';
 
                                     //script untuk menampilkan data
-                                    $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi ORDER BY id_klasifikasi ASC LIMIT $curr, $limit");
+                                    $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi ORDER BY id_klasifikasi DESC LIMIT $curr, $limit");
                                     if(mysqli_num_rows($query) > 0){
                                         while($row = mysqli_fetch_array($query)){
                                           echo '<td>'.$row['kode'].'</td>
