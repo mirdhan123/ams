@@ -41,7 +41,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <span class="card-title black-text">Import Referensi Kode Klasifikasi Surat</span>
-                                <p class="kata">Silakan pilih file referensi kode klasifikasi berformat *.csv (file excel) lalu klik tombol <strong>"import"</strong> untuk melakukan import file. Contoh format file csv bisa di download melalui link dibawah ini.</p><br/>';
+                                <p class="kata">Silakan pilih file referensi kode klasifikasi berformat *.csv (file excel) lalu klik tombol <strong>"Import"</strong> untuk melakukan import file. Contoh format file csv bisa di download melalui link dibawah ini.</p><br/>';
 
                                 // download file contoh format csv
                                 if(isset($_REQUEST['download'])){
@@ -67,7 +67,7 @@
 
                                 <p>
                                     <form method="post" enctype="multipart/form-data" >
-                                        <a href="?page=ref&act=imp&download" name="download" class="waves-effect waves-light blue-text"><i class="material-icons">file_download</i> DOWNLOAD CONTOH FILE CSV</a>
+                                        <a href="?page=ref&act=imp&download" name="download" class="waves-effect waves-light blue-text"><i class="material-icons">file_download</i> DOWNLOAD CONTOH FORMAT FILE CSV</a>
                                     </form>
                                 </p><br/>
 

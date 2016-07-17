@@ -53,7 +53,7 @@
                                 <label for="sampai_tanggal">Sampai Tanggal</label>
                             </div>
                             <div class="col s6">
-                                <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> <i class="material-icons">visibility</i> TAMPILKAN</button>
+                                <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> TAMPILKAN <i class="material-icons">visibility</i></button>
                             </div>
                         </form>
                     </div>
@@ -65,7 +65,7 @@
                             <p class="warna agenda">Agenda Surat Masuk dari tanggal <strong>'.date('d M Y', strtotime($dari_tanggal)).'</strong> sampai tanggal <strong>'.date('d M Y', strtotime($sampai_tanggal)).'</strong></p>
                         </div>
                         <div class="col s2">
-                            <button type="submit" onClick="window.print()" class="btn-large deep-orange waves-effect waves-light right"> <i class="material-icons">print</i> CETAK</button>
+                            <button type="submit" onClick="window.print()" class="btn-large deep-orange waves-effect waves-light right">CETAK <i class="material-icons">print</i></button>
                         </div>
                     </div>
                     <div id="colres" class="warna cetak">
@@ -155,7 +155,7 @@
                             <label for="sampai_tanggal">Sampai Tanggal</label>
                         </div>
                         <div class="col s6">
-                            <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> <i class="material-icons">visibility</i> TAMPILKAN</button>
+                            <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> TAMPILKAN <i class="material-icons">visibility</i></button>
                         </div>
                     </form>
                 </div>
