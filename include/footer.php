@@ -76,10 +76,10 @@ $(document).ready(function(){
 $('.tooltipped').tooltip({delay: 10});
 });
 
-//Jquery UI
+//jquery autocomplete
 $(function() {
     $( "#kode" ).autocomplete({
-        source: 'search.php'
+        source: 'kode.php'
     });
 });
 
