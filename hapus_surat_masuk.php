@@ -7,6 +7,20 @@
         die();
     } else {
 
+        if(isset($_SESSION['errQ'])){
+            $errQ = $_SESSION['errQ'];
+            echo '<div id="alert-message" class="row jarak-card">
+                    <div class="col m12">
+                        <div class="card red lighten-5">
+                            <div class="card-content notif">
+                                <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+            unset($_SESSION['errQ']);
+        }
+
     	$id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
     	$query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
@@ -104,13 +118,12 @@
                         $query2 = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_surat='$id_surat'");
 
                 		if($query == true){
-                            echo '<script language="javascript">
-                                    window.alert("SUKSES! Data berhasil dihapus");
-                                    window.location.href="./admin.php?page=tsm";
-                                  </script>';
+                            $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
+                            header("Location: ./admin.php?page=tsm");
+                            die();
                 		} else {
+                            $_SESSION['errQ'] = 'ERROR! Periksa penulisan querynya.';
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Periksa penulisan querynya");
                                     window.location.href="./admin.php?page=tsm&act=del&id_surat='.$id_surat.'";
                                   </script>';
                 		}
@@ -121,13 +134,12 @@
                         $query2 = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_surat='$id_surat'");
 
                         if($query == true){
-                            echo '<script language="javascript">
-                                    window.alert("SUKSES! Data berhasil dihapus");
-                                    window.location.href="./admin.php?page=tsm";
-                                  </script>';
+                            $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
+                            header("Location: ./admin.php?page=tsm");
+                            die();
                         } else {
+                            $_SESSION['errQ'] = 'ERROR! Periksa penulisan querynya.';
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Periksa penulisan querynya");
                                     window.location.href="./admin.php?page=tsm&act=del&id_surat='.$id_surat.'";
                                   </script>';
                         }
