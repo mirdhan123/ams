@@ -81,7 +81,7 @@
             font-size: 1.4rem;
         }
         .jarak-card {
-            margin-top: 0.8rem;
+            margin-top: 1rem;
         }
         #footer {
             background: #546e7a;

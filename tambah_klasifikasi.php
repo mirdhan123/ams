@@ -18,10 +18,9 @@
 
                 //validasi form kosong
                 if($_REQUEST['kode'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['uraian'] == ""){
-                    echo '<script language="javascript">
-                            window.alert("ERROR! Semua form wajib diisi");
-                            window.location.href="./admin.php?page=ref&act=add";
-                          </script>';
+                    $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
+                    header("Location: ./admin.php?page=ref&act=add");
+                    die();
                 } else {
 
                     $kode = $_REQUEST['kode'];
@@ -31,48 +30,41 @@
 
                     //validasi input data
                     if(!preg_match("/^[a-zA-Z0-9. ]*$/", $kode)){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form KODE hanya boleh mengandung karakter huruf, angka, spasi dan titik (.)");
-                                window.location.href="./admin.php?page=ref&act=add";
-                              </script>';
+                        $_SESSION['kode'] = 'Form Kode hanya boleh mengandung karakter huruf, angka, spasi dan titik(.)<br/>';
+                        header("Location: ./admin.php?page=ref&act=add");
+                        die();
                     } else {
 
-                        if(!preg_match("/^[a-zA-Z0-9.,\/ ]*$/", $nama)){
-                            echo '<script language="javascript">
-                                    window.alert("ERROR! Form NAMA hanya boleh mengandung karakter huruf, spasi, titik (.) dan koma (,)");
-                                    window.location.href="./admin.php?page=ref&act=add";
-                                  </script>';
+                        if(!preg_match("/^[a-zA-Z0-9.,\/ -]*$/", $nama)){
+                            $_SESSION['namaref'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.), koma(,) dan minus(-)<br/>';
+                            header("Location: ./admin.php?page=ref&act=add");
+                            die();
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,()\/\r\n -]*$/", $uraian)){
-                                echo '<script language="javascript">
-                                        window.alert("ERROR! Form URAIAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-)garis miring(/), dan kurung()");
-                                        window.location.href="./admin.php?page=tsm&act=add";
-                                      </script>';
+                                $_SESSION['uraian'] = 'Form Uraian hanya boleh mengandung  huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()<br/>';
+                                header("Location: ./admin.php?page=ref&act=add");
                             } else {
 
                                 $cek = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE kode='$kode'");
                                 $result = mysqli_num_rows($cek);
 
                                 if($result > 0){
-                                    echo '<script language="javascript">
-                                            window.alert("ERROR! Terjadi duplikasi KODE REFERENSI");
-                                            window.location.href="./admin.php?page=ref&act=add";
-                                          </script>';
+                                    $_SESSION['duplikasi'] = 'Terjadi duplikasi data Kode!<br/>';
+                                    header("Location: ./admin.php?page=ref&act=add");
+                                    die();
                                 } else {
 
                                     $query = mysqli_query($config, "INSERT INTO tbl_klasifikasi(kode,nama,uraian,id_user) VALUES('$kode','$nama','$uraian','$id_user')");
 
                                     if($query != false){
-                                        echo '<script language="javascript">
-                                                window.alert("SUKSES! Data berhasil ditambahkan");
-                                                window.location.href="./admin.php?page=ref";
-                                              </script>';
+                                        $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
+                                        header("Location: ./admin.php?page=ref");
+                                        die();
                                     } else {
-                                        echo '<script language="javascript">
-                                                window.alert("ERROR! Periksa penulisan querynya");
-                                                window.location.href="./admin.php?page=ref&act=add";
-                                              </script>';
+                                        $_SESSION['errorq'] = 'ERROR! Ada masalah dengan penulisan query';
+                                        header("Location: ./admin.php?page=ref&act=add");
+                                        die();
                                     }
                                 }
                             }
@@ -96,6 +88,35 @@
                 </div>
                 <!-- Row END -->
 
+                <?php
+                    if(isset($_SESSION['errorq'])){
+                        $errorq = $_SESSION['errorq'];
+                        echo '<div id="alert-message" class="row">
+                                <div class="col m12">
+                                    <div class="card red lighten-5">
+                                        <div class="card-content notif">
+                                            <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errorq.'</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+                        unset($_SESSION['errorq']);
+                    }
+                    if(isset($_SESSION['errEmpty'])){
+                        $errEmpty = $_SESSION['errEmpty'];
+                        echo '<div id="alert-message" class="row">
+                                <div class="col m12">
+                                    <div class="card red lighten-5">
+                                        <div class="card-content notif">
+                                            <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+                        unset($_SESSION['errEmpty']);
+                    }
+                ?>
+
                 <!-- Row form Start -->
                 <div class="row jarak-form">
 
@@ -106,17 +127,43 @@
                         <div class="row">
                             <div class="input-field col s3">
                                 <i class="material-icons prefix md-prefix">font_download</i>
-                                <input id="kd" type="text" class="validate" maxlength="30" name="kode" required>
+                                <input id="kd" type="text" class="validate" name="kode" required>
+                                    <?php
+                                        if(isset($_SESSION['kode'])){
+                                            $kode = $_SESSION['kode'];
+                                            echo '<span id="alert-message" class="red-text">'.$kode.'</span>';
+                                            unset($_SESSION['kode']);
+                                        }
+                                        if(isset($_SESSION['duplikasi'])){
+                                            $duplikasi = $_SESSION['duplikasi'];
+                                            echo '<span id="alert-message" class="red-text">'.$duplikasi.'</span>';
+                                            unset($_SESSION['duplikasi']);
+                                        }
+                                    ?>
                                 <label for="kd">Kode</label>
                             </div>
                             <div class="input-field col s9">
                                 <i class="material-icons prefix md-prefix">text_fields</i>
                                 <input id="nama" type="text" class="validate" name="nama" required>
+                                    <?php
+                                        if(isset($_SESSION['namaref'])){
+                                            $namaref = $_SESSION['namaref'];
+                                            echo '<span id="alert-message" class="red-text">'.$namaref.'</span>';
+                                            unset($_SESSION['namaref']);
+                                        }
+                                    ?>
                                 <label for="nama">Nama</label>
                             </div>
                             <div class="input-field col s12">
                                 <i class="material-icons prefix md-prefix">subject</i>
                                 <textarea id="uraian" class="materialize-textarea" name="uraian" required></textarea>
+                                    <?php
+                                        if(isset($_SESSION['uraian'])){
+                                            $uraian = $_SESSION['uraian'];
+                                            echo '<span id="alert-message" class="red-text">'.$uraian.'</span>';
+                                            unset($_SESSION['uraian']);
+                                        }
+                                    ?>
                                 <label for="uraian">Uraian</label>
                             </div>
                         </div>

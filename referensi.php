@@ -68,8 +68,49 @@
                     </div>
                     <!-- Secondary Nav END -->
                 </div>
-                <!-- Row END -->
+                <!-- Row END -->';
 
+                if(isset($_SESSION['succAdd'])){
+                    $succAdd = $_SESSION['succAdd'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card green lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succAdd.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['succAdd']);
+                }
+                if(isset($_SESSION['succDel'])){
+                    $succDel = $_SESSION['succDel'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card green lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succDel.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['succDel']);
+                }
+                if(isset($_SESSION['succUpload'])){
+                    $succUpload = $_SESSION['succUpload'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card green lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succUpload.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['succUpload']);
+                }
+
+                echo '
                 <!-- Row form Start -->
                 <div class="row jarak-form">';
 

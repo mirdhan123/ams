@@ -20,7 +20,9 @@
                         window.location.href="./admin.php?page=ref";
                       </script>';
             } else {
-		  echo '<!-- Row form Start -->
+		  echo '
+
+          <!-- Row form Start -->
 			<div class="row jarak-card">
 			    <div class="col m12">
                     <div class="card">
@@ -65,10 +67,9 @@
                 $query = mysqli_query($config, "DELETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
 
             	if($query == true){
-                    echo '<script language="javascript">
-                            window.alert("SUKSES! Data berhasil dihapus.");
-                            window.location.href="./admin.php?page=ref";
-                          </script>';
+                    $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
+                    header("Location: ./admin.php?page=ref");
+                    die();
             	} else {
                     echo '<script language="javascript">
                             window.alert("ERROR! Periksa penulisan querynya.");
