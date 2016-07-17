@@ -67,7 +67,7 @@
 
                                 <p>
                                     <form method="post" enctype="multipart/form-data" >
-                                        <a href="?page=ref&act=imp&download" name="download" class="waves-effect waves-light blue-text"><i class="material-icons">file_download</i> DOWNLOAD CONTOH FORMAT FILE CSV</a>
+                                        <a href="?page=ref&act=imp&download" name="download" class="waves-effect waves-light blue-text"><i class="material-icons">file_download</i> <strong>DOWNLOAD CONTOH FORMAT FILE CSV</strong></a>
                                     </form>
                                 </p><br/>
 
