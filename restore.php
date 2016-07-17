@@ -111,7 +111,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <span class="card-title black-text">Restore Database</span>
-                                    <p class="kata">Silakan pilih file database lalu klik tombol <strong>"restore"</strong> untuk melakukan restore database dari hasil backup yang telah dibuat sebelumnya. Jika belum ada database hasil backup, silakan lakukan backup terlebih dahulu melalui menu <strong>"Backup Database"</strong>.</p><br/>
+                                    <p class="kata">Silakan pilih file database lalu klik tombol <strong>"Restore"</strong> untuk melakukan restore database dari hasil backup yang telah dibuat sebelumnya. Jika belum ada database hasil backup, silakan lakukan backup terlebih dahulu melalui menu <strong><a class="blue-text" style="text-transform: capitalize" href="?page=back">"Backup Database"</a></strong>.</p><br/>
 
                                     <p class="kata"><strong>CATATAN PENTING!</strong><br/> Data yang ada akan diganti dengan data yang baru.</p>
                                 </div>
