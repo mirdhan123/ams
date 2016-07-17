@@ -62,7 +62,7 @@
                                         header("Location: ./admin.php?page=ref");
                                         die();
                                     } else {
-                                        $_SESSION['errorq'] = 'ERROR! Ada masalah dengan penulisan query';
+                                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
                                         header("Location: ./admin.php?page=ref&act=add");
                                         die();
                                     }
@@ -89,18 +89,18 @@
                 <!-- Row END -->
 
                 <?php
-                    if(isset($_SESSION['errorq'])){
-                        $errorq = $_SESSION['errorq'];
+                    if(isset($_SESSION['errQ'])){
+                        $errQ = $_SESSION['errQ'];
                         echo '<div id="alert-message" class="row">
                                 <div class="col m12">
                                     <div class="card red lighten-5">
                                         <div class="card-content notif">
-                                            <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errorq.'</span>
+                                            <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>';
-                        unset($_SESSION['errorq']);
+                        unset($_SESSION['errQ']);
                     }
                     if(isset($_SESSION['errEmpty'])){
                         $errEmpty = $_SESSION['errEmpty'];
