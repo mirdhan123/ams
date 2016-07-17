@@ -83,6 +83,19 @@
                         </div>';
                     unset($_SESSION['succAdd']);
                 }
+                if(isset($_SESSION['succEdit'])){
+                    $succEdit = $_SESSION['succEdit'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card green lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succEdit.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['succEdit']);
+                }
                 if(isset($_SESSION['succDel'])){
                     $succDel = $_SESSION['succDel'];
                     echo '<div id="alert-message" class="row">
