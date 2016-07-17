@@ -43,16 +43,16 @@
                               </script>';
                     } else {
 
-                        if(!preg_match("/^[a-zA-Z0-9. ]*$/", $asal_surat)){
+                        if(!preg_match("/^[a-zA-Z0-9., \/]*$/", $asal_surat)){
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi dan titik(.)");
+                                    window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,) dan garis mring(/)");
                                     window.location.href="./admin.php?page=tsm&act=add";
                                   </script>';
                         } else {
 
-                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n -]*$/", $isi)){
+                            if(!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $isi)){
                                 echo '<script language="javascript">
-                                        window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), persen(%) dan at(@)");
+                                        window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)");
                                         window.location.href="./admin.php?page=tsm&act=add";
                                       </script>';
                             } else {

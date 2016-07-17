@@ -43,23 +43,23 @@
                               </script>';
                     } else {
 
-                        if(!preg_match("/^[a-zA-Z0-9. ]*$/", $tujuan)){
+                        if(!preg_match("/^[a-zA-Z0-9., \/]*$/", $tujuan)){
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Form TUJUAN SURAT hanya boleh mengandung huruf, angka, spasi dan tanda titik(.)");
+                                    window.alert("ERROR! Form TUJUAN SURAT hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,)");
                                     window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
                                   </script>';
                         } else {
 
-                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/\r\n -]*$/", $isi)){
+                            if(!preg_match("/^[a-zA-Z0-9.,_&()%@\/\r\n -]*$/", $isi)){
                                 echo '<script language="javascript">
-                                        window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), minus(-), garis miring(/), kurung(), persen(%) dan at(@)");
+                                        window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), underscore(_), dan(&), kurung(), persen(%) dan at(@)");
                                         window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
                                       </script>';
                             } else {
 
                                 if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
                                     echo '<script language="javascript">
-                                            window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, tanda titik(.) dan koma(,)");
+                                            window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,)");
                                             window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
                                           </script>';
                                 } else {
@@ -73,7 +73,7 @@
 
                                         if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $keterangan)){
                                             echo '<script language="javascript">
-                                                    window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, tanda titik(.), koma(,), garis miring(/), minus(-) dan kurung()");
+                                                    window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), garis miring(/), minus(-) dan kurung()");
                                                     window.location.href="./admin.php?page=tsk&act=edit&id_surat='.$id_surat.'";
                                                   </script>';
                                         } else {
