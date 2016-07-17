@@ -151,8 +151,8 @@
                                 <div class="card">
                                     <div class="card-content">
                                         <span class="card-title black-text"><div class="confirr green-text"><i class="material-icons md-36">done</i>
-                                        SUKSES</div></span>
-                                        <p class="kata">Database berhasil dibackup. </p>
+                                        SUKSES! Database berhasil dibackup</div></span>
+                                        <p class="kata" style="margin-top: 10px;">Silakan klik tombol <strong>"Download"</strong> dibawah ini untuk mendownload file backup database.</p>
                                     </div>
                                     <div class="card-action">
                                         <form method="post" enctype="multipart/form-data" >
@@ -170,7 +170,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <span class="card-title black-text">Backup Database</span>
-                                    <p class="kata">Lakukan backup database secara berkala untuk membuat cadangan database yang bisa direstore kapan saja ketika dibutuhkan. Silakan klik tombol <strong>"backup"</strong> untuk memulai backup data. Setelah proses backup selesai, silakan download file backup database tersebut.</p>
+                                    <p class="kata">Lakukan backup database secara berkala untuk membuat cadangan database yang bisa direstore kapan saja ketika dibutuhkan. Silakan klik tombol <strong>"Backup"</strong> untuk memulai proses backup data. Setelah proses backup selesai, silakan download file backup database tersebut dan simpan di.</p>
                                 </div>
                                 <div class="card-action">
                                     <form method="post" enctype="multipart/form-data" >
