@@ -37,14 +37,13 @@
                         $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
 
                         if($query == true){
-                            echo '<script language="javascript">
-                                    window.alert("SUKSES! Tipe User berhasil diupdate");
-                                    window.location.href="./admin.php?page=sett&sub=usr";
-                                  </script>';
+                            $_SESSION['succAdd'] = 'SUKSES! Tipe user berhasil diupdate';
+                            header("Location: ./admin.php?page=sett&sub=usr");
+                            die();
                         } else {
+                            $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Periksa penulisan querynya");
-                                    window.location.href="./admin.php?page=sett&sub=usr";
+                                    window.location.href="./admin.php?page=sett&sub=usr&act=edit&id_user='.$id_user.'";
                                   </script>';
                         }
                     }
@@ -71,6 +70,22 @@
                             <!-- Secondary Nav END -->
                         </div>
                         <!-- Row END -->
+
+                        <?php
+                            if(isset($_SESSION['errQ'])){
+                                $errQ = $_SESSION['errQ'];
+                                echo '<div id="alert-message" class="row">
+                                        <div class="col m12">
+                                            <div class="card red lighten-5">
+                                                <div class="card-content notif">
+                                                    <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                unset($_SESSION['errQ']);
+                            }
+                        ?>
 
                         <!-- Row form Start -->
                         <div class="row jarak-form">
