@@ -34,6 +34,59 @@
                 </div>
                 <!-- Row END -->';
 
+                if(isset($_SESSION['errEmpty'])){
+                    $errEmpty = $_SESSION['errEmpty'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errEmpty']);
+                }
+                if(isset($_SESSION['errFormat'])){
+                    $errFormat = $_SESSION['errFormat'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errFormat.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errFormat']);
+                }
+                if(isset($_SESSION['errUpload'])){
+                    $errUpload = $_SESSION['errUpload'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errUpload.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errUpload']);
+                }
+                if(isset($_SESSION['succRestore'])){
+                    $succRestore = $_SESSION['succRestore'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card green lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succRestore.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['succRestore']);
+                }
+
                 // proses restore database dilakukan oleh fungsi
                 function restore($file){
                 	global $rest_dir;
@@ -46,10 +99,9 @@
                 	$tmp_file	= $file['tmp_name'];
 
                 	if($nama_file == ""){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form FILE tidak boleh kosong");
-                                window.location.href="./admin.php?page=rest";
-                              </script>';
+                        $_SESSION['errEmpty'] = 'ERROR! Form File tidak boleh kosong';
+                        header("Location: ./admin.php?page=rest");
+                        die();
                     } else {
                 		$alamatfile	= $rest_dir.$nama_file;
                 		$templine	= array();
@@ -78,21 +130,18 @@
                     					$templine = '';
                     				}
                     			}
-                                echo '<script language="javascript">
-                                        window.alert("SUKSES! Database berhasil direstore");
-                                        window.location.href="./admin.php?page=rest";
-                                      </script>';
+                                $_SESSION['succRestore'] = 'SUKSES! database berhasil direstore';
+                                header("Location: ./admin.php?page=rest");
+                                die();
                     		} else {
-                            echo '<script language="javascript">
-                                    window.alert("ERROR! Proses upload gagal, kode error = '.$file['error'].'");
-                                    window.location.href="./admin.php?page=rest";
-                                  </script>';
+                                $_SESSION['errUpload'] = 'ERROR! Proses upload database gagal';
+                                header("Location: ./admin.php?page=ref&act=imp");
+                                die();
                 		    }
                         } else {
-                            echo '<script language="javascript">
-                                    window.alert("ERROR! File yang diupload buka database SQL");
-                                    window.location.href="./admin.php?page=rest";
-                                  </script>';
+                            $_SESSION['errFormat'] = 'ERROR! Format file yang diperbolehkan hanya *.SQL';
+                            header("Location: ./admin.php?page=rest");
+                            die();
                         }
                 	}
                 }

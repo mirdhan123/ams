@@ -69,7 +69,7 @@
             max-height: 80px;
         }
         .description {
-            font-size: 20px;
+            font-size: 1.4rem;
         }
         .jarak {
             height: 13.4rem;
@@ -78,7 +78,7 @@
             display: none;
         }
         .tidak {
-            font-size: 20px;
+            font-size: 1.4rem;
         }
         .jarak-card {
             margin-top: 0.8rem;
@@ -90,7 +90,7 @@
             color: #444;
         }
         .agenda {
-            font-size: 19px;
+            font-size: 1.39rem;
             padding-left: 8px;
         }
         .hid {
@@ -113,8 +113,14 @@
             text-transform: capitalize!important;
         }
         .kata {
-            font-size: 17px;
+            font-size: 1.15rem;
             color: #444!important;
+        }
+        #alert-message {
+            font-size: 0.9rem;
+        }
+        .notif {
+            margin: -1rem 0!important;
         }
         @media print{
             .side-nav,

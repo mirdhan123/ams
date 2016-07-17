@@ -14,6 +14,82 @@
                   </script>';
         } else {
 
+            //proses upload file
+            if(isset($_POST['submit'])){
+
+                $file = $_FILES['file']['tmp_name'];
+
+                if($file == ""){
+                    $_SESSION['errEmpty'] = 'ERROR! Form File tidak boleh kosong';
+                    header("Location: ./admin.php?page=ref&act=imp");
+                    die();
+                } else {
+
+                    $x = explode('.', $_FILES['file']['name']);
+                    $eks = strtolower(end($x));
+
+                    if($eks == 'csv'){
+
+                        //jika tidak ingin menghapus data yang sudah ada
+                        if(isset($_REQUEST['cek'])){
+
+                            //upload file
+                            if(is_uploaded_file($file)){
+                                $_SESSION['succUpload'] = 'SUKSES! Data berhasil diimport';
+                            } else {
+                                $_SESSION['errUpload'] = 'ERROR! Proses upload data gagal';
+                                header("Location: ./admin.php?page=ref&act=imp");
+                                die();
+                            }
+
+                            //membuka file csv
+                            $handle = fopen($file, "r");
+
+                            //parsing file csv
+                            while(($data = fgetcsv($handle, 1000, ",")) !== FALSE){
+
+                                //insert data ke dalam database
+                                $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values(null,'$data[1]','$data[2]','$data[3]','1')");
+                            }
+                            fclose($handle);
+                            header("Location: ./admin.php?page=ref");
+                            die();
+                        } else {
+
+                            //mengosongkan table klasifikasi
+                            mysqli_query($config, "TRUNCATE TABLE tbl_klasifikasi");
+
+                            //upload file
+                            if(is_uploaded_file($file)){
+                                $_SESSION['succUpload'] = 'SUKSES! Data berhasil diimport';
+                            } else {
+                                $_SESSION['errUpload'] = 'ERROR! Proses upload data gagal';
+                                header("Location: ./admin.php?page=ref&act=imp");
+                                die();
+                            }
+
+                            //membuka file csv
+                            $handle = fopen($file, "r");
+
+                            //parsing file csv
+                            while(($data = fgetcsv($handle, 1000, ",")) !== FALSE){
+
+                                //insert data ke dalam database
+                                $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values('$data[0]','$data[1]','$data[2]','$data[3]','1')");
+                            }
+                            fclose($handle);
+                            header("Location: ./admin.php?page=ref");
+                            die();
+                        }
+
+                    } else {
+                        $_SESSION['errFormat'] = 'ERROR! Format file yang diperbolehkan hanya *.CSV';
+                        header("Location: ./admin.php?page=ref&act=imp");
+                        die();
+                    }
+                }
+            }
+
           echo '<!-- Row Start -->
                 <div class="row">
                     <!-- Secondary Nav START -->
@@ -33,8 +109,49 @@
                     </div>
                     <!-- Secondary Nav END -->
                 </div>
-                <!-- Row END -->
+                <!-- Row END -->';
 
+                if(isset($_SESSION['errFormat'])){
+                    $errFormat = $_SESSION['errFormat'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errFormat.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errFormat']);
+                }
+                if(isset($_SESSION['errUpload'])){
+                    $errUpload = $_SESSION['errUpload'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errUpload.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errUpload']);
+                }
+                if(isset($_SESSION['errEmpty'])){
+                    $errEmpty = $_SESSION['errEmpty'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errEmpty']);
+                }
+
+                echo '
                 <!-- Row form Start -->
                 <div class="row">
                     <div class="col m12">
@@ -94,88 +211,6 @@
                         </div>
                     </div>
                 </div>';
-
-                //proses upload file
-                if(isset($_POST['submit'])){
-
-                    $file = $_FILES['file']['tmp_name'];
-
-                    if($file == ""){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form FILE tidak boleh kosong");
-                                window.location.href="./admin.php?page=ref&act=imp";
-                              </script>';
-                    } else {
-
-                        $x = explode('.', $_FILES['file']['name']);
-                        $eks = strtolower(end($x));
-
-                        if($eks == 'csv'){
-
-                            //jika tidak ingin menghapus data yang sudah ada
-                            if(isset($_REQUEST['cek'])){
-
-                                //upload file
-                                if(is_uploaded_file($file)){
-                                    echo '<script language="javascript">
-                                            window.alert("SUKSES! Data berhasil diimport");
-                                            window.location.href="./admin.php?page=ref";
-                                          </script>';
-                                } else {
-                                    echo '<script language="javascript">
-                                            window.alert("ERROR! Proses upload data gagal");
-                                            window.location.href="./admin.php?page=ref";
-                                          </script>';
-                                }
-
-                                //membuka file csv
-                                $handle = fopen($file, "r");
-
-                                //parsing file csv
-                                while(($data = fgetcsv($handle, 1000, ",")) !== FALSE){
-
-                                    //insert data ke dalam database
-                                    $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values(null,'$data[1]','$data[2]','$data[3]','1')");
-                                }
-                                fclose($handle);
-                            } else {
-
-                                //mengosongkan table klasifikasi
-                                mysqli_query($config, "TRUNCATE TABLE tbl_klasifikasi");
-
-                                //upload file
-                                if(is_uploaded_file($file)){
-                                    echo '<script language="javascript">
-                                            window.alert("SUKSES! Data berhasil diimport");
-                                            window.location.href="./admin.php?page=ref";
-                                          </script>';
-                                } else {
-                                    echo '<script language="javascript">
-                                            window.alert("ERROR! Proses upload data gagal");
-                                            window.location.href="./admin.php?page=ref";
-                                          </script>';
-                                }
-
-                                //membuka file csv
-                                $handle = fopen($file, "r");
-
-                                //parsing file csv
-                                while(($data = fgetcsv($handle, 1000, ",")) !== FALSE){
-
-                                    //insert data ke dalam database
-                                    $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values('$data[0]','$data[1]','$data[2]','$data[3]','1')");
-                                }
-                                fclose($handle);
-                            }
-
-                        } else {
-                            echo '<script language="javascript">
-                                    window.alert("ERROR! Format file yang diperbolehkan hanya *.CSV");
-                                    window.location.href="./admin.php?page=ref&act=imp";
-                                  </script>';
-                        }
-                    }
-                }
             }
         }
 ?>
