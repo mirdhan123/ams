@@ -37,7 +37,7 @@
                         $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
 
                         if($query == true){
-                            $_SESSION['succAdd'] = 'SUKSES! Tipe user berhasil diupdate';
+                            $_SESSION['succEdit'] = 'SUKSES! Tipe user berhasil diupdate';
                             header("Location: ./admin.php?page=sett&sub=usr");
                             die();
                         } else {

@@ -42,7 +42,7 @@
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,()\/\r\n -]*$/", $uraian)){
-                                $_SESSION['uraian'] = 'Form Uraian hanya boleh mengandung  huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()<br/>';
+                                $_SESSION['uraian'] = 'Form Uraian hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()<br/>';
                                 header("Location: ./admin.php?page=ref&act=add");
                             } else {
 

@@ -47,7 +47,7 @@
                             $query = mysqli_query($config, "UPDATE tbl_klasifikasi SET kode='$kode', nama='$nama', uraian='$uraian', id_user='$id_user' WHERE id_klasifikasi='$id_klasifikasi'");
 
                             if($query != false){
-                                $_SESSION['succAdd'] = 'SUKSES! Data berhasil diupdate';
+                                $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
                                 header("Location: ./admin.php?page=ref");
                                 die();
                             } else {

@@ -16,8 +16,8 @@
             //validasi form kosong
             if ($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
                 || $_REQUEST['catatan'] == ""){
+                $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
                 echo '<script language="javascript">
-                        window.alert("ERROR! Semua form wajib diisi");
                         window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                       </script>';
             } else {
@@ -29,37 +29,37 @@
                 $catatan = $_REQUEST['catatan'];
 
                 //validasi input data
-                if(!preg_match("/^[a-zA-Z0-9.,\/ ]*$/", $tujuan)){
+                if(!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $tujuan)){
+                    $_SESSION['tujuan'] = 'Form Tujuan Disposisi hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,) minus(-). kurung() dan garis miring(/)<br/>';
                     echo '<script language="javascript">
-                            window.alert("ERROR! Form TUJUAN DISPOSISI hanya boleh mengandung huruf, angka, spasi titik(.), koma(,) dan garis miring(/)");
                             window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                           </script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $isi_disposisi)){
+                        $_SESSION['isi_disposisi'] = 'Form Isi Disposisi hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan(&), underscore(_), kurung(), persen(%) dan at(@)<br/>';
                         echo '<script language="javascript">
-                                window.alert("ERROR! Form ISI DISPOSISI hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan(&), underscore(_), kurung(), persen(%) dan at(@)");
                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                               </script>';
                     } else {
 
                         if(!preg_match("/^[0-9 -]*$/", $batas_waktu)){
+                            $_SESSION['batas_waktu'] = 'Form Batas Waktu hanya boleh mengandung karakter huruf dan minus(-)<br/>';
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Form BATAS WAKTU hanya boleh mengandung angka dan minus (-)");
                                     window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                                   </script>';
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $catatan)){
+                                $_SESSION['catatan'] = 'Form catatan hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-) garis miring(/), dan kurung()';
                                 echo '<script language="javascript">
-                                        window.alert("ERROR! Form CATATAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-) garis miring(/), dan kurung()");
                                         window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                                       </script>';
                             } else {
 
                                 if(!preg_match("/^[a-zA-Z0 ]*$/", $sifat)){
+                                    $_SESSION['catatan'] = 'Form SIFAT hanya boleh mengandung karakter huruf dan spasi<br/>';
                                     echo '<script language="javascript">
-                                            window.alert("ERROR! Form SIFAT hanya boleh mengandung huruf dan spasi");
                                             window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                                           </script>';
                                 } else {
@@ -68,13 +68,13 @@
                                         VALUES('$tujuan','$isi_disposisi','$sifat','$batas_waktu','$catatan','$id_surat')");
 
                                     if($query == true){
+                                        $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
                                         echo '<script language="javascript">
-                                                window.alert("SUKSES! Data berhasil ditambahkan");
                                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
                                               </script>';
                                     } else {
+                                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
                                         echo '<script language="javascript">
-                                                window.alert("ERROR! Periksa penulisan querynya");
                                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
                                               </script>';
                                     }
@@ -102,6 +102,35 @@
             </div>
             <!-- Row END -->
 
+            <?php
+                if(isset($_SESSION['errQ'])){
+                    $errQ = $_SESSION['errQ'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errQ']);
+                }
+                if(isset($_SESSION['errEmpty'])){
+                    $errEmpty = $_SESSION['errEmpty'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errEmpty']);
+                }
+            ?>
+
             <!-- Row form Start -->
             <div class="row jarak-form">
 
@@ -113,22 +142,50 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">place</i>
                             <input id="tujuan" type="text" class="validate" name="tujuan" required>
+                                <?php
+                                    if(isset($_SESSION['tujuan'])){
+                                        $tujuan = $_SESSION['tujuan'];
+                                        echo '<span id="alert-message" class="red-text">'.$tujuan.'</span>';
+                                        unset($_SESSION['tujuan']);
+                                    }
+                                ?>
                             <label for="tujuan">Tujuan Disposisi</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">date_range</i>
                             <input id="batas_waktu" type="date" name="batas_waktu" class="datepicker" required>
+                                <?php
+                                    if(isset($_SESSION['batas_waktu'])){
+                                        $batas_waktu = $_SESSION['batas_waktu'];
+                                        echo '<span id="alert-message" class="red-text">'.$batas_waktu.'</span>';
+                                        unset($_SESSION['batas_waktu']);
+                                    }
+                                ?>
                             <label for="batas_waktu">Batas Waktu</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">description</i>
                             <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required></textarea>
+                                <?php
+                                    if(isset($_SESSION['isi_disposisi'])){
+                                        $isi_disposisi = $_SESSION['isi_disposisi'];
+                                        echo '<span id="alert-message" class="red-text">'.$isi_disposisi.'</span>';
+                                        unset($_SESSION['isi_disposisi']);
+                                    }
+                                ?>
                             <label for="isi_disposisi">Isi Disposisi</label>
                         </div>
 
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">featured_play_list   </i>
                             <input id="catatan" type="text" class="validate" name="catatan" required>
+                                <?php
+                                    if(isset($_SESSION['catatan'])){
+                                        $catatan = $_SESSION['catatan'];
+                                        echo '<span id="alert-message" class="red-text">'.$catatan.'</span>';
+                                        unset($_SESSION['catatan']);
+                                    }
+                                ?>
                             <label for="catatan">Catatan</label>
                         </div>
                         <div class="input-field col s6">
@@ -140,11 +197,18 @@
                                     <option value="Segera">Segera</option>
                                     <option value="Perlu Perhatian Khusus">Perlu Perhatian Khusus</option>
                                     <option value="Perhatian Batas Waktu">Perhatian Batas Waktu</option>
-                            </select>
-                        </div>
+                                </select>
+                            </div>
+                            <?php
+                                if(isset($_SESSION['sifat'])){
+                                    $sifat = $_SESSION['sifat'];
+                                    echo '<span id="alert-message" class="red-text">'.$sifat.'</span>';
+                                    unset($_SESSION['sifat']);
+                                }
+                            ?>
                     </div>
                     <!-- Row in form END -->
-                    <br/>
+                    <div style="height: 21rem;"></div>
                     <div class="row">
                         <div class="col 6">
                             <button type="submit" name ="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>

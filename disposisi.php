@@ -69,7 +69,17 @@
                                 </div>
                                 <!-- Secondary Nav END -->
                             </div>
-                            <!-- Row END -->';
+                            <!-- Row END -->
+
+                            <!-- Perihal START -->
+                            <div class="col s12">
+                                <div class="card blue lighten-5">
+                                    <div class="card-content">
+                                        <p><p class="description">Perihal Surat:</p>'.$row['isi'].'</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Perihal END -->';
 
                             if(isset($_SESSION['succAdd'])){
                                 $succAdd = $_SESSION['succAdd'];
@@ -112,16 +122,6 @@
                             }
 
                             echo '
-                            <!-- Perihal START -->
-                            <div class="col s12">
-                                <div class="card blue lighten-5">
-                                    <div class="card-content">
-                                        <p><p class="description">Perihal Surat:</p>'.$row['isi'].'</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Perihal END -->
-
                             <!-- Row form Start -->
                             <div class="row jarak-form">
 

@@ -84,7 +84,7 @@
             		$query = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_disposisi='$id_disposisi'");
 
             		if($query == true){
-                        $_SESSION['succDel'] = 'SUKSES! ';
+                        $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus ';
                         echo '<script language="javascript">
                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'";
                               </script>';
