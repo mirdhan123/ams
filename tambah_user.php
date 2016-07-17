@@ -84,7 +84,7 @@
                                                       </script>';
                                             } else {
                                                 echo '<script language="javascript">
-                                                        window.alert("ERROR! Periksa penulisan querynya.");
+                                                        window.alert("ERROR! Ada masalah dengan penulisan query");
                                                         window.location.href="./admin.php?page=sett&sub=usr&act=add";
                                                       </script>';
                                             }

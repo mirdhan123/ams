@@ -122,7 +122,7 @@
                             header("Location: ./admin.php?page=tsm");
                             die();
                 		} else {
-                            $_SESSION['errQ'] = 'ERROR! Periksa penulisan querynya.';
+                            $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
                             echo '<script language="javascript">
                                     window.location.href="./admin.php?page=tsm&act=del&id_surat='.$id_surat.'";
                                   </script>';
@@ -138,7 +138,7 @@
                             header("Location: ./admin.php?page=tsm");
                             die();
                         } else {
-                            $_SESSION['errQ'] = 'ERROR! Periksa penulisan querynya.';
+                            $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
                             echo '<script language="javascript">
                                     window.location.href="./admin.php?page=tsm&act=del&id_surat='.$id_surat.'";
                                   </script>';

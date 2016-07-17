@@ -85,7 +85,7 @@
                     header("Location: ./admin.php?page=ref");
                     die();
             	} else {
-                    $_SESSION['errQ'] = 'ERROR! Periksa penulisan querynya.';
+                    $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
                     echo '<script language="javascript">
                             window.location.href="./admin.php?page=ref&act=del&id_klasifikasi='.$id_klasifikasi.'";
                           </script>';

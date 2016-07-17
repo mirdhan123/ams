@@ -7,6 +7,20 @@
         die();
     } else {
 
+        if(isset($_SESSION['errQ'])){
+            $errQ = $_SESSION['errQ'];
+            echo '<div id="alert-message" class="row jarak-card">
+                    <div class="col m12">
+                        <div class="card red lighten-5">
+                            <div class="card-content notif">
+                                <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+            unset($_SESSION['errQ']);
+        }
+
     	$id_disposisi = mysqli_real_escape_string($config, $_REQUEST['id_disposisi']);
 
     	$query = mysqli_query($config, "SELECT * FROM tbl_disposisi WHERE id_disposisi='$id_disposisi'");
@@ -70,15 +84,15 @@
             		$query = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_disposisi='$id_disposisi'");
 
             		if($query == true){
+                        $_SESSION['succDel'] = 'SUKSES! ';
                         echo '<script language="javascript">
-                        window.alert("SUKSES! Data berhasil dihapus.");
-                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'";
-                        </script>';
+                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'";
+                              </script>';
             		} else {
+                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
                         echo '<script language="javascript">
-                        window.alert("ERROR! Periksa penulisan querynya.");
-                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=del&id_disposisi='.$row['id_disposisi'].'";
-                        </script>';
+                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=del&id_disposisi='.$row['id_disposisi'].'";
+                              </script>';
             		}
             	}
 		    }
