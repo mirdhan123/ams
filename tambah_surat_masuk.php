@@ -9,12 +9,10 @@
         if(isset($_REQUEST['submit'])){
 
             //validasi form kosong
-            if ($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == ""
+            if($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == ""
                 || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
-                echo '<script language="javascript">
-                window.alert("ERROR! Semua form wajib diisi");
-                window.location.href="./admin.php?page=tsm&act=add";
-                </script>';
+                $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
+                echo '<script language="javascript">window.history.back();</script>';
             } else {
 
                 $no_agenda = $_REQUEST['no_agenda'];
@@ -30,69 +28,51 @@
 
                 //validasi input data
                 if(!preg_match("/^[0-9]*$/", $no_agenda)){
-                    echo '<script language="javascript">
-                            window.alert("ERROR! Form NOMOR AGENDA harus diisi angka");
-                            window.location.href="./admin.php?page=tsm&act=add";
-                          </script>';
+                    $_SESSION['no_agenda'] = 'Form Nomor Agenda harus diisi angka';
+                    echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.\/ -]*$/", $no_surat)){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form NOMOR SURAT hanya boleh mengandung huruf, angka, spasi, titik(.), minus(-) dan garis miring(/)");
-                                window.location.href="./admin.php?page=tsm&act=add";
-                              </script>';
+                        $_SESSION['no_surat'] = 'Form no_surat hanya boleh mengandung huruf, angka, spasi, titik(.), minus(-) dan garis miring(/)';
+                        echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
                         if(!preg_match("/^[a-zA-Z0-9., \/]*$/", $asal_surat)){
-                            echo '<script language="javascript">
-                                    window.alert("ERROR! Form ASAL SURAT hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,) dan garis mring(/)");
-                                    window.location.href="./admin.php?page=tsm&act=add";
-                                  </script>';
+                            $_SESSION['asal_surat'] = 'Form Asal Surat hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,) dan garis mring(/)';
+                            echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $isi)){
-                                echo '<script language="javascript">
-                                        window.alert("ERROR! Form ISI RINGKAS hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)");
-                                        window.location.href="./admin.php?page=tsm&act=add";
-                                      </script>';
+                                $_SESSION['isi'] = 'Form Isi Ringkas hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
+                                echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
                                 if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
-                                    echo '<script language="javascript">
-                                            window.alert("ERROR! Form KODE KLASIFIKASI hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,)");
-                                            window.location.href="./admin.php?page=tsm&act=add";
-                                          </script>';
+                                    $_SESSION['kode'] = 'Form Kode Klasifikasi hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,)';
+                                    echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
                                     if(!preg_match("/^[a-zA-Z0-9., -]*$/", $indeks)){
-                                        echo '<script language="javascript">
-                                                window.alert("ERROR! Form INDEKS hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,) dan minus (-)");
-                                                window.location.href="./admin.php?page=tsm&act=add";
-                                              </script>';
+                                        $_SESSION['indeks'] = 'Form Indeks hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,) dan minus (-)';
+                                        echo '<script language="javascript">window.history.back();</script>';
                                     } else {
 
                                         if(!preg_match("/^[0-9.-]*$/", $tgl_surat)){
-                                            echo '<script language="javascript">
-                                                    window.alert("ERROR! Form TANGGAL SURAT hanya boleh mengandung angka dan minus(-)");
-                                                    window.location.href="./admin.php?page=tsm&act=add";
-                                                  </script>';
+                                            $_SESSION['tgl_surat'] = 'Form Tanggal Surat hanya boleh mengandung angka dan minus(-)';
+                                            echo '<script language="javascript">window.history.back();</script>';
                                         } else {
 
-                                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $keterangan)){
-                                                echo '<script language="javascript">
-                                                        window.alert("ERROR! Form KETERANGAN hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()");
-                                                        window.location.href="./admin.php?page=tsm&act=add";
-                                                      </script>';
+                                            if(!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $keterangan)){
+                                                $_SESSION['keterangan'] = 'Form Keterangan hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()';
+                                                echo '<script language="javascript">window.history.back();</script>';
                                             }
 
                                             $cek = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_surat='$no_surat'");
                                             $result = mysqli_num_rows($cek);
 
                                             if($result > 0){
-                                                echo '<script language="javascript">
-                                                        window.alert("ERROR! Terjadi duplikasi data NOMOR SURAT");
-                                                        window.location.href="./admin.php?page=tsm&act=add";
-                                                      </script>';
+                                                $_SESSION['errDup'] = 'Terjadi duplikasi data Nomor Surat';
+                                                echo '<script language="javascript">window.history.back();</script>';
                                             } else {
 
                                                 $ekstensi = array('jpg','png','jpeg','doc','docx','pdf');
@@ -119,27 +99,20 @@
                                                                     VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$nkode','$indeks','$tgl_surat',NOW(),'$nfile','$keterangan','$id_user')");
 
                                                             if($query == true){
-                                                                echo '<script language="javascript">
-                                                                        window.alert("SUKSES! Data berhasil ditambahkan");
-                                                                        window.location.href="./admin.php?page=tsm";
-                                                                      </script>';
+                                                                $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
+                                                                header("Location: ./admin.php?page=tsm");
+                                                                die();
                                                             } else {
-                                                                echo '<script language="javascript">
-                                                                        window.alert("ERROR! Periksa penulisan querynya");
-                                                                        window.location.href="./admin.php?page=tsm&act=add";
-                                                                      </script>';
+                                                                $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
+                                                                echo '<script language="javascript">window.history.back();</script>';
                                                             }
                                                         } else {
-                                                            echo '<script language="javascript">
-                                                                    window.alert("ERROR! Ukuran file yang diupload maksimal 2 MB");
-                                                                    window.location.href="./admin.php?page=tsm&act=add";
-                                                                  </script>';
+                                                            $_SESSION['errSize'] = 'Ukuran file yang boleh diupload maksimal 2 MB';
+                                                            echo '<script language="javascript">window.history.back();</script>';
                                                         }
                                                     } else {
-                                                        echo '<script language="javascript">
-                                                                window.alert("ERROR! File yang diupload harus berformat *.JPG, *.PNG, *.DOC, *.DOCX atau *.PDF");
-                                                                window.location.href="./admin.php?page=tsm&act=add";
-                                                              </script>';
+                                                        $_SESSION['errSize'] = 'Format file yang diperbolehkan hanya *.JPG, *.PNG, *.DOC, *.DOCX atau *.PDF';
+                                                        echo '<script language="javascript">window.history.back();</script>';
                                                     }
                                                 } else {
 
@@ -148,15 +121,12 @@
                                                         VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$nkode','$indeks','$tgl_surat',NOW(),'$keterangan','$id_user')");
 
                                                     if($query == true){
-                                                        echo '<script language="javascript">
-                                                                window.alert("SUKSES! Data berhasil ditambahkan");
-                                                                window.location.href="./admin.php?page=tsm";
-                                                              </script>';
+                                                        $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
+                                                        header("Location: ./admin.php?page=tsm");
+                                                        die();
                                                     } else {
-                                                        echo '<script language="javascript">
-                                                                window.alert("ERROR! Periksa penulisan querynya");
-                                                                window.location.href="./admin.php?page=tsm&act=add";
-                                                              </script>';
+                                                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
+                                                        echo '<script language="javascript">window.history.back();</script>';
                                                     }
                                                 }
                                             }
@@ -186,6 +156,35 @@
             </div>
             <!-- Row END -->
 
+            <?php
+                if(isset($_SESSION['errQ'])){
+                    $errQ = $_SESSION['errQ'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errQ']);
+                }
+                if(isset($_SESSION['errEmpty'])){
+                    $errEmpty = $_SESSION['errEmpty'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errEmpty']);
+                }
+            ?>
+
             <!-- Row form Start -->
             <div class="row jarak-form">
 
@@ -197,11 +196,25 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">looks_one</i>
                             <input id="no_agenda" type="number" class="validate" name="no_agenda" required>
+                                <?php
+                                    if(isset($_SESSION['no_agenda'])){
+                                        $no_agenda = $_SESSION['no_agenda'];
+                                        echo '<span id="alert-message" class="red-text">'.$no_agenda.'</span>';
+                                        unset($_SESSION['no_agenda']);
+                                    }
+                                ?>
                             <label for="no_agenda">Nomor Agenda</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">bookmark</i>
                             <input id="kode" type="text" class="validate" name="kode" required>
+                                <?php
+                                    if(isset($_SESSION['kode'])){
+                                        $kode = $_SESSION['kode'];
+                                        echo '<span id="alert-message" class="red-text">'.$kode.'</span>';
+                                        unset($_SESSION['kode']);
+                                    }
+                                ?>
                             <label for="kode">Kode Klasifikasi</label>
                         </div>
                         <div class="input-field col s6">

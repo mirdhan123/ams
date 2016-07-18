@@ -58,9 +58,9 @@
         }
         .grs {
             position: absolute;
-            margin: 9px 0;
+            margin: 10px 0;
             background-color: #fff;
-            height: 45px;
+            height: 42px;
             width: 1px;
         }
         #menu {

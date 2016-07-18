@@ -103,8 +103,8 @@
         #alert-message {
             border-radius: 3px;
             color: #f44336 ;
-            font-size: 16px;
-            margin: 0 6px -15px;
+            font-size: 1.15rem;
+            margin: 15px 15px -15px;
         }
         .error {
             padding: 10px;
@@ -209,7 +209,7 @@
                                 } else {
 
                                     //session error
-                                    $_SESSION['err'] = '<strong>ERROR!</strong> Username & Password tidak ada.';
+                                    $_SESSION['err'] = 'Username & Password tidak ditemukan!';
                                     header("Location: ./");
                                     die();
                                 }
@@ -223,7 +223,8 @@
                             <?php
                                 if(isset($_SESSION['err'])){
                                     $err = $_SESSION['err'];
-                                    echo '<div id="alert-message" class="error red lighten-5"><i class="material-icons">error_outline</i> '.$err.'</div>';
+                                    echo '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>LOGIN GAGAL!</strong></div>
+                                    '.$err.'</div>';
                                     unset($_SESSION['err']);
                                 }
                             ?>
