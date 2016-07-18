@@ -16,7 +16,7 @@
     </div>
 <div class="footer-copyright blue-grey darken-1 white-text">
     <div class="container" id="footer">
-        <span class="white-text">&copy; <?php echo date("Y"); ?> <a class="white-text" href="http://masrud.com" target="_blank">M. Rudianto</a></span>
+        <span class="white-text">&copy; <?php echo date("Y"); ?> Made with <i class="material-icons md-18">favorite</i> by <a class="white-text" href="http://masrud.com" target="_blank">M. Rudianto</a></span>
         <div class="right hide-on-small-only">
             <?php
                 $query = mysqli_query($config, "SELECT * FROM tbl_instansi");

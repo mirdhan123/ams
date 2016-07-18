@@ -57,8 +57,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            opacity: 0.12;
-            filter:alpha(opacity=12);
+            opacity: 0.13;
+            filter:alpha(opacity=13);
             height:100%;
             width:100%;
         }
@@ -69,17 +69,17 @@
         }
         .container {
             max-width: 100%;
-            padding-top: 4%;
+            padding-top: 3%;
         }
         #logo {
             display: block;
-            margin: -20px auto -15px;
+            margin: -20px auto -5px;
         }
         img {
-            border-radius: 50%;
+            border-radius: 50px;
             margin: 0 auto;
-            max-width: 90px;
-            max-height: 90px;
+            max-width: 100px;
+            max-height: 100px;
         }
         #login {
             margin-top: -2%;
@@ -87,6 +87,11 @@
         #smk {
             font-size: 30px;
             margin-bottom: 10px;
+        }
+        .batas {
+            border-bottom: 1px dotted #444;
+            margin: 0 auto;
+            width: 90%;
         }
         #title {
             margin: 5px 0 35px;
@@ -124,7 +129,7 @@
 <!-- Head END -->
 
 <!-- Body START -->
-<body class="grey lighten-1 bg">
+<body class="blue-grey lighten-3 bg">
 
     <!-- Container START -->
     <div class="container">
@@ -165,6 +170,7 @@
                                 }
                              ?>
                             </h4>
+                            <div class="batas"></div>
                         </div>
                     </div>
                     <!-- Logo and title END -->
