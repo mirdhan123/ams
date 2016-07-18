@@ -123,7 +123,7 @@
                                 echo '<div class="col m12">
                                         <div class="card blue lighten-5">
                                             <div class="card-content notif">
-                                                <span class="card-title black-text"><center>Tidak ada file lampiran surat masuk yang ditemukan</center></span>
+                                                <span class="card-title lampiran"><center>Tidak ada file lampiran surat masuk yang ditemukan</center></span>
                                             </div>
                                         </div>
                                     </div>';
@@ -196,7 +196,7 @@
                                 <div class="col m12">
                                     <div class="card blue lighten-5">
                                         <div class="card-content notif">
-                                            <span class="card-title black-text"><center>Tidak ada data untuk ditampilkan</center></span>
+                                            <span class="card-title lampiran"><center>Tidak ada data untuk ditampilkan</center></span>
                                         </div>
                                     </div>
                                 </div>';

@@ -132,6 +132,10 @@
         .notif {
             margin: -1rem 0!important;
         }
+        .lampiran {
+            color: #444!important;
+            font-weight: normal!important;
+        }
         @media print{
             .side-nav,
             .secondary-nav,
