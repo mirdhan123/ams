@@ -132,6 +132,9 @@
         .notif {
             margin: -1rem 0!important;
         }
+        .green-text, .red-text {
+            font-weight: normal!important;
+        }
         .lampiran {
             color: #444!important;
             font-weight: normal!important;
