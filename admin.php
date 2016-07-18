@@ -163,7 +163,7 @@
         <?php
             if($_SESSION['id_user'] == 1 || $_SESSION['admin'] == 2){?>
             <div class="col s12 m4">
-                <div class="card indigo accent-2">
+                <div class="card blue accent-2">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">people</i> Jumlah Pengguna</span>
                         <?php echo '<h5 class="white-text link">'.$count5.' Pengguna</h5>'; ?>

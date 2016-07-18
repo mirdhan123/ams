@@ -85,7 +85,7 @@
             margin-top: -2%;
         }
         #smk {
-            font-size: 30px;
+            font-size: 2rem;
             margin-bottom: 10px;
         }
         .batas {
@@ -97,20 +97,20 @@
             margin: 5px 0 35px;
         }
         .btn-large {
-            font-size: 18px;
+            font-size: 1.25rem;
             margin: 0;
         }
         #alert-message {
             border-radius: 3px;
             color: #f44336 ;
             font-size: 16px;
-            margin-bottom: -15px;
+            margin: 0 6px -15px;
         }
         .error {
             padding: 10px;
         }
         .upss {
-            font-size: 18px;
+            font-size: 1.2rem;
             margin-left: 20px;
         }
         noscript {
@@ -179,13 +179,12 @@
                     ?>
 
                     <?php
-
                         if(isset($_REQUEST['submit'])){
 
                             //validasi form kosong
                             if($_REQUEST['username'] == "" || $_REQUEST['password'] == ""){
                                 echo '<div class="upss red-text"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.
-                                <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke halaman login</a></div>';
+                                <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke login form</a></div>';
                             } else {
 
                                 $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
@@ -210,7 +209,7 @@
                                 } else {
 
                                     //session error
-                                    $_SESSION['err'] = '<strong>ERROR!</strong> Username dan Password tidak ditemukan.';
+                                    $_SESSION['err'] = '<strong>ERROR!</strong> Username & Password tidak ada.';
                                     header("Location: ./");
                                     die();
                                 }
@@ -224,7 +223,6 @@
                             <?php
                                 if(isset($_SESSION['err'])){
                                     $err = $_SESSION['err'];
-
                                     echo '<div id="alert-message" class="error red lighten-5"><i class="material-icons">error_outline</i> '.$err.'</div>';
                                     unset($_SESSION['err']);
                                 }
