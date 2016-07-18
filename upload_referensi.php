@@ -201,9 +201,9 @@
                                             <input class="file-path validate" placeholder="Upload file csv referensi kode klasifikasi" type="text">
                                          </div>
                                     </div>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <div class="col m12" style="margin-bottom: 15px;">
+                                    <div class="col m12" style="margin-bottom: 25px;">
                                         <input type="checkbox" id="cek" name="cek">
-                                        <label for="cek" class="kata">Centang jika tidak ingin menghapus data yang sudah ada</label>
+                                        <label for="cek" class="kata" style="color: #444;">Centang jika tidak ingin menghapus data yang sudah ada</label>
                                     </div>
                                     <button type="submit" class="btn-large blue waves-effect waves-light" name="submit">IMPORT <i class="material-icons">file_upload</i></button>
                                 </form>

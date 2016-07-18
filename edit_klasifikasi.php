@@ -51,7 +51,7 @@
                                 header("Location: ./admin.php?page=ref");
                                 die();
                             } else {
-                                $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
+                                $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
                                 echo '<script language="javascript">
                                         window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
                                       </script>';
@@ -127,7 +127,7 @@
 
                     <!-- Row in form START -->
                     <div class="row">
-                        <div class="input-field col s3">
+                        <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Karakter yg diperbolehkan [ huruf, angka, spasi, titik(.) ]">
                             <input type="hidden" value="<?php echo $row['id_klasifikasi']; ?>" name="id_klasifikasi">
                             <i class="material-icons prefix md-prefix">font_download</i>
                             <input id="kd" type="text" class="validate" name="kode" maxlength="30" value="<?php echo $row['kode']; ?>" required>
@@ -140,7 +140,7 @@
                                 ?>
                             <label for="kd">Kode</label>
                         </div>
-                        <div class="input-field col s9">
+                        <div class="input-field col s9 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - ]">
                             <i class="material-icons prefix md-prefix">text_fields</i>
                             <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>" required>
                                 <?php
@@ -152,7 +152,7 @@
                                 ?>
                             <label for="nama">Nama</label>
                         </div>
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , ( ) / - ]">
                             <i class="material-icons prefix md-prefix">subject</i>
                             <textarea id="uraian" class="materialize-textarea" name="uraian" required><?php echo $row['uraian']; ?></textarea>
                                 <?php

@@ -34,8 +34,8 @@
                         </div>';
                     unset($_SESSION['errQ']);
                 }
-		  echo '
 
+    	  echo '
           <!-- Row form Start -->
 			<div class="row jarak-card">
 			    <div class="col m12">
@@ -85,7 +85,7 @@
                     header("Location: ./admin.php?page=ref");
                     die();
             	} else {
-                    $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
+                    $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
                     echo '<script language="javascript">
                             window.location.href="./admin.php?page=ref&act=del&id_klasifikasi='.$id_klasifikasi.'";
                           </script>';

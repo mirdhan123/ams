@@ -128,7 +128,7 @@
                 <div class="card cyan">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">mail</i> Jumlah Surat Masuk</span>
-                        <?php echo '<a href="?page=tsm"><h5 class="white-text link">'.$count1.' Surat Masuk</h5></a>'; ?>
+                        <?php echo '<h5 class="white-text link">'.$count1.' Surat Masuk</h5>'; ?>
                     </div>
                 </div>
             </div>
@@ -137,7 +137,7 @@
                 <div class="card lime darken-1">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Jumlah Surat Keluar</span>
-                        <?php echo '<a href="?page=tsk"><h5 class="white-text link">'.$count2.' Surat Keluar</h5></a>'; ?>
+                        <?php echo '<h5 class="white-text link">'.$count2.' Surat Keluar</h5>'; ?>
                     </div>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                 <div class="card yellow darken-3">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">description</i> Jumlah Disposisi</span>
-                        <?php echo '<a href=""><h5 class="white-text link">'.$count3.' Disposisi</h5></a>'; ?>
+                        <?php echo '<h5 class="white-text link">'.$count3.' Disposisi</h5>'; ?>
                     </div>
                 </div>
             </div>
@@ -155,7 +155,7 @@
                 <div class="card deep-orange">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">bookmark</i> Jumlah Klasifikasi</span>
-                        <?php echo '<a href="?page=ref"><h5 class="white-text link">'.$count4.' Klasifikasi</h5></a>'; ?>
+                        <?php echo '<h5 class="white-text link">'.$count4.' Klasifikasi</h5>'; ?>
                     </div>
                 </div>
             </div>
@@ -166,7 +166,7 @@
                 <div class="card indigo accent-2">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">people</i> Jumlah Pengguna</span>
-                        <?php echo '<a href="?page=sett&sub=usr"><h5 class="white-text link">'.$count5.' Pengguna</h5></a>'; ?>
+                        <?php echo '<h5 class="white-text link">'.$count5.' Pengguna</h5>'; ?>
                     </div>
                 </div>
             </div>

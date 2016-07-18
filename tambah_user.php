@@ -10,10 +10,9 @@
 
             //validasi form kosong
             if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == "" || $_REQUEST['admin'] == ""){
-                echo '<script language="javascript">
-                        window.alert("ERROR! Semua form wajib diisi.");
-                        window.location.href="./admin.php?page=sett&sub=usr&act=add";
-                      </script>';
+                $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
+                header("Location: ./admin.php?page=sett&sub=usr&act=add");
+                die();
             } else {
 
                 $username = $_REQUEST['username'];
@@ -24,69 +23,52 @@
 
                 //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9_]*$/", $username)){
-                    echo '<script language="javascript">
-                            window.alert("ERROR! Form USERNAME hanya boleh mengandung karakter huruf, angka dan underscore (_)");
-                            window.location.href="./admin.php?page=sett&sub=usr&act=add";
-                          </script>';
+                    $_SESSION['uname'] = 'Form Username hanya boleh mengandung karakter huruf, angka dan underscore (_)';
+                    echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z. ]*$/", $nama)){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form NAMA hanya boleh mengandung karakter huruf, spasi dan titik (.)");
-                                window.location.href="./admin.php?page=sett&sub=usr&act=add";
-                              </script>';
+                    if(!preg_match("/^[a-zA-Z., ]*$/", $nama)){
+                        $_SESSION['namauser'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)<br/><br/>';
+                        echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
                         if(!preg_match("/^[0-9. -]*$/", $nip)){
-                            echo '<script language="javascript">
-                                    window.alert("ERROR! Form NIP hanya boleh mengandung karakter angka, spasi dan titik (.)");
-                                    window.location.href="./admin.php?page=sett&sub=usr&act=add";
-                                  </script>';
+                            $_SESSION['nipuser'] = 'Form NIP hanya boleh mengandung karakter angka, spasi dan minus(-)';
+                            echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
                             if(!preg_match("/^[2-3]*$/", $admin)){
-                                echo '<script language="javascript">
-                                        window.alert("ERROR! TIPE USER hanya boleh mengandung angka 2 atau 3");
-                                        window.location.href="./admin.php?page=sett&sub=usr&act=add";
-                                      </script>';
+                                $_SESSION['tipeuser'] = 'Form Tipe User hanya boleh mengandung karakter angka 2 atau 3';
+                                echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
                                 $cek = mysqli_query($config, "SELECT * FROM tbl_user WHERE username='$username'");
                                 $result = mysqli_num_rows($cek);
 
                                 if($result > 0){
-                                    echo '<script language="javascript">
-                                            window.alert("ERROR! USERNAME sudah terpakai. Gunakan lainnya.");
-                                            window.location.href="./admin.php?page=sett&sub=usr&act=add";
-                                          </script>';
+                                    $_SESSION['errUsername'] = 'Username sudah terpakai. Gunakan lainnya';
+                                    echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
                                     if(strlen($username) < 5){
-                                        echo '<script language="javascript">
-                                                window.alert("ERROR! USERNAME minimal 5 karakter.");
-                                                window.location.href="./admin.php?page=sett&sub=usr&act=add";
-                                              </script>';
+                                        $_SESSION['errUser5'] = 'Username minimal 5 karakter';
+                                        echo '<script language="javascript">window.history.back();</script>';
                                     } else {
 
                                         if(strlen($password) < 5){
-                                            echo '<script language="javascript">
-                                                    window.alert("ERROR! PASSWORD minimal 5 karakter.");
-                                                    window.location.href="./admin.php?page=sett&sub=usr&act=add";
-                                                  </script>';
+                                            $_SESSION['errPassword'] = 'Password minimal 5 karakter';
+                                            echo '<script language="javascript">window.history.back();</script>';
                                         } else {
 
                                             $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,nip,admin) VALUES('$username',MD5('$password'),'$nama','$nip','$admin')");
 
                                             if($query != false){
-                                                echo '<script language="javascript">
-                                                        window.alert("SUKSES! User baru berhasil ditambahkan.");
-                                                        window.location.href="./admin.php?page=sett&sub=usr";
-                                                      </script>';
+                                                $_SESSION['succAdd'] = 'SUKSES! User baru berhasil ditambahkan';
+                                                header("Location: ./admin.php?page=sett&sub=usr");
+                                                die();
                                             } else {
-                                                echo '<script language="javascript">
-                                                        window.alert("ERROR! Ada masalah dengan penulisan query");
-                                                        window.location.href="./admin.php?page=sett&sub=usr&act=add";
-                                                      </script>';
+                                                $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
+                                                echo '<script language="javascript">window.history.back();</script>';
                                             }
                                         }
                                     }
@@ -113,6 +95,35 @@
             </div>
             <!-- Row END -->
 
+            <?php
+                if(isset($_SESSION['errQ'])){
+                    $errQ = $_SESSION['errQ'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errQ']);
+                }
+                if(isset($_SESSION['errEmpty'])){
+                    $errEmpty = $_SESSION['errEmpty'];
+                    echo '<div id="alert-message" class="row">
+                            <div class="col m12">
+                                <div class="card red lighten-5">
+                                    <div class="card-content notif">
+                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                    unset($_SESSION['errEmpty']);
+                }
+            ?>
+
             <!-- Row form Start -->
             <div class="row jarak-form">
 
@@ -121,24 +132,62 @@
 
                     <!-- Row in form START -->
                     <div class="row">
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter [ huruf, angka, underscore(_) ]">
                             <i class="material-icons prefix md-prefix">account_circle</i>
                             <input id="username" type="text" class="validate" name="username" required>
+                                <?php
+                                    if(isset($_SESSION['uname'])){
+                                        $uname = $_SESSION['uname'];
+                                        echo '<span id="alert-message" class="red-text">'.$uname.'</span>';
+                                        unset($_SESSION['uname']);
+                                    }
+                                    if(isset($_SESSION['errUsername'])){
+                                        $errUsername = $_SESSION['errUsername'];
+                                        echo '<span id="alert-message" class="red-text">'.$errUsername.'</span>';
+                                        unset($_SESSION['errUsername']);
+                                    }
+                                    if(isset($_SESSION['errUser5'])){
+                                        $errUser5 = $_SESSION['errUser5'];
+                                        echo '<span id="alert-message" class="red-text">'.$errUser5.'</span>';
+                                        unset($_SESSION['errUser5']);
+                                    }
+                                ?>
                             <label for="username">Username</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ huruf, spasi, titik(.), koma(,) ]">
                             <i class="material-icons prefix md-prefix">text_fields</i>
                             <input id="nama" type="text" class="validate" name="nama" required>
+                                <?php
+                                    if(isset($_SESSION['namauser'])){
+                                        $namauser = $_SESSION['namauser'];
+                                        echo '<span id="alert-message" class="red-text">'.$namauser.'</span>';
+                                        unset($_SESSION['namauser']);
+                                    }
+                                ?>
                             <label for="nama">Nama</label>
                         </div>
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter">
                             <i class="material-icons prefix md-prefix">lock</i>
                             <input id="password" type="password" class="validate" name="password" required>
+                                <?php
+                                    if(isset($_SESSION['errPassword'])){
+                                        $errPassword = $_SESSION['errPassword'];
+                                        echo '<span id="alert-message" class="red-text">'.$errPassword.'</span>';
+                                        unset($_SESSION['errPassword']);
+                                    }
+                                ?>
                             <label for="password">Password</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ angka, spasi, minus(-) ]">
                             <i class="material-icons prefix md-prefix">looks_one</i>
-                            <input id="nip" type="text" class="validate" name="nip" required autocomplete="off">
+                            <input id="nip" type="text" class="validate" name="nip" required>
+                                <?php
+                                    if(isset($_SESSION['nipuser'])){
+                                        $nipuser = $_SESSION['nipuser'];
+                                        echo '<span id="alert-message" class="red-text">'.$nipuser.'</span>';
+                                        unset($_SESSION['nipuser']);
+                                    }
+                                ?>
                             <label for="nip">NIP</label>
                         </div>
                         <div class="input-field col s6">
@@ -149,6 +198,13 @@
                                     <option value="2">Admin</option>
                                 </select>
                             </div>
+                                <?php
+                                    if(isset($_SESSION['tipeuser'])){
+                                        $tipeuser = $_SESSION['tipeuser'];
+                                        echo '<span id="alert-message" class="red-text">'.$tipeuser.'</span>';
+                                        unset($_SESSION['tipeuser']);
+                                    }
+                                ?>
                         </div>
                     </div>
                     <br/>

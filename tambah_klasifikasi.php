@@ -31,19 +31,17 @@
                     //validasi input data
                     if(!preg_match("/^[a-zA-Z0-9. ]*$/", $kode)){
                         $_SESSION['kode'] = 'Form Kode hanya boleh mengandung karakter huruf, angka, spasi dan titik(.)<br/>';
-                        header("Location: ./admin.php?page=ref&act=add");
-                        die();
+                        echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
                         if(!preg_match("/^[a-zA-Z0-9.,\/ -]*$/", $nama)){
                             $_SESSION['namaref'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.), koma(,) dan minus(-)<br/>';
-                            header("Location: ./admin.php?page=ref&act=add");
-                            die();
+                            echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,()\/\r\n -]*$/", $uraian)){
                                 $_SESSION['uraian'] = 'Form Uraian hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()<br/>';
-                                header("Location: ./admin.php?page=ref&act=add");
+                                echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
                                 $cek = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE kode='$kode'");
@@ -51,8 +49,7 @@
 
                                 if($result > 0){
                                     $_SESSION['duplikasi'] = 'Terjadi duplikasi data Kode!<br/>';
-                                    header("Location: ./admin.php?page=ref&act=add");
-                                    die();
+                                    echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
                                     $query = mysqli_query($config, "INSERT INTO tbl_klasifikasi(kode,nama,uraian,id_user) VALUES('$kode','$nama','$uraian','$id_user')");
@@ -62,9 +59,8 @@
                                         header("Location: ./admin.php?page=ref");
                                         die();
                                     } else {
-                                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
-                                        header("Location: ./admin.php?page=ref&act=add");
-                                        die();
+                                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
+                                        echo '<script language="javascript">window.history.back();</script>';
                                     }
                                 }
                             }
@@ -125,9 +121,9 @@
 
                         <!-- Row in form START -->
                         <div class="row">
-                            <div class="input-field col s3">
+                            <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Karakter yg diperbolehkan [ huruf, angka, spasi, titik(.) ]">
                                 <i class="material-icons prefix md-prefix">font_download</i>
-                                <input id="kd" type="text" class="validate" name="kode" required>
+                                <input id="kd" type="text" class="validate" maxlength="30" name="kode" required>
                                     <?php
                                         if(isset($_SESSION['kode'])){
                                             $kode = $_SESSION['kode'];
@@ -142,7 +138,7 @@
                                     ?>
                                 <label for="kd">Kode</label>
                             </div>
-                            <div class="input-field col s9">
+                            <div class="input-field col s9 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - ]">
                                 <i class="material-icons prefix md-prefix">text_fields</i>
                                 <input id="nama" type="text" class="validate" name="nama" required>
                                     <?php
@@ -154,7 +150,7 @@
                                     ?>
                                 <label for="nama">Nama</label>
                             </div>
-                            <div class="input-field col s12">
+                            <div class="input-field col s12 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , ( ) / - ]">
                                 <i class="material-icons prefix md-prefix">subject</i>
                                 <textarea id="uraian" class="materialize-textarea" name="uraian" required></textarea>
                                     <?php

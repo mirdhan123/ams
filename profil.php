@@ -15,10 +15,9 @@
 
                 //validasi form kosong
                 if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == ""){
-                    echo '<script language="javascript">
-                            window.alert("ERROR! Semua form wajib diisi");
-                            window.location.href="./admin.php?page=pro&sub=pass";
-                          </script>';
+                    $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
+                    header("Location: ./admin.php?page=pro&sub=pass");
+                    die();
                 } else {
 
                     $username = $_REQUEST['username'];
@@ -29,53 +28,48 @@
 
                     //validasi input data
                     if(!preg_match("/^[a-zA-Z0-9_]*$/", $username)){
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Form USERNAME hanya boleh mengandung karakter huruf, angka dan underscore (_)");
-                                window.location.href="./admin.php?page=pro&sub=pass";
-                              </script>';
+                        $_SESSION['epuname'] = 'Form Username hanya boleh mengandung karakter huruf, angka dan underscore (_)';
+                        header("Location: ./admin.php?page=pro&sub=pass");
+                        die();
                     } else {
 
-                        if(!preg_match("/^[a-zA-Z. ]*$/", $nama)){
-                            echo '<script language="javascript">
-                                    window.alert("ERROR! Form NAMA hanya boleh mengandung karakter huruf, spasi dan titik (.)");
-                                    window.location.href="./admin.php?page=pro&sub=pass";
-                                  </script>';
+                        if(!preg_match("/^[a-zA-Z., ]*$/", $nama)){
+                            $_SESSION['epnama'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)<br/><br/>';
+                            header("Location: ./admin.php?page=pro&sub=pass");
+                            die();
                         } else {
 
-                            if(!preg_match("/^[0-9. -]*$/", $nip)){
-                                echo '<script language="javascript">
-                                        window.alert("ERROR! Form NIP hanya boleh mengandung karakter angka, spasi dan titik (.)");
-                                        window.location.href="./admin.php?page=pro&sub=pass";
-                                      </script>';
+                            if(!preg_match("/^[0-9 -]*$/", $nip)){
+                                $_SESSION['epnip'] = 'Form NIP hanya boleh mengandung karakter angka, spasi dan minus(-)';
+                                header("Location: ./admin.php?page=pro&sub=pass");
+                                die();
                             } else {
 
                                 if(strlen($username) < 5){
-                                    echo '<script language="javascript">
-                                            window.alert("ERROR! USERNAME minimal 5 karakter");
-                                            window.location.href="./admin.php?page=pro&sub=pass";
-                                          </script>';
+                                    $_SESSION['errEpUname5'] = 'Username minimal 5 karakter';
+                                    header("Location: ./admin.php?page=pro&sub=pass");
+                                    die();
                                 } else {
 
                                     if(strlen($password) < 5){
-                                        echo '<script language="javascript">
-                                                window.alert("ERROR! PASSWORD minimal 5 karakter");
-                                                window.location.href="./admin.php?page=pro&sub=pass";
-                                              </script>';
+                                        $_SESSION['errEpPassword5'] = 'Password minimal 5 karakter<br/><br/>';
+                                        header("Location: ./admin.php?page=pro&sub=pass");
+                                        die();
                                     } else {
 
-                                        $query = mysqli_query($config, "SELECT password FROM tbl_user WHERE id_user='$id_user'
-                                            AND password=MD5('$password_lama')");
+                                        $query = mysqli_query($config, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password=MD5('$password_lama')");
                                         if(mysqli_num_rows($query) > 0){
                                             $do = mysqli_query($config, "UPDATE tbl_user SET username='$username', password=MD5('$password'), nama='$nama', nip='$nip' WHERE id_user='$id_user'");
-                                            if($query == true){
+
+                                            if($do == true){
                                                 echo '<script language="javascript">
+                                                        window.alert("SUKSES! profil berhasil diupdate");
                                                         window.location.href="./logout.php";
                                                       </script>';
                                             } else {
-                                                echo '<script language="javascript">
-                                                        window.alert("ERROR! Ada yang salah dengan querynya");
-                                                        window.location.href="./admin.php?page=pro&sub=pass";
-                                                      </script>';
+                                                $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
+                                                header("Location: ./admin.php?page=pro&sub=pass");
+                                                die();
                                             }
                                         } else {
                                             echo '<script language="javascript">
@@ -108,6 +102,35 @@
                 </div>
                 <!-- Row END -->
 
+                <?php
+                    if(isset($_SESSION['errQ'])){
+                        $errQ = $_SESSION['errQ'];
+                        echo '<div id="alert-message" class="row">
+                                <div class="col m12">
+                                    <div class="card red lighten-5">
+                                        <div class="card-content notif">
+                                            <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+                        unset($_SESSION['errQ']);
+                    }
+                    if(isset($_SESSION['errEmpty'])){
+                        $errEmpty = $_SESSION['errEmpty'];
+                        echo '<div id="alert-message" class="row">
+                                <div class="col m12">
+                                    <div class="card red lighten-5">
+                                        <div class="card-content notif">
+                                            <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+                        unset($_SESSION['errEmpty']);
+                    }
+                ?>
+
                 <!-- Row form Start -->
                 <div class="row jarak-form">
 
@@ -116,14 +139,33 @@
 
                         <!-- Row in form START -->
                         <div class="row">
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter [ huruf, angka, underscore(_) ]">
                                 <i class="material-icons prefix md-prefix">account_circle</i>
                                 <input id="username" type="text" class="validate" name="username" value="<?php echo $_SESSION['username']; ?>" required>
+                                    <?php
+                                        if(isset($_SESSION['epuname'])){
+                                            $epuname = $_SESSION['epuname'];
+                                            echo '<span id="alert-message" class="red-text">'.$epuname.'</span>';
+                                            unset($_SESSION['epuname']);
+                                        }
+                                        if(isset($_SESSION['errEpUname5'])){
+                                            $errEpUname5 = $_SESSION['errEpUname5'];
+                                            echo '<span id="alert-message" class="red-text">'.$errEpUname5.'</span>';
+                                            unset($_SESSION['errEpUname5']);
+                                        }
+                                    ?>
                                 <label for="username">Username</label>
                             </div>
-                            <div class="input-field col s6">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ huruf, spasi, titik(.), koma(,) ]">
                                 <i class="material-icons prefix md-prefix">text_fields</i>
                                 <input id="nama" type="text" class="validate" name="nama" value="<?php echo $_SESSION['nama']; ?>" required>
+                                    <?php
+                                        if(isset($_SESSION['epnama'])){
+                                            $epnama = $_SESSION['epnama'];
+                                            echo '<span id="alert-message" class="red-text">'.$epnama.'</span>';
+                                            unset($_SESSION['epnama']);
+                                        }
+                                    ?>
                                 <label for="nama">Nama</label>
                             </div>
                             <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isikan password lama Anda">
@@ -131,14 +173,28 @@
                                 <input id="password_lama" type="password" class="validate" name="password_lama" required>
                                 <label for="password_lama">Password Lama</label>
                             </div>
-                            <div class="input-field col s6">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ angka, spasi, minus(-) ]">
                                 <i class="material-icons prefix md-prefix">looks_one</i>
                                 <input id="nip" type="text" class="validate" name="nip" value="<?php echo $_SESSION['nip']; ?>" required autocomplete="off">
+                                    <?php
+                                        if(isset($_SESSION['epnip'])){
+                                            $epnip = $_SESSION['epnip'];
+                                            echo '<span id="alert-message" class="red-text">'.$epnip.'</span>';
+                                            unset($_SESSION['epnip']);
+                                        }
+                                    ?>
                                 <label for="nip">NIP</label>
                             </div>
                             <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter">
                                 <i class="material-icons prefix md-prefix">lock</i>
                                 <input id="password" type="password" class="validate" name="password" required>
+                                    <?php
+                                        if(isset($_SESSION['errEpPassword5'])){
+                                            $errEpPassword5 = $_SESSION['errEpPassword5'];
+                                            echo '<span id="alert-message" class="red-text">'.$errEpPassword5.'</span>';
+                                            unset($_SESSION['errEpPassword5']);
+                                        }
+                                    ?>
                                 <label for="password">Password Baru</label>
                                 <small class="red-text" style="margin-left: 40px;">*Setelah menekan tombol "Simpan", Anda akan diminta melakukan Login ulang.</small>
                             </div>

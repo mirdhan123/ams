@@ -174,7 +174,7 @@
                                 </tbody>';
                                     }
                                 } else {
-                                    echo '<tr><td colspan="5"><center><h5>Tidak ada data yang ditemukan</h5></center></td></tr>';
+                                    echo '<tr><td colspan="5"><center><p class="add">Tidak ada data yang ditemukan</p></center></td></tr>';
                                 }
                               echo '</table><br/><br/>
                             </div>
@@ -273,7 +273,7 @@
                             </tbody>';
                                 }
                             } else {
-                                echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
+                                echo '<tr><td colspan="5"><center><p class="add">Tidak ada data untuk ditampilkan. <u><a href="?page=tsk&act=add">Tambah data baru</a></u> </p></center></td></tr>';
                             }
                             echo '</table>
                         </div>

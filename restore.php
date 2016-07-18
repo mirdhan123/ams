@@ -130,7 +130,7 @@
                     					$templine = '';
                     				}
                     			}
-                                $_SESSION['succRestore'] = 'SUKSES! database berhasil direstore';
+                                $_SESSION['succRestore'] = 'SUKSES! Database berhasil direstore';
                                 header("Location: ./admin.php?page=rest");
                                 die();
                     		} else {

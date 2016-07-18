@@ -41,7 +41,7 @@
                             header("Location: ./admin.php?page=sett&sub=usr");
                             die();
                         } else {
-                            $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
+                            $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
                             echo '<script language="javascript">
                                     window.location.href="./admin.php?page=sett&sub=usr&act=edit&id_user='.$id_user.'";
                                   </script>';

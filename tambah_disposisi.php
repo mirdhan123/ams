@@ -17,9 +17,7 @@
             if ($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
                 || $_REQUEST['catatan'] == ""){
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
-                echo '<script language="javascript">
-                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                      </script>';
+                echo '<script language="javascript">window.history.back();</script>';
             } else {
 
                 $tujuan = $_REQUEST['tujuan'];
@@ -31,37 +29,27 @@
                 //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $tujuan)){
                     $_SESSION['tujuan'] = 'Form Tujuan Disposisi hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,) minus(-). kurung() dan garis miring(/)<br/>';
-                    echo '<script language="javascript">
-                            window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                          </script>';
+                    echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $isi_disposisi)){
                         $_SESSION['isi_disposisi'] = 'Form Isi Disposisi hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan(&), underscore(_), kurung(), persen(%) dan at(@)<br/>';
-                        echo '<script language="javascript">
-                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                              </script>';
+                        echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
                         if(!preg_match("/^[0-9 -]*$/", $batas_waktu)){
                             $_SESSION['batas_waktu'] = 'Form Batas Waktu hanya boleh mengandung karakter huruf dan minus(-)<br/>';
-                            echo '<script language="javascript">
-                                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                                  </script>';
+                            echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $catatan)){
                                 $_SESSION['catatan'] = 'Form catatan hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-) garis miring(/), dan kurung()';
-                                echo '<script language="javascript">
-                                        window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                                      </script>';
+                                echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
                                 if(!preg_match("/^[a-zA-Z0 ]*$/", $sifat)){
-                                    $_SESSION['catatan'] = 'Form SIFAT hanya boleh mengandung karakter huruf dan spasi<br/>';
-                                    echo '<script language="javascript">
-                                            window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                                          </script>';
+                                    $_SESSION['sifat'] = 'Form SIFAT hanya boleh mengandung karakter huruf dan spasi<br/>';
+                                    echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
                                     $query = mysqli_query($config, "INSERT INTO tbl_disposisi(tujuan,isi_disposisi,sifat,batas_waktu,catatan,id_surat)
@@ -73,10 +61,8 @@
                                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
                                               </script>';
                                     } else {
-                                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
-                                        echo '<script language="javascript">
-                                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'&sub=add";
-                                              </script>';
+                                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
+                                        echo '<script language="javascript">window.history.back();</script>';
                                     }
                                 }
                             }
@@ -139,7 +125,7 @@
 
                     <!-- Row in form START -->
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , ( ) / - ]">
                             <i class="material-icons prefix md-prefix">place</i>
                             <input id="tujuan" type="text" class="validate" name="tujuan" required>
                                 <?php
@@ -163,7 +149,7 @@
                                 ?>
                             <label for="batas_waktu">Batas Waktu</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - ( ) % & @ _ / ]">
                             <i class="material-icons prefix md-prefix">description</i>
                             <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required></textarea>
                                 <?php
@@ -175,8 +161,7 @@
                                 ?>
                             <label for="isi_disposisi">Isi Disposisi</label>
                         </div>
-
-                        <div class="input-field col s6">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , ( ) / - ]">
                             <i class="material-icons prefix md-prefix">featured_play_list   </i>
                             <input id="catatan" type="text" class="validate" name="catatan" required>
                                 <?php

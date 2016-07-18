@@ -77,8 +77,9 @@
         .hidden {
             display: none;
         }
-        .tidak {
-            font-size: 1.4rem;
+        .add {
+            font-size: 1.45rem;
+            padding: 0.1rem 0;
         }
         .jarak-card {
             margin-top: 1rem;
@@ -113,8 +114,7 @@
             text-transform: capitalize!important;
         }
         .kata {
-            font-size: 1.15rem;
-            color: #444!important;
+            font-size: 1.04rem;
         }
         #alert-message {
             font-size: 0.9rem;

@@ -89,7 +89,7 @@
                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'";
                               </script>';
             		} else {
-                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan penulisan query';
+                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
                         echo '<script language="javascript">
                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=del&id_disposisi='.$row['id_disposisi'].'";
                               </script>';
