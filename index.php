@@ -239,7 +239,6 @@
                         </div>
                     </form>
                     <!-- Form END -->
-
                     <?php
                         }
                     ?>

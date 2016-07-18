@@ -53,6 +53,16 @@
         #header-instansi {
             margin-top: 1%;
         }
+        .ams {
+            font-size: 1.8rem;
+        }
+        .grs {
+            position: absolute;
+            margin: 9px 0;
+            background-color: #fff;
+            height: 45px;
+            width: 1px;
+        }
         #menu {
             margin-left: 20px;
         }

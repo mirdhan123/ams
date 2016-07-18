@@ -3,8 +3,8 @@
     if(!empty($_SESSION['admin'])){
 ?>
 <nav class="blue-grey darken-1">
-
-    <!-- Menu on medium and small screen START -->
+<div class="nav-wrapper">
+    <a href="#" class="brand-logo center hide-on-large-only">AMS</a>
     <ul id="slide-out" class="side-nav" data-simplebar-direction="vertical">
         <li class="no-padding">
             <div class="logo-side center blue-grey darken-3">
@@ -115,7 +115,9 @@
 
     <!-- Menu on large screen START -->
     <ul class="center hide-on-med-and-down" id="nv">
-        <li><a href="./admin.php"><i class="material-icons">dashboard</i>&nbsp; Beranda</a></li>
+        <li><a href="#" class="ams hide-on-med-and-down">AMS</a></li>
+        <li><div class="grs"></></li>
+        <li><a href="./admin.php"><i class="material-icons"></i>&nbsp; Beranda</a></li>
         <?php
             if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3){ ?>
         <li><a class="dropdown-button" href="#!" data-activates="transaksi">Transaksi Surat <i class="material-icons md-18">arrow_drop_down</i></a></li>
@@ -159,8 +161,8 @@
             </ul>
     </ul>
     <!-- Menu on large screen END -->
-
     <a href="#" data-activates="slide-out" class="button-collapse" id="menu"><i class="material-icons">menu</i></a>
+</div>
 </nav>
 <?php
     } else {
