@@ -145,7 +145,7 @@
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">date_range</i>
-                                <input id="batas_waktu" type="date" name="batas_waktu" class="datepicker" value="<?php echo $row['batas_waktu']; ?>"required>
+                                <input id="batas_waktu" type="text" name="batas_waktu" class="datepicker" value="<?php echo $row['batas_waktu']; ?>"required>
                                     <?php
                                         if(isset($_SESSION['batas_waktu'])){
                                             $batas_waktu = $_SESSION['batas_waktu'];

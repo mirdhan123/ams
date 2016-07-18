@@ -221,7 +221,7 @@
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">date_range</i>
-                            <input id="tgl_surat" type="date" name="tgl_surat" class="datepicker" required>
+                            <input id="tgl_surat" type="text" name="tgl_surat" class="datepicker" required>
                             <label for="tgl_surat">Tanggal Surat</label>
                         </div>
                         <div class="input-field col s6">
