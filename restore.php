@@ -172,7 +172,7 @@
                                                 <input type="file" name="file" accept=".sql" required>
                                             </div>
                                             <div class="file-path-wrapper">
-                                                <input class="file-path validate" placeholder="Upload file database sql" type="text">
+                                                <input class="file-path validate" placeholder="Upload file backup database sql" type="text">
                                              </div>
                                         </div>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <button type="submit" class="btn-large blue waves-effect waves-light" name="restore">RESTORE <i class="material-icons">restore</i></button>

@@ -15,7 +15,7 @@
                     <div class="row jarak-form">
                         <ul class="collapsible white" data-collapsible="accordion">
                             <li>
-                            <div class="collapsible-header white"><i class="material-icons md-prefix md-36">expand_more</i><span class="tidak">Tampilkan detail data surat masuk</span></div>
+                            <div class="collapsible-header white"><i class="material-icons md-prefix md-36">expand_more</i><span class="add">Tampilkan detail data surat masuk</span></div>
                                 <div class="collapsible-body white">
                                 <div class="col m12 white">
                                     <table>

@@ -95,7 +95,7 @@
                             </div>';
                         unset($_SESSION['succDel']);
                     }
-                    
+
                 echo '
                     <!-- Row form Start -->
                     <div class="row jarak-form">
@@ -145,10 +145,10 @@
                                     } echo '</td>
                                     </tr>
                                 </tbody>';
-                                        }
-                                } else {
-                        echo '<tr><td colspan="5"><center><h5>Tidak ada data untuk ditampilkan</h5></center></td></tr>';
                                     }
+                                } else {
+                        echo '<tr><td colspan="5"><center><p class="add">Tidak ada data untuk ditampilkan</p></center></td></tr>';
+                                }
                       echo '</table>
                             <!-- Table END -->
                         </div>

@@ -44,26 +44,22 @@
                         //validasi input data
                         if(!preg_match("/^[a-zA-Z0-9.() -]*$/", $nama)){
                             $_SESSION['namains'] = 'Form Nama Instansi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan minus(-)';
-                            header("Location: ././admin.php?page=sett");
-                            die();
+                            echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $alamat)){
                                 $_SESSION['alamat'] = 'Form Alamat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()';
-                                header("Location: ././admin.php?page=sett");
-                                die();
+                                echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
                                 if(!preg_match("/^[a-zA-Z., ]*$/", $kepsek)){
                                     $_SESSION['kepsek'] = 'Form Nama Kepala Sekolah hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)<br/><br/>';
-                                    header("Location: ././admin.php?page=sett");
-                                    die();
+                                    echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
                                     if(!preg_match("/^[0-9 -]*$/", $nip)){
                                         $_SESSION['nipkepsek'] = 'Form NIP Kepala Sekolah hanya boleh mengandung karakter angka, spasi, dan minus(-)<br/><br/>';
-                                        header("Location: ././admin.php?page=sett");
-                                        die();
+                                        echo '<script language="javascript">window.history.back();</script>';
                                     } else {
 
                                         //validasi url website
@@ -110,18 +106,15 @@
                                                                 die();
                                                             } else {
                                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                                header("Location: ././admin.php?page=sett");
-                                                                die();
+                                                                echo '<script language="javascript">window.history.back();</script>';
                                                             }
                                                         } else {
                                                             $_SESSION['errSize'] = 'Ukuran file yang boleh diupload maksimal 2 MB<br/><br/>';
-                                                            header("Location: ././admin.php?page=sett");
-                                                            die();
+                                                            echo '<script language="javascript">window.history.back();</script>';
                                                         }
                                                     } else {
                                                         $_SESSION['errSize'] = 'Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG<br/><br/>';
-                                                        header("Location: ././admin.php?page=sett");
-                                                        die();
+                                                        echo '<script language="javascript">window.history.back();</script>';
                                                     }
                                                 } else {
 
@@ -134,8 +127,7 @@
                                                         die();
                                                     } else {
                                                         $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                        header("Location: ././admin.php?page=sett");
-                                                        die();
+                                                        echo '<script language="javascript">window.history.back();</script>';
                                                     }
                                                 }
                                             }

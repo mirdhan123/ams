@@ -19,8 +19,7 @@
                 //validasi form kosong
                 if($_REQUEST['kode'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['uraian'] == ""){
                     $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
-                    header("Location: ./admin.php?page=ref&act=add");
-                    die();
+                    echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
                     $kode = $_REQUEST['kode'];
@@ -30,17 +29,17 @@
 
                     //validasi input data
                     if(!preg_match("/^[a-zA-Z0-9. ]*$/", $kode)){
-                        $_SESSION['kode'] = 'Form Kode hanya boleh mengandung karakter huruf, angka, spasi dan titik(.)<br/>';
+                        $_SESSION['kode'] = 'Form Kode hanya boleh mengandung karakter huruf, angka, spasi dan titik(.)<br/><br/>';
                         echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
                         if(!preg_match("/^[a-zA-Z0-9.,\/ -]*$/", $nama)){
-                            $_SESSION['namaref'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.), koma(,) dan minus(-)<br/>';
+                            $_SESSION['namaref'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.), koma(,) dan minus(-)<br/><br/>';
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,()\/\r\n -]*$/", $uraian)){
-                                $_SESSION['uraian'] = 'Form Uraian hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()<br/>';
+                                $_SESSION['uraian'] = 'Form Uraian hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()<br/><br/>';
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
@@ -48,7 +47,7 @@
                                 $result = mysqli_num_rows($cek);
 
                                 if($result > 0){
-                                    $_SESSION['duplikasi'] = 'Terjadi duplikasi data Kode!<br/>';
+                                    $_SESSION['duplikasi'] = 'Terjadi duplikasi data Kode!<br/><br/>';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 

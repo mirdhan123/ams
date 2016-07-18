@@ -25,23 +25,17 @@
                 //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9. ]*$/", $kode)){
                     $_SESSION['kode'] = 'Form Kode hanya boleh mengandung karakter huruf, angka, spasi dan titik(.)<br/><br/>';
-                    echo '<script language="javascript">
-                            window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
-                          </script>';
+                    echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,\/ -]*$/", $nama)){
                         $_SESSION['namaref'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.), koma(,) dan minus(-)<br/><br/>';
-                        echo '<script language="javascript">
-                                window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
-                              </script>';
+                        echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
                         if(!preg_match("/^[a-zA-Z0-9.,()\/\r\n -]*$/", $uraian)){
                             $_SESSION['uraian'] = 'Form Uraian hanya boleh mengandung  huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()<br/><br/>';
-                            echo '<script language="javascript">
-                                    window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
-                                  </script>';
+                            echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
                             $query = mysqli_query($config, "UPDATE tbl_klasifikasi SET kode='$kode', nama='$nama', uraian='$uraian', id_user='$id_user' WHERE id_klasifikasi='$id_klasifikasi'");
@@ -52,9 +46,7 @@
                                 die();
                             } else {
                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                echo '<script language="javascript">
-                                        window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
-                                      </script>';
+                                echo '<script language="javascript">window.history.back();</script>';
                             }
                         }
                     }
@@ -74,112 +66,112 @@
                           </script>';
                 } else {?>
 
-            <!-- Row Start -->
-            <div class="row">
-                <!-- Secondary Nav START -->
-                <div class="col s12">
-                    <nav class="secondary-nav">
-                        <div class="nav-wrapper blue-grey darken-1">
-                            <ul class="left">
-                                <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">edit</i> Edit Klasifikasi Surat</a></li>
-                            </ul>
+                    <!-- Row Start -->
+                    <div class="row">
+                        <!-- Secondary Nav START -->
+                        <div class="col s12">
+                            <nav class="secondary-nav">
+                                <div class="nav-wrapper blue-grey darken-1">
+                                    <ul class="left">
+                                        <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">edit</i> Edit Klasifikasi Surat</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
                         </div>
-                    </nav>
-                </div>
-                <!-- Secondary Nav END -->
-            </div>
-            <!-- Row END -->
+                        <!-- Secondary Nav END -->
+                    </div>
+                    <!-- Row END -->
 
-            <?php
-                if(isset($_SESSION['errEmpty'])){
-                    $errEmpty = $_SESSION['errEmpty'];
-                    echo '<div id="alert-message" class="row">
-                            <div class="col m12">
-                                <div class="card red lighten-5">
-                                    <div class="card-content notif">
-                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                    <?php
+                        if(isset($_SESSION['errEmpty'])){
+                            $errEmpty = $_SESSION['errEmpty'];
+                            echo '<div id="alert-message" class="row">
+                                    <div class="col m12">
+                                        <div class="card red lighten-5">
+                                            <div class="card-content notif">
+                                                <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>';
+                            unset($_SESSION['errEmpty']);
+                        }
+                        if(isset($_SESSION['errQ'])){
+                            $errQ = $_SESSION['errQ'];
+                            echo '<div id="alert-message" class="row">
+                                    <div class="col m12">
+                                        <div class="card red lighten-5">
+                                            <div class="card-content notif">
+                                                <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                            unset($_SESSION['errQ']);
+                        }
+                    ?>
+
+                    <!-- Row form Start -->
+                    <div class="row jarak-form">
+
+                        <!-- Form START -->
+                        <form class="col s12" method="post" action="?page=ref&act=edit">
+
+                            <!-- Row in form START -->
+                            <div class="row">
+                                <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Karakter yg diperbolehkan [ huruf, angka, spasi, titik(.) ]">
+                                    <input type="hidden" value="<?php echo $row['id_klasifikasi']; ?>" name="id_klasifikasi">
+                                    <i class="material-icons prefix md-prefix">font_download</i>
+                                    <input id="kd" type="text" class="validate" name="kode" maxlength="30" value="<?php echo $row['kode']; ?>" required>
+                                        <?php
+                                            if(isset($_SESSION['kode'])){
+                                                $kode = $_SESSION['kode'];
+                                                echo '<span id="alert-message" class="red-text">'.$kode.'</span>';
+                                                unset($_SESSION['kode']);
+                                            }
+                                        ?>
+                                    <label for="kd">Kode</label>
+                                </div>
+                                <div class="input-field col s9 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - ]">
+                                    <i class="material-icons prefix md-prefix">text_fields</i>
+                                    <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>" required>
+                                        <?php
+                                            if(isset($_SESSION['namaref'])){
+                                                $namaref = $_SESSION['namaref'];
+                                                echo '<span id="alert-message" class="red-text">'.$namaref.'</span>';
+                                                unset($_SESSION['namaref']);
+                                            }
+                                        ?>
+                                    <label for="nama">Nama</label>
+                                </div>
+                                <div class="input-field col s12 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , ( ) / - ]">
+                                    <i class="material-icons prefix md-prefix">subject</i>
+                                    <textarea id="uraian" class="materialize-textarea" name="uraian" required><?php echo $row['uraian']; ?></textarea>
+                                        <?php
+                                            if(isset($_SESSION['uraian'])){
+                                                $uraian = $_SESSION['uraian'];
+                                                echo '<span id="alert-message" class="red-text">'.$uraian.'</span>';
+                                                unset($_SESSION['uraian']);
+                                            }
+                                        ?>
+                                    <label for="uraian">Uraian</label>
                                 </div>
                             </div>
-                        </div>';
-                    unset($_SESSION['errEmpty']);
-                }
-                if(isset($_SESSION['errQ'])){
-                    $errQ = $_SESSION['errQ'];
-                    echo '<div id="alert-message" class="row">
-                            <div class="col m12">
-                                <div class="card red lighten-5">
-                                    <div class="card-content notif">
-                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
-                                    </div>
+                            <!-- Row in form END -->
+                            <div class="row">
+                                <div class="col 6">
+                                    <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
+                                </div>
+                                <div class="col 6">
+                                    <a href="?page=ref" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
                                 </div>
                             </div>
-                        </div>';
-                    unset($_SESSION['errQ']);
-                }
-            ?>
 
-            <!-- Row form Start -->
-            <div class="row jarak-form">
+                        </form>
+                        <!-- Form END -->
 
-                <!-- Form START -->
-                <form class="col s12" method="post" action="?page=ref&act=edit">
-
-                    <!-- Row in form START -->
-                    <div class="row">
-                        <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Karakter yg diperbolehkan [ huruf, angka, spasi, titik(.) ]">
-                            <input type="hidden" value="<?php echo $row['id_klasifikasi']; ?>" name="id_klasifikasi">
-                            <i class="material-icons prefix md-prefix">font_download</i>
-                            <input id="kd" type="text" class="validate" name="kode" maxlength="30" value="<?php echo $row['kode']; ?>" required>
-                                <?php
-                                    if(isset($_SESSION['kode'])){
-                                        $kode = $_SESSION['kode'];
-                                        echo '<span id="alert-message" class="red-text">'.$kode.'</span>';
-                                        unset($_SESSION['kode']);
-                                    }
-                                ?>
-                            <label for="kd">Kode</label>
-                        </div>
-                        <div class="input-field col s9 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - ]">
-                            <i class="material-icons prefix md-prefix">text_fields</i>
-                            <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>" required>
-                                <?php
-                                    if(isset($_SESSION['namaref'])){
-                                        $namaref = $_SESSION['namaref'];
-                                        echo '<span id="alert-message" class="red-text">'.$namaref.'</span>';
-                                        unset($_SESSION['namaref']);
-                                    }
-                                ?>
-                            <label for="nama">Nama</label>
-                        </div>
-                        <div class="input-field col s12 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , ( ) / - ]">
-                            <i class="material-icons prefix md-prefix">subject</i>
-                            <textarea id="uraian" class="materialize-textarea" name="uraian" required><?php echo $row['uraian']; ?></textarea>
-                                <?php
-                                    if(isset($_SESSION['uraian'])){
-                                        $uraian = $_SESSION['uraian'];
-                                        echo '<span id="alert-message" class="red-text">'.$uraian.'</span>';
-                                        unset($_SESSION['uraian']);
-                                    }
-                                ?>
-                            <label for="uraian">Uraian</label>
-                        </div>
                     </div>
-                    <!-- Row in form END -->
-                    <div class="row">
-                        <div class="col 6">
-                            <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
-                        </div>
-                        <div class="col 6">
-                            <a href="?page=ref" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
-                        </div>
-                    </div>
-
-                </form>
-                <!-- Form END -->
-
-            </div>
-            <!-- Row form END -->
+                    <!-- Row form END -->
 <?php
                 }
             }

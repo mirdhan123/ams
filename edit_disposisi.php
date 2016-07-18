@@ -199,7 +199,7 @@
                                 ?>
                         </div>
                         <!-- Row in form END -->
-                        <div style="height: 21rem;"></div>
+                        <div style="height: 22rem;"></div>
                         <div class="row">
                             <div class="col 6">
                                 <button type="submit" name ="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
