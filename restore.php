@@ -23,7 +23,7 @@
                                 <div class="nav-wrapper blue-grey darken-1">
                                     <div class="col m12">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light"><a href="?page=rest" class="judul"><i class="material-icons">storage</i> Restore Database</a></li>
+                                            <li class="waves-effect waves-light"><a href="?page=sett&sub=rest" class="judul"><i class="material-icons">storage</i> Restore Database</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@
 
                 	if($nama_file == ""){
                         $_SESSION['errEmpty'] = 'ERROR! Form File tidak boleh kosong';
-                        header("Location: ./admin.php?page=rest");
+                        header("Location: ./admin.php?page=sett&sub=rest");
                         die();
                     } else {
                 		$alamatfile	= $rest_dir.$nama_file;
@@ -131,7 +131,7 @@
                     				}
                     			}
                                 $_SESSION['succRestore'] = 'SUKSES! Database berhasil direstore';
-                                header("Location: ./admin.php?page=rest");
+                                header("Location: ./admin.php?page=sett&sub=rest");
                                 die();
                     		} else {
                                 $_SESSION['errUpload'] = 'ERROR! Proses upload database gagal';
@@ -140,7 +140,7 @@
                 		    }
                         } else {
                             $_SESSION['errFormat'] = 'ERROR! Format file yang diperbolehkan hanya *.SQL';
-                            header("Location: ./admin.php?page=rest");
+                            header("Location: ./admin.php?page=sett&sub=rest");
                             die();
                         }
                 	}
@@ -160,7 +160,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <span class="card-title black-text">Restore Database</span>
-                                    <p class="kata">Silakan pilih file database lalu klik tombol <strong>"Restore"</strong> untuk melakukan restore database dari hasil backup yang telah dibuat sebelumnya. Jika belum ada database hasil backup, silakan lakukan backup terlebih dahulu melalui menu <strong><a class="blue-text" style="text-transform: capitalize" href="?page=back">"Backup Database"</a></strong>.</p><br/>
+                                    <p class="kata">Silakan pilih file database lalu klik tombol <strong>"Restore"</strong> untuk melakukan restore database dari hasil backup yang telah dibuat sebelumnya. Jika belum ada database hasil backup, silakan lakukan backup terlebih dahulu melalui menu <strong><a class="blue-text" style="text-transform: capitalize" href="?page=sett&sub=back">"Backup Database"</a></strong>.</p><br/>
 
                                     <p class="kata"><strong>CATATAN PENTING!</strong><br/> Data yang ada akan diganti dengan data yang baru.</p>
                                 </div>
