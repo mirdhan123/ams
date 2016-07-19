@@ -172,7 +172,7 @@
                                     } else {
                                       echo '<a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
                                                 <i class="material-icons">edit</i> EDIT</a>
-                                            <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Klik DISP untuk menambahkan disposisi" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">
+                                            <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Pilih Disp untuk menambahkan Disposisi Surat" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">
                                                 <i class="material-icons">description</i> DISP</a>
                                             <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">
                                                 <i class="material-icons">print</i> PRINT</a>
@@ -275,7 +275,7 @@
                                         } else {
                                           echo '<a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
                                                     <i class="material-icons">edit</i> EDIT</a>
-                                                <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Klik DISP untuk menambahkan disposisi" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">
+                                                <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Pilih Disp untuk menambahkan Disposisi Surat" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">
                                                     <i class="material-icons">description</i> DISP</a>
                                                 <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">
                                                     <i class="material-icons">print</i> PRINT</a>
