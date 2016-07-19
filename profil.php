@@ -46,13 +46,13 @@
                             } else {
 
                                 if(strlen($username) < 5){
-                                    $_SESSION['errEpUname5'] = 'Username minimal 5 karakter';
+                                    $_SESSION['errEpUname5'] = 'Username minimal 5 karakter!';
                                     header("Location: ./admin.php?page=pro&sub=pass");
                                     die();
                                 } else {
 
                                     if(strlen($password) < 5){
-                                        $_SESSION['errEpPassword5'] = 'Password minimal 5 karakter<br/><br/>';
+                                        $_SESSION['errEpPassword5'] = 'Password minimal 5 karakter!<br/><br/>';
                                         header("Location: ./admin.php?page=pro&sub=pass");
                                         die();
                                     } else {
