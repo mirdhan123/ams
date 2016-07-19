@@ -71,12 +71,6 @@
                 case 'gsk':
                     include "galeri_sk.php";
                     break;
-                case 'back':
-                    include "backup.php";
-                    break;
-                case 'rest':
-                    include "restore.php";
-                    break;
             }
         } else {
     ?>
@@ -154,8 +148,8 @@
             <div class="col s12 m4">
                 <div class="card deep-orange">
                     <div class="card-content">
-                        <span class="card-title white-text"><i class="material-icons md-36">bookmark</i> Jumlah Klasifikasi</span>
-                        <?php echo '<h5 class="white-text link">'.$count4.' Klasifikasi</h5>'; ?>
+                        <span class="card-title white-text"><i class="material-icons md-36">bookmark</i> Jumlah Klasifikasi Surat</span>
+                        <?php echo '<h5 class="white-text link">'.$count4.' Klasifikasi Surat</h5>'; ?>
                     </div>
                 </div>
             </div>
