@@ -25,6 +25,7 @@
                 $sifat = $_REQUEST['sifat'];
                 $batas_waktu = $_REQUEST['batas_waktu'];
                 $catatan = $_REQUEST['catatan'];
+                $id_user = $_SESSION['id_user'];
 
                 //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $tujuan)){
@@ -52,8 +53,8 @@
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
-                                    $query = mysqli_query($config, "INSERT INTO tbl_disposisi(tujuan,isi_disposisi,sifat,batas_waktu,catatan,id_surat)
-                                        VALUES('$tujuan','$isi_disposisi','$sifat','$batas_waktu','$catatan','$id_surat')");
+                                    $query = mysqli_query($config, "INSERT INTO tbl_disposisi(tujuan,isi_disposisi,sifat,batas_waktu,catatan,id_surat,id_user)
+                                        VALUES('$tujuan','$isi_disposisi','$sifat','$batas_waktu','$catatan','$id_surat','$id_user')");
 
                                     if($query == true){
                                         $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
