@@ -47,7 +47,7 @@
                                 $result = mysqli_num_rows($cek);
 
                                 if($result > 0){
-                                    $_SESSION['duplikasi'] = 'Terjadi duplikasi data Kode!<br/><br/>';
+                                    $_SESSION['duplikasi'] = 'Kode sudah ada, pilih yang lainnya!<br/><br/>';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
