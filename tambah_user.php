@@ -10,7 +10,7 @@
 
             //validasi form kosong
             if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == "" || $_REQUEST['admin'] == ""){
-                $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
+                $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi!';
                 header("Location: ./admin.php?page=sett&sub=usr&act=add");
                 die();
             } else {
@@ -46,17 +46,17 @@
                                 $result = mysqli_num_rows($cek);
 
                                 if($result > 0){
-                                    $_SESSION['errUsername'] = 'Username sudah terpakai. Gunakan lainnya';
+                                    $_SESSION['errUsername'] = 'Username sudah terpakai, gunakan yang lain!';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
                                     if(strlen($username) < 5){
-                                        $_SESSION['errUser5'] = 'Username minimal 5 karakter';
+                                        $_SESSION['errUser5'] = 'Username minimal 5 karakter!';
                                         echo '<script language="javascript">window.history.back();</script>';
                                     } else {
 
                                         if(strlen($password) < 5){
-                                            $_SESSION['errPassword'] = 'Password minimal 5 karakter';
+                                            $_SESSION['errPassword'] = 'Password minimal 5 karakter!';
                                             echo '<script language="javascript">window.history.back();</script>';
                                         } else {
 
