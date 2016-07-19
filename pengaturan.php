@@ -17,6 +17,12 @@
             if(isset($_REQUEST['sub'])){
                 $sub = $_REQUEST['sub'];
                 switch ($sub) {
+                    case 'back':
+                        include "backup.php";
+                        break;
+                    case 'rest':
+                        include "restore.php";
+                        break;
                     case 'usr':
                         include "user.php";
                         break;
@@ -40,6 +46,7 @@
                         $nip = $_REQUEST['nip'];
                         $website = $_REQUEST['website'];
                         $email = $_REQUEST['email'];
+                        $id_user = $_SESSION['id_user'];
 
                         //validasi input data
                         if(!preg_match("/^[a-zA-Z0-9.() -]*$/", $nama)){
@@ -98,7 +105,7 @@
 
                                                             move_uploaded_file($_FILES['logo']['tmp_name'], $target_dir.$nlogo);
 
-                                                            $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$nlogo' WHERE id_instansi='$id_instansi'");
+                                                            $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$nlogo',id_user='$id_user' WHERE id_instansi='$id_instansi'");
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
@@ -109,17 +116,17 @@
                                                                 echo '<script language="javascript">window.history.back();</script>';
                                                             }
                                                         } else {
-                                                            $_SESSION['errSize'] = 'Ukuran file yang boleh diupload maksimal 2 MB<br/><br/>';
+                                                            $_SESSION['errSize'] = 'Ukuran file yang diupload terlalu besar!<br/><br/>';
                                                             echo '<script language="javascript">window.history.back();</script>';
                                                         }
                                                     } else {
-                                                        $_SESSION['errSize'] = 'Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG<br/><br/>';
+                                                        $_SESSION['errSize'] = 'Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG!<br/><br/>';
                                                         echo '<script language="javascript">window.history.back();</script>';
                                                     }
                                                 } else {
 
                                                     //jika form logo kosong akan mengeksekusi script dibawah ini
-                                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email' WHERE id_instansi='$id_instansi'");
+                                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',id_user='$id_user' WHERE id_instansi='$id_instansi'");
 
                                                     if($query == true){
                                                         $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
@@ -304,7 +311,7 @@
                                                         unset($_SESSION['errFormat']);
                                                     }
                                                 ?>
-                                            <small class="red-text">*Format yang diperbolehkan *.JPG, *.PNG dan ukuran maksimal 2 MB. Disarankan gambar berbentuk kotak</small>
+                                            <small class="red-text">*Format file yang diperbolehkan hanya *.JPG, *.PNG dan ukuran maksimal file 2 MB. Disarankan gambar berbentuk kotak atau lingkaran!</small>
                                         </div>
                                     </div>
                                     <div class="input-field col s6">

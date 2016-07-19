@@ -120,9 +120,6 @@
             width: 70%;
             height: auto;
         }
-        .link {
-            text-transform: capitalize!important;
-        }
         .kata {
             font-size: 1.04rem;
         }

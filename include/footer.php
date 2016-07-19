@@ -84,7 +84,7 @@ $(function() {
     });
 });
 
-//jquery untuk menampilkan pesan error
+//jquery untuk menampilkan pemberitahuan
 $("#alert-message").alert().delay(5000).fadeOut('slow');
 
 </script>

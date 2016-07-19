@@ -100,8 +100,8 @@
                         <ul>
                             <li><a href="?page=sett">Instansi</a></li>
                             <li><a href="?page=sett&sub=usr">User</a></li>
-                            <li><a href="?page=back">Backup Database</a></li>
-                            <li><a href="?page=rest">Restore Database</a></li>
+                            <li><a href="?page=sett&sub=back">Backup Database</a></li>
+                            <li><a href="?page=sett&sub=rest">Restore Database</a></li>
                         </ul>
                     </div>
                 </li>
@@ -146,8 +146,8 @@
                 <li><a href="?page=sett">Instansi</a></li>
                 <li><a href="?page=sett&sub=usr">User</a></li>
                 <li class="divider"></li>
-                <li><a href="?page=back">Backup Database</a></li>
-                <li><a href="?page=rest">Restore Database</a></li>
+                <li><a href="?page=sett&sub=back">Backup Database</a></li>
+                <li><a href="?page=sett&sub=rest">Restore Database</a></li>
             </ul>
         <?php
             }
