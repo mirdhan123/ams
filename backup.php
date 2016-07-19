@@ -23,7 +23,7 @@
                                 <div class="nav-wrapper blue-grey darken-1">
                                     <div class="col m12">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light"><a href="?page=back" class="judul"><i class="material-icons">storage</i> Backup Database</a></li>
+                                            <li class="waves-effect waves-light"><a href="?page=sett&sub=back" class="judul"><i class="material-icons">storage</i> Backup Database</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -61,14 +61,24 @@
                     	} else {
                             echo '<script language="javascript">
                                     window.alert("ERROR! File sudah tidak ada");
-                                    window.location.href="./admin.php?page=back";
+                                    window.location.href="./admin.php?page=sett&sub=back";
                                   </script>';
                         }
                     } else {
-                        echo '<script language="javascript">
-                                window.alert("ERROR! Format file yang boleh didownload hanya *.SQL");
-                                window.location.href="./logout.php";
-                              </script>';
+                        if($_SESSION['id_user'] == 1){
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Format file yang boleh didownload hanya *.SQL");
+                                    window.location.href="./logout.php";
+                                  </script>';
+                        } else {
+                            $id_user = $_SESSION['id_user'];
+                            $query = mysqli_query($config, "UPDATE tbl_user SET admin='3' WHERE id_user='$id_user'");
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Format file yang boleh didownload hanya *.SQL");
+                                    window.alert("Tipe akun Anda akan berubah menjadi User Biasa secara otomatis");
+                                    window.location.href="./logout.php";
+                                  </script>';
+                        }
                     }
                 }
 
@@ -156,7 +166,7 @@
                                     </div>
                                     <div class="card-action">
                                         <form method="post" enctype="multipart/form-data" >
-                                            <a href="?page=back&nama_file='.$file.'" class="btn-large blue waves-effect waves-light white-text">DOWNLOAD <i class="material-icons">file_download</i></a>
+                                            <a href="?page=sett&sub=back&nama_file='.$file.'" class="btn-large blue waves-effect waves-light white-text">DOWNLOAD <i class="material-icons">file_download</i></a>
                                         </form>
                                     </div>
                                 </div>
@@ -172,7 +182,7 @@
                                     <span class="card-title black-text">Backup Database</span>
                                     <p class="kata">Lakukan backup database secara berkala untuk membuat cadangan database yang bisa direstore kapan saja ketika dibutuhkan. Silakan klik tombol <strong>"Backup"</strong> untuk memulai proses backup data. Setelah proses backup selesai, silakan download file backup database tersebut dan simpan di lokasi yang aman <span style="font-size: 0.9rem;">(sangat tidak disarankan menyimpan file backup database dalam my documents / Local Disk C)</span>.</p><br/>
 
-                                    <p class="kata">Proses restore database dapat dilakukan melalui menu <a href="?page=rest" class="blue-text" style="text-transform: capitalize"><strong>"Restore Database"</strong></a></p>
+                                    <p class="kata">Proses restore database dapat dilakukan melalui menu <a href="?page=sett&sub=rest" class="blue-text" style="text-transform: capitalize"><strong>"Restore Database"</strong></a></p>
                                 </div>
                                 <div class="card-action">
                                     <form method="post" enctype="multipart/form-data" >
