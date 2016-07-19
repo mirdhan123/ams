@@ -8,12 +8,13 @@ CREATE TABLE `tbl_disposisi` (
   `batas_waktu` date NOT NULL,
   `catatan` varchar(250) NOT NULL,
   `id_surat` int(10) NOT NULL,
+  `id_user` tinyint(2) NOT NULL,
   PRIMARY KEY (`id_disposisi`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
-INSERT INTO tbl_disposisi VALUES("5","Kesiswaan","Kirimkan siswa kelas 12 untuk mengikuti kegiatan Pameran Bursa Kerja Untuk Percepatan Tenaga Kerja / Job Fair Tahun 2016 ","Biasa","2016-05-17","Segera Laksanakan","6");
-INSERT INTO tbl_disposisi VALUES("6","Panitia Zakat Fitrah","Segera koordinasi pembagian zakat fitrah","Biasa","2016-07-15","Semua siswa wajib membayar zakat fitrah disekolah","5");
-INSERT INTO tbl_disposisi VALUES("7","Bendahara Sekolah","Segera siapkan berkas-berkas yang diperlukan","Biasa","2016-07-17","Segera Laksanakan","4");
+INSERT INTO tbl_disposisi VALUES("5","Kesiswaan","Kirimkan siswa kelas 12 untuk mengikuti kegiatan Pameran Bursa Kerja Untuk Percepatan Tenaga Kerja / Job Fair Tahun 2016 ","Penting","2016-05-17","Segera Laksanakan","6","1");
+INSERT INTO tbl_disposisi VALUES("6","Panitia Zakat Fitrah","Segera koordinasi pembagian zakat fitrah","Biasa","2016-07-15","Semua siswa wajib membayar zakat fitrah disekolah","5","1");
+INSERT INTO tbl_disposisi VALUES("7","Bendahara Sekolah","Segera siapkan berkas-berkas yang diperlukan","Perhatian Batas Waktu","2016-07-17","Segera Laksanakan","4","1");
 
 
 
@@ -28,10 +29,11 @@ CREATE TABLE `tbl_instansi` (
   `website` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `logo` varchar(250) NOT NULL,
+  `id_user` tinyint(2) NOT NULL,
   PRIMARY KEY (`id_instansi`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
-INSERT INTO tbl_instansi VALUES("1","SMK AL - Husna Loceret Nganjuk","Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471","H. Riza Fachri, S.Kom.","-","http://www.smkalhusnaloceret.sch.id","info@smkalhusnaloceret.sch.id","logo.png");
+INSERT INTO tbl_instansi VALUES("1","SMK AL - Husna Loceret Nganjuk","Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471","H. Riza Fachri, S.Kom.","-","http://www.smkalhusnaloceret.sch.id","info@smkalhusnaloceret.sch.id","logo.png","1");
 
 
 
@@ -44,13 +46,13 @@ CREATE TABLE `tbl_klasifikasi` (
   `uraian` mediumtext NOT NULL,
   `id_user` tinyint(2) NOT NULL,
   PRIMARY KEY (`id_klasifikasi`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
-INSERT INTO tbl_klasifikasi VALUES("6","A","Pendidikan","Pendidikan Sekolah Menengah Kejuruan","1");
-INSERT INTO tbl_klasifikasi VALUES("7","B","Sarana","Bangunan Sekolah dan Sarana Pendukung Lainnya","1");
-INSERT INTO tbl_klasifikasi VALUES("8","C","Kurikulum","Kurikulum 2016","1");
-INSERT INTO tbl_klasifikasi VALUES("9","D","Kegiatan","Ekstrakurikuler","1");
-INSERT INTO tbl_klasifikasi VALUES("10","E","Administrasi","Administrasi Keuangan","1");
+INSERT INTO tbl_klasifikasi VALUES("1","A","Pendidikan","Pendidikan Sekolah Menengah Kejuruan","1");
+INSERT INTO tbl_klasifikasi VALUES("2","B","Sarana","Bangunan Sekolah dan Sarana Pendukung Lainnya","1");
+INSERT INTO tbl_klasifikasi VALUES("3","C","Kurikulum","Kurikulum 2016","1");
+INSERT INTO tbl_klasifikasi VALUES("4","D","Kegiatan","Ekstrakurikuler","1");
+INSERT INTO tbl_klasifikasi VALUES("5","E","Administrasi","Administrasi Keuangan","1");
 
 
 
@@ -93,7 +95,7 @@ CREATE TABLE `tbl_surat_masuk` (
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL,
   PRIMARY KEY (`id_surat`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_surat_masuk VALUES("4","1","074 / BAZNAS.JTM / IV / 2016","Badan Amil Zakat Nasional Provinsi Jawa Timur","Surat pemberitahuan resalisasi bantuan senilai RP. 800.000,- (Delapan Ratus Ribu Rupiah) dari BAZNAS. Diharapkan untuk segera menghubungi BAZNAS  Provinsi Jawa Timur  untuk pencairan dana dan membawa surat keterangan penggunaan dana bantuan beasiswa BAZNAZ Provinsi Jawa Timur dari sekolah, kwitansi dan fotocopy Kartu Pelajar","B","A","2016-04-07","2016-07-17","6313-IMG_20160611_103621.jpg","Penting","1");
 INSERT INTO tbl_surat_masuk VALUES("5","2","001/PPH/VI/2016","Pondok Pesantren Hidayatullah Nganjuk","Surat edaran permohonan zakat fitrah. ","E","A","2016-06-09","2016-07-17","277-IMG_20160611_103623.jpg","-","1");
@@ -111,7 +113,7 @@ CREATE TABLE `tbl_user` (
   `nip` varchar(25) NOT NULL,
   `admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_user VALUES("1","admin","21232f297a57a5a743894a0e4a801fc3","M. Rudianto","-","1");
 INSERT INTO tbl_user VALUES("18","dodik","82b00125c2ec05d38220ed4e1774e084","Dodik Meiloyan","-","2");
