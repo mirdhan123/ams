@@ -34,7 +34,7 @@
                     } else {
 
                         if(!preg_match("/^[a-zA-Z., ]*$/", $nama)){
-                            $_SESSION['epnama'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)<br/><br/>';
+                            $_SESSION['epnama'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)';
                             header("Location: ./admin.php?page=pro&sub=pass");
                             die();
                         } else {
@@ -52,7 +52,7 @@
                                 } else {
 
                                     if(strlen($password) < 5){
-                                        $_SESSION['errEpPassword5'] = 'Password minimal 5 karakter!<br/><br/>';
+                                        $_SESSION['errEpPassword5'] = 'Password minimal 5 karakter!';
                                         header("Location: ./admin.php?page=pro&sub=pass");
                                         die();
                                     } else {
@@ -145,12 +145,12 @@
                                     <?php
                                         if(isset($_SESSION['epuname'])){
                                             $epuname = $_SESSION['epuname'];
-                                            echo '<span id="alert-message" class="red-text">'.$epuname.'</span>';
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$epuname.'</div>';
                                             unset($_SESSION['epuname']);
                                         }
                                         if(isset($_SESSION['errEpUname5'])){
                                             $errEpUname5 = $_SESSION['errEpUname5'];
-                                            echo '<span id="alert-message" class="red-text">'.$errEpUname5.'</span>';
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errEpUname5.'</div>';
                                             unset($_SESSION['errEpUname5']);
                                         }
                                     ?>
@@ -162,7 +162,7 @@
                                     <?php
                                         if(isset($_SESSION['epnama'])){
                                             $epnama = $_SESSION['epnama'];
-                                            echo '<span id="alert-message" class="red-text">'.$epnama.'</span>';
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$epnama.'</div>';
                                             unset($_SESSION['epnama']);
                                         }
                                     ?>
@@ -179,7 +179,7 @@
                                     <?php
                                         if(isset($_SESSION['epnip'])){
                                             $epnip = $_SESSION['epnip'];
-                                            echo '<span id="alert-message" class="red-text">'.$epnip.'</span>';
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$epnip.'</div>';
                                             unset($_SESSION['epnip']);
                                         }
                                     ?>
@@ -191,12 +191,12 @@
                                     <?php
                                         if(isset($_SESSION['errEpPassword5'])){
                                             $errEpPassword5 = $_SESSION['errEpPassword5'];
-                                            echo '<span id="alert-message" class="red-text">'.$errEpPassword5.'</span>';
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errEpPassword5.'</div>';
                                             unset($_SESSION['errEpPassword5']);
                                         }
                                     ?>
                                 <label for="password">Password Baru</label>
-                                <small class="red-text" style="margin-left: 40px;">*Setelah menekan tombol "Simpan", Anda akan diminta melakukan Login ulang.</small>
+                                <small class="red-text">*Setelah menekan tombol "Simpan", Anda akan diminta melakukan Login ulang.</small>
                             </div>
                         </div>
                         <!-- Row in form END -->

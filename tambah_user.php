@@ -28,7 +28,7 @@
                 } else {
 
                     if(!preg_match("/^[a-zA-Z., ]*$/", $nama)){
-                        $_SESSION['namauser'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)<br/><br/>';
+                        $_SESSION['namauser'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)';
                         echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
@@ -138,17 +138,17 @@
                                 <?php
                                     if(isset($_SESSION['uname'])){
                                         $uname = $_SESSION['uname'];
-                                        echo '<span id="alert-message" class="red-text">'.$uname.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$uname.'</div>';
                                         unset($_SESSION['uname']);
                                     }
                                     if(isset($_SESSION['errUsername'])){
                                         $errUsername = $_SESSION['errUsername'];
-                                        echo '<span id="alert-message" class="red-text">'.$errUsername.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errUsername.'</div>';
                                         unset($_SESSION['errUsername']);
                                     }
                                     if(isset($_SESSION['errUser5'])){
                                         $errUser5 = $_SESSION['errUser5'];
-                                        echo '<span id="alert-message" class="red-text">'.$errUser5.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errUser5.'</div>';
                                         unset($_SESSION['errUser5']);
                                     }
                                 ?>
@@ -160,7 +160,7 @@
                                 <?php
                                     if(isset($_SESSION['namauser'])){
                                         $namauser = $_SESSION['namauser'];
-                                        echo '<span id="alert-message" class="red-text">'.$namauser.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$namauser.'</div>';
                                         unset($_SESSION['namauser']);
                                     }
                                 ?>
@@ -172,7 +172,7 @@
                                 <?php
                                     if(isset($_SESSION['errPassword'])){
                                         $errPassword = $_SESSION['errPassword'];
-                                        echo '<span id="alert-message" class="red-text">'.$errPassword.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errPassword.'</div>';
                                         unset($_SESSION['errPassword']);
                                     }
                                 ?>
@@ -184,7 +184,7 @@
                                 <?php
                                     if(isset($_SESSION['nipuser'])){
                                         $nipuser = $_SESSION['nipuser'];
-                                        echo '<span id="alert-message" class="red-text">'.$nipuser.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$nipuser.'</div>';
                                         unset($_SESSION['nipuser']);
                                     }
                                 ?>
@@ -201,7 +201,7 @@
                                 <?php
                                     if(isset($_SESSION['tipeuser'])){
                                         $tipeuser = $_SESSION['tipeuser'];
-                                        echo '<span id="alert-message" class="red-text">'.$tipeuser.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$tipeuser.'</div>';
                                         unset($_SESSION['tipeuser']);
                                     }
                                 ?>

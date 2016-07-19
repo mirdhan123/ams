@@ -24,17 +24,17 @@
 
                 //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9. ]*$/", $kode)){
-                    $_SESSION['kode'] = 'Form Kode hanya boleh mengandung karakter huruf, angka, spasi dan titik(.)<br/><br/>';
+                    $_SESSION['kode'] = 'Form Kode hanya boleh mengandung karakter huruf, angka, spasi dan titik(.)';
                     echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,\/ -]*$/", $nama)){
-                        $_SESSION['namaref'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.), koma(,) dan minus(-)<br/><br/>';
+                        $_SESSION['namaref'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.), koma(,) dan minus(-)';
                         echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
                         if(!preg_match("/^[a-zA-Z0-9.,()\/\r\n -]*$/", $uraian)){
-                            $_SESSION['uraian'] = 'Form Uraian hanya boleh mengandung  huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()<br/><br/>';
+                            $_SESSION['uraian'] = 'Form Uraian hanya boleh mengandung  huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()';
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
@@ -126,7 +126,7 @@
                                         <?php
                                             if(isset($_SESSION['kode'])){
                                                 $kode = $_SESSION['kode'];
-                                                echo '<span id="alert-message" class="red-text">'.$kode.'</span>';
+                                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kode.'</div>';
                                                 unset($_SESSION['kode']);
                                             }
                                         ?>
@@ -138,7 +138,7 @@
                                         <?php
                                             if(isset($_SESSION['namaref'])){
                                                 $namaref = $_SESSION['namaref'];
-                                                echo '<span id="alert-message" class="red-text">'.$namaref.'</span>';
+                                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$namaref.'</div>';
                                                 unset($_SESSION['namaref']);
                                             }
                                         ?>
@@ -150,7 +150,7 @@
                                         <?php
                                             if(isset($_SESSION['uraian'])){
                                                 $uraian = $_SESSION['uraian'];
-                                                echo '<span id="alert-message" class="red-text">'.$uraian.'</span>';
+                                                echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$uraian.'</div>';
                                                 unset($_SESSION['uraian']);
                                             }
                                         ?>

@@ -34,17 +34,23 @@
                               </script>';
                     } else {
 
-                        $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
-
-                        if($query == true){
-                            $_SESSION['succEdit'] = 'SUKSES! Tipe user berhasil diupdate';
-                            header("Location: ./admin.php?page=sett&sub=usr");
-                            die();
+                        if(!preg_match("/^[2-3]*$/", $admin)){
+                            $_SESSION['tipeuser'] = 'Form Tipe User hanya boleh mengandung karakter angka 2 atau 3';
+                            echo '<script language="javascript">window.history.back();</script>';
                         } else {
-                            $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                            echo '<script language="javascript">
-                                    window.location.href="./admin.php?page=sett&sub=usr&act=edit&id_user='.$id_user.'";
-                                  </script>';
+
+                            $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
+
+                            if($query == true){
+                                $_SESSION['succEdit'] = 'SUKSES! Tipe user berhasil diupdate';
+                                header("Location: ./admin.php?page=sett&sub=usr");
+                                die();
+                            } else {
+                                $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
+                                echo '<script language="javascript">
+                                        window.location.href="./admin.php?page=sett&sub=usr&act=edit&id_user='.$id_user.'";
+                                      </script>';
+                            }
                         }
                     }
                 } else {
@@ -114,6 +120,13 @@
                                                 <option value="2">Admin</option>
                                             </select>
                                         </div>
+                                            <?php
+                                                if(isset($_SESSION['tipeuser'])){
+                                                    $tipeuser = $_SESSION['tipeuser'];
+                                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$tipeuser.'</div>';
+                                                    unset($_SESSION['tipeuser']);
+                                                }
+                                            ?>
                                     </div>
                                 </div>
                                 <!-- Row in form END -->

@@ -29,12 +29,12 @@
 
                 //validasi input data
                 if(!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $tujuan)){
-                    $_SESSION['tujuan'] = 'Form Tujuan Disposisi hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,) minus(-). kurung() dan garis miring(/)<br/>';
+                    $_SESSION['tujuan'] = 'Form Tujuan Disposisi hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,) minus(-). kurung() dan garis miring(/)';
                     echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $isi_disposisi)){
-                        $_SESSION['isi_disposisi'] = 'Form Isi Disposisi hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan(&), underscore(_), kurung(), persen(%) dan at(@)<br/>';
+                        $_SESSION['isi_disposisi'] = 'Form Isi Disposisi hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan(&), underscore(_), kurung(), persen(%) dan at(@)';
                         echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
@@ -49,7 +49,7 @@
                             } else {
 
                                 if(!preg_match("/^[a-zA-Z0 ]*$/", $sifat)){
-                                    $_SESSION['sifat'] = 'Form SIFAT hanya boleh mengandung karakter huruf dan spasi<br/>';
+                                    $_SESSION['sifat'] = 'Form SIFAT hanya boleh mengandung karakter huruf dan spasi';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
@@ -132,7 +132,7 @@
                                 <?php
                                     if(isset($_SESSION['tujuan'])){
                                         $tujuan = $_SESSION['tujuan'];
-                                        echo '<span id="alert-message" class="red-text">'.$tujuan.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$tujuan.'</div>';
                                         unset($_SESSION['tujuan']);
                                     }
                                 ?>
@@ -144,7 +144,7 @@
                                 <?php
                                     if(isset($_SESSION['batas_waktu'])){
                                         $batas_waktu = $_SESSION['batas_waktu'];
-                                        echo '<span id="alert-message" class="red-text">'.$batas_waktu.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$batas_waktu.'</div>';
                                         unset($_SESSION['batas_waktu']);
                                     }
                                 ?>
@@ -156,7 +156,7 @@
                                 <?php
                                     if(isset($_SESSION['isi_disposisi'])){
                                         $isi_disposisi = $_SESSION['isi_disposisi'];
-                                        echo '<span id="alert-message" class="red-text">'.$isi_disposisi.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$isi_disposisi.'</div>';
                                         unset($_SESSION['isi_disposisi']);
                                     }
                                 ?>
@@ -168,7 +168,7 @@
                                 <?php
                                     if(isset($_SESSION['catatan'])){
                                         $catatan = $_SESSION['catatan'];
-                                        echo '<span id="alert-message" class="red-text">'.$catatan.'</span>';
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$catatan.'</div>';
                                         unset($_SESSION['catatan']);
                                     }
                                 ?>
@@ -188,7 +188,7 @@
                             <?php
                                 if(isset($_SESSION['sifat'])){
                                     $sifat = $_SESSION['sifat'];
-                                    echo '<span id="alert-message" class="red-text">'.$sifat.'</span>';
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$sifat.'</div>';
                                     unset($_SESSION['sifat']);
                                 }
                             ?>

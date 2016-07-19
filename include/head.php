@@ -136,6 +136,31 @@
             color: #444!important;
             font-weight: normal!important;
         }
+        div.callout {
+        	height: auto;
+        	width: auto;
+        	float: left;
+        }
+        div.callout {
+        	position: relative;
+        	padding: 13px;
+        	border-radius: 3px;
+        	margin: 25px;
+        	min-height: 46px;
+            top: -25px;
+        }
+        .callout::before {
+        	content: "";
+        	width: 0px;
+        	height: 0px;
+        	border: 0.8em solid transparent;
+        	position: absolute;
+        }
+        .callout.bottom::before {
+        	left: 25px;
+        	top: -20px;
+        	border-bottom: 10px solid #ffcdd2;
+        }
         @media print{
             .side-nav,
             .secondary-nav,

@@ -33,27 +33,27 @@
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.\/ -]*$/", $no_surat)){
-                        $_SESSION['eno_surat'] = 'Form No Surat hanya boleh mengandung huruf, angka, spasi, titik(.), minus(-) dan garis miring(/)';
+                        $_SESSION['eno_surat'] = 'Form No Surat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), minus(-) dan garis miring(/)';
                         echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
                         if(!preg_match("/^[a-zA-Z0-9., \/ -]*$/", $asal_surat)){
-                            $_SESSION['easal_surat'] = 'Form Asal Surat hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-) dan garis miring(/)';
+                            $_SESSION['easal_surat'] = 'Form Asal Surat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-) dan garis miring(/)';
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $isi)){
-                                $_SESSION['eisi'] = 'Form Isi Ringkas hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
+                                $_SESSION['eisi'] = 'Form Isi Ringkas hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
                                 if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
-                                    $_SESSION['ekode'] = 'Form Kode Klasifikasi hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,)<br/><br/>';
+                                    $_SESSION['ekode'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
                                     if(!preg_match("/^[a-zA-Z0-9., -]*$/", $indeks)){
-                                        $_SESSION['eindeks'] = 'Form Indeks hanya boleh mengandung huruf, angka, spasi, titik(.) dan koma(,) dan minus (-)<br/><br/>';
+                                        $_SESSION['eindeks'] = 'Form Indeks hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,) dan minus (-)';
                                         echo '<script language="javascript">window.history.back();</script>';
                                     } else {
 
@@ -63,7 +63,7 @@
                                         } else {
 
                                             if(!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $keterangan)){
-                                                $_SESSION['eketerangan'] = 'Form Keterangan hanya boleh mengandung huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()';
+                                                $_SESSION['eketerangan'] = 'Form Keterangan hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()';
                                                 echo '<script language="javascript">window.history.back();</script>';
                                             } else {
 
@@ -121,11 +121,11 @@
                                                             }
                                                         }
                                                     } else {
-                                                        $_SESSION['errSize'] = 'Ukuran file yang diupload terlalu besar!<br/><br/>';
+                                                        $_SESSION['errSize'] = 'Ukuran file yang diupload terlalu besar!';
                                                         echo '<script language="javascript">window.history.back();</script>';
                                                     }
                                                 } else {
-                                                    $_SESSION['errFormat'] = 'Format file yang diperbolehkan hanya *.JPG, *.PNG, *.DOC, *.DOCX atau *.PDF!<br/><br/>';
+                                                    $_SESSION['errFormat'] = 'Format file yang diperbolehkan hanya *.JPG, *.PNG, *.DOC, *.DOCX atau *.PDF!';
                                                     echo '<script language="javascript">window.history.back();</script>';
                                                 }
                                             } else {
@@ -226,7 +226,7 @@
                             <?php
                                 if(isset($_SESSION['eno_agenda'])){
                                     $eno_agenda = $_SESSION['eno_agenda'];
-                                    echo '<span id="alert-message" class="red-text">'.$eno_agenda.'</span>';
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$eno_agenda.'</div>';
                                     unset($_SESSION['eno_agenda']);
                                 }
                             ?>
@@ -238,7 +238,7 @@
                             <?php
                                 if(isset($_SESSION['ekode'])){
                                     $ekode = $_SESSION['ekode'];
-                                    echo '<span id="alert-message" class="red-text">'.$ekode.'</span>';
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$ekode.'</div>';
                                     unset($_SESSION['ekode']);
                                 }
                             ?>
@@ -250,19 +250,19 @@
                             <?php
                                 if(isset($_SESSION['easal_surat'])){
                                     $easal_surat = $_SESSION['easal_surat'];
-                                    echo '<span id="alert-message" class="red-text">'.$easal_surat.'</span>';
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$easal_surat.'</div>';
                                     unset($_SESSION['easal_surat']);
                                 }
                             ?>
                         <label for="asal_surat">Asal Surat</label>
                     </div>
-                    <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - ]">
+                    <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - / ]">
                         <i class="material-icons prefix md-prefix">storage</i>
                         <input id="indeks" type="text" class="validate" name="indeks" value="<?php echo $indeks ;?>" required>
                             <?php
                                 if(isset($_SESSION['eindeks'])){
                                     $eindeks = $_SESSION['eindeks'];
-                                    echo '<span id="alert-message" class="red-text">'.$eindeks.'</span>';
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$eindeks.'</div>';
                                     unset($_SESSION['eindeks']);
                                 }
                             ?>
@@ -274,7 +274,7 @@
                             <?php
                                 if(isset($_SESSION['eno_surat'])){
                                     $eno_surat = $_SESSION['eno_surat'];
-                                    echo '<span id="alert-message" class="red-text">'.$eno_surat.'</span>';
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$eno_surat.'</div>';
                                     unset($_SESSION['eno_surat']);
                                 }
                             ?>
@@ -286,7 +286,7 @@
                             <?php
                                 if(isset($_SESSION['etgl_surat'])){
                                     $etgl_surat = $_SESSION['etgl_surat'];
-                                    echo '<span id="alert-message" class="red-text">'.$etgl_surat.'</span>';
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$etgl_surat.'</div>';
                                     unset($_SESSION['etgl_surat']);
                                 }
                             ?>
@@ -298,7 +298,7 @@
                             <?php
                                 if(isset($_SESSION['eisi'])){
                                     $eisi = $_SESSION['eisi'];
-                                    echo '<span id="alert-message" class="red-text">'.$eisi.'</span>';
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$eisi.'</div>';
                                     unset($_SESSION['eisi']);
                                 }
                             ?>
@@ -310,7 +310,7 @@
                             <?php
                                 if(isset($_SESSION['eketerangan'])){
                                     $eketerangan = $_SESSION['eketerangan'];
-                                    echo '<span id="alert-message" class="red-text">'.$eketerangan.'</span>';
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$eketerangan.'</div>';
                                     unset($_SESSION['eketerangan']);
                                 }
                             ?>
@@ -318,26 +318,26 @@
                     </div>
                     <div class="input-field col s6">
                         <div class="file-field input-field tooltipped" data-position="top" data-tooltip="Jika tidak ada file/scan gambar surat, biarkan kosong">
-                          <div class="btn light-green darken-1">
-                            <span>File</span>
-                            <input type="file" id="file" name="file">
-                          </div>
-                          <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" value="<?php echo $file ;?>" placeholder="Upload file/scan gambar surat masuk">
-                                <?php
-                                    if(isset($_SESSION['errSize'])){
-                                        $errSize = $_SESSION['errSize'];
-                                        echo '<span id="alert-message" class="red-text">'.$errSize.'</span>';
-                                        unset($_SESSION['errSize']);
-                                    }
-                                    if(isset($_SESSION['errFormat'])){
-                                        $errFormat = $_SESSION['errFormat'];
-                                        echo '<span id="alert-message" class="red-text">'.$errFormat.'</span>';
-                                        unset($_SESSION['errFormat']);
-                                    }
-                                ?>
+                            <div class="btn light-green darken-1">
+                                <span>File</span>
+                                <input type="file" id="file" name="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" value="<?php echo $file ;?>" placeholder="Upload file/scan gambar surat masuk">
+                                    <?php
+                                        if(isset($_SESSION['errSize'])){
+                                            $errSize = $_SESSION['errSize'];
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errSize.'</div>';
+                                            unset($_SESSION['errSize']);
+                                        }
+                                        if(isset($_SESSION['errFormat'])){
+                                            $errFormat = $_SESSION['errFormat'];
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errFormat.'</div>';
+                                            unset($_SESSION['errFormat']);
+                                        }
+                                    ?>
                                 <small class="red-text">*Format file yang diperbolehkan *.JPG, *.PNG, *.DOC, *.DOCX, *.PDF dan ukuran maksimal file 2 MB!</small>
-                          </div>
+                            </div>
                         </div>
                     </div>
                 </div>
