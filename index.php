@@ -113,6 +113,39 @@
             font-size: 1.2rem;
             margin-left: 20px;
         }
+        .pace {
+            -webkit-pointer-events: none;
+            pointer-events: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            -webkit-transform: translate3d(0, -50px, 0);
+            -ms-transform: translate3d(0, -50px, 0);
+            transform: translate3d(0, -50px, 0);
+            -webkit-transition: -webkit-transform .5s ease-out;
+            -ms-transition: -webkit-transform .5s ease-out;
+            transition: transform .5s ease-out;
+        }
+        .pace.pace-active {
+            -webkit-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+        .pace .pace-progress {
+            display: block;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            right: 100%;
+            width: 100%;
+            height: 4px;
+            background: #2196f3;
+            pointer-events: none;
+        }
         noscript {
             color: #42a5f5;
         }
@@ -266,6 +299,7 @@
     <script type="text/javascript" src="asset/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="asset/js/materialize.min.js"></script>
     <script type="text/javascript" src="asset/js/bootstrap.min.js"></script>
+    <script data-pace-options='{ "ajax": false }' src='asset/js/pace.min.js'></script>
 
     <!-- Jquery auto hide untuk menampilkan pesan error -->
     <script type="text/javascript">
