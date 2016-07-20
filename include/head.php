@@ -196,7 +196,7 @@
             top: 0;
             right: 100%;
             width: 100%;
-            height: 4px;
+            height: 3px;
             background: #2196f3;
             pointer-events: none;
         }
