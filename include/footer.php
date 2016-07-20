@@ -68,14 +68,10 @@ $('#tgl_surat,#batas_waktu,#dari_tanggal,#sampai_tanggal').pickadate({
 $('#isi_ringkas').val('');
 $('#isi_ringkas').trigger('autoresize');
 
-//jquery dropdown select
-$(document).ready(function() {
-$('select').material_select();
-});
-
-//jquery tooltip
+//jquery dropdown select dan tooltip
 $(document).ready(function(){
-$('.tooltipped').tooltip({delay: 10});
+    $('select').material_select();
+    $('.tooltipped').tooltip({delay: 10});
 });
 
 //jquery autocomplete
@@ -87,6 +83,11 @@ $(function() {
 
 //jquery untuk menampilkan pemberitahuan
 $("#alert-message").alert().delay(5000).fadeOut('slow');
+
+//jquery modal
+$(document).ready(function(){
+   $('.modal-trigger').leanModal();
+ });
 
 </script>
 <!-- Javascript END -->

@@ -94,6 +94,9 @@
         .jarak-card {
             margin-top: 1rem;
         }
+        .jarak-filter {
+            margin: -12px 0 5px;
+        }
         #footer {
             background: #546e7a;
         }

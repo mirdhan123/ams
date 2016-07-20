@@ -150,7 +150,7 @@
                                         <label for="sampai_tanggal">Sampai Tanggal</label>
                                     </div>
                                     <div class="col s6">
-                                        <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> FILTER <i class="material-icons">filter_list</i></button>
+                                        <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">FILTER <i class="material-icons">filter_list</i></button>
                                     </div>
                                 </form>
                             </div>

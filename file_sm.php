@@ -15,53 +15,54 @@
                     <div class="row jarak-form">
                         <ul class="collapsible white" data-collapsible="accordion">
                             <li>
-                            <div class="collapsible-header white"><i class="material-icons md-prefix md-36">expand_more</i><span class="add">Tampilkan detail data surat masuk</span></div>
-                                <div class="collapsible-body white">
-                                <div class="col m12 white">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td width="13%">No. Agenda</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">'.$row['no_agenda'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="13%">Kode Klasifikasi</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">'.$row['kode'].'</td>
-                                            </tr>
-                                            <td width="13%">Indeks Berkas</td>
-                                            <td width="1%">:</td>
-                                            <td width="86%">'.$row['indeks'].'</td>
-                                            </tr>
-                                            <tr>
-                                            <td width="13%">Isi Ringkas</td>
-                                            <td width="1%">:</td>
-                                            <td width="86%">'.$row['isi'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="13%">Asal Surat</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">'.$row['asal_surat'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="13%">No. Surat</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">'.$row['no_surat'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="13%">Tanggal Surat</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="13%">Keterangan</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">'.$row['keterangan'].'</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <div class="collapsible-header white"><i class="material-icons md-prefix md-36">expand_more</i><span class="add">Tampilkan detail data surat masuk</span></div>
+                                    <div class="collapsible-body white">
+                                        <div class="col m12 white">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="13%">No. Agenda</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['no_agenda'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">Kode Klasifikasi</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['kode'].'</td>
+                                                    </tr>
+                                                    <td width="13%">Indeks Berkas</td>
+                                                    <td width="1%">:</td>
+                                                    <td width="86%">'.$row['indeks'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td width="13%">Isi Ringkas</td>
+                                                    <td width="1%">:</td>
+                                                    <td width="86%">'.$row['isi'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">Asal Surat</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['asal_surat'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">No. Surat</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['no_surat'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">Tanggal Surat</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">Keterangan</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['keterangan'].'</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         </ul>

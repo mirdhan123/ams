@@ -116,8 +116,17 @@
                                         <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih tipe user</label><br/>
                                         <div class="input-field col s11 right">
                                             <select class="browser-default" name="admin" id="admin" required>
+                                                <option value="<?php echo $row['admin']; ?>">
+                                                    <?php
+                                                        if($row['admin'] == 2){
+                                                            echo 'Administrator';
+                                                        } else {
+                                                            echo 'User Biasa';
+                                                        }
+                                                    ?>
+                                                </option>
                                                 <option value="3">User Biasa</option>
-                                                <option value="2">Admin</option>
+                                                <option value="2">Administrator</option>
                                             </select>
                                         </div>
                                             <?php
