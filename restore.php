@@ -160,9 +160,9 @@
                             <div class="card">
                                 <div class="card-content">
                                     <span class="card-title black-text">Restore Database</span>
-                                    <p class="kata">Silakan pilih file database lalu klik tombol <strong>"Restore"</strong> untuk melakukan restore database dari hasil backup yang telah dibuat sebelumnya. Jika belum ada database hasil backup, silakan lakukan backup terlebih dahulu melalui menu <strong><a class="blue-text" style="text-transform: capitalize;" href="?page=sett&sub=back">"Backup Database"</a></strong></p><br/>
+                                    <p class="kata">Silakan pilih file database lalu klik tombol <strong>"Restore"</strong> untuk melakukan restore database dari hasil backup yang telah dibuat sebelumnya. Jika belum ada file database hasil backup, silakan lakukan backup terlebih dahulu melalui menu <strong><a class="blue-text" style="text-transform: capitalize;margin-right: 0;" href="?page=sett&sub=back">"Backup Database"</a>.</strong></p><br/>
 
-                                    <p class="kata"><strong>PERINGATAN!</strong><br/>Berhati - hatilah ketika merestore database karena data yang ada akan diganti dengan data yang baru. Pastikan bahwa file database yang akan digunakan untuk merestore adalah <strong>"benar - benar"</strong> file backup yang telah dibuat sebelumnya agar sistem berjalan dengan normal.</p>
+                                    <p class="kata"><span class="red-text"><i class="material-icons">error_outline</i> <strong>PERINGATAN!</strong></span><br/>Berhati - hatilah ketika merestore database karena data yang ada akan diganti dengan data yang baru. Pastikan bahwa file database yang akan digunakan untuk merestore adalah <strong>"benar - benar"</strong> file backup database yang telah dibuat sebelumnya sehingga sistem dapat berjalan dengan normal dan tidak mengalami error.</p>
                                 </div>
                                 <div class="card-action">
                                     <form method="post" enctype="multipart/form-data">
