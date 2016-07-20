@@ -43,12 +43,12 @@
                         <form class="col s12" method="post" action="">
                             <div class="input-field col s3">
                                 <i class="material-icons prefix md-prefix">date_range</i>
-                                <input id="dari_tanggal" type="date" name="dari_tanggal" id="dari_tanggal" required>
+                                <input id="dari_tanggal" type="text" name="dari_tanggal" id="dari_tanggal" required>
                                 <label for="dari_tanggal">Dari Tanggal</label>
                             </div>
                             <div class="input-field col s3">
                                 <i class="material-icons prefix md-prefix">date_range</i>
-                                <input id="sampai_tanggal" type="date" name="sampai_tanggal" id="sampai_tanggal" required>
+                                <input id="sampai_tanggal" type="text" name="sampai_tanggal" id="sampai_tanggal" required>
                                 <label for="sampai_tanggal">Sampai Tanggal</label>
                             </div>
                             <div class="col s6">
@@ -120,7 +120,7 @@
                     </div>
                 <div class="jarak2"></div>';
         } else {
-            
+
             echo '
                 <!-- Row Start -->
                 <div class="row">
@@ -147,12 +147,12 @@
                     <form class="col s12" method="post" action="">
                         <div class="input-field col s3">
                             <i class="material-icons prefix md-prefix">date_range</i>
-                            <input id="dari_tanggal" type="date" name="dari_tanggal" id="dari_tanggal" required>
+                            <input id="dari_tanggal" type="text" name="dari_tanggal" id="dari_tanggal" required>
                             <label for="dari_tanggal">Dari Tanggal</label>
                         </div>
                         <div class="input-field col s3">
                             <i class="material-icons prefix md-prefix">date_range</i>
-                            <input id="sampai_tanggal" type="date" name="sampai_tanggal" id="sampai_tanggal" required>
+                            <input id="sampai_tanggal" type="text" name="sampai_tanggal" id="sampai_tanggal" required>
                             <label for="sampai_tanggal">Sampai Tanggal</label>
                         </div>
                         <div class="col s6">
