@@ -67,7 +67,7 @@
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                        <a class="collapsible-header"><i class="material-icons">book</i> Buku Agenda</a>
+                        <a class="collapsible-header"><i class="material-icons">assignment</i> Buku Agenda</a>
                         <div class="collapsible-body">
                             <ul>
                                 <li><a href="?page=asm">Surat Masuk</a></li>
@@ -90,7 +90,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="?page=ref"><i class="material-icons middle">bookmark</i> Referensi</a></li>
+            <li><a href="?page=ref"><i class="material-icons middle">class</i> Referensi</a></li>
             <li class="no-padding">
             <?php
                 if($_SESSION['admin'] == 1){ ?>
