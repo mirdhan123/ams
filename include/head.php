@@ -74,10 +74,22 @@
             padding: 20px;
         }
         .logo {
-            border-radius: 40px;
-            margin: 0 15px -10px 0;
-            max-width: 80px;
-            max-height: 80px;
+            border-radius: 50%;
+            margin: 0 15px 15px 0;
+            width: 90px;
+            height: 90px;
+        }
+        .logoside {
+            border-radius: 50%;
+            margin: 0 auto;
+            width: 125px;
+            height: 125px;
+        }
+        .ins {
+            font-size: 1.8rem;
+        }
+        .almt {
+            font-size: 1.15rem;
         }
         .description {
             font-size: 1.4rem;
