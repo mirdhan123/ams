@@ -42,14 +42,14 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: scroll;
-            position: absolute;
+            position: fixed;
             z-index: -1;
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
-            opacity: 0.18;
-            filter:alpha(opacity=18);
+            opacity: 0.20;
+            filter:alpha(opacity=20);
         }
         #header-instansi {
             margin-top: 1%;
