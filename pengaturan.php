@@ -216,7 +216,7 @@
 
                                 <!-- Row in form START -->
                                 <div class="row">
-                                    <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ huruf, angka, spasi, titik(.), minus(-) ]">
+                                    <div class="input-field col s6">
                                         <input type="hidden" value="<?php echo $id_instansi; ?>" name="id_instansi">
                                         <i class="material-icons prefix md-prefix">school</i>
                                         <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>" required>
@@ -229,7 +229,7 @@
                                             ?>
                                         <label for="nama">Nama Instansi</label>
                                     </div>
-                                    <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ huruf, spasi, titik(.), koma(,) ]">
+                                    <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">account_box</i>
                                         <input id="kepsek" type="text" class="validate" name="kepsek" value="<?php echo $row['kepsek']; ?>" required>
                                             <?php
@@ -241,7 +241,7 @@
                                             ?>
                                         <label for="kepsek">Nama Kepala Sekolah</label>
                                     </div>
-                                    <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - / ( ) ]">
+                                    <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">place</i>
                                         <input id="alamat" type="text" class="validate" name="alamat" value="<?php echo $row['alamat']; ?>" required>
                                             <?php
@@ -253,7 +253,7 @@
                                             ?>
                                         <label for="alamat">Alamat</label>
                                     </div>
-                                    <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ angka, spasi, dan minus(-) ]">
+                                    <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Jika  belum memiliki NIP, isi dengan minus(-)">
                                         <i class="material-icons prefix md-prefix">looks_one</i>
                                         <input id="nip" type="text" class="validate" name="nip" value="<?php echo $row['nip']; ?>" required>
                                             <?php
@@ -333,7 +333,7 @@
 
                         </div>
                         <!-- Row form END -->
-                        
+
 <?php
                         }
                     }
