@@ -14,14 +14,14 @@
                                 echo '<img class="logo" src="./asset/img/logo.png"/>';
                             }
                              echo '</div>
-                            <h5>';
+                            <h5 class="ins">';
                             if(!empty($data['nama'])){
                                 echo ''.$data['nama'].'';
                             } else {
                                 echo 'SMK AL - Husna Loceret Nganjuk';
                             }
                             echo '</h5>
-                            <p>';
+                            <p class="almt">';
                             if(!empty($data['alamat'])){
                                 echo ''.$data['alamat'].'';
                             } else {
