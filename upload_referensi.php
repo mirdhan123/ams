@@ -190,7 +190,7 @@
                                     </form>
                                 </p><br/>
 
-                                <p class="kata"><strong>PERINGATAN!</strong><br/>Secara default data yang ada akan diganti dengan data yang baru, jika tidak ingin menghapus data yang sudah ada, silakan centang checkbox <i class="material-icons">check_box_outline_blank</i> dibawah form file.</p>
+                                <p class="kata"><span class="red-text"><i class="material-icons">error_outline</i> <strong>PERINGATAN!</strong></span><br/>Secara default, data yang ada akan diganti dengan data yang baru. Jika tidak ingin menghapus data yang sudah ada, silakan centang checkbox <i class="material-icons">check_box_outline_blank</i> dibawah form file.</p>
                             </div>
                             <div class="card-action">
                                 <form method="post" enctype="multipart/form-data">
