@@ -152,7 +152,7 @@
             color: #444!important;
             font-weight: normal!important;
         }
-        .btn-flat {
+        .waves-green {
             margin-bottom: -20px!important;
         }
         div.callout {
