@@ -184,6 +184,7 @@
                                 <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Sifat Disposisi</label><br/>
                                 <div class="input-field col s11 right">
                                     <select class="browser-default validate" name="sifat" id="sifat" required>
+                                        <option value="<?php echo $row['sifat']; ?>"><?php echo $row['sifat']; ?></option>
                                         <option value="Biasa">Biasa</option>
                                         <option value="Penting">Penting</option>
                                         <option value="Segera">Segera</option>
@@ -200,7 +201,7 @@
                                 ?>
                         </div>
                         <!-- Row in form END -->
-                        
+
                         <div class="row">
                             <div class="col 6">
                                 <button type="submit" name ="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
