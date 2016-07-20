@@ -139,6 +139,9 @@
             color: #444!important;
             font-weight: normal!important;
         }
+        .btn-flat {
+            margin-bottom: -20px!important;
+        }
         div.callout {
         	height: auto;
         	width: auto;
