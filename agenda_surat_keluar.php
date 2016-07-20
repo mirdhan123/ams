@@ -62,7 +62,7 @@
                     <div class="row agenda">
                         <div class="col s10">
                             <h5 class="hid">CETAK AGENDA SURAT KELUAR<br/>'.$nama.'</h5>
-                            <p class="warna agenda">Agenda Surat Keluar dari tanggal <strong>'.date('d M Y', strtotime($dari_tanggal)).'</strong> sampai tanggal <strong>'.date('d M Y', strtotime($sampai_tanggal)).'</strong></p>
+                            <p class="warna agenda">Agenda Surat Keluar dari tanggal <strong>'.date('d M Y', strtotime($dari_tanggal)).'</strong> sampai dengan tanggal <strong>'.date('d M Y', strtotime($sampai_tanggal)).'</strong></p>
                         </div>
                         <div class="col s2">
                             <button type="submit" onClick="window.print()" class="btn-large deep-orange waves-effect waves-light right">CETAK <i class="material-icons">print</i></button>

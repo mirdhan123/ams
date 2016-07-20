@@ -222,6 +222,9 @@
                 text-transform: uppercase;
                 margin-bottom: 0;
             }
+            .add {
+                font-size: 15px!important;
+            }
             .agenda {
                 font-size: 12px;
                 text-align: center;
