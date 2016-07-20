@@ -79,7 +79,7 @@
 
                             <div class="row agenda">
                                 <div class="col s12">
-                                    <p class="warna agenda">Galeri file surat keluar antara tanggal <strong>'.date('d M Y', strtotime($dari_tanggal)).'</strong> sampai tanggal <strong>'.date('d M Y', strtotime($sampai_tanggal)).'</strong></p>
+                                    <p class="warna agenda">Galeri file surat keluar antara tanggal <strong>'.date('d M Y', strtotime($dari_tanggal)).'</strong> sampai dengan tanggal <strong>'.date('d M Y', strtotime($sampai_tanggal)).'</strong></p>
                                 </div>
                             </div>';
 
@@ -175,7 +175,7 @@
                                             <a class="btn light-green darken-1" href="?page=gsk&act=fsk&id_surat='.$row['id_surat'].'">Tampilkan Ukuran Penuh</a>
                                         </div>';
                                     } else {
-                                        
+
                                         if(in_array($eks, $ekstensi2) == true){
                                         echo '
                                             <div class="col m3">
