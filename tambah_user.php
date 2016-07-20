@@ -1,8 +1,7 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
@@ -79,6 +78,7 @@
                 }
             }
         } else {?>
+
             <!-- Row Start -->
             <div class="row">
                 <!-- Secondary Nav START -->
@@ -132,7 +132,7 @@
 
                     <!-- Row in form START -->
                     <div class="row">
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter [ huruf, angka, underscore(_) ]">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter [ huruf, angka atau underscore(_) ]">
                             <i class="material-icons prefix md-prefix">account_circle</i>
                             <input id="username" type="text" class="validate" name="username" required>
                                 <?php
@@ -154,7 +154,7 @@
                                 ?>
                             <label for="username">Username</label>
                         </div>
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ huruf, spasi, titik(.), koma(,) ]">
+                        <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">text_fields</i>
                             <input id="nama" type="text" class="validate" name="nama" required>
                                 <?php
@@ -178,7 +178,7 @@
                                 ?>
                             <label for="password">Password</label>
                         </div>
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ angka, spasi, minus(-) ]">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Jika belum memiliki NIP, isi dengan minus(-)">
                             <i class="material-icons prefix md-prefix">looks_one</i>
                             <input id="nip" type="text" class="validate" name="nip" required>
                                 <?php
@@ -195,7 +195,7 @@
                             <div class="input-field col s11 right">
                                 <select class="browser-default validate" name="admin" id="admin" required>
                                     <option value="3">User Biasa</option>
-                                    <option value="2">Admin</option>
+                                    <option value="2">Administrator</option>
                                 </select>
                             </div>
                                 <?php
@@ -223,6 +223,7 @@
 
             </div>
             <!-- Row form END -->
+
 <?php
         }
     }

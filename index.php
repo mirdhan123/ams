@@ -8,8 +8,8 @@
         die();
     }
     require('include/config.php');
-
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -189,9 +189,9 @@
                             <h5 class="center" id="title">Aplikasi Manajemen Surat</h5>
                             <?php
                                 if(!empty($data['logo'])){
-                                    echo '<img id="logo" src="./upload/'.$data['logo'].'"/>';
+                                    echo '<img class="circle" id="logo" src="./upload/'.$data['logo'].'"/>';
                                 } else {
-                                    echo '<img id="logo" src="./asset/img/logo.png"/>';
+                                    echo '<img class="circle" id="logo" src="./asset/img/logo.png"/>';
                                 }
                             ?>
                             <h4 class="center" id="smk">
@@ -242,7 +242,7 @@
                                 } else {
 
                                     //session error
-                                    $_SESSION['err'] = 'Username & Password tidak ditemukan!';
+                                    $_SESSION['errLog'] = '<center>Username & Password tidak ditemukan!</center>';
                                     header("Location: ./");
                                     die();
                                 }
@@ -254,9 +254,15 @@
                     <form class="col s12 m12 offset-4 offset-4" method="POST" action="" >
                         <div class="row">
                             <?php
+                                if(isset($_SESSION['errLog'])){
+                                    $errLog = $_SESSION['errLog'];
+                                    echo '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>LOGIN GAGAL!</strong></div>
+                                    '.$errLog.'</div>';
+                                    unset($_SESSION['errLog']);
+                                }
                                 if(isset($_SESSION['err'])){
                                     $err = $_SESSION['err'];
-                                    echo '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>LOGIN GAGAL!</strong></div>
+                                    echo '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>ERROR!</strong></div>
                                     '.$err.'</div>';
                                     unset($_SESSION['err']);
                                 }

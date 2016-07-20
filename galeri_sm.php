@@ -1,8 +1,7 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
@@ -26,7 +25,8 @@
                     $curr = ($pg - 1) * $limit;
                 }
 
-                    echo '<!-- Row Start -->
+                    echo '
+                    <!-- Row Start -->
                     <div class="row">
                         <!-- Secondary Nav START -->
                         <div class="col s12">
@@ -175,6 +175,7 @@
                                             <a class="btn light-green darken-1" href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">Tampilkan Ukuran Penuh</a>
                                         </div>';
                                     } else {
+                                        
                                         if(in_array($eks, $ekstensi2) == true){
                                         echo '
                                             <div class="col m3">

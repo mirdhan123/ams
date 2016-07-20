@@ -86,7 +86,7 @@ CREATE TABLE `tbl_surat_keluar` (
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL,
   PRIMARY KEY (`id_surat`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_surat_keluar VALUES("3","1","Orang Tua/Wali Murid","420/ 052/SMK -AH/XI/2015","Surat edaran untuk mengikuti Apel Gelar FKPPI (Forum Komunikasi Putra Putri Purnawirawan dan Putra-Putri TNI Polri.","D","2015-11-23","2016-07-17","2649-IMG_20160611_103634.jpg","Segera","1");
 INSERT INTO tbl_surat_keluar VALUES("4","2","Guru","420 / 015 /SMK-AH/VIII/2015","Surat undangan bapak/ibu guru untuk mengikuti kegiatan SHolat Idhul Adha dan pemotongan hewan qurban di SMK AL-Husna Loceret Nganjuk pada Kamis 24 September 2015jam 06.30 sampai selesai.","C","2015-08-28","2016-07-17","1243-IMG_20160611_103638.jpg","Wajib Mengikuti","1");
@@ -110,7 +110,7 @@ CREATE TABLE `tbl_surat_masuk` (
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL,
   PRIMARY KEY (`id_surat`)
-) ENGINE=InnoDB AUTO_INCREMENT=2091 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_surat_masuk VALUES("4","1","074 / BAZNAS.JTM / IV / 2016","Badan Amil Zakat Nasional Provinsi Jawa Timur","Surat pemberitahuan resalisasi bantuan senilai RP. 800.000,- (Delapan Ratus Ribu Rupiah) dari BAZNAS. Diharapkan untuk segera menghubungi BAZNAS  Provinsi Jawa Timur  untuk pencairan dana dan membawa surat keterangan penggunaan dana bantuan beasiswa BAZNAZ Provinsi Jawa Timur dari sekolah, kwitansi dan fotocopy Kartu Pelajar","B","A","2016-04-07","2016-07-17","6313-IMG_20160611_103621.jpg","Penting","1");
 INSERT INTO tbl_surat_masuk VALUES("5","2","001/PPH/VI/2016","Pondok Pesantren Hidayatullah Nganjuk","Surat edaran permohonan zakat fitrah. ","E","A","2016-06-09","2016-07-17","277-IMG_20160611_103623.jpg","-","1");
@@ -128,11 +128,11 @@ CREATE TABLE `tbl_user` (
   `nip` varchar(25) NOT NULL,
   `admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 INSERT INTO tbl_user VALUES("1","admin","21232f297a57a5a743894a0e4a801fc3","M. Rudianto","-","1");
-INSERT INTO tbl_user VALUES("18","dodik","82b00125c2ec05d38220ed4e1774e084","Dodik Meiloyan","-","2");
-INSERT INTO tbl_user VALUES("20","disposisi","13bb8b589473803f26a02e338f949b8c","Petugas Disposisi","-","3");
+INSERT INTO tbl_user VALUES("2","dodik","82b00125c2ec05d38220ed4e1774e084","Dodik Meiloyan","-","2");
+INSERT INTO tbl_user VALUES("3","disposisi","13bb8b589473803f26a02e338f949b8c","Petugas Disposisi","-","3");
 
 
 

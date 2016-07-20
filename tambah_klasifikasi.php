@@ -1,8 +1,7 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
@@ -120,7 +119,7 @@
 
                         <!-- Row in form START -->
                         <div class="row">
-                            <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Karakter yg diperbolehkan [ huruf, angka, spasi, titik(.) ]">
+                            <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Isi dengan huruf, angka, spasi dan titik(.)">
                                 <i class="material-icons prefix md-prefix">font_download</i>
                                 <input id="kd" type="text" class="validate" maxlength="30" name="kode" required>
                                     <?php
@@ -137,7 +136,7 @@
                                     ?>
                                 <label for="kd">Kode</label>
                             </div>
-                            <div class="input-field col s9 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - ]">
+                            <div class="input-field col s9">
                                 <i class="material-icons prefix md-prefix">text_fields</i>
                                 <input id="nama" type="text" class="validate" name="nama" required>
                                     <?php
@@ -149,7 +148,7 @@
                                     ?>
                                 <label for="nama">Nama</label>
                             </div>
-                            <div class="input-field col s12 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , ( ) / - ]">
+                            <div class="input-field col s12">
                                 <i class="material-icons prefix md-prefix">subject</i>
                                 <textarea id="uraian" class="materialize-textarea" name="uraian" required></textarea>
                                     <?php
@@ -177,6 +176,7 @@
 
                 </div>
                 <!-- Row form END -->
+
 <?php
             }
         }

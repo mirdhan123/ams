@@ -1,13 +1,12 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
 
-        if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
+        if($_SESSION['admin'] != 1){
             echo '<script language="javascript">
                     window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
                     window.location.href="./logout.php";
@@ -68,14 +67,6 @@
                         if($_SESSION['id_user'] == 1){
                             echo '<script language="javascript">
                                     window.alert("ERROR! Format file yang boleh didownload hanya *.SQL");
-                                    window.location.href="./logout.php";
-                                  </script>';
-                        } else {
-                            $id_user = $_SESSION['id_user'];
-                            $query = mysqli_query($config, "UPDATE tbl_user SET admin='3' WHERE id_user='$id_user'");
-                            echo '<script language="javascript">
-                                    window.alert("ERROR! Format file yang boleh didownload hanya *.SQL");
-                                    window.alert("Tipe akun Anda akan berubah menjadi User Biasa secara otomatis");
                                     window.location.href="./logout.php";
                                   </script>';
                         }
@@ -173,6 +164,7 @@
                             </div>
                         </div>';
                 } else {
+                    
                     echo '
                     <!-- Row form Start -->
                     <div class="row">

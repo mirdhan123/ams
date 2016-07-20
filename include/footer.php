@@ -14,28 +14,28 @@
                <br/>
            </div>
     </div>
-<div class="footer-copyright blue-grey darken-1 white-text">
-    <div class="container" id="footer">
-        <span class="white-text">&copy; <?php echo date("Y"); ?> &nbsp;|&nbsp;  Made with <i class="material-icons md-18">favorite</i> by <a class="white-text" href="http://masrud.com" target="_blank">M. Rudianto</a></span>
-        <div class="right hide-on-small-only">
-            <?php
-                $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
-                while($data = mysqli_fetch_array($query)){
-                    if(!empty($data['website'])){
-                        echo '<i class="material-icons md-12">language</i> '.$data['website'].' &nbsp;&nbsp;';
-                    } else {
-                        echo '<i class="material-icons md-12">language</i> http://www.smkalhusnaloceret.sch.id &nbsp;&nbsp;';
+    <div class="footer-copyright blue-grey darken-1 white-text">
+        <div class="container" id="footer">
+            <span class="white-text">&copy; <?php echo date("Y"); ?> &nbsp;|&nbsp;  Made with <i class="material-icons md-18">favorite</i> by <a class="white-text" href="http://masrud.com" target="_blank">M. Rudianto</a></span>
+            <div class="right hide-on-small-only">
+                <?php
+                    $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                    while($data = mysqli_fetch_array($query)){
+                        if(!empty($data['website'])){
+                            echo '<i class="material-icons md-12">language</i> '.$data['website'].' &nbsp;&nbsp;';
+                        } else {
+                            echo '<i class="material-icons md-12">language</i> http://www.smkalhusnaloceret.sch.id &nbsp;&nbsp;';
+                        }
+                        if(!empty($data['email'])){
+                            echo '<i class="material-icons">mail_outline</i> '.$data['email'].'';
+                        } else {
+                            echo '<i class="material-icons">mail_outline</i>  info@smkalhusnaloceret.sch.id';
+                        }
                     }
-                    if(!empty($data['email'])){
-                        echo '<i class="material-icons">mail_outline</i> '.$data['email'].'';
-                    } else {
-                        echo '<i class="material-icons">mail_outline</i>  info@smkalhusnaloceret.sch.id';
-                    }
-                }
-            ?>
+                ?>
+            </div>
         </div>
     </div>
-</div>
 </footer>
 <!-- Footer END -->
 
@@ -94,7 +94,7 @@ $(document).ready(function(){
 
 <?php
     } else {
-        header("Location:./");
+        header("Location: ../");
         die();
     }
 ?>

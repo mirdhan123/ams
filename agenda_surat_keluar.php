@@ -1,8 +1,7 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
@@ -16,8 +15,7 @@
 
             $query2 = mysqli_query($config, "SELECT nama FROM tbl_instansi");
             list($nama) = mysqli_fetch_array($query2);
-
-              echo '
+                echo '
                     <!-- SHOW DAFTAR AGENDA -->
                     <!-- Row Start -->
                     <div class="row">
@@ -119,7 +117,8 @@
                         </div>
                     <div class="jarak2"></div>';
         } else {
-            echo '<!-- Row Start -->
+            echo '
+                <!-- Row Start -->
                 <div class="row">
                     <!-- Secondary Nav START -->
                     <div class="col s12">

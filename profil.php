@@ -1,8 +1,7 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
@@ -139,7 +138,7 @@
 
                         <!-- Row in form START -->
                         <div class="row">
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter [ huruf, angka, underscore(_) ]">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter [ huruf, angka atau underscore(_) ]">
                                 <i class="material-icons prefix md-prefix">account_circle</i>
                                 <input id="username" type="text" class="validate" name="username" value="<?php echo $_SESSION['username']; ?>" required>
                                     <?php
@@ -156,7 +155,7 @@
                                     ?>
                                 <label for="username">Username</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ huruf, spasi, titik(.), koma(,) ]">
+                            <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">text_fields</i>
                                 <input id="nama" type="text" class="validate" name="nama" value="<?php echo $_SESSION['nama']; ?>" required>
                                     <?php
@@ -173,7 +172,7 @@
                                 <input id="password_lama" type="password" class="validate" name="password_lama" required>
                                 <label for="password_lama">Password Lama</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yang diperbolehkan [ angka, spasi, minus(-) ]">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Jika belum memiliki NIP, isi dengan minus(-)">
                                 <i class="material-icons prefix md-prefix">looks_one</i>
                                 <input id="nip" type="text" class="validate" name="nip" value="<?php echo $_SESSION['nip']; ?>" required autocomplete="off">
                                     <?php

@@ -1,8 +1,7 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
@@ -14,33 +13,33 @@
                   </script>';
         } else {
 
-        if(isset($_REQUEST['act'])){
-            $act = $_REQUEST['act'];
-            switch ($act) {
-                case 'add':
-                    include "tambah_surat_masuk.php";
-                    break;
-                case 'edit':
-                    include "edit_surat_masuk.php";
-                    break;
-                case 'disp':
-                    include "disposisi.php";
-                    break;
-                case 'print':
-                    include "cetak_disposisi.php";
-                    break;
-                case 'del':
-                    include "hapus_surat_masuk.php";
-                    break;
-            }
-        } else {
+            if(isset($_REQUEST['act'])){
+                $act = $_REQUEST['act'];
+                switch ($act) {
+                    case 'add':
+                        include "tambah_surat_masuk.php";
+                        break;
+                    case 'edit':
+                        include "edit_surat_masuk.php";
+                        break;
+                    case 'disp':
+                        include "disposisi.php";
+                        break;
+                    case 'print':
+                        include "cetak_disposisi.php";
+                        break;
+                    case 'del':
+                        include "hapus_surat_masuk.php";
+                        break;
+                }
+            } else {
 
-            $query = mysqli_query($config, "SELECT surat_masuk FROM tbl_sett");
-            list($surat_masuk) = mysqli_fetch_array($query);
+                $query = mysqli_query($config, "SELECT surat_masuk FROM tbl_sett");
+                list($surat_masuk) = mysqli_fetch_array($query);
 
-            //pagging
-            $limit = $surat_masuk;
-            $pg = @$_GET['pg'];
+                //pagging
+                $limit = $surat_masuk;
+                $pg = @$_GET['pg'];
                 if(empty($pg)){
                     $curr = 0;
                     $pg = 1;

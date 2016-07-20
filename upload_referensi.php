@@ -1,8 +1,7 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
@@ -44,12 +43,13 @@
 
                             //membuka file csv
                             $handle = fopen($file, "r");
+                            $id_user = $_SESSION['id_user'];
 
                             //parsing file csv
                             while(($data = fgetcsv($handle, 1000, ",")) !== FALSE){
 
                                 //insert data ke dalam database
-                                $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values(null,'$data[1]','$data[2]','$data[3]','1')");
+                                $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values(null,'$data[1]','$data[2]','$data[3]','$id_user')");
                             }
                             fclose($handle);
                             header("Location: ./admin.php?page=ref");
@@ -70,12 +70,13 @@
 
                             //membuka file csv
                             $handle = fopen($file, "r");
+                            $id_user = $_SESSION['id_user'];
 
                             //parsing file csv
                             while(($data = fgetcsv($handle, 1000, ",")) !== FALSE){
 
                                 //insert data ke dalam database
-                                $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values('$data[0]','$data[1]','$data[2]','$data[3]','1')");
+                                $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi,kode,nama,uraian,id_user) values('$data[0]','$data[1]','$data[2]','$data[3]','$id_user')");
                             }
                             fclose($handle);
                             header("Location: ./admin.php?page=ref");
@@ -90,7 +91,8 @@
                 }
             }
 
-          echo '<!-- Row Start -->
+          echo '
+                <!-- Row Start -->
                 <div class="row">
                     <!-- Secondary Nav START -->
                     <div class="col s12">

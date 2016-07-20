@@ -3,6 +3,7 @@
     if(!empty($_SESSION['admin'])){
 ?>
 <?php require('include/config.php'); ?>
+
 <head>
 
     <title>Aplikasi Manajemen Surat</title>
@@ -268,9 +269,10 @@
     <!-- Global style END -->
 
 </head>
+
 <?php
     } else {
-        header("Location:../");
+        header("Location: ../");
         die();
     }
 ?>

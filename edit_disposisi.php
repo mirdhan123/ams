@@ -1,11 +1,11 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
+
         if(isset($_REQUEST['submit'])){
 
             $id_surat = $_REQUEST['id_surat'];
@@ -131,7 +131,7 @@
 
                         <!-- Row in form START -->
                         <div class="row">
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , ( ) / - ]">
+                            <div class="input-field col s6">
                                 <input type="hidden" value="<?php echo $row['id_disposisi'] ;?>">
                                 <i class="material-icons prefix md-prefix">account_box</i>
                                 <input id="tujuan" type="text" class="validate" name="tujuan" value="<?php echo $row['tujuan'] ;?>" required>
@@ -145,7 +145,7 @@
                                 <label for="tujuan">Tujuan Disposisi</label>
                             </div>
                             <div class="input-field col s6">
-                                <i class="material-icons prefix md-prefix">date_range</i>
+                                <i class="material-icons prefix md-prefix">alarm</i>
                                 <input id="batas_waktu" type="text" name="batas_waktu" class="datepicker" value="<?php echo $row['batas_waktu']; ?>"required>
                                     <?php
                                         if(isset($_SESSION['batas_waktu'])){
@@ -156,7 +156,7 @@
                                     ?>
                                 <label for="batas_waktu">Batas Waktu</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - ( ) % & @ _ / ]">
+                            <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">description</i>
                                 <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required><?php echo $row['isi_disposisi'] ;?></textarea>
                                     <?php
@@ -168,7 +168,7 @@
                                     ?>
                                 <label for="isi_disposisi">Isi Disposisi</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , ( ) / - ]">
+                            <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">featured_play_list   </i>
                                 <input id="catatan" type="text" class="validate" name="catatan" value="<?php echo $row['catatan'] ;?>" required>
                                     <?php
@@ -181,7 +181,7 @@
                                 <label for="catatan">Catatan</label>
                             </div>
                             <div class="input-field col s6">
-                                <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Sifat Disposisi</label><br/>
+                                <i class="material-icons prefix md-prefix">low_priority</i><label>Pilih Sifat Disposisi</label><br/>
                                 <div class="input-field col s11 right">
                                     <select class="browser-default validate" name="sifat" id="sifat" required>
                                         <option value="<?php echo $row['sifat']; ?>"><?php echo $row['sifat']; ?></option>
@@ -216,6 +216,7 @@
 
                 </div>
                 <!-- Row form END -->
+
 <?php
                 }
             }

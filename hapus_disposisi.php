@@ -1,8 +1,7 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
@@ -78,24 +77,24 @@
                     </div>
                     <!-- Row form END -->';
 
-            	if(isset($_REQUEST['submit'])){
-            		$id_disposisi = $_REQUEST['id_disposisi'];
+                	if(isset($_REQUEST['submit'])){
+                		$id_disposisi = $_REQUEST['id_disposisi'];
 
-            		$query = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_disposisi='$id_disposisi'");
+                		$query = mysqli_query($config, "DELETE FROM tbl_disposisi WHERE id_disposisi='$id_disposisi'");
 
-            		if($query == true){
-                        $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus ';
-                        echo '<script language="javascript">
-                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'";
-                              </script>';
-            		} else {
-                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                        echo '<script language="javascript">
-                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=del&id_disposisi='.$row['id_disposisi'].'";
-                              </script>';
-            		}
-            	}
-		    }
-	    }
-    }
+                		if($query == true){
+                            $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus ';
+                            echo '<script language="javascript">
+                                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'";
+                                  </script>';
+                		} else {
+                            $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
+                            echo '<script language="javascript">
+                                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=del&id_disposisi='.$row['id_disposisi'].'";
+                                  </script>';
+                		}
+                	}
+    		    }
+    	    }
+        }
 ?>

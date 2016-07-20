@@ -1,11 +1,11 @@
 <?php
     //cek session
     if(empty($_SESSION['admin'])){
-
-        $_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+        $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
+
         if(isset($_REQUEST['submit'])){
 
             //validasi form kosong
@@ -212,7 +212,7 @@
 
                         <!-- Row in form START -->
                         <div class="row">
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yg diperbolehkan hanya angka">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isi dengan angka">
                                 <input type="hidden" name="id_surat" value="<?php echo $id_surat ;?>">
                                 <i class="material-icons prefix md-prefix">looks_one</i>
                                 <input id="no_agenda" type="number" class="validate" name="no_agenda" value="<?php echo $no_agenda ;?>" required>
@@ -225,7 +225,7 @@
                                     ?>
                                 <label for="no_agenda">Nomor Agenda</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter yg diperbolehkan [ huruf, angka, spasi, titik(.) ]">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data referensi kode klasifikasi">
                                 <i class="material-icons prefix md-prefix">bookmark</i>
                                 <input id="kode" type="text" class="validate" name="kode" value="<?php echo $kode ;?>" required>
                                     <?php
@@ -237,7 +237,7 @@
                                     ?>
                                 <label for="kode">Kode Klasifikasi</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - / ]">
+                            <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">place</i>
                                 <input id="tujuan" type="text" class="validate" name="tujuan" value="<?php echo $tujuan ;?>" required>
                                     <?php
@@ -249,7 +249,7 @@
                                     ?>
                                 <label for="tujuan">Tujuan Surat</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - / ]">
+                            <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">looks_two</i>
                                 <input id="no_surat" type="text" class="validate" name="no_surat" value="<?php echo $no_surat ;?>" required>
                                     <?php
@@ -273,7 +273,7 @@
                                     ?>
                                 <label for="tgl_surat">Tanggal Surat</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - / ( ) ]">
+                            <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">featured_play_list</i>
                                 <input id="keterangan" type="text" class="validate" name="keterangan" value="<?php echo $keterangan ;?>" required>
                                     <?php
@@ -285,7 +285,7 @@
                                     ?>
                                 <label for="keterangan">Keterangan</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Karakter simbol yang diperbolehkan [ . , - / ( ) _ & % @ ]">
+                            <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">description</i>
                                 <textarea id="isi" class="materialize-textarea validate" name="isi" required><?php echo $isi ;?></textarea>
                                     <?php
@@ -338,6 +338,7 @@
 
                 </div>
                 <!-- Row form END -->
+
 <?php
             }
         }
