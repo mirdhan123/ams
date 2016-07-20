@@ -164,7 +164,7 @@
                             </div>
                         </div>';
                 } else {
-                    
+
                     echo '
                     <!-- Row form Start -->
                     <div class="row">
@@ -172,9 +172,9 @@
                             <div class="card">
                                 <div class="card-content">
                                     <span class="card-title black-text">Backup Database</span>
-                                    <p class="kata">Lakukan backup database secara berkala untuk membuat cadangan database yang bisa direstore kapan saja ketika dibutuhkan. Silakan klik tombol <strong>"Backup"</strong> untuk memulai proses backup data. Setelah proses backup selesai, silakan download file backup database tersebut dan simpan di lokasi yang aman <span style="font-size: 0.9rem;">(sangat tidak disarankan menyimpan file backup database dalam my documents / Local Disk C)</span>.</p><br/>
+                                    <p class="kata">Lakukan backup database secara berkala untuk membuat cadangan database yang bisa direstore kapan saja ketika dibutuhkan. Silakan klik tombol <strong>"Backup"</strong> untuk memulai proses backup data. Setelah proses backup selesai, silakan download file backup database tersebut dan simpan di lokasi yang aman.<span class="red-text"><strong>*</strong></span></p><br/>
 
-                                    <p class="kata">Proses restore database dapat dilakukan melalui menu <a href="?page=sett&sub=rest" class="blue-text" style="text-transform: capitalize"><strong>"Restore Database"</strong></a></p>
+                                    <p><span class="red-text"><strong>*</strong></span> Sangat tidak disarankan menyimpan file backup database dalam my documents / Local Disk C.</p>
                                 </div>
                                 <div class="card-action">
                                     <form method="post" enctype="multipart/form-data" >
