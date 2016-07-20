@@ -22,9 +22,9 @@
                     $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
                     while($data = mysqli_fetch_array($query)){
                         if(!empty($data['website'])){
-                            echo '<i class="material-icons md-12">language</i> '.$data['website'].' &nbsp;&nbsp;';
+                            echo '<i class="material-icons md-12">public</i> '.$data['website'].' &nbsp;&nbsp;';
                         } else {
-                            echo '<i class="material-icons md-12">language</i> http://www.smkalhusnaloceret.sch.id &nbsp;&nbsp;';
+                            echo '<i class="material-icons md-12">public</i> http://www.smkalhusnaloceret.sch.id &nbsp;&nbsp;';
                         }
                         if(!empty($data['email'])){
                             echo '<i class="material-icons">mail_outline</i> '.$data['email'].'';
