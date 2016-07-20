@@ -76,10 +76,10 @@
             margin: -20px auto -5px;
         }
         img {
-            border-radius: 50px;
+            border-radius: 50%;
             margin: 0 auto;
-            max-width: 100px;
-            max-height: 100px;
+            width: 100px;
+            height: 100px;
         }
         #login {
             margin-top: -2%;
@@ -189,9 +189,9 @@
                             <h5 class="center" id="title">Aplikasi Manajemen Surat</h5>
                             <?php
                                 if(!empty($data['logo'])){
-                                    echo '<img class="circle" id="logo" src="./upload/'.$data['logo'].'"/>';
+                                    echo '<img id="logo" src="./upload/'.$data['logo'].'"/>';
                                 } else {
-                                    echo '<img class="circle" id="logo" src="./asset/img/logo.png"/>';
+                                    echo '<img id="logo" src="./asset/img/logo.png"/>';
                                 }
                             ?>
                             <h4 class="center" id="smk">
