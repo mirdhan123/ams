@@ -11,12 +11,17 @@
             $dari_tanggal = $_REQUEST['dari_tanggal'];
             $sampai_tanggal = $_REQUEST['sampai_tanggal'];
 
+            if($_REQUEST['dari_tanggal'] == "" || $_REQUEST['sampai_tanggal'] == ""){
+                header("Location: ./admin.php?page=asm");
+                die();
+            } else {
+
             $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE tgl_diterima BETWEEN '$dari_tanggal' AND '$sampai_tanggal'");
 
             $query2 = mysqli_query($config, "SELECT nama FROM tbl_instansi");
             list($nama) = mysqli_fetch_array($query2);
 
-              echo '
+                echo '
                     <!-- SHOW DAFTAR AGENDA -->
                     <!-- Row Start -->
                     <div class="row">
@@ -60,8 +65,69 @@
 
                     <div class="row agenda">
                         <div class="col s10">
-                            <h5 class="hid">CETAK AGENDA SURAT MASUK<br/>'.$nama.'</h5>
-                            <p class="warna agenda">Agenda Surat Masuk dari tanggal <strong>'.date('d M Y', strtotime($dari_tanggal)).'</strong> sampai dengan tanggal <strong>'.date('d M Y', strtotime($sampai_tanggal)).'</strong></p>
+                            <h5 class="hid">CETAK AGENDA SURAT MASUK<br/>'.$nama.'</h5>';
+
+                            $y = substr($dari_tanggal,0,4);
+                            $m = substr($dari_tanggal,5,2);
+                            $d = substr($dari_tanggal,8,2);
+                            $y2 = substr($sampai_tanggal,0,4);
+                            $m2 = substr($sampai_tanggal,5,2);
+                            $d2 = substr($sampai_tanggal,8,2);
+
+                            if($m == "01"){
+                                $nm = "Januari";
+                            } elseif($m == "02"){
+                                $nm = "Februari";
+                            } elseif($m == "03"){
+                                $nm = "Maret";
+                            } elseif($m == "04"){
+                                $nm = "April";
+                            } elseif($m == "05"){
+                                $nm = "Mei";
+                            } elseif($m == "06"){
+                                $nm = "Juni";
+                            } elseif($m == "07"){
+                                $nm = "Juli";
+                            } elseif($m == "08"){
+                                $nm = "Agustus";
+                            } elseif($m == "09"){
+                                $nm = "September";
+                            } elseif($m == "10"){
+                                $nm = "Oktober";
+                            } elseif($m == "11"){
+                                $nm = "November";
+                            } elseif($m == "12"){
+                                $nm = "Desember";
+                            }
+
+                            if($m2 == "01"){
+                                $nm2 = "Januari";
+                            } elseif($m2 == "02"){
+                                $nm2 = "Februari";
+                            } elseif($m2 == "03"){
+                                $nm2 = "Maret";
+                            } elseif($m2 == "04"){
+                                $nm2 = "April";
+                            } elseif($m2 == "05"){
+                                $nm2 = "Mei";
+                            } elseif($m2 == "06"){
+                                $nm2 = "Juni";
+                            } elseif($m2 == "07"){
+                                $nm2 = "Juli";
+                            } elseif($m2 == "08"){
+                                $nm2 = "Agustus";
+                            } elseif($m2 == "09"){
+                                $nm2 = "September";
+                            } elseif($m2 == "10"){
+                                $nm2 = "Oktober";
+                            } elseif($m2 == "11"){
+                                $nm2 = "November";
+                            } elseif($m2 == "12"){
+                                $nm2 = "Desember";
+                            }
+                            echo '
+
+                            <p class="warna agenda">Agenda Surat Masuk dari tanggal <strong>'.$d." ".$nm." ".$y.'</strong> sampai dengan tanggal <strong>'.$d2." ".$nm2." ".$y2.'</strong></p>
                         </div>
                         <div class="col s2">
                             <button type="submit" onClick="window.print()" class="btn-large deep-orange waves-effect waves-light right">CETAK <i class="material-icons">print</i></button>
@@ -93,8 +159,40 @@
                                         <td>'.$row['kode'].'</td>
                                         <td>'.$row['isi'].'</td>
                                         <td>'.$row['asal_surat'].'</td>
-                                        <td>'.$row['no_surat'].'</td>
-                                        <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
+                                        <td>'.$row['no_surat'].'</td>';
+
+                                        $y = substr($row['tgl_surat'],0,4);
+                                        $m = substr($row['tgl_surat'],5,2);
+                                        $d = substr($row['tgl_surat'],8,2);
+
+                                        if($m == "01"){
+                                            $nm = "Januari";
+                                        } elseif($m == "02"){
+                                            $nm = "Februari";
+                                        } elseif($m == "03"){
+                                            $nm = "Maret";
+                                        } elseif($m == "04"){
+                                            $nm = "April";
+                                        } elseif($m == "05"){
+                                            $nm = "Mei";
+                                        } elseif($m == "06"){
+                                            $nm = "Juni";
+                                        } elseif($m == "07"){
+                                            $nm = "Juli";
+                                        } elseif($m == "08"){
+                                            $nm = "Agustus";
+                                        } elseif($m == "09"){
+                                            $nm = "September";
+                                        } elseif($m == "10"){
+                                            $nm = "Oktober";
+                                        } elseif($m == "11"){
+                                            $nm = "November";
+                                        } elseif($m == "12"){
+                                            $nm = "Desember";
+                                        }
+                                        echo '
+
+                                        <td>'.$d." ".$nm." ".$y.'</td>
                                         <td>';
 
                                         if($row['id_user'] == 1){
@@ -107,7 +205,7 @@
                                         }
 
                                         echo ''.$row['id_user'].'</td>
-                                        <td>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
+                                        <td>'.$d." ".$nm." ".$y.'</td>
                                         <td>'.$row['keterangan'].'';
                                   echo '</td>
                                 </tr>
@@ -119,6 +217,7 @@
                         </table>
                     </div>
                 <div class="jarak2"></div>';
+            }
         } else {
 
             echo '

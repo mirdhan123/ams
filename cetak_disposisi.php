@@ -115,9 +115,41 @@
                                 <td id="left" style="border-right: none;" width="57%">: '.$row['indeks'].'</td>
                                 <td id="left" width="25"><strong>Kode</strong> : '.$row['kode'].'</td>
                             </tr>
-                            <tr>
+                            <tr>';
+
+                                $y = substr($row['tgl_surat'],0,4);
+                                $m = substr($row['tgl_surat'],5,2);
+                                $d = substr($row['tgl_surat'],8,2);
+
+                                if($m == "01"){
+                                    $nm = "Januari";
+                                } elseif($m == "02"){
+                                    $nm = "Februari";
+                                } elseif($m == "03"){
+                                    $nm = "Maret";
+                                } elseif($m == "04"){
+                                    $nm = "April";
+                                } elseif($m == "05"){
+                                    $nm = "Mei";
+                                } elseif($m == "06"){
+                                    $nm = "Juni";
+                                } elseif($m == "07"){
+                                    $nm = "Juli";
+                                } elseif($m == "08"){
+                                    $nm = "Agustus";
+                                } elseif($m == "09"){
+                                    $nm = "September";
+                                } elseif($m == "10"){
+                                    $nm = "Oktober";
+                                } elseif($m == "11"){
+                                    $nm = "November";
+                                } elseif($m == "12"){
+                                    $nm = "Desember";
+                                }
+                                echo '
+
                                 <td id="right"><strong>Tanggal/Nomor Surat</strong></td>
-                                <td id="left" colspan="2">: '.date('d M Y', strtotime($row['tgl_surat'])).' / '.$row['no_surat'].'</td>
+                                <td id="left" colspan="2">: '.$d." ".$nm." ".$y.' &nbsp;|&nbsp; '.$row['no_surat'].'</td>
                             </tr>
                             <tr>
                                 <td id="right"><strong>Asal Surat</strong></td>
@@ -129,7 +161,7 @@
                             </tr>
                             <tr>
                                 <td id="right"><strong>Diterima Tanggal</strong></td>
-                                <td id="left" style="border-right: none;">: '.date('d M Y', strtotime($row['tgl_diterima'])).'</td>
+                                <td id="left" style="border-right: none;">: '.$d." ".$nm." ".$y.'</td>
                                 <td id="left"><strong>No. Agenda</strong> : '.$row['no_agenda'].'</td>
                             </tr>
                             <tr>
@@ -146,7 +178,7 @@
                             <tr id="isi">
                                 <td colspan="2">
                                     <strong>Isi Disposisi :</strong><br/>'.$row['isi_disposisi'].'<br/><br/>
-                                    <strong>Batas Waktu</strong> : '.date('d M Y', strtotime($row['batas_waktu'])).'<br/>
+                                    <strong>Batas Waktu</strong> : '.$d." ".$nm." ".$y.'<br/>
                                     <strong>Sifat</strong> : '.$row['sifat'].'<br/>
                                     <strong>Catatan</strong> : '.$row['catatan'].'
                                 </td>

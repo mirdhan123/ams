@@ -125,7 +125,7 @@
                         <div class="col s12" style="margin-top: -18px;">
                             <div class="card blue lighten-5">
                                 <div class="card-content">
-                                    <p class="description">Hasil pencarian untuk kata kunci <strong>"'.stripslashes($cari).'"</strong></p>
+                                <p class="description">Hasil pencarian untuk kata kunci <strong>"'.stripslashes($cari).'"</strong><span class="right"><a href="?page=tsk"><i class="material-icons md-36" style="color: #333;">clear</i></a></span></p>
                                 </div>
                             </div>
                         </div>
@@ -159,8 +159,40 @@
                                         } else {
                                             echo ' <em>Tidak ada file yang diupload</em>';
                                         } echo '</td>
-                                        <td>'.$row['tujuan'].'</td>
-                                        <td>'.$row['no_surat'].'<br/><hr/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
+                                        <td>'.$row['tujuan'].'</td>';
+
+                                            $y = substr($row['tgl_surat'],0,4);
+                                            $m = substr($row['tgl_surat'],5,2);
+                                            $d = substr($row['tgl_surat'],8,2);
+
+                                            if($m == "01"){
+                                                $nm = "Januari";
+                                            } elseif($m == "02"){
+                                                $nm = "Februari";
+                                            } elseif($m == "03"){
+                                                $nm = "Maret";
+                                            } elseif($m == "04"){
+                                                $nm = "April";
+                                            } elseif($m == "05"){
+                                                $nm = "Mei";
+                                            } elseif($m == "06"){
+                                                $nm = "Juni";
+                                            } elseif($m == "07"){
+                                                $nm = "Juli";
+                                            } elseif($m == "08"){
+                                                $nm = "Agustus";
+                                            } elseif($m == "09"){
+                                                $nm = "September";
+                                            } elseif($m == "10"){
+                                                $nm = "Oktober";
+                                            } elseif($m == "11"){
+                                                $nm = "November";
+                                            } elseif($m == "12"){
+                                                $nm = "Desember";
+                                            }
+                                            echo '
+
+                                        <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                         <td>';
 
                                         if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
@@ -303,8 +335,40 @@
                                     } else {
                                         echo ' <em>Tidak ada file yang diupload</em>';
                                     } echo '</td>
-                                    <td>'.$row['tujuan'].'</td>
-                                    <td>'.$row['no_surat'].'<br/><hr/>'.date('d M Y', strtotime($row['tgl_surat'])).'</td>
+                                    <td>'.$row['tujuan'].'</td>';
+
+                                        $y = substr($row['tgl_surat'],0,4);
+                                        $m = substr($row['tgl_surat'],5,2);
+                                        $d = substr($row['tgl_surat'],8,2);
+
+                                        if($m == "01"){
+                                            $nm = "Januari";
+                                        } elseif($m == "02"){
+                                            $nm = "Februari";
+                                        } elseif($m == "03"){
+                                            $nm = "Maret";
+                                        } elseif($m == "04"){
+                                            $nm = "April";
+                                        } elseif($m == "05"){
+                                            $nm = "Mei";
+                                        } elseif($m == "06"){
+                                            $nm = "Juni";
+                                        } elseif($m == "07"){
+                                            $nm = "Juli";
+                                        } elseif($m == "08"){
+                                            $nm = "Agustus";
+                                        } elseif($m == "09"){
+                                            $nm = "September";
+                                        } elseif($m == "10"){
+                                            $nm = "Oktober";
+                                        } elseif($m == "11"){
+                                            $nm = "November";
+                                        } elseif($m == "12"){
+                                            $nm = "Desember";
+                                        }
+                                        echo '
+
+                                    <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                     <td>';
 
                                     if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){

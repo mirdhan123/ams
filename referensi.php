@@ -135,7 +135,7 @@
                     <div class="col s12" style="margin-top: -18px;">
                         <div class="card blue lighten-5">
                             <div class="card-content">
-                                <p class="description">Hasil pencarian untuk kata kunci <strong>"'.stripslashes($cari).'"</strong></p>
+                                <p class="description">Hasil pencarian untuk kata kunci <strong>"'.stripslashes($cari).'"</strong><span class="right"><a href="?page=ref"><i class="material-icons md-36" style="color: #333;">clear</i></a></span></p>
                             </div>
                         </div>
                     </div>

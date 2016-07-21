@@ -147,8 +147,40 @@
                                             $no++;
                                              echo ' <td>'.$no.'</td>
                                                     <td>'.$row['tujuan'].'</td>
-                                                    <td>'.$row['isi_disposisi'].'</td>
-                                                    <td>'.$row['sifat'].'<br/>'.date('d M Y', strtotime($row['batas_waktu'])).'</td>
+                                                    <td>'.$row['isi_disposisi'].'</td>';
+
+                                                    $y = substr($row['batas_waktu'],0,4);
+                                                    $m = substr($row['batas_waktu'],5,2);
+                                                    $d = substr($row['batas_waktu'],8,2);
+
+                                                    if($m == "01"){
+                                                        $nm = "Januari";
+                                                    } elseif($m == "02"){
+                                                        $nm = "Februari";
+                                                    } elseif($m == "03"){
+                                                        $nm = "Maret";
+                                                    } elseif($m == "04"){
+                                                        $nm = "April";
+                                                    } elseif($m == "05"){
+                                                        $nm = "Mei";
+                                                    } elseif($m == "06"){
+                                                        $nm = "Juni";
+                                                    } elseif($m == "07"){
+                                                        $nm = "Juli";
+                                                    } elseif($m == "08"){
+                                                        $nm = "Agustus";
+                                                    } elseif($m == "09"){
+                                                        $nm = "September";
+                                                    } elseif($m == "10"){
+                                                        $nm = "Oktober";
+                                                    } elseif($m == "11"){
+                                                        $nm = "November";
+                                                    } elseif($m == "12"){
+                                                        $nm = "Desember";
+                                                    }
+                                                    echo '
+
+                                                    <td>'.$row['sifat'].'<br/>'.$d." ".$nm." ".$y.'</td>
                                                     <td><a class="btn small blue waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$row['id_disposisi'].'">
                                                             <i class="material-icons">edit</i> EDIT</a>
                                                         <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=del&id_disposisi='.$row['id_disposisi'].'"><i class="material-icons">delete</i> DEL</a>
