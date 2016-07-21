@@ -1,7 +1,7 @@
 DROP TABLE tbl_disposisi;
 
 CREATE TABLE `tbl_disposisi` (
-  `id_disposisi` int(5) NOT NULL AUTO_INCREMENT,
+  `id_disposisi` int(3) NOT NULL AUTO_INCREMENT,
   `tujuan` varchar(250) NOT NULL,
   `isi_disposisi` mediumtext NOT NULL,
   `sifat` varchar(100) NOT NULL,
@@ -40,7 +40,7 @@ INSERT INTO tbl_instansi VALUES("1","SMK AL - Husna Loceret Nganjuk","Jalan Raya
 DROP TABLE tbl_klasifikasi;
 
 CREATE TABLE `tbl_klasifikasi` (
-  `id_klasifikasi` int(4) NOT NULL AUTO_INCREMENT,
+  `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT,
   `kode` varchar(30) NOT NULL,
   `nama` varchar(250) NOT NULL,
   `uraian` mediumtext NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE `tbl_sett` (
   `surat_masuk` tinyint(2) NOT NULL,
   `surat_keluar` tinyint(2) NOT NULL,
   `referensi` tinyint(2) NOT NULL,
-  `id_user` text NOT NULL,
+  `id_user` tinyint(2) NOT NULL,
   PRIMARY KEY (`id_sett`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
