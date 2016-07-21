@@ -98,50 +98,63 @@
                 	$ukrn_file	= $file['size'];
                 	$tmp_file	= $file['tmp_name'];
 
-                	if($nama_file == ""){
-                        $_SESSION['errEmpty'] = 'ERROR! Form File tidak boleh kosong';
+                	if($nama_file == "" || $_REQUEST['password'] == ""){
+                        $_SESSION['errEmpty'] = 'ERROR! Semua Form wajib diisi';
                         header("Location: ./admin.php?page=sett&sub=rest");
                         die();
                     } else {
-                		$alamatfile	= $rest_dir.$nama_file;
-                		$templine	= array();
 
-                        $ekstensi = array('sql');
-                        $nama_file	= $file['name'];
-                        $x = explode('.', $nama_file);
-                        $eks = strtolower(end($x));
+                        $password = $_REQUEST['password'];
+                        $id_user = $_SESSION['id_user'];
 
-                        //validasi tipe file
-                        if(in_array($eks, $ekstensi) == true){
+                        $query = mysqli_query($koneksi, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password=MD5('$password')");
+                        if(mysqli_num_rows($query) > 0){
 
-                    		if(move_uploaded_file($tmp_file , $alamatfile)){
+                    		$alamatfile	= $rest_dir.$nama_file;
+                    		$templine	= array();
 
-                    			$templine	= '';
-                    			$lines		= file($alamatfile);
+                            $ekstensi = array('sql');
+                            $nama_file	= $file['name'];
+                            $x = explode('.', $nama_file);
+                            $eks = strtolower(end($x));
 
-                    			foreach ($lines as $line){
-                    				if(substr($line, 0, 2) == '--' || $line == '')
-                    					continue;
+                            //validasi tipe file
+                            if(in_array($eks, $ekstensi) == true){
 
-                    				$templine .= $line;
+                        		if(move_uploaded_file($tmp_file , $alamatfile)){
 
-                    				if(substr(trim($line), -1, 1) == ';'){
-                    					mysqli_query($koneksi, $templine);
-                    					$templine = '';
-                    				}
-                    			}
-                                $_SESSION['succRestore'] = 'SUKSES! Database berhasil direstore';
+                        			$templine	= '';
+                        			$lines		= file($alamatfile);
+
+                        			foreach ($lines as $line){
+                        				if(substr($line, 0, 2) == '--' || $line == '')
+                        					continue;
+
+                        				$templine .= $line;
+
+                        				if(substr(trim($line), -1, 1) == ';'){
+                        					mysqli_query($koneksi, $templine);
+                        					$templine = '';
+                        				}
+                        			}
+                                    $_SESSION['succRestore'] = 'SUKSES! Database berhasil direstore';
+                                    header("Location: ./admin.php?page=sett&sub=rest");
+                                    die();
+                        		} else {
+                                    $_SESSION['errUpload'] = 'ERROR! Proses upload database gagal';
+                                    header("Location: ./admin.php?page=ref&act=imp");
+                                    die();
+                    		    }
+                            } else {
+                                $_SESSION['errFormat'] = 'ERROR! Format file yang diperbolehkan hanya *.SQL';
                                 header("Location: ./admin.php?page=sett&sub=rest");
                                 die();
-                    		} else {
-                                $_SESSION['errUpload'] = 'ERROR! Proses upload database gagal';
-                                header("Location: ./admin.php?page=ref&act=imp");
-                                die();
-                		    }
+                            }
                         } else {
-                            $_SESSION['errFormat'] = 'ERROR! Format file yang diperbolehkan hanya *.SQL';
-                            header("Location: ./admin.php?page=sett&sub=rest");
-                            die();
+                            echo '<script language="javascript">
+                                    window.alert("ERROR! Password tidak sesuai. Anda mungkin tidak memiliki akses ke halaman ini");
+                                    window.location.href="./logout.php";
+                                  </script>';
                         }
                 	}
                 }
@@ -174,6 +187,11 @@
                                             <div class="file-path-wrapper">
                                                 <input class="file-path validate" placeholder="Upload file backup database sql" type="text">
                                              </div>
+                                        </div>
+                                        <div class="input-field col s4 tooltipped" data-position="top" data-tooltip="Masukkan password Anda">
+                                            <i class="material-icons prefix md-prefix">lock</i>
+                                            <input id="password_lama" type="password" class="validate" name="password" required>
+                                            <label for="password_lama">Password</label>
                                         </div>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <button type="submit" class="btn-large blue waves-effect waves-light" name="restore">RESTORE <i class="material-icons">restore</i></button>
                                     </form>
