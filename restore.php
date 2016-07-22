@@ -152,7 +152,7 @@
                             }
                         } else {
                             echo '<script language="javascript">
-                                    window.alert("ERROR! Password tidak sesuai. Anda mungkin tidak memiliki akses ke halaman ini");
+                                    window.alert("ERROR! Password salah. Anda mungkin tidak memiliki akses ke halaman ini");
                                     window.location.href="./logout.php";
                                   </script>';
                         }
