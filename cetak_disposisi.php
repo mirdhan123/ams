@@ -76,9 +76,6 @@
                 font-weight: bold;
             }
             @media print{
-                .tooltipped {
-                    display: none!Important;
-                }
                 body {
                     font-size: 12px;
                     color: #212121;
@@ -100,7 +97,7 @@
                     font-size: 20px;
                 }
                 #isi {
-                    height: 300px;
+                    height: 275px;
                 }
                 .tgh {
                     text-align: center;

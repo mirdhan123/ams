@@ -155,7 +155,8 @@
                             if(mysqli_num_rows($query) > 0){
                                 $no = 0;
                                 while($row = mysqli_fetch_array($query)){
-                                 echo ' <td>'.$row['no_agenda'].'</td>
+                                 echo '
+                                        <td>'.$row['no_agenda'].'</td>
                                         <td>'.$row['kode'].'</td>
                                         <td>'.$row['isi'].'</td>
                                         <td>'.$row['asal_surat'].'</td>
@@ -191,16 +192,12 @@
                                             $nm = "Desember";
                                         }
                                         echo '
-
                                         <td>'.$d." ".$nm." ".$y.'</td>
                                         <td>';
 
-                                        if($row['id_user'] == 1){
-                                            $row['id_user'] = 'Administrator';
-                                        } else {
-                                            $id_user = $row['id_user'];
-                                            $query3 = mysqli_query($config, "SELECT nama FROM tbl_user WHERE id_user='$id_user'");
-                                            list($nama) = mysqli_fetch_array($query3);
+                                        $id_user = $row['id_user'];
+                                        $query3 = mysqli_query($config, "SELECT nama FROM tbl_user WHERE id_user='$id_user'");
+                                        list($nama) = mysqli_fetch_array($query3);{
                                             $row['id_user'] = ''.$nama.'';
                                         }
 
@@ -215,8 +212,7 @@
                                 echo '<tr><td colspan="9"><center><p class="add">Tidak ada agenda surat</p></center></td></tr>';
                             } echo '
                         </table>
-                    </div>
-                <div class="jarak2"></div>';
+                    </div>';
             }
         } else {
 
@@ -259,8 +255,7 @@
                         </div>
                     </form>
                 </div>
-                <!-- Row form END -->
-                <div class="jarak"></div>';
+                <!-- Row form END -->';
         }
     }
 ?>

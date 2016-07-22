@@ -60,8 +60,8 @@
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z0-9.,:\/ -\"\"]*$/", $status)){
-                                    $_SESSION['status'] = 'Form Status hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), titik dua(:), garis miring(/) dan minus(-)';
+                                if(!preg_match("/^[a-zA-Z0-9.,:\/<> -\"]*$/", $status)){
+                                    $_SESSION['status'] = 'Form Status hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), titik dua(:), petik dua(""), garis miring(/) dan minus(-)';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
@@ -244,7 +244,6 @@
                                         <label for="nama">Nama Instansi</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input type="hidden" value="<?php echo $id_instansi; ?>" name="id_instansi">
                                         <i class="material-icons prefix md-prefix">work</i>
                                         <input id="nama" type="text" class="validate" name="nama_yayasan" value="<?php echo $row['nama_yayasan']; ?>" required>
                                             <?php
@@ -257,9 +256,8 @@
                                         <label for="nama">Nama Yayasan</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input type="hidden" value="<?php echo $id_instansi; ?>" name="id_instansi">
                                         <i class="material-icons prefix md-prefix">assistant_photo</i>
-                                        <input id="nama" type="text" class="validate" name="status" value="<?php echo $row['status']; ?>" required>
+                                        <input id="nama" type="text" class="validate" name="status" value='<?php echo $row['status']; ?>' required>
                                             <?php
                                                 if(isset($_SESSION['status'])){
                                                     $status = $_SESSION['status'];
