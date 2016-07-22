@@ -31,7 +31,7 @@
                 if(isset($_REQUEST['submit'])){
 
                     //validasi form kosong
-                    if ($_REQUEST['nama'] == "" || $_REQUEST['alamat'] == "" || $_REQUEST['kepsek'] == "" || $_REQUEST['nip'] == ""
+                    if ($_REQUEST['nama_yayasan'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['status'] == "" || $_REQUEST['alamat'] == "" || $_REQUEST['kepsek'] == "" || $_REQUEST['nip'] == ""
                         || $_REQUEST['website'] == "" || $_REQUEST['email'] == ""){
                         $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
                         header("Location: ././admin.php?page=sett");
@@ -39,7 +39,9 @@
                     } else {
 
                         $id_instansi = "1";
+                        $nama_yayasan = $_REQUEST['nama_yayasan'];
                         $nama = $_REQUEST['nama'];
+                        $status = $_REQUEST['status'];
                         $alamat = $_REQUEST['alamat'];
                         $kepsek = $_REQUEST['kepsek'];
                         $nip = $_REQUEST['nip'];
@@ -48,63 +50,94 @@
                         $id_user = $_SESSION['id_user'];
 
                         //validasi input data
-                        if(!preg_match("/^[a-zA-Z0-9.() -]*$/", $nama)){
+                        if(!preg_match("/^[a-zA-Z0-9. -]*$/", $nama)){
                             $_SESSION['namains'] = 'Form Nama Instansi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan minus(-)';
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
-                            if(!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $alamat)){
-                                $_SESSION['alamat'] = 'Form Alamat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()';
+                            if(!preg_match("/^[a-zA-Z0-9. -]*$/", $nama_yayasan)){
+                                $_SESSION['nama_yayasan'] = 'Form Nama Yayasan hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan minus(-)';
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z., ]*$/", $kepsek)){
-                                    $_SESSION['kepsek'] = 'Form Nama Kepala Sekolah hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)<br/><br/>';
+                                if(!preg_match("/^[a-zA-Z0-9.,:\/ -\"\"]*$/", $status)){
+                                    $_SESSION['status'] = 'Form Status hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), titik dua(:), garis miring(/) dan minus(-)';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
-                                    if(!preg_match("/^[0-9 -]*$/", $nip)){
-                                        $_SESSION['nipkepsek'] = 'Form NIP Kepala Sekolah hanya boleh mengandung karakter angka, spasi, dan minus(-)<br/><br/>';
+                                    if(!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $alamat)){
+                                        $_SESSION['alamat'] = 'Form Alamat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan kurung()';
                                         echo '<script language="javascript">window.history.back();</script>';
                                     } else {
 
-                                        //validasi url website
-                                        if(!filter_var($website, FILTER_VALIDATE_URL)){
-                                            $_SESSION['website'] = 'Format URL Website tidak valid';
-                                            header("Location: ././admin.php?page=sett");
-                                            die();
+                                        if(!preg_match("/^[a-zA-Z., ]*$/", $kepsek)){
+                                            $_SESSION['kepsek'] = 'Form Nama Pimpinan hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)<br/><br/>';
+                                            echo '<script language="javascript">window.history.back();</script>';
                                         } else {
 
-                                            //validasi email
-                                            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                                                $_SESSION['email'] = 'Format Email tidak valid';
-                                                header("Location: ././admin.php?page=sett");
-                                                die();
+                                            if(!preg_match("/^[0-9 -]*$/", $nip)){
+                                                $_SESSION['nipkepsek'] = 'Form NIP Pimpinan hanya boleh mengandung karakter angka, spasi, dan minus(-)<br/><br/>';
+                                                echo '<script language="javascript">window.history.back();</script>';
                                             } else {
 
-                                                $ekstensi = array('png','jpg');
-                                                $logo = $_FILES['logo']['name'];
-                                                $x = explode('.', $logo);
-                                                $eks = strtolower(end($x));
-                                                $ukuran = $_FILES['logo']['size'];
-                                                $target_dir = "upload/";
+                                                //validasi url website
+                                                if(!filter_var($website, FILTER_VALIDATE_URL)){
+                                                    $_SESSION['website'] = 'Format URL Website tidak valid';
+                                                    header("Location: ././admin.php?page=sett");
+                                                    die();
+                                                } else {
 
-                                                //jika form logo tidak kosong akan mengeksekusi script dibawah ini
-                                                if(!empty($logo)){
+                                                    //validasi email
+                                                    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                                                        $_SESSION['email'] = 'Format Email tidak valid';
+                                                        header("Location: ././admin.php?page=sett");
+                                                        die();
+                                                    } else {
 
-                                                    $nlogo = $logo;
-                                                    //validasi gambar
-                                                    if(in_array($eks, $ekstensi) == true){
-                                                        if($ukuran < 2000000){
+                                                        $ekstensi = array('png','jpg');
+                                                        $logo = $_FILES['logo']['name'];
+                                                        $x = explode('.', $logo);
+                                                        $eks = strtolower(end($x));
+                                                        $ukuran = $_FILES['logo']['size'];
+                                                        $target_dir = "upload/";
 
-                                                            $query = mysqli_query($config, "SELECT logo FROM tbl_instansi");
-                                                            list($logo) = mysqli_fetch_array($query);
+                                                        //jika form logo tidak kosong akan mengeksekusi script dibawah ini
+                                                        if(!empty($logo)){
 
-                                                            unlink($target_dir.$logo);
+                                                            $nlogo = $logo;
+                                                            //validasi gambar
+                                                            if(in_array($eks, $ekstensi) == true){
+                                                                if($ukuran < 2000000){
 
-                                                            move_uploaded_file($_FILES['logo']['tmp_name'], $target_dir.$nlogo);
+                                                                    $query = mysqli_query($config, "SELECT logo FROM tbl_instansi");
+                                                                    list($logo) = mysqli_fetch_array($query);
 
-                                                            $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$nlogo',id_user='$id_user' WHERE id_instansi='$id_instansi'");
+                                                                    unlink($target_dir.$logo);
+
+                                                                    move_uploaded_file($_FILES['logo']['tmp_name'], $target_dir.$nlogo);
+
+                                                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET nama_yayasan='$nama_yayasan',nama='$nama',status='$status',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$nlogo',id_user='$id_user' WHERE id_instansi='$id_instansi'");
+
+                                                                    if($query == true){
+                                                                        $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
+                                                                        header("Location: ././admin.php?page=sett");
+                                                                        die();
+                                                                    } else {
+                                                                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
+                                                                        echo '<script language="javascript">window.history.back();</script>';
+                                                                    }
+                                                                } else {
+                                                                    $_SESSION['errSize'] = 'Ukuran file yang diupload terlalu besar!<br/><br/>';
+                                                                    echo '<script language="javascript">window.history.back();</script>';
+                                                                }
+                                                            } else {
+                                                                $_SESSION['errSize'] = 'Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG!<br/><br/>';
+                                                                echo '<script language="javascript">window.history.back();</script>';
+                                                            }
+                                                        } else {
+
+                                                            //jika form logo kosong akan mengeksekusi script dibawah ini
+                                                            $query = mysqli_query($config, "UPDATE tbl_instansi SET nama_yayasan='$nama_yayasan',nama='$nama',status='$status',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',id_user='$id_user' WHERE id_instansi='$id_instansi'");
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
@@ -114,26 +147,7 @@
                                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
                                                                 echo '<script language="javascript">window.history.back();</script>';
                                                             }
-                                                        } else {
-                                                            $_SESSION['errSize'] = 'Ukuran file yang diupload terlalu besar!<br/><br/>';
-                                                            echo '<script language="javascript">window.history.back();</script>';
                                                         }
-                                                    } else {
-                                                        $_SESSION['errSize'] = 'Format file gambar yang diperbolehkan hanya *.JPG dan *.PNG!<br/><br/>';
-                                                        echo '<script language="javascript">window.history.back();</script>';
-                                                    }
-                                                } else {
-
-                                                    //jika form logo kosong akan mengeksekusi script dibawah ini
-                                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET nama='$nama',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',id_user='$id_user' WHERE id_instansi='$id_instansi'");
-
-                                                    if($query == true){
-                                                        $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
-                                                        header("Location: ././admin.php?page=sett");
-                                                        die();
-                                                    } else {
-                                                        $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                        echo '<script language="javascript">window.history.back();</script>';
                                                     }
                                                 }
                                             }
@@ -223,11 +237,37 @@
                                             <?php
                                                 if(isset($_SESSION['namains'])){
                                                     $namains = $_SESSION['namains'];
-                                                    echo '<span id="alert-message" class="red-text">'.$namains.'</span>';
+                                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$namains.'</div>';
                                                     unset($_SESSION['namains']);
                                                 }
                                             ?>
                                         <label for="nama">Nama Instansi</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input type="hidden" value="<?php echo $id_instansi; ?>" name="id_instansi">
+                                        <i class="material-icons prefix md-prefix">work</i>
+                                        <input id="nama" type="text" class="validate" name="nama_yayasan" value="<?php echo $row['nama_yayasan']; ?>" required>
+                                            <?php
+                                                if(isset($_SESSION['nama_yayasan'])){
+                                                    $nama_yayasan = $_SESSION['nama_yayasan'];
+                                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$nama_yayasan.'</div>';
+                                                    unset($_SESSION['nama_yayasan']);
+                                                }
+                                            ?>
+                                        <label for="nama">Nama Yayasan</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input type="hidden" value="<?php echo $id_instansi; ?>" name="id_instansi">
+                                        <i class="material-icons prefix md-prefix">assistant_photo</i>
+                                        <input id="nama" type="text" class="validate" name="status" value="<?php echo $row['status']; ?>" required>
+                                            <?php
+                                                if(isset($_SESSION['status'])){
+                                                    $status = $_SESSION['status'];
+                                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$status.'</div>';
+                                                    unset($_SESSION['status']);
+                                                }
+                                            ?>
+                                        <label for="nama">Status</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">account_box</i>
@@ -235,11 +275,11 @@
                                             <?php
                                                 if(isset($_SESSION['kepsek'])){
                                                     $kepsek = $_SESSION['kepsek'];
-                                                    echo '<span id="alert-message" class="red-text">'.$kepsek.'</span>';
+                                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kepsek.'</div>';
                                                     unset($_SESSION['kepsek']);
                                                 }
                                             ?>
-                                        <label for="kepsek">Nama Kepala Sekolah</label>
+                                        <label for="kepsek">Nama Pimpinan</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">place</i>
@@ -247,7 +287,7 @@
                                             <?php
                                                 if(isset($_SESSION['alamat'])){
                                                     $alamat = $_SESSION['alamat'];
-                                                    echo '<span id="alert-message" class="red-text">'.$alamat.'</span>';
+                                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$alamat.'</div>';
                                                     unset($_SESSION['alamat']);
                                                 }
                                             ?>
@@ -259,11 +299,11 @@
                                             <?php
                                                 if(isset($_SESSION['nipkepsek'])){
                                                     $nipkepsek = $_SESSION['nipkepsek'];
-                                                    echo '<span id="alert-message" class="red-text">'.$nipkepsek.'</span>';
+                                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$nipkepsek.'</div>';
                                                     unset($_SESSION['nipkepsek']);
                                                 }
                                             ?>
-                                        <label for="nip">NIP Kepala Sekolah</label>
+                                        <label for="nip">NIP Pimpinan</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">language</i>
@@ -271,7 +311,7 @@
                                             <?php
                                                 if(isset($_SESSION['website'])){
                                                     $website = $_SESSION['website'];
-                                                    echo '<span id="alert-message" class="red-text">'.$website.'</span>';
+                                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$website.'</div>';
                                                     unset($_SESSION['website']);
                                                 }
                                             ?>
@@ -283,7 +323,7 @@
                                             <?php
                                                 if(isset($_SESSION['email'])){
                                                     $email = $_SESSION['email'];
-                                                    echo '<span id="alert-message" class="red-text">'.$email.'</span>';
+                                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$email.'</div>';
                                                     unset($_SESSION['email']);
                                                 }
                                             ?>
@@ -301,12 +341,12 @@
                                                 <?php
                                                     if(isset($_SESSION['errSize'])){
                                                         $errSize = $_SESSION['errSize'];
-                                                        echo '<span id="alert-message" class="red-text">'.$errSize.'</span>';
+                                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errSize.'</div>';
                                                         unset($_SESSION['errSize']);
                                                     }
                                                     if(isset($_SESSION['errFormat'])){
                                                         $errFormat = $_SESSION['errFormat'];
-                                                        echo '<span id="alert-message" class="red-text">'.$errFormat.'</span>';
+                                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errFormat.'</div>';
                                                         unset($_SESSION['errFormat']);
                                                     }
                                                 ?>

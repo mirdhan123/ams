@@ -6,28 +6,25 @@
             echo '
                 <div class="col s12" id="header-instansi">
                     <div class="card blue-grey white-text">
-                        <div class="card-content">
-                            <div class="circle left">';
+                        <div class="card-content">';
                             if(!empty($data['logo'])){
-                                echo '<img class="logo" src="./upload/'.$data['logo'].'"/>';
+                                echo '<div class="circle left"><img class="logo" src="./upload/'.$data['logo'].'"/></div>';
                             } else {
-                                echo '<img class="logo" src="./asset/img/logo.png"/>';
+                                echo '<div class="circle left"><img class="logo" src="./asset/img/logo.png"/></div>';
                             }
-                             echo '</div>
-                            <h5 class="ins">';
+
                             if(!empty($data['nama'])){
-                                echo ''.$data['nama'].'';
+                                echo '<h5 class="ins">'.$data['nama'].'</h5>';
                             } else {
-                                echo 'SMK AL - Husna Loceret Nganjuk';
+                                echo '<h5 class="ins">SMK AL - Husna Loceret Nganjuk</h5>';
                             }
-                            echo '</h5>
-                            <p class="almt">';
+
                             if(!empty($data['alamat'])){
-                                echo ''.$data['alamat'].'';
+                                echo '<p class="almt">'.$data['alamat'].'</p>';
                             } else {
-                                echo 'Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471';
+                                echo '<p class="almt">Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471</p>';
                             }
-                            echo '</p>
+                            echo '
                         </div>
                     </div>
                 </div>';

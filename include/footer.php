@@ -16,22 +16,33 @@
     </div>
     <div class="footer-copyright blue-grey darken-1 white-text">
         <div class="container" id="footer">
-            <span class="white-text">&copy; <?php echo date("Y"); ?> &nbsp;|&nbsp;  Made with <i class="material-icons md-18">favorite</i> by <a class="white-text" href="http://masrud.com" target="_blank">M. Rudianto</a></span>
+            <?php
+                $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                while($data = mysqli_fetch_array($query)){
+            ?>
+            <span class="white-text tooltipped" data-position="top" data-tooltip="Made with &hearts; by M. Rudianto">&copy; <?php echo date("Y"); ?> &nbsp;|&nbsp; <a class="white-text" href="http://masrud.com" target="_blank">
+                <?php
+                    if(!empty($data['nama'])){
+                        echo $data['nama'];
+                    } else {
+                        echo 'SMK AL - Husna Loceret Nganjuk';
+                    }
+                ?>
+            </a>
+            </span>
             <div class="right hide-on-small-only">
                 <?php
-                    $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
-                    while($data = mysqli_fetch_array($query)){
-                        if(!empty($data['website'])){
-                            echo '<i class="material-icons md-12">public</i> '.$data['website'].' &nbsp;&nbsp;';
-                        } else {
-                            echo '<i class="material-icons md-12">public</i> http://www.smkalhusnaloceret.sch.id &nbsp;&nbsp;';
-                        }
-                        if(!empty($data['email'])){
-                            echo '<i class="material-icons">mail_outline</i> '.$data['email'].'';
-                        } else {
-                            echo '<i class="material-icons">mail_outline</i>  info@smkalhusnaloceret.sch.id';
-                        }
+                    if(!empty($data['website'])){
+                        echo '<i class="material-icons md-12">public</i> '.$data['website'].' &nbsp;&nbsp;';
+                    } else {
+                        echo '<i class="material-icons md-12">public</i> http://www.smkalhusnaloceret.sch.id &nbsp;&nbsp;';
                     }
+                    if(!empty($data['email'])){
+                        echo '<i class="material-icons">mail_outline</i> '.$data['email'].'';
+                    } else {
+                        echo '<i class="material-icons">mail_outline</i>  info@smkalhusnaloceret.sch.id';
+                    }
+                }
                 ?>
             </div>
         </div>

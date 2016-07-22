@@ -188,8 +188,7 @@
                                         <option value="Biasa">Biasa</option>
                                         <option value="Penting">Penting</option>
                                         <option value="Segera">Segera</option>
-                                        <option value="Perlu Perhatian Khusus">Perlu Perhatian Khusus</option>
-                                        <option value="Perhatian Batas Waktu">Perhatian Batas Waktu</option>
+                                        <option value="Rahasia">Rahasia</option>
                                 </select>
                             </div>
                                 <?php

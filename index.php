@@ -69,7 +69,7 @@
         }
         .container {
             max-width: 100%;
-            margin-top: 3.7rem;
+            margin-top: 2.5rem;
         }
         #logo {
             display: block;
