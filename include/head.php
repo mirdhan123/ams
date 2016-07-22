@@ -239,7 +239,7 @@
                 font-size: 15px!important;
             }
             .agenda {
-                font-size: 12px;
+                font-size: 13px;
                 text-align: center;
                 color: #212121;
             }

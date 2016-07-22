@@ -26,7 +26,7 @@
                 border-left: none !important;
             }
             #isi {
-                height: 300px;
+                height: 50px;
             }
             .disp {
                 text-align: center;
@@ -43,7 +43,7 @@
             #lead {
                 width: auto;
                 position: relative;
-                margin: 5% 0 0 75%;
+                margin: 25px 0 0 75%;
             }
             .lead {
                 font-weight: bold;
@@ -75,12 +75,17 @@
                 font-size: 20px;
                 font-weight: bold;
             }
+            .separator {
+                border-bottom: 2px solid #616161;
+                margin: -1.3rem 0 1.5rem;
+            }
             @media print{
                 body {
                     font-size: 12px;
                     color: #212121;
                 }
                 table {
+                    width: 100%;
                     font-size: 12px;
                     color: #212121;
                 }
@@ -97,7 +102,7 @@
                     font-size: 20px;
                 }
                 #isi {
-                    height: 275px;
+                    height: 50px!important;
                 }
                 .tgh {
                     text-align: center;
@@ -116,7 +121,7 @@
                 #lead {
                     width: auto;
                     position: relative;
-                    margin: 5% 0 0 75%;
+                    margin: 15px 0 0 75%;
                 }
                 .lead {
                     font-weight: bold;
@@ -124,8 +129,9 @@
                     margin-bottom: -10px;
                 }
                 #nama {
-                    font-size: 22px!important;
+                    font-size: 20px!important;
                     font-weight: bold;
+                    text-transform: uppercase;
                     margin: -10px 0 -20px 0;
                 }
                 .up {
@@ -145,6 +151,11 @@
                     font-size: 17px;
                     font-weight: bold;
                 }
+                .separator {
+                    border-bottom: 2px solid #616161;
+                    margin: -1rem 0 1rem;
+                }
+
             }
         </style>
 
@@ -153,45 +164,46 @@
         <!-- Container START -->
         <div class="container">
             <div id="colres">
-                            <div class="disp">';
-                                $query2 = mysqli_query($config, "SELECT nama_yayasan, nama, status, alamat, logo FROM tbl_instansi");
-                                list($nama_yayasan, $nama, $status, $alamat, $logo) = mysqli_fetch_array($query2);
-                                if(!empty($logo)){
-                                    echo '<img class="logodisp" src="./upload/'.$logo.'"/>';
-                                } else {
-                                    echo '<img class="logodisp" src="./asset/img/logo.png"/>';
-                                }
-                                if(!empty($nama_yayasan)){
-                                    echo '<h6 class="up">'.$nama_yayasan.'</h6>';
-                                } else {
-                                    echo '<h6 class="up">Yayasan Pendidikan Dan Sosial Al - Husna</h6>';
-                                }
-                                if(!empty($nama)){
-                                    echo '<h5 class="up" id="nama">'.$nama.'</h5><br/>';
-                                } else {
-                                    echo '<h5 class="up" id="nama">SMK Al - Husna Loceret Nganjuk</h5><br/>';
-                                }
-                                if(!empty($status)){
-                                    echo '<h6 class="status">'.$status.'</h6>';
-                                } else {
-                                    echo '<h6 class="status">Akta Notaris: SLAMET , SH, M.Hum No. 119/2013</h6>';
-                                }
-                                if(!empty($alamat)){
-                                    echo '<span id="alamat">'.$alamat.'</span>';
-                                } else {
-                                    echo '<span id="alamat">Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471</span>';
-                                }
-                                echo '
-                            </div>';
+                <div class="disp">';
+                    $query2 = mysqli_query($config, "SELECT nama_yayasan, nama, status, alamat, logo FROM tbl_instansi");
+                    list($nama_yayasan, $nama, $status, $alamat, $logo) = mysqli_fetch_array($query2);
+                    if(!empty($logo)){
+                        echo '<img class="logodisp" src="./upload/'.$logo.'"/>';
+                    } else {
+                        echo '<img class="logodisp" src="./asset/img/logo.png"/>';
+                    }
+                    if(!empty($nama_yayasan)){
+                        echo '<h6 class="up">'.$nama_yayasan.'</h6>';
+                    } else {
+                        echo '<h6 class="up">Yayasan Pendidikan Dan Sosial Al - Husna</h6>';
+                    }
+                    if(!empty($nama)){
+                        echo '<h5 class="up" id="nama">'.$nama.'</h5><br/>';
+                    } else {
+                        echo '<h5 class="up" id="nama">SMK Al - Husna Loceret Nganjuk</h5><br/>';
+                    }
+                    if(!empty($status)){
+                        echo '<h6 class="status">'.$status.'</h6>';
+                    } else {
+                        echo '<h6 class="status">Akta Notaris: SLAMET , SH, M.Hum No. 119/2013</h6>';
+                    }
+                    if(!empty($alamat)){
+                        echo '<span id="alamat">'.$alamat.'</span>';
+                    } else {
+                        echo '<span id="alamat">Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471</span>';
+                    }
+                    echo '
+                </div>
+                <div class="separator"></div>';
 
-                            $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
-                            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+                $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
-                            if(mysqli_num_rows($query) > 0){
-                                $no = 0;
-                                while($row = mysqli_fetch_array($query)){
+                if(mysqli_num_rows($query) > 0){
+                $no = 0;
+                while($row = mysqli_fetch_array($query)){
 
-                                    echo '
+                echo '
                     <table class="bordered" id="tbl">
                         <tbody>
                             <tr>
@@ -269,10 +281,11 @@
                             <tr id="isi">
                                 <td colspan="2">
                                     <strong>Isi Disposisi :</strong><br/>'.$row['isi_disposisi'].'
-                                    <div style="height: 80px;"></div>
-                                    <strong>Batas Waktu</strong> : '.$d." ".$nm." ".$y.'<br/><br/>
-                                    <strong>Sifat</strong> : '.$row['sifat'].'<br/><br/>
-                                    <strong>Catatan</strong> :<br/> '.$row['catatan'].'<br/><br/><br/><br/>
+                                    <div style="height: 25px;"></div>
+                                    <strong>Batas Waktu</strong> : '.$d." ".$nm." ".$y.'<br/>
+                                    <strong>Sifat</strong> : '.$row['sifat'].'<br/>
+                                    <strong>Catatan</strong> :<br/> '.$row['catatan'].'
+                                    <div style="height: 25px;"></div>
                                 </td>
                                 <td><strong>Diteruskan Kepada</strong> : <br/>'.$row['tujuan'].'</td>
                             </tr>';

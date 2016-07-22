@@ -6,6 +6,57 @@
         die();
     } else {
 
+        echo '
+            <style type="text/css">
+                .hidd {
+                    display: none
+                }
+                @media print{
+                    body {
+                        font-size: 12px!important;
+                        color: #212121;
+                    }
+                    .disp {
+                        text-align: center;
+                        margin: -.5rem 0;
+                    }
+                    .hidd {
+                        display: block
+                    }
+                    .logodisp {
+                        float: left;
+                        position: relative;
+                        width: 80px;
+                        height: 80px;
+                        margin: .5rem 0 0 .5rem;
+                    }
+                    #nama {
+                        font-size: 20px!important;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        margin: -2.5rem 0 -3.7rem 0;
+                    }
+                    .up {
+                        font-size: 17px!important;
+                        font-weight: normal;
+                        text-transform: uppercase
+                    }
+                    .status {
+                        font-size: 17px!important;
+                        font-weight: normal;
+                        margin-bottom: -.1rem;
+                    }
+                    #alamat {
+                        margin-top: -15px;
+                        font-size: 13px;
+                    }
+                    .separator {
+                        border-bottom: 2px solid #616161;
+                        margin: 1rem 0 -.7rem;
+                    }
+                }
+            </style>';
+
         if(isset($_REQUEST['submit'])){
 
             $dari_tanggal = $_REQUEST['dari_tanggal'];
@@ -16,10 +67,10 @@
                 die();
             } else {
 
-            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE tgl_diterima BETWEEN '$dari_tanggal' AND '$sampai_tanggal'");
+                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE tgl_diterima BETWEEN '$dari_tanggal' AND '$sampai_tanggal'");
 
-            $query2 = mysqli_query($config, "SELECT nama FROM tbl_instansi");
-            list($nama) = mysqli_fetch_array($query2);
+                $query2 = mysqli_query($config, "SELECT nama FROM tbl_instansi");
+                list($nama) = mysqli_fetch_array($query2);
 
                 echo '
                     <!-- SHOW DAFTAR AGENDA -->
@@ -65,7 +116,38 @@
 
                     <div class="row agenda">
                         <div class="col s10">
-                            <h5 class="hid">CETAK AGENDA SURAT MASUK<br/>'.$nama.'</h5>';
+                            <div class="disp hidd">';
+                                $query2 = mysqli_query($config, "SELECT nama_yayasan, nama, status, alamat, logo FROM tbl_instansi");
+                                list($nama_yayasan, $nama, $status, $alamat, $logo) = mysqli_fetch_array($query2);
+                                if(!empty($logo)){
+                                    echo '<img class="logodisp" src="./upload/'.$logo.'"/>';
+                                } else {
+                                    echo '<img class="logodisp" src="./asset/img/logo.png"/>';
+                                }
+                                if(!empty($nama_yayasan)){
+                                    echo '<h6 class="up">'.$nama_yayasan.'</h6>';
+                                } else {
+                                    echo '<h6 class="up">Yayasan Pendidikan Dan Sosial Al - Husna</h6>';
+                                }
+                                if(!empty($nama)){
+                                    echo '<h5 class="up" id="nama">'.$nama.'</h5><br/>';
+                                } else {
+                                    echo '<h5 class="up" id="nama">SMK Al - Husna Loceret Nganjuk</h5><br/>';
+                                }
+                                if(!empty($status)){
+                                    echo '<h6 class="status">'.$status.'</h6>';
+                                } else {
+                                    echo '<h6 class="status">Akta Notaris: SLAMET , SH, M.Hum No. 119/2013</h6>';
+                                }
+                                if(!empty($alamat)){
+                                    echo '<span id="alamat">'.$alamat.'</span>';
+                                } else {
+                                    echo '<span id="alamat">Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471</span>';
+                                }
+                                echo '
+                            </div>
+                            <div class="separator"></div>
+                            <h5 class="hid">AGENDA SURAT MASUK</h5>';
 
                             $y = substr($dari_tanggal,0,4);
                             $m = substr($dari_tanggal,5,2);
