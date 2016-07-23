@@ -28,7 +28,7 @@
                         position: relative;
                         width: 80px;
                         height: 80px;
-                        margin: 0.5rem 0 0 1rem;
+                        margin: 0 0 0 1.2rem;
                     }
                     #nama {
                         font-size: 20px!important;
