@@ -61,7 +61,7 @@
 //jquery  auto logout when inactive activity
 idleTime = 0;
 $(document).ready(function(){
-    var idleInterval = setInterval("timerIncrement()", 300000); //auto logout in 5 minutes if inactivity user
+    var idleInterval = setInterval("timerIncrement()", 60000); //milisecond
     $(this).mousemove(function(e){
         idleTime = 0;
     });
