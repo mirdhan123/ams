@@ -25,8 +25,8 @@
             #left {
                 border-left: none !important;
             }
-            #isi {
-                height: 50px;
+            .isi {
+                height: 300px!important;
             }
             .disp {
                 text-align: center;
@@ -101,8 +101,8 @@
                 #lbr {
                     font-size: 20px;
                 }
-                #isi {
-                    height: 50px!important;
+                .isi {
+                    height: 200px!important;
                 }
                 .tgh {
                     text-align: center;
@@ -165,15 +165,15 @@
         <div class="container">
             <div id="colres">
                 <div class="disp">';
-                    $query2 = mysqli_query($config, "SELECT nama_yayasan, nama, status, alamat, logo FROM tbl_instansi");
-                    list($nama_yayasan, $nama, $status, $alamat, $logo) = mysqli_fetch_array($query2);
+                    $query2 = mysqli_query($config, "SELECT institusi, nama, status, alamat, logo FROM tbl_instansi");
+                    list($institusi, $nama, $status, $alamat, $logo) = mysqli_fetch_array($query2);
                     if(!empty($logo)){
                         echo '<img class="logodisp" src="./upload/'.$logo.'"/>';
                     } else {
                         echo '<img class="logodisp" src="./asset/img/logo.png"/>';
                     }
-                    if(!empty($nama_yayasan)){
-                        echo '<h6 class="up">'.$nama_yayasan.'</h6>';
+                    if(!empty($institusi)){
+                        echo '<h6 class="up">'.$institusi.'</h6>';
                     } else {
                         echo '<h6 class="up">Yayasan Pendidikan Dan Sosial Al - Husna</h6>';
                     }
@@ -278,10 +278,10 @@
                                 $no = 0;
                                 $row = mysqli_fetch_array($query3);{
                                 echo '
-                            <tr id="isi">
+                            <tr class="isi">
                                 <td colspan="2">
                                     <strong>Isi Disposisi :</strong><br/>'.$row['isi_disposisi'].'
-                                    <div style="height: 25px;"></div>
+                                    <div style="height: 50px;"></div>
                                     <strong>Batas Waktu</strong> : '.$d." ".$nm." ".$y.'<br/>
                                     <strong>Sifat</strong> : '.$row['sifat'].'<br/>
                                     <strong>Catatan</strong> :<br/> '.$row['catatan'].'
@@ -292,7 +292,7 @@
                                 }
                             } else {
                                 echo '
-                                <tr height="300px">
+                                <tr class="isi">
                                     <td colspan="2"><strong>Isi Disposisi :</strong>
                                     </td>
                                     <td><strong>Diteruskan Kepada</strong> : </td>

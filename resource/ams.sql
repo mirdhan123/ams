@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 23, 2016 at 08:55 
+-- Generation Time: Jul 23, 2016 at 12:10 
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `tbl_disposisi` (
   `catatan` varchar(250) NOT NULL,
   `id_surat` int(10) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `tbl_disposisi` (
 
 CREATE TABLE IF NOT EXISTS `tbl_instansi` (
   `id_instansi` tinyint(1) NOT NULL,
-  `nama_yayasan` varchar(150) NOT NULL,
+  `institusi` varchar(150) NOT NULL,
   `nama` varchar(150) NOT NULL,
   `status` varchar(150) NOT NULL,
   `alamat` varchar(150) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `tbl_instansi` (
 -- Dumping data for table `tbl_instansi`
 --
 
-INSERT INTO `tbl_instansi` (`id_instansi`, `nama_yayasan`, `nama`, `status`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
+INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
 (1, 'Yayasan Pendidikan Dan Sosial Al - Husna', 'SMK AL - Husna Loceret Nganjuk', 'Akta Notaris: SLAMET , SH, M.Hum No. 119/2013', 'Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471', 'H. Riza Fachri, S.Kom.', '-', 'http://www.smkalhusnaloceret.sch.id', 'info@smkalhusnaloceret.sch.id', 'logo.png', 1);
 
 -- --------------------------------------------------------
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `tbl_klasifikasi` (
   `nama` varchar(250) NOT NULL,
   `uraian` mediumtext NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `nama` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_user`
@@ -216,27 +216,27 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
-MODIFY `id_disposisi` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id_disposisi` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tbl_klasifikasi`
 --
 ALTER TABLE `tbl_klasifikasi`
-MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

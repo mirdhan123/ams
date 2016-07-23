@@ -117,15 +117,15 @@
                     <div class="row agenda">
                         <div class="col s10">
                             <div class="disp hidd">';
-                                $query2 = mysqli_query($config, "SELECT nama_yayasan, nama, status, alamat, logo FROM tbl_instansi");
-                                list($nama_yayasan, $nama, $status, $alamat, $logo) = mysqli_fetch_array($query2);
+                                $query2 = mysqli_query($config, "SELECT institusi, nama, status, alamat, logo FROM tbl_instansi");
+                                list($institusi, $nama, $status, $alamat, $logo) = mysqli_fetch_array($query2);
                                 if(!empty($logo)){
                                     echo '<img class="logodisp" src="./upload/'.$logo.'"/>';
                                 } else {
                                     echo '<img class="logodisp" src="./asset/img/logo.png"/>';
                                 }
-                                if(!empty($nama_yayasan)){
-                                    echo '<h6 class="up">'.$nama_yayasan.'</h6>';
+                                if(!empty($institusi)){
+                                    echo '<h6 class="up">'.$institusi.'</h6>';
                                 } else {
                                     echo '<h6 class="up">Yayasan Pendidikan Dan Sosial Al - Husna</h6>';
                                 }

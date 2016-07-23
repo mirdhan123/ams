@@ -21,4 +21,6 @@ Untuk menggunakan aplikasi ini silakan lakukan beberapa konfigurasi terlebih dah
 - Konfigurasi fitur restore database: buka file <b>restore.php</b> lalu setting databasenya.
 - Konfigurasi fitur autocomplete kode surat: buka file <b>kode.php</b> lalu setting databasenya.
 
+Untuk tampilan terbaik, gunakan browser Google Chrome versi terbaru.
+
 Inspired by Nur Akhwam.
