@@ -23,7 +23,7 @@
             <span class="white-text">&copy; <?php echo date("Y"); ?>
                 <?php
                     if(!empty($data['nama'])){
-                        echo $data['nama'] .' &nbsp;|&nbsp; <a class="white-text" href="http://masrud.com" target="_blank">By M. Rudianto</a>' ;
+                        echo $data['nama'] .' &nbsp;|&nbsp; <a class="white-text" href="http://masrud.com" target="_blank">By M. Rudianto</a>';
                     } else {
                         echo 'SMK AL - Husna Loceret Nganjuk  &nbsp;|&nbsp; <a class="white-text" href="http://masrud.com" target="_blank">By M. Rudianto</a>';
                     }
