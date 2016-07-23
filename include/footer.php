@@ -20,12 +20,12 @@
                 $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
                 while($data = mysqli_fetch_array($query)){
             ?>
-            <span class="white-text">&copy; <?php echo date("Y"); ?> &nbsp;|&nbsp; <a class="white-text" href="http://masrud.com" target="_blank">
+            <span class="white-text">&copy; <?php echo date("Y"); ?>
                 <?php
                     if(!empty($data['nama'])){
-                        echo $data['nama'];
+                        echo $data['nama'] .' &nbsp;|&nbsp; <a class="white-text" href="http://masrud.com" target="_blank">By M. Rudianto</a>' ;
                     } else {
-                        echo 'SMK AL - Husna Loceret Nganjuk';
+                        echo 'SMK AL - Husna Loceret Nganjuk  &nbsp;|&nbsp; <a class="white-text" href="http://masrud.com" target="_blank">By M. Rudianto</a>';
                     }
                 ?>
             </a>
