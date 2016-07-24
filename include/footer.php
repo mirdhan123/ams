@@ -58,24 +58,6 @@
 <script data-pace-options='{ "ajax": false }' src='asset/js/pace.min.js'></script>
 <script type="text/javascript">
 
-//jquery  auto logout when inactive activity
-idleTime = 0;
-$(document).ready(function(){
-    var idleInterval = setInterval("timerIncrement()", 60000); //milisecond
-    $(this).mousemove(function(e){
-        idleTime = 0;
-    });
-    $(this).keypress(function(e){
-        idleTime = 0;
-    });
-});
-function timerIncrement(){
-    idleTime = idleTime + 1;
-    if (idleTime >= 5){
-        window.location = './logout.php';
-    }
-}
-
 //jquery dropdown
 $(".dropdown-button").dropdown({ hover: false });
 

@@ -38,7 +38,7 @@
         }
         .bg::before {
             content: '';
-            background-image: url('./asset/img/bg.jpg');
+            background-image: url('./asset/img/background.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: scroll;
@@ -48,8 +48,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            opacity: 0.20;
-            filter:alpha(opacity=20);
+            opacity: 0.10;
+            filter:alpha(opacity=10);
         }
         #header-instansi {
             margin-top: 1%;
