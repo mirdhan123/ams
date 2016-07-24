@@ -37,8 +37,8 @@
                         echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
-                        if(!preg_match("/^[a-zA-Z0-9., \/ -]*$/", $asal_surat)){
-                            $_SESSION['asal_surat'] = 'Form Asal Surat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-) dan garis miring(/)';
+                        if(!preg_match("/^[a-zA-Z0-9.,() \/ -]*$/", $asal_surat)){
+                            $_SESSION['asal_surat'] = 'Form Asal Surat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-),kurung() dan garis miring(/)';
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
