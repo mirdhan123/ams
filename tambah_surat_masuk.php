@@ -47,8 +47,8 @@
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
-                                    $_SESSION['kode'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
+                                if(!preg_match("/^[a-zA-Z0-9. ]*$/", $nkode)){
+                                    $_SESSION['kode'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi data titik(.)';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
@@ -194,7 +194,7 @@
 
                     <!-- Row in form START -->
                     <div class="row">
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isi dengan angka">
+                        <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">looks_one</i>
                             <?php
                                 $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_masuk");
@@ -212,17 +212,27 @@
                             ?>
                             <label for="no_agenda">Nomor Agenda</label>
                         </div>
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data referensi kode klasifikasi">
-                            <i class="material-icons prefix md-prefix">bookmark</i>
-                            <input id="kode" type="text" class="validate" name="kode" required>
-                                <?php
-                                    if(isset($_SESSION['kode'])){
-                                        $kode = $_SESSION['kode'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kode.'</div>';
-                                        unset($_SESSION['kode']);
-                                    }
-                                ?>
-                            <label for="kode">Kode Klasifikasi</label>
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Kode klasifikasi diambil dari data Referensi">
+                            <i class="material-icons prefix md-prefix">bookmark</i><label style="font-size: 1rem;margin-top: -30px">Pilih Kode Klasifikasi</label>
+                            <div class="input-field col s11 right">
+                                <select class="browser-default validate" name="kode" id="kode" required style="margin: -15px 0 20px;">
+                                    <?php
+                                        $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi");
+                                        if(mysqli_num_rows($query) > 0){
+                                            while($row = mysqli_fetch_array($query)){
+                                                echo '<option value="'.$row['kode'].'">'.$row['kode']. " &nbsp;".$row['nama'].'</option>';
+                                            }
+                                        } echo 'Tidak ada kode surat';
+                                    ?>
+                                </select>
+                            </div>
+                            <?php
+                                if(isset($_SESSION['kode'])){
+                                    $kode = $_SESSION['kode'];
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kode.'</div>';
+                                    unset($_SESSION['kode']);
+                                }
+                            ?>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">place</i>
@@ -236,7 +246,7 @@
                                 ?>
                             <label for="asal_surat">Asal Surat</label>
                         </div>
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isi dengan huruf atau angka">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Indeks lokasi penyimpanan surat">
                             <i class="material-icons prefix md-prefix">storage</i>
                             <input id="indeks" type="text" class="validate" name="indeks" required>
                                 <?php

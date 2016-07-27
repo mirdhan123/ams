@@ -184,7 +184,7 @@
 
                     <!-- Row in form START -->
                     <div class="row">
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isi dengan angka">
+                        <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">looks_one</i>
                                 <?php
                                     $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_keluar");
@@ -209,9 +209,9 @@
                             <label for="no_agenda">Nomor Agenda</label>
                         </div>
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Kode klasifikasi diambil dari data Referensi">
-                            <i class="material-icons prefix md-prefix">low_priority</i><label>Pilih Kode Klasifikasi</label><br/>
+                            <i class="material-icons prefix md-prefix">bookmark</i><label style="font-size: 1rem;margin-top: -30px">Pilih Kode Klasifikasi</label>
                             <div class="input-field col s11 right">
-                                <select class="browser-default validate" name="kode" id="kode" required style="margin: 0 0 10px;">
+                                <select class="browser-default validate" name="kode" id="kode" required style="margin: -15px 0 20px;">
                                     <?php
                                         $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi");
                                         if(mysqli_num_rows($query) > 0){

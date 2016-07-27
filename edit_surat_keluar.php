@@ -47,8 +47,8 @@
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
-                                    $_SESSION['kodek'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
+                                if(!preg_match("/^[a-zA-Z0-9. ]*$/", $nkode)){
+                                    $_SESSION['kodek'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi dan titik(.)';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
@@ -212,7 +212,7 @@
 
                         <!-- Row in form START -->
                         <div class="row">
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isi dengan angka">
+                            <div class="input-field col s6">
                                 <input type="hidden" name="id_surat" value="<?php echo $id_surat ;?>">
                                 <i class="material-icons prefix md-prefix">looks_one</i>
                                 <input id="no_agenda" type="number" class="validate" name="no_agenda" value="<?php echo $no_agenda ;?>" required>
@@ -225,17 +225,30 @@
                                     ?>
                                 <label for="no_agenda">Nomor Agenda</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data referensi kode klasifikasi">
-                                <i class="material-icons prefix md-prefix">bookmark</i>
-                                <input id="kode" type="text" class="validate" name="kode" value="<?php echo $kode ;?>" required>
-                                    <?php
-                                        if(isset($_SESSION['kodek'])){
-                                            $kodek = $_SESSION['kodek'];
-                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kodek.'</div>';
-                                            unset($_SESSION['kodek']);
-                                        }
-                                    ?>
-                                <label for="kode">Kode Klasifikasi</label>
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Kode klasifikasi diambil dari data Referensi">
+                                <i class="material-icons prefix md-prefix">bookmark</i><label style="font-size: 1rem;margin-top: -30px">Pilih Kode Klasifikasi</label>
+                                <div class="input-field col s11 right">
+                                    <select class="browser-default validate" name="kode" id="kode" required style="margin: -15px 0 20px;">
+                                        <?php
+                                            $query = mysqli_query($config, "SELECT kode FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
+                                            list($kode) = mysqli_fetch_array($query);
+                                                echo '<option value="'.$kode.'">'.$kode.'</option>';
+                                            $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi");
+                                            if(mysqli_num_rows($query) > 0){
+                                                while($row = mysqli_fetch_array($query)){
+                                                    echo '<option value="'.$row['kode'].'">'.$row['kode']. " &nbsp;".$row['nama'].'</option>';
+                                                }
+                                            } echo 'Tidak ada kode surat';
+                                        ?>
+                                    </select>
+                                </div>
+                                <?php
+                                    if(isset($_SESSION['kodek'])){
+                                        $kodek = $_SESSION['kodek'];
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kodek.'</div>';
+                                        unset($_SESSION['kodek']);
+                                    }
+                                ?>
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">place</i>
@@ -249,7 +262,7 @@
                                     ?>
                                 <label for="tujuan">Tujuan Surat</label>
                             </div>
-                            <div class="input-field col s6">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Sesuaikan Kode Surat dengan Kode Klasifikasi & No Urut dengan No Agenda">
                                 <i class="material-icons prefix md-prefix">looks_two</i>
                                 <input id="no_surat" type="text" class="validate" name="no_surat" value="<?php echo $no_surat ;?>" required>
                                     <?php
