@@ -147,6 +147,59 @@
                             <ul class="left">
                                 <li class="waves-effect waves-light"><a href="?page=tsk&act=add" class="judul"><i class="material-icons">drafts</i> Tambah Data Surat Keluar</a></li>
                             </ul>
+                            <ul class="right" style="margin-right: 10px">
+                                <li class="waves-effect waves-light right"><a class="modal-trigger tooltipped" data-position="left" data-tooltip="Atur kode nama instansi dalam nomor surat" href="#modal"><i class="material-icons">settings</i></a></li>
+                            </ul>
+
+                            <div id="modal" class="modal">
+                                <div class="modal-content white">
+                                    <h5 style="color: #444">Edit kode instansi dalam nomor surat</h5>
+                                    <?php
+                                    $query = mysqli_query($config, "SELECT id_sett,kode_instansi FROM tbl_sett");
+                                    list($id_sett,$kode_instansi) = mysqli_fetch_array($query);?>
+                                    <div class="row">
+                                        <style>
+                                            .ins {
+                                                font-size: 1.2rem;
+                                                color: #444;
+                                                border-bottom: 1px solid #e0e0e0
+                                            }
+                                            .md-prefix {
+                                                margin-left: -12px
+                                            }
+                                            .inp {
+                                                margin-left: 10px!important;
+                                            }
+                                        </style>
+                                        <form method="post" action="">
+                                            <div class="input-field col s12">
+                                                <div class="input-field col s12 ins">
+                                                    <input type="hidden" value="<?php echo $id_sett; ?>" name="id_sett">
+                                                    <i class="material-icons prefix md-prefix">font_download</i>
+                                                    <input id="kode_instansi" type="text" name="kode_instansi" value="<?php echo $kode_instansi; ?>" class="inp" required>
+                                                    <br/>
+                                                </div>
+                                                <div class="modal-footer white">
+                                                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" name="simpan">Simpan</button>
+                                                    <?php
+                                                    if(isset($_REQUEST['simpan'])){
+                                                        $id_sett = "1";
+                                                        $kode_instansi = $_REQUEST['kode_instansi'];                                                                    $id_user = $_SESSION['id_user'];
+
+                                                        $query = mysqli_query($config, "UPDATE tbl_sett SET kode_instansi='$kode_instansi',id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                        if($query == true){
+                                                            header("Location: ./admin.php?page=tsk&act=add");
+                                                            die();
+                                                        }
+                                                    } ?>
+                                                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Batal</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </nav>
                 </div>
@@ -266,7 +319,10 @@
                                 $date = date("d-m-Y");
                                 $y = substr($date,6,4);
                                 $m = substr($date,3,2);
-                                $g = "SMK-AH";
+
+                                $query1 = mysqli_query($config, "SELECT kode_instansi FROM tbl_sett WHERE id_sett='1'");
+                                list($kode_instansi) = mysqli_fetch_array($query1);
+                                $g = "$kode_instansi";
 
                                 if($m == "01"){
                                     $nm = "I";
