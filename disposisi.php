@@ -13,6 +13,30 @@
                   </script>';
         } else {
 
+            if(isset($_REQUEST['simpan'])){
+                $status = $_REQUEST['status'];
+                $id_surat = $_REQUEST['id_surat'];
+
+                if($status == 1){
+
+                    $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
+                    if($query == true){
+                        echo '<script language="javascript">
+                                window.alert("SUKSES! Data berhasil diupdate");
+                                window.location.href="./admin.php?page=tsm&act=addd&id_surat='.$id_surat.'";
+                              </script>';
+                    }
+                } else {
+                    $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
+                    if($query == true){
+                        echo '<script language="javascript">
+                                window.alert("SUKSES! Data berhasil diupdate");
+                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
+                              </script>';
+                    }
+                }
+            }
+
             $id_surat = $_REQUEST['id_surat'];
 
             $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
@@ -35,7 +59,7 @@
                         echo '
                             <!-- Row Start -->
                             <div class="row jarak-form">
-                                <div class="col 1 2">
+                                <div class="col 12">
                                     <a class="btn-large blue waves-effect waves-light" href="?page=tsm"><i class="material-icons">arrow_back</i>  Kembali</a>
                                 </div>';
 
@@ -466,13 +490,13 @@
                                         <div class="card-action">
                                             <div class="col s12">
                                                 <form method="post" enctype="multipart/form-data">
-                                                    <input class="with-gap" name="disposisi" type="radio" id="setuju"/>
+                                                    <input class="with-gap" name="status" type="radio" id="setuju" value="1" required/>
                                                     <label for="setuju" style="color: #444;font-size: 1.2rem">Setuju dan buat disposisi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                                                    <input class="with-gap" name="disposisi" type="radio" id="arsip"/>
+                                                    <input class="with-gap" name="status" type="radio" id="arsip" value="2" required/>
                                                     <label for="arsip" style="color: #444;font-size: 1.2rem">Arsipkan saja</label></div><br/><br/><br/>
 
-                                                    <a href="" class="btn-large deep-orange waves-effect waves-light white-text">SIMPAN<i class="material-icons">done</i></a>
+                                                    <button type="submit" name="simpan" class="btn-large deep-orange waves-effect waves-light white-text">SIMPAN <i class="material-icons">done</i></button>
                                                 </form>
                                             </div>
                                         </div>
