@@ -17,25 +17,36 @@
                 $status = $_REQUEST['status'];
                 $id_surat = $_REQUEST['id_surat'];
 
-                if($status == 1){
-
-                    $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
-                    if($query == true){
-                        echo '<script language="javascript">
-                                window.alert("SUKSES! Data berhasil diupdate");
-                                window.location.href="./admin.php?page=tsm&act=addd&id_surat='.$id_surat.'";
-                              </script>';
-                    }
+                //validasi input data
+                if(!preg_match("/^[1-2]*$/", $status)){
+                    $_SESSION['status'] = 'Form Status hanya boleh mengandung angka 1 atau 2';
+                    header("Location: ./admin.php?page=tsm&act=disp&id_surat=$id_surat");
+                    die();
                 } else {
-                    $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
-                    if($query == true){
-                        echo '<script language="javascript">
-                                window.alert("SUKSES! Data berhasil diupdate");
-                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
-                              </script>';
+
+                    if($status == 1){
+
+                        $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
+                        if($query == true){
+                            echo '<script language="javascript">
+                                    window.alert("SUKSES! Status data surat berhasil diupdate");
+                                    window.location.href="./admin.php?page=tsm&act=addd&id_surat='.$id_surat.'";
+                                  </script>';
+                        }
+                    } elseif($status == 2) {
+                        $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
+                        if($query == true){
+                            echo '<script language="javascript">
+                                    window.alert("SUKSES! Status data surat berhasil diupdate");
+                                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
+                                  </script>';
+                        }
+                    } else {
+                        header("Location: ./admin.php?page=tsm&act=disp&id_surat=$id_surat");
+                        die();
                     }
-                }
             }
+        }
 
             $id_surat = $_REQUEST['id_surat'];
 
@@ -491,7 +502,15 @@
                                             <div class="col s12">
                                                 <form method="post" enctype="multipart/form-data">
                                                     <input class="with-gap" name="status" type="radio" id="setuju" value="1" required/>
-                                                    <label for="setuju" style="color: #444;font-size: 1.2rem">Setuju dan buat disposisi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <label for="setuju" style="color: #444;font-size: 1.2rem">Setuju dan buat disposisi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+
+                                                    if(isset($_SESSION['status'])){
+                                                        $status = $_SESSION['status'];
+                                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$status.'</div>';
+                                                        unset($_SESSION['status']);
+                                                    }
+
+                                                    echo '
 
                                                     <input class="with-gap" name="status" type="radio" id="arsip" value="2" required/>
                                                     <label for="arsip" style="color: #444;font-size: 1.2rem">Arsipkan saja</label></div><br/><br/><br/>
