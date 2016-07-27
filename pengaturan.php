@@ -56,7 +56,7 @@
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9. -]*$/", $institusi)){
-                                $_SESSION['institusi'] = 'Form Nama Yayasan hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan minus(-)';
+                                $_SESSION['institusi'] = 'Form Nama Institusi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan minus(-)';
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
@@ -253,7 +253,7 @@
                                                     unset($_SESSION['institusi']);
                                                 }
                                             ?>
-                                        <label for="institusi">Nama Yayasan</label>
+                                        <label for="institusi">Nama Institusi</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">assistant_photo</i>

@@ -120,9 +120,9 @@
                                     echo '<td>'.$no++.'</td>';
 
                                     if($row['admin'] == 1){
-                                        $row['admin'] = 'Super Admin';
-                                    } elseif($row['admin'] == 2){
                                         $row['admin'] = 'Administrator';
+                                    } elseif($row['admin'] == 2){
+                                        $row['admin'] = 'Pimpinan Instansi';
                                     } else {
                                         $row['admin'] = 'User Biasa';
                                     } echo '<td>'.$row['username'].'</td>
@@ -130,18 +130,14 @@
                                             <td>'.$row['admin'].'</td>
                                             <td>';
 
-                                    if($_SESSION['username'] == $row['username']){
+                                    if($row['id_user'] == 1 || $row['id_user'] == 2 || $row['id_user'] == 3){
                                         echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
                                     } else {
-
-                                        if($row['id_user'] == 1){
-                                            echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
-                                        } else {
-                                          echo ' <a class="btn small blue waves-effect waves-light" href="?page=sett&sub=usr&act=edit&id_user='.$row['id_user'].'">
-                                                 <i class="material-icons">edit</i> EDIT</a>
+                                          echo '
                                                  <a class="btn small deep-orange waves-effect waves-light" href="?page=sett&sub=usr&act=del&id_user='.$row['id_user'].'"><i class="material-icons">delete</i> DEL</a>';
-                                        }
-                                    } echo '</td>
+                                    }
+                                    echo '
+                                        </td>
                                     </tr>
                                 </tbody>';
                                     }

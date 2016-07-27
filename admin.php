@@ -46,6 +46,9 @@
                 case 'ctk':
                     include "cetak_disposisi.php";
                     break;
+                case 'disp':
+                    include "disposisi.php";
+                    break;
                 case 'tsk':
                     include "transaksi_surat_keluar.php";
                     break;
@@ -88,9 +91,9 @@
                         <p class="description">Anda login sebagai
                         <?php
                             if($_SESSION['admin'] == 1){
-                                echo "<strong>Super Admin</strong>. Anda memiliki akses penuh terhadap sistem.";
+                                echo "<strong>Administrator</strong>. Anda memiliki akses penuh terhadap semua fitur.";
                             } elseif($_SESSION['admin'] == 2){
-                                echo "<strong>Administrator</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
+                                echo "<strong>Pimpinan Instansi</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
                             } else {
                                 echo "<strong>Petugas Disposisi</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
                             }?></p>
@@ -154,7 +157,7 @@
             </div>
 
         <?php
-            if($_SESSION['id_user'] == 1 || $_SESSION['admin'] == 2){?>
+            if($_SESSION['id_user'] == 1){?>
             <div class="col s12 m4">
                 <div class="card blue accent-2">
                     <div class="card-content">

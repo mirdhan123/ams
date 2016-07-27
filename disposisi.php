@@ -39,7 +39,7 @@
                     $no = 1;
                     while($row = mysqli_fetch_array($query)){
 
-                    if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
+                    if($_SESSION['admin'] != 2){
                         echo '<script language="javascript">
                                 window.alert("ERROR! Anda tidak memiliki hak akses untuk melihat data ini");
                                 window.location.href="./admin.php?page=tsm";
@@ -55,7 +55,7 @@
                                             <div class="nav-wrapper blue-grey darken-1">
                                                 <div class="col m12">
                                                     <ul class="left">
-                                                        <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">description</i> Disposisi  Surat</a></li>
+                                                        <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">description</i> Disposisi  Surat Masuk</a></li>
                                                         <li class="waves-effect waves-light">
                                                             <a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=add"><i class="material-icons md-24">add_circle</i> Tambah Disposisi</a>
                                                         </li>

@@ -59,7 +59,7 @@
             if(mysqli_num_rows($query) > 0){
                 $no = 1;
                 while($row = mysqli_fetch_array($query))
-                if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
+                if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
                     echo '<script language="javascript">
                             window.alert("ERROR! Anda tidak memiliki hak akses untuk mengedit data ini");
                             window.location.href="./admin.php?page=ref";

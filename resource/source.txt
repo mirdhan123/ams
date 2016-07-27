@@ -27,3 +27,4 @@ http://coyotelab.org/php/upload-csv-and-insert-into-database-using-phpmysql.html
 http://cssdeck.com/labs/bv45bh6p
 http://github.hubspot.com/pace/
 http://stackoverflow.com/questions/572938/force-logout-users-if-users-are-inactive-for-a-certain-period-of-time
+http://stackoverflow.com/questions/12123933/php-check-mysql-last-row

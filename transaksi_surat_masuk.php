@@ -6,31 +6,24 @@
         die();
     } else {
 
-        if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
-            echo '<script language="javascript">
-                    window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
-                    window.location.href="./logout.php";
-                  </script>';
-        } else {
-
-            if(isset($_REQUEST['act'])){
-                $act = $_REQUEST['act'];
-                switch ($act) {
-                    case 'add':
-                        include "tambah_surat_masuk.php";
-                        break;
-                    case 'edit':
-                        include "edit_surat_masuk.php";
-                        break;
-                    case 'disp':
-                        include "disposisi.php";
-                        break;
-                    case 'print':
-                        include "cetak_disposisi.php";
-                        break;
-                    case 'del':
-                        include "hapus_surat_masuk.php";
-                        break;
+        if(isset($_REQUEST['act'])){
+            $act = $_REQUEST['act'];
+            switch ($act) {
+                case 'add':
+                    include "tambah_surat_masuk.php";
+                    break;
+                case 'edit':
+                    include "edit_surat_masuk.php";
+                    break;
+                case 'disp':
+                    include "disposisi.php";
+                    break;
+                case 'print':
+                    include "cetak_disposisi.php";
+                    break;
+                case 'del':
+                    include "hapus_surat_masuk.php";
+                    break;
                 }
             } else {
 
@@ -56,9 +49,23 @@
                                 <div class="nav-wrapper blue-grey darken-1">
                                     <div class="col m7">
                                         <ul class="left">
+                                            <?php
+                                                if($_SESSION['admin'] == 2){
+                                                    echo '
+                                            <li class="waves-effect waves-light hide-on-small-only"><a href="?page=tsm" class="judul"><i class="material-icons">description</i> Disposisi Surat Masuk</a></li>
+                                            <li class="waves-effect waves-light">';
+                                                } else {
+                                                    echo '
                                             <li class="waves-effect waves-light hide-on-small-only"><a href="?page=tsm" class="judul"><i class="material-icons">mail</i> Surat Masuk</a></li>
-                                            <li class="waves-effect waves-light">
-                                                <a href="?page=tsm&act=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>
+                                            <li class="waves-effect waves-light">';
+                                                }
+
+                                                if($_SESSION['admin'] == 2){
+                                                    echo '';
+                                                } else {
+                                                    echo '<a href="?page=tsm&act=add"><i class="material-icons md-24">add_circle</i> Tambah Data</a>';
+                                                }
+                                            ?>
                                             </li>
                                         </ul>
                                     </div>
@@ -200,19 +207,21 @@
                                     <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                     <td>';
 
-                                    if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
-                                        echo '<a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">
-                                            <i class="material-icons">print</i> PRINT</a>';
+                                    if($_SESSION['admin'] == 2){
+                                        echo '
+                                            <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">                                                    <i class="material-icons">description</i> TAMBAH DISPOSISI</a>';
                                     } else {
-                                      echo '<a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
+                                        echo '
+                                            <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
                                                 <i class="material-icons">edit</i> EDIT</a>
-                                            <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Pilih Disp untuk menambahkan Disposisi Surat" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">
-                                                <i class="material-icons">description</i> DISP</a>
                                             <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">
-                                                <i class="material-icons">print</i> PRINT</a>
+                                                <i class="material-icons">print</i> CETAK</a>
                                             <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.$row['id_surat'].'">
-                                                <i class="material-icons">delete</i> DEL</a>';
-                                    } echo '
+                                                <i class="material-icons">delete</i> HAPUS</a>';
+                                    }
+
+                                    echo '
+
                                         </td>
                                     </tr>
                                 </tbody>';
@@ -380,19 +389,20 @@
                                         <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                         <td>';
 
-                                        if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
-                                            echo '<a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">
-                                                <i class="material-icons">print</i> PRINT</a>';
+                                        if($_SESSION['admin'] == 2){
+                                            echo '
+                                                <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">                                                    <i class="material-icons">description</i> TAMBAH DISPOSISI</a>';
                                         } else {
-                                          echo '<a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
+                                            echo '
+                                                <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
                                                     <i class="material-icons">edit</i> EDIT</a>
-                                                <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Pilih Disp untuk menambahkan Disposisi Surat" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">
-                                                    <i class="material-icons">description</i> DISP</a>
                                                 <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">
-                                                    <i class="material-icons">print</i> PRINT</a>
+                                                    <i class="material-icons">print</i> CETAK</a>
                                                 <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.$row['id_surat'].'">
-                                                    <i class="material-icons">delete</i> DEL</a>';
-                                        } echo '
+                                                    <i class="material-icons">delete</i> HAPUS</a>';
+                                        }
+
+                                        echo '
                                         </td>
                                     </tr>
                                 </tbody>';
@@ -450,5 +460,4 @@
                 }
             }
         }
-    }
 ?>

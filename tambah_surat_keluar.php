@@ -186,7 +186,20 @@
                     <div class="row">
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isi dengan angka">
                             <i class="material-icons prefix md-prefix">looks_one</i>
-                            <input id="no_agenda" type="number" class="validate" name="no_agenda" required>
+                            <?php
+                                $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_keluar");
+                                    echo '<input id="no_agenda" type="number" class="validate" value="';
+                                $no_agenda = 0;
+                                $result = mysqli_num_rows($query);
+                                $counter = 0;
+                                while(list($no_agenda) = mysqli_fetch_array($query)){
+                                    if (++$counter == $result) {
+                                        $no_agenda++;
+                                        echo $no_agenda;
+                                    }
+                                }
+                                echo '"name="no_agenda" required>';
+                            ?>
                                 <?php
                                     if(isset($_SESSION['no_agendak'])){
                                         $no_agendak = $_SESSION['no_agendak'];

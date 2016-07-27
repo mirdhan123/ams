@@ -36,8 +36,8 @@
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
-                            if(!preg_match("/^[2-3]*$/", $admin)){
-                                $_SESSION['tipeuser'] = 'Form Tipe User hanya boleh mengandung karakter angka 2 atau 3';
+                            if(!preg_match("/^[3]*$/", $admin)){
+                                $_SESSION['tipeuser'] = 'Form Tipe User hanya boleh mengandung karakter angka 3';
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
@@ -195,7 +195,6 @@
                             <div class="input-field col s11 right">
                                 <select class="browser-default validate" name="admin" id="admin" required>
                                     <option value="3">User Biasa</option>
-                                    <option value="2">Administrator</option>
                                 </select>
                             </div>
                                 <?php

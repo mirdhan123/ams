@@ -9,14 +9,14 @@
         $id_user = mysqli_real_escape_string($config, $_REQUEST['id_user']);
         if($id_user == 1){
             echo '<script language="javascript">
-                    window.alert("ERROR! Super Admin tidak boleh dihapus");
+                    window.alert("ERROR! Administrator tidak boleh dihapus");
                     window.location.href="./admin.php?page=sett&sub=usr";
                   </script>';
         } else {
 
-            if($id_user == $_SESSION['id_user']){
+            if($id_user == 2 || $id_user == 3){
                 echo '<script language="javascript">
-                        window.alert("ERROR! Anda tidak diperbolehkan menghapus akun Anda sendiri. Hubungi super admin untuk menghapusnya");
+                        window.alert("ERROR! Akun ini tidak boleh dihapus");
                         window.location.href="./admin.php?page=sett&sub=usr";
                       </script>';
             } else {
@@ -73,7 +73,7 @@
             				                    <td width="13%">Tipe User</td>
             				                    <td width="1%">:</td>';
                                                 if($row['admin'] == 2){
-                                                    $row['admin'] = "Administrator";
+                                                    $row['admin'] = "Pimpinan Instansi";
                                                 } else {
                                                     if($row['admin'] == 3){
                                                     $row['admin'] = "User Biasa";
