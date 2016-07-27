@@ -56,10 +56,57 @@
         				                    <td width="1%">:</td>
         				                    <td width="86%">'.$row['kode'].'</td>
         				                </tr>
+                                        <tr>
+                                            <td width="13%">Tujuan </td>
+                                            <td width="1%">:</td>
+                                            <td width="86%">'.$row['tujuan'].'</td>
+                                        </tr>
         				                <tr>
-        				                    <td width="13%">No. Isi</td>
+        				                    <td width="13%">Isi Surat</td>
         				                    <td width="1%">:</td>
         				                    <td width="86%">'.$row['isi'].'</td>
+        				                </tr>
+                                        <tr>
+        				                    <td width="13%">No. Surat</td>
+        				                    <td width="1%">:</td>
+        				                    <td width="86%">'.$row['no_surat'].'</td>
+        				                </tr>
+        				                <tr>
+        				                    <td width="13%">Tanggal Surat</td>
+        				                    <td width="1%">:</td>';
+
+                                            $y = substr($row['tgl_surat'],0,4);
+                                            $m = substr($row['tgl_surat'],5,2);
+                                            $d = substr($row['tgl_surat'],8,2);
+
+                                            if($m == "01"){
+                                                $nm = "Januari";
+                                            } elseif($m == "02"){
+                                                $nm = "Februari";
+                                            } elseif($m == "03"){
+                                                $nm = "Maret";
+                                            } elseif($m == "04"){
+                                                $nm = "April";
+                                            } elseif($m == "05"){
+                                                $nm = "Mei";
+                                            } elseif($m == "06"){
+                                                $nm = "Juni";
+                                            } elseif($m == "07"){
+                                                $nm = "Juli";
+                                            } elseif($m == "08"){
+                                                $nm = "Agustus";
+                                            } elseif($m == "09"){
+                                                $nm = "September";
+                                            } elseif($m == "10"){
+                                                $nm = "Oktober";
+                                            } elseif($m == "11"){
+                                                $nm = "November";
+                                            } elseif($m == "12"){
+                                                $nm = "Desember";
+                                            }
+                                            echo '
+
+        				                    <td width="86%">'.$d." ".$nm." ".$y.'</td>
         				                </tr>
         				                <tr>
         				                    <td width="13%">File</td>
@@ -71,21 +118,6 @@
                                                 echo ' Tidak ada file yang diupload';
                                             } echo '</td>
                                         </tr>
-        				                <tr>
-        				                    <td width="13%">Tujuan </td>
-        				                    <td width="1%">:</td>
-        				                    <td width="86%">'.$row['tujuan'].'</td>
-        				                </tr>
-        				                <tr>
-        				                    <td width="13%">No. Surat</td>
-        				                    <td width="1%">:</td>
-        				                    <td width="86%">'.$row['no_surat'].'</td>
-        				                </tr>
-        				                <tr>
-        				                    <td width="13%">Tanggal Surat</td>
-        				                    <td width="1%">:</td>
-        				                    <td width="86%">'.$tgl = date('d M Y ', strtotime($row['tgl_surat'])).'</td>
-        				                </tr>
                                         <tr>
                                             <td width="13%">Keterangan</td>
                                             <td width="1%">:</td>
