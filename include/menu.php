@@ -49,6 +49,32 @@
             <?php
                 if($_SESSION['admin'] == 2){ ?>
             <li><a href="?page=tsm"><i class="material-icons middle">description</i> Disposisi Surat</a></li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <a class="collapsible-header"><i class="material-icons">assignment</i> Buku Agenda</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="?page=asm">Surat Masuk</a></li>
+                                <li><a href="?page=ask">Surat Keluar</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <a class="collapsible-header"><i class="material-icons">image</i> Galeri File</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="?page=gsm">Surat Masuk</a></li>
+                                <li><a href="?page=gsk">Surat Keluar</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
             <?php
                 }
             ?>
@@ -143,6 +169,16 @@
             <?php
                 if($_SESSION['admin'] == 2){ ?>
             <li><a href="?page=tsm">Disposisi Surat</a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="agenda">Buku Agenda <i class="material-icons md-18">arrow_drop_down</i></a></li>
+                <ul id='agenda' class='dropdown-content'>
+                    <li><a href="?page=asm">Surat Masuk</a></li>
+                    <li><a href="?page=ask">Surat Keluar</a></li>
+                </ul>
+            <li><a class="dropdown-button" href="#!" data-activates="agenda">Galeri File <i class="material-icons md-18">arrow_drop_down</i></a></li>
+                <ul id='agenda' class='dropdown-content'>
+                    <li><a href="?page=gsm">Surat Masuk</a></li>
+                    <li><a href="?page=gsk">Surat Keluar</a></li>
+                </ul>
             <?php
                 }
             ?>

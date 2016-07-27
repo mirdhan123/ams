@@ -209,15 +209,21 @@
 
                                     if($_SESSION['admin'] == 2){
                                         echo '
-                                            <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">                                                    <i class="material-icons">description</i> TAMBAH DISPOSISI</a>';
+                                            <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">description</i> DISPOSISI</a>';
+
                                     } else {
                                         echo '
                                             <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
                                                 <i class="material-icons">edit</i> EDIT</a>
-                                            <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">
-                                                <i class="material-icons">print</i> CETAK</a>
                                             <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.$row['id_surat'].'">
                                                 <i class="material-icons">delete</i> HAPUS</a>';
+                                    }
+
+                                    if(!empty($row['tujuan'])){
+                                        echo '
+                                                <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
+                                    } else {
+                                        echo '';
                                     }
 
                                     echo '
@@ -391,15 +397,21 @@
 
                                         if($_SESSION['admin'] == 2){
                                             echo '
-                                                <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'">                                                    <i class="material-icons">description</i> TAMBAH DISPOSISI</a>';
+                                                <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">description</i> DISPOSISI</a>';
+
                                         } else {
                                             echo '
                                                 <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
                                                     <i class="material-icons">edit</i> EDIT</a>
-                                                <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">
-                                                    <i class="material-icons">print</i> CETAK</a>
                                                 <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.$row['id_surat'].'">
                                                     <i class="material-icons">delete</i> HAPUS</a>';
+                                        }
+
+                                        if(!empty($row['tujuan'])){
+                                            echo '
+                                                    <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
+                                        } else {
+                                            echo '';
                                         }
 
                                         echo '
