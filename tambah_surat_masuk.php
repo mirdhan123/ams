@@ -201,7 +201,7 @@
 
                     <!-- Row in form START -->
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">looks_one</i>
                             <?php
                                 $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_masuk");
@@ -219,7 +219,7 @@
                             ?>
                             <label for="no_agenda">Nomor Agenda</label>
                         </div>
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Kode klasifikasi diambil dari data Referensi">
+                        <div class="input-field col m6 tooltipped" data-position="top" data-tooltip="Kode klasifikasi diambil dari data Referensi">
                             <i class="material-icons prefix md-prefix">bookmark</i><label style="font-size: 1rem;margin-top: -30px">Pilih Kode Klasifikasi</label>
                             <div class="input-field col s11 right">
                                 <select class="browser-default validate" name="kode" id="kode" required style="margin: -15px 0 20px;">
@@ -241,7 +241,7 @@
                                 }
                             ?>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">place</i>
                             <input id="asal_surat" type="text" class="validate" name="asal_surat" required>
                                 <?php
@@ -253,7 +253,7 @@
                                 ?>
                             <label for="asal_surat">Asal Surat</label>
                         </div>
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Indeks lokasi penyimpanan surat">
+                        <div class="input-field col m6 tooltipped" data-position="top" data-tooltip="Indeks lokasi penyimpanan surat">
                             <i class="material-icons prefix md-prefix">storage</i>
                             <input id="indeks" type="text" class="validate" name="indeks" required>
                                 <?php
@@ -265,7 +265,7 @@
                                 ?>
                             <label for="indeks">Indeks Berkas</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">looks_two</i>
                             <input id="no_surat" type="text" class="validate" name="no_surat" required>
                                 <?php
@@ -282,7 +282,7 @@
                                 ?>
                             <label for="no_surat">Nomor Surat</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">date_range</i>
                             <input id="tgl_surat" type="text" name="tgl_surat" class="datepicker" required>
                                 <?php
@@ -294,7 +294,7 @@
                                 ?>
                             <label for="tgl_surat">Tanggal Surat</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">description</i>
                             <textarea id="isi" class="materialize-textarea validate" name="isi" required></textarea>
                                 <?php
@@ -306,7 +306,7 @@
                                 ?>
                             <label for="isi">Isi Ringkas</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">featured_play_list</i>
                             <input id="keterangan" type="text" class="validate" name="keterangan" required>
                                 <?php
@@ -318,7 +318,7 @@
                                 ?>
                             <label for="keterangan">Keterangan</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                             <div class="file-field input-field tooltipped" data-position="top" data-tooltip="Jika tidak ada file/scan gambar surat, biarkan kosong">
                                 <div class="btn light-green darken-1">
                                     <span>File</span>

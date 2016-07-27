@@ -120,7 +120,7 @@
             ?>
 
             <!-- Info Statistic START -->
-            <div class="col s12 m4">
+            <div class="col s12 l4">
                 <div class="card cyan">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">mail</i> Jumlah Surat Masuk</span>
@@ -129,7 +129,7 @@
                 </div>
             </div>
 
-            <div class="col s12 m4">
+            <div class="col s12 l4">
                 <div class="card lime darken-1">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Jumlah Surat Keluar</span>
@@ -138,7 +138,7 @@
                 </div>
             </div>
 
-            <div class="col s12 m4">
+            <div class="col s12 l4">
                 <div class="card yellow darken-3">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">description</i> Jumlah Disposisi</span>
@@ -147,7 +147,7 @@
                 </div>
             </div>
 
-            <div class="col s12 m4">
+            <div class="col s12 l4">
                 <div class="card deep-orange">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">class</i> Jumlah Klasifikasi Surat</span>
@@ -158,7 +158,7 @@
 
         <?php
             if($_SESSION['id_user'] == 1){?>
-            <div class="col s12 m4">
+            <div class="col s12 l4">
                 <div class="card blue accent-2">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">people</i> Jumlah Pengguna</span>

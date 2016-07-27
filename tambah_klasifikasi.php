@@ -119,7 +119,7 @@
 
                         <!-- Row in form START -->
                         <div class="row">
-                            <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Isi dengan huruf, angka, spasi dan titik(.)">
+                            <div class="input-field col m3 tooltipped" data-position="top" data-tooltip="Isi dengan huruf, angka, spasi dan titik(.)">
                                 <i class="material-icons prefix md-prefix">font_download</i>
                                 <input id="kd" type="text" class="validate" maxlength="30" name="kode" required>
                                     <?php
@@ -136,7 +136,7 @@
                                     ?>
                                 <label for="kd">Kode</label>
                             </div>
-                            <div class="input-field col s9">
+                            <div class="input-field col m9">
                                 <i class="material-icons prefix md-prefix">text_fields</i>
                                 <input id="nama" type="text" class="validate" name="nama" required>
                                     <?php

@@ -140,7 +140,7 @@
 
                     <!-- Row in form START -->
                     <div class="row">
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter [ huruf, angka atau underscore(_) ]">
+                        <div class="input-field col m6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter [ huruf, angka atau underscore(_) ]">
                             <i class="material-icons prefix md-prefix">account_circle</i>
                             <input id="username" type="text" class="validate" name="username" required>
                                 <?php
@@ -162,7 +162,7 @@
                                 ?>
                             <label for="username">Username</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">text_fields</i>
                             <input id="nama" type="text" class="validate" name="nama" required>
                                 <?php
@@ -174,7 +174,7 @@
                                 ?>
                             <label for="nama">Nama</label>
                         </div>
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter">
+                        <div class="input-field col m6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter">
                             <i class="material-icons prefix md-prefix">lock</i>
                             <input id="password" type="password" class="validate" name="password" required>
                                 <?php
@@ -186,7 +186,7 @@
                                 ?>
                             <label for="password">Password</label>
                         </div>
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Jika belum memiliki NIP, isi dengan minus(-)">
+                        <div class="input-field col m6 tooltipped" data-position="top" data-tooltip="Jika belum memiliki NIP, isi dengan minus(-)">
                             <i class="material-icons prefix md-prefix">looks_one</i>
                             <input id="nip" type="text" class="validate" name="nip" required>
                                 <?php
@@ -198,7 +198,7 @@
                                 ?>
                             <label for="nip">NIP</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Tipe User</label><br/>
                             <div class="input-field col s11 right">
                                 <select class="browser-default validate" name="admin" id="admin" required>
