@@ -43,56 +43,70 @@
                               </script>';
                     } else {
 
-                      echo '<!-- Row Start -->
-                            <div class="row jarak-form">
-                                <a class="btn-large blue waves-effect waves-light" href="?page=tsm"><i class="material-icons">arrow_back</i>  Kembali</a>
-                            </div>
-                            <!-- Row END -->';
+                        if(isset($_SESSION['succAdd'])){
+                            $succAdd = $_SESSION['succAdd'];
+                            echo '<div id="alert-message" class="row">
+                                    <div class="col m12">
+                                        <div class="card green lighten-5">
+                                            <div class="card-content notif">
+                                                <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succAdd.'</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                            unset($_SESSION['succAdd']);
+                        }
+                        if(isset($_SESSION['succEdit'])){
+                            $succEdit = $_SESSION['succEdit'];
+                            echo '<div id="alert-message" class="row">
+                                    <div class="col m12">
+                                        <div class="card green lighten-5">
+                                            <div class="card-content notif">
+                                                <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succEdit.'</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                            unset($_SESSION['succEdit']);
+                        }
+                        if(isset($_SESSION['succDel'])){
+                            $succDel = $_SESSION['succDel'];
+                            echo '<div id="alert-message" class="row">
+                                    <div class="col m12">
+                                        <div class="card green lighten-5">
+                                            <div class="card-content notif">
+                                                <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succDel.'</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                            unset($_SESSION['succDel']);
+                        }
 
-                            if(isset($_SESSION['succAdd'])){
-                                $succAdd = $_SESSION['succAdd'];
-                                echo '<div id="alert-message" class="row">
-                                        <div class="col m12">
-                                            <div class="card green lighten-5">
-                                                <div class="card-content notif">
-                                                    <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succAdd.'</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>';
-                                unset($_SESSION['succAdd']);
-                            }
-                            if(isset($_SESSION['succEdit'])){
-                                $succEdit = $_SESSION['succEdit'];
-                                echo '<div id="alert-message" class="row">
-                                        <div class="col m12">
-                                            <div class="card green lighten-5">
-                                                <div class="card-content notif">
-                                                    <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succEdit.'</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>';
-                                unset($_SESSION['succEdit']);
-                            }
-                            if(isset($_SESSION['succDel'])){
-                                $succDel = $_SESSION['succDel'];
-                                echo '<div id="alert-message" class="row">
-                                        <div class="col m12">
-                                            <div class="card green lighten-5">
-                                                <div class="card-content notif">
-                                                    <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succDel.'</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>';
-                                unset($_SESSION['succDel']);
-                            }
+                        if(isset($_REQUEST['arsip'])){
+                            header("location: ./");
+                            die();
+                        } else {
 
-                            echo '
+                        echo '
+                                <!-- Row Start -->
+                                  <div class="row jarak-form">
+                                      <div class="col l2">
+                                          <a class="btn-large blue waves-effect waves-light" href="?page=tsm"><i class="material-icons">arrow_back</i>  Kembali</a>
+                                      </div>
+                                      <div class="col l10" style="margin-top: -10px">
+                                          <div class="card blue lighten-5">
+                                              <div class="card-content">
+                                                  <p style="margin: -5px!important;font-size: 1.1rem; color: #333;">Klik tombol <strong>"Setuju"</strong> jika Anda menyetujui surat ini dan ingin membuat disposisi.</p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!-- Row END -->
+
                             <!-- Row form Start -->
-                            <div class="row" style="margin-top: -20px">
-                                <div class="col l6">
+                            <div class="row" style="margin-top: -15px">
+                                <div class="col s12">
                                 <div class="card">
                                     <div class="card-content">
                                     <table>
@@ -173,13 +187,15 @@
                                     </table>
                                     </div>
                                     <div class="card-action">
-                                        <a href="?page=tsm&act=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
-                                        <a href="?page=tsm" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
+                                        <a href="" class="btn-large blue waves-effect waves-light white-text">SETUJU<i class="material-icons">done</i></a>
+
+                                        <a href="" class="btn-large deep-orange waves-effect waves-light white-text">ARSIPKAN SAJA <i class="material-icons">archive</i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Row form END -->';
+                        }
                         }
                     }
                 }

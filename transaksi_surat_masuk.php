@@ -407,7 +407,7 @@
                                                     <i class="material-icons">delete</i> HAPUS</a>';
                                         }
 
-                                        if(!empty($row['tujuan'])){
+                                        if(!empty($row['status'])){
                                             echo '
                                                     <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
                                         } else {
