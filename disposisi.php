@@ -89,113 +89,417 @@
                         } else {
 
                         echo '
-                                <!-- Row Start -->
-                                  <div class="row jarak-form">
-                                      <div class="col l2">
-                                          <a class="btn-large blue waves-effect waves-light" href="?page=tsm"><i class="material-icons">arrow_back</i>  Kembali</a>
-                                      </div>
-                                      <div class="col l10" style="margin-top: -10px">
-                                          <div class="card blue lighten-5">
-                                              <div class="card-content">
-                                                  <p style="margin: -5px!important;font-size: 1.1rem; color: #333;">Klik tombol <strong>"Setuju"</strong> jika Anda menyetujui surat ini dan ingin membuat disposisi.</p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <!-- Row END -->
+                            <!-- Row Start -->
+                            <div class="row jarak-form">
+                                <div class="col 1 2">
+                                    <a class="btn-large blue waves-effect waves-light" href="?page=tsm"><i class="material-icons">arrow_back</i>  Kembali</a>
+                                </div>';
+
+                                if($row['status'] == 1){
+                                    echo '
+                                    <div class="col 12" style="margin-top: -8px">
+                                        <div class="card green lighten-5">
+                                            <div class="card-content">
+                                                <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;">                                             <i class="material-icons md-36">done</i> Surat ini sudah diperiksa dan disposisi sudah dibuat
+                                              </p>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                } elseif($row['status'] == 2){
+                                    echo '
+                                    <div class="col 12" style="margin-top: -8px">
+                                        <div class="card green lighten-5">
+                                            <div class="card-content">
+                                                <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;">                                             <i class="material-icons md-36">done</i> Surat ini sudah diperiksa namun disposisi tidak dibuat
+                                              </p>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                } else {
+                                    echo '
+                                    <div class="col 12" style="margin-top: -8px">
+                                        <div class="card yellow lighten-4">
+                                            <div class="card-content">
+                                                <p class="orange-text bold" style="margin: -12px 0!important;font-size: 1.6rem;">                                             <i class="material-icons md-36">info</i> Surat ini belum diperiksa
+                                              </p>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                }
+                            }
+
+                            echo '
+
+                            </div>
+                            <!-- Row END -->
 
                             <!-- Row form Start -->
-                            <div class="row" style="margin-top: -15px">
-                                <div class="col s12">
-                                <div class="card">
-                                    <div class="card-content">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td width="13%">No. Agenda</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">'.$row['no_agenda'].'</td>
-                                            </tr>
-                                            <tr>
-                                            <tr>
-                                                <td width="13%">Asal Surat</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">'.$row['asal_surat'].'</td>
-                                            </tr>
-                                            <td width="13%">Perihal</td>
-                                            <td width="1%">:</td>
-                                            <td width="86%">'.$row['isi'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="13%">No. Surat</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">'.$row['no_surat'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="13%">Tanggal Surat</td>
-                                                <td width="1%">:</td>';
+                            <div class="row" style="margin-top: -15px">';
 
-                                                $y = substr($row['tgl_surat'],0,4);
-                                                $m = substr($row['tgl_surat'],5,2);
-                                                $d = substr($row['tgl_surat'],8,2);
+                                if($row['status'] == 1){
+                                    echo '
+                                    <div class="col s6">
+                                        <div class="card">
+                                            <div class="card-content">
+                                                <table>
+                                                    <thead>
+                                                        <h5>Data surat masuk</h5><hr/>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td width="13%">No. Agenda</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['no_agenda'].'</td>
+                                                        </tr>
+                                                        <tr>
+                                                        <tr>
+                                                            <td width="13%">Asal Surat</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['asal_surat'].'</td>
+                                                        </tr>
+                                                        <td width="13%">Perihal</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['isi'].'</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="13%">No. Surat</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['no_surat'].'</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="13%">Tanggal Surat</td>
+                                                            <td width="1%">:</td>';
 
-                                                if($m == "01"){
-                                                    $nm = "Januari";
-                                                } elseif($m == "02"){
-                                                    $nm = "Februari";
-                                                } elseif($m == "03"){
-                                                    $nm = "Maret";
-                                                } elseif($m == "04"){
-                                                    $nm = "April";
-                                                } elseif($m == "05"){
-                                                    $nm = "Mei";
-                                                } elseif($m == "06"){
-                                                    $nm = "Juni";
-                                                } elseif($m == "07"){
-                                                    $nm = "Juli";
-                                                } elseif($m == "08"){
-                                                    $nm = "Agustus";
-                                                } elseif($m == "09"){
-                                                    $nm = "September";
-                                                } elseif($m == "10"){
-                                                    $nm = "Oktober";
-                                                } elseif($m == "11"){
-                                                    $nm = "November";
-                                                } elseif($m == "12"){
-                                                    $nm = "Desember";
-                                                }
-                                                echo '
+                                                            $y = substr($row['tgl_surat'],0,4);
+                                                            $m = substr($row['tgl_surat'],5,2);
+                                                            $d = substr($row['tgl_surat'],8,2);
 
-                                                <td width="86%">'.$d." ".$nm." ".$y.'</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="13%">File</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">';
-                                                if(!empty($row['file'])){
-                                                    echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
-                                                } else {
-                                                    echo ' Tidak ada file yang diupload';
-                                                } echo '</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="13%">Keterangan</td>
-                                                <td width="1%">:</td>
-                                                <td width="86%">'.$row['keterangan'].'</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                            if($m == "01"){
+                                                                $nm = "Januari";
+                                                            } elseif($m == "02"){
+                                                                $nm = "Februari";
+                                                            } elseif($m == "03"){
+                                                                $nm = "Maret";
+                                                            } elseif($m == "04"){
+                                                                $nm = "April";
+                                                            } elseif($m == "05"){
+                                                                $nm = "Mei";
+                                                            } elseif($m == "06"){
+                                                                $nm = "Juni";
+                                                            } elseif($m == "07"){
+                                                                $nm = "Juli";
+                                                            } elseif($m == "08"){
+                                                                $nm = "Agustus";
+                                                            } elseif($m == "09"){
+                                                                $nm = "September";
+                                                            } elseif($m == "10"){
+                                                                $nm = "Oktober";
+                                                            } elseif($m == "11"){
+                                                                $nm = "November";
+                                                            } elseif($m == "12"){
+                                                                $nm = "Desember";
+                                                            }
+                                                            echo '
+
+                                                            <td width="86%">'.$d." ".$nm." ".$y.'</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="13%">File Lampiran</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">';
+                                                            if(!empty($row['file'])){
+                                                                echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
+                                                            } else {
+                                                                echo ' Tidak ada file yang diupload';
+                                                            } echo '</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="13%">Keterangan</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['keterangan'].'</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="card-action">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-action">
-                                        <a href="" class="btn-large blue waves-effect waves-light white-text">SETUJU<i class="material-icons">done</i></a>
 
-                                        <a href="" class="btn-large deep-orange waves-effect waves-light white-text">ARSIPKAN SAJA <i class="material-icons">archive</i></a>
+                                    <div class="col s6">
+                                        <div class="card">
+                                            <div class="card-content">
+                                                <table>
+                                                    <thead>
+                                                        <h5>Data disposisi surat</h5><hr/>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td width="13%">Tujuan</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['tujuan'].'</td>
+                                                        </tr>
+                                                        <tr>
+                                                        <tr>
+                                                            <td width="13%">Isi Disposisi</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['isi_disposisi'].'</td>
+                                                        </tr>
+                                                        <td width="13%">Sifat</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['sifat'].'</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="13%">Batas Waktu</td>
+                                                            <td width="1%">:</td>';
+
+                                                            $y = substr($row['batas_waktu'],0,4);
+                                                            $m = substr($row['batas_waktu'],5,2);
+                                                            $d = substr($row['batas_waktu'],8,2);
+
+                                                            if($m == "01"){
+                                                                $nm = "Januari";
+                                                            } elseif($m == "02"){
+                                                                $nm = "Februari";
+                                                            } elseif($m == "03"){
+                                                                $nm = "Maret";
+                                                            } elseif($m == "04"){
+                                                                $nm = "April";
+                                                            } elseif($m == "05"){
+                                                                $nm = "Mei";
+                                                            } elseif($m == "06"){
+                                                                $nm = "Juni";
+                                                            } elseif($m == "07"){
+                                                                $nm = "Juli";
+                                                            } elseif($m == "08"){
+                                                                $nm = "Agustus";
+                                                            } elseif($m == "09"){
+                                                                $nm = "September";
+                                                            } elseif($m == "10"){
+                                                                $nm = "Oktober";
+                                                            } elseif($m == "11"){
+                                                                $nm = "November";
+                                                            } elseif($m == "12"){
+                                                                $nm = "Desember";
+                                                            }
+                                                            echo '
+
+                                                            <td width="86%">'.$d." ".$nm." ".$y.'</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="13%">Catatan</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['catatan'].'</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        <div class="card-action">
+                                            <a href="" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>
+                                        </div>
+                                    </div>
+                                </div>';
+
+                            } elseif($row['status'] == 2) {
+
+                                echo '
+                                <div class="col s12">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <table>
+                                                <thead>
+                                                    <h5>Data surat masuk</h5><hr/>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="13%">No. Agenda</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['no_agenda'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <tr>
+                                                        <td width="13%">Asal Surat</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['asal_surat'].'</td>
+                                                    </tr>
+                                                    <td width="13%">Perihal</td>
+                                                    <td width="1%">:</td>
+                                                    <td width="86%">'.$row['isi'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">No. Surat</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['no_surat'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">Tanggal Surat</td>
+                                                        <td width="1%">:</td>';
+
+                                                        $y = substr($row['tgl_surat'],0,4);
+                                                        $m = substr($row['tgl_surat'],5,2);
+                                                        $d = substr($row['tgl_surat'],8,2);
+
+                                                        if($m == "01"){
+                                                            $nm = "Januari";
+                                                        } elseif($m == "02"){
+                                                            $nm = "Februari";
+                                                        } elseif($m == "03"){
+                                                            $nm = "Maret";
+                                                        } elseif($m == "04"){
+                                                            $nm = "April";
+                                                        } elseif($m == "05"){
+                                                            $nm = "Mei";
+                                                        } elseif($m == "06"){
+                                                            $nm = "Juni";
+                                                        } elseif($m == "07"){
+                                                            $nm = "Juli";
+                                                        } elseif($m == "08"){
+                                                            $nm = "Agustus";
+                                                        } elseif($m == "09"){
+                                                            $nm = "September";
+                                                        } elseif($m == "10"){
+                                                            $nm = "Oktober";
+                                                        } elseif($m == "11"){
+                                                            $nm = "November";
+                                                        } elseif($m == "12"){
+                                                            $nm = "Desember";
+                                                        }
+                                                        echo '
+
+                                                        <td width="86%">'.$d." ".$nm." ".$y.'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">File Lampiran</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">';
+                                                        if(!empty($row['file'])){
+                                                            echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
+                                                        } else {
+                                                            echo ' Tidak ada file yang diupload';
+                                                        } echo '</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">Keterangan</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['keterangan'].'</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="card-action">
+                                            <a href="" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>';
+
+                            } else {
+
+                                echo '
+                                <div class="col s12">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <table>
+                                                <thead>
+                                                    <h5>Data surat masuk</h5><hr/>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="13%">No. Agenda</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['no_agenda'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <tr>
+                                                        <td width="13%">Asal Surat</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['asal_surat'].'</td>
+                                                    </tr>
+                                                    <td width="13%">Perihal</td>
+                                                    <td width="1%">:</td>
+                                                    <td width="86%">'.$row['isi'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">No. Surat</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['no_surat'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">Tanggal Surat</td>
+                                                        <td width="1%">:</td>';
+
+                                                        $y = substr($row['tgl_surat'],0,4);
+                                                        $m = substr($row['tgl_surat'],5,2);
+                                                        $d = substr($row['tgl_surat'],8,2);
+
+                                                        if($m == "01"){
+                                                            $nm = "Januari";
+                                                        } elseif($m == "02"){
+                                                            $nm = "Februari";
+                                                        } elseif($m == "03"){
+                                                            $nm = "Maret";
+                                                        } elseif($m == "04"){
+                                                            $nm = "April";
+                                                        } elseif($m == "05"){
+                                                            $nm = "Mei";
+                                                        } elseif($m == "06"){
+                                                            $nm = "Juni";
+                                                        } elseif($m == "07"){
+                                                            $nm = "Juli";
+                                                        } elseif($m == "08"){
+                                                            $nm = "Agustus";
+                                                        } elseif($m == "09"){
+                                                            $nm = "September";
+                                                        } elseif($m == "10"){
+                                                            $nm = "Oktober";
+                                                        } elseif($m == "11"){
+                                                            $nm = "November";
+                                                        } elseif($m == "12"){
+                                                            $nm = "Desember";
+                                                        }
+                                                        echo '
+
+                                                        <td width="86%">'.$d." ".$nm." ".$y.'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">File Lampiran</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">';
+                                                        if(!empty($row['file'])){
+                                                            echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
+                                                        } else {
+                                                            echo ' Tidak ada file yang diupload';
+                                                        } echo '</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">Keterangan</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['keterangan'].'</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="card-action">
+                                            <div class="col s12">
+                                                <form method="post" enctype="multipart/form-data">
+                                                    <input class="with-gap" name="disposisi" type="radio" id="setuju"/>
+                                                    <label for="setuju" style="color: #444;font-size: 1.2rem">Setuju dan buat disposisi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                                    <input class="with-gap" name="disposisi" type="radio" id="arsip"/>
+                                                    <label for="arsip" style="color: #444;font-size: 1.2rem">Arsipkan saja</label></div><br/><br/><br/>
+
+                                                    <a href="" class="btn-large deep-orange waves-effect waves-light white-text">SIMPAN<i class="material-icons">done</i></a>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                            }
+
+                            echo '
                         </div>
                         <!-- Row form END -->';
-                        }
+
                         }
                     }
                 }

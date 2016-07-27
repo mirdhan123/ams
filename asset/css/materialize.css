@@ -5341,8 +5341,8 @@
 	padding-left:35px;
 	cursor:pointer;
 	display:inline-block;
-	height:25px;
-	line-height:25px;
+	height:35px;
+	line-height:30px;
 	font-size:1rem;
 	-webkit-transition:.28s ease;
 	-moz-transition:.28s ease;
@@ -5360,9 +5360,9 @@
 	position:absolute;
 	left:0;
 	top:0;
-	margin:4px;
-	width:16px;
-	height:16px;
+	margin:5px;
+	width:20px;
+	height:20px;
 	z-index:0;
 	-webkit-transition:.28s ease;
 	-moz-transition:.28s ease;
