@@ -8,7 +8,7 @@
 
         if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
             echo '<script language="javascript">
-                    window.alert("ERROR! Anda tidak memiliki hak akses untuk menambahkan data");
+                    window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
                     window.location.href="./admin.php?page=ref";
                   </script>';
         } else {

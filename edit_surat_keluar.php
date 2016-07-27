@@ -6,6 +6,13 @@
         die();
     } else {
 
+        if($_SESSION['admin'] == 2){
+            echo '<script language="javascript">
+                    window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                    window.history.back();
+                  </script>';
+        } else {
+
         if(isset($_REQUEST['submit'])){
 
             //validasi form kosong
@@ -356,4 +363,5 @@
             }
         }
     }
+}
 ?>

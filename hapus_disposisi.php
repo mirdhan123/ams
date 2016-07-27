@@ -28,6 +28,13 @@
             $no = 1;
             while($row = mysqli_fetch_array($query)){
 
+            if($_SESSION['admin'] != 2){
+                echo '<script language="javascript">
+                        window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                        window.history.back();
+                      </script>';
+            } else {
+
     		  echo '<!-- Row form Start -->
     				<div class="row jarak-card">
     				    <div class="col m12">
@@ -97,4 +104,5 @@
     		    }
     	    }
         }
+    }
 ?>

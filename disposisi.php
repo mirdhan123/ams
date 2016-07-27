@@ -21,15 +21,12 @@
             }
         } else {
 
-            //pagging
-            $limit = 5;
-            $pg = @$_GET['pg'];
-                if(empty($pg)){
-                    $curr = 0;
-                    $pg = 1;
-                } else {
-                    $curr = ($pg - 1) * $limit;
-                }
+            if($_SESSION['admin'] != 2){
+                echo '<script language="javascript">
+                        window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                        window.history.back();
+                      </script>';
+            } else {
 
                 $id_surat = $_REQUEST['id_surat'];
 
@@ -195,6 +192,7 @@
                                 </div>
                             </div>
                             <!-- Row form END -->';
+                        }
                     }
                 }
             }

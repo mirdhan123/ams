@@ -21,10 +21,10 @@
             }
         } else {
 
-            if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
+            if($_SESSION['admin'] != 1){
                 echo '<script language="javascript">
-                        window.alert("ERROR! Anda tidak memiliki hak akses untuk menambahkan data");
-                        window.location.href="./admin.php?page=ref";
+                        window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                        window.history.back();
                       </script>';
             } else {
 

@@ -9,10 +9,10 @@
         if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
             echo '<script language="javascript">
                     window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
-                    window.location.href="./logout.php";
+                    window.history.back();
                   </script>';
         } else {
-
+        
             //proses upload file
             if(isset($_POST['submit'])){
 

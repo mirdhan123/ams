@@ -8,6 +8,13 @@
 
         if(isset($_REQUEST['submit'])){
 
+            if($_SESSION['admin'] != 2){
+                echo '<script language="javascript">
+                        window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                        window.history.back();
+                      </script>';
+            } else {
+
             $id_surat = $_REQUEST['id_surat'];
             $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
             $no = 1;
@@ -213,4 +220,5 @@
 <?php
         }
     }
+}
 ?>

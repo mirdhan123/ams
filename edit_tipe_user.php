@@ -7,6 +7,13 @@
         die();
     } else {
 
+        if($_SESSION['admin'] != 1){
+            echo '<script language="javascript">
+                    window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                    window.history.back();
+                  </script>';
+        } else {
+
         if($_REQUEST['id_user'] == 1){
             echo '<script language="javascript">
                     window.alert("ERROR! Administrator tidak boleh diubah");
@@ -161,4 +168,5 @@
             }
         }
     }
+}
 ?>
