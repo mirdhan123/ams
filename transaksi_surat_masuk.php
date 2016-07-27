@@ -24,6 +24,12 @@
                 case 'del':
                     include "hapus_surat_masuk.php";
                     break;
+                case 'addd':
+                    include "tambah_disposisi.php";
+                    break;
+                case 'editd':
+                    include "edit_disposisi.php";
+                    break;
                 }
             } else {
 

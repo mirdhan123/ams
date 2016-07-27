@@ -26,7 +26,6 @@
                 echo '<script language="javascript">window.history.back();</script>';
             } else {
 
-                $id_disposisi = $_REQUEST['id_disposisi'];
                 $tujuan = $_REQUEST['tujuan'];
                 $isi_disposisi = $_REQUEST['isi_disposisi'];
                 $sifat = $_REQUEST['sifat'];
@@ -60,7 +59,7 @@
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
-                                    $query = mysqli_query($config, "UPDATE tbl_disposisi SET tujuan='$tujuan', isi_disposisi='$isi_disposisi', sifat='$sifat', batas_waktu='$batas_waktu', catatan='$catatan', id_surat='$id_surat', id_user='$id_user' WHERE id_disposisi='$id_disposisi'");
+                                    $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET tujuan='$tujuan', isi_disposisi='$isi_disposisi', sifat='$sifat', batas_waktu='$batas_waktu', catatan='$catatan', id_user='$id_user' WHERE id_surat='$id_surat'");
 
                                     if($query == true){
                                         $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -79,8 +78,8 @@
             }
         } else {
 
-            $id_disposisi = mysqli_real_escape_string($config, $_REQUEST['id_disposisi']);
-            $query = mysqli_query($config, "SELECT * FROM tbl_disposisi WHERE id_disposisi='$id_disposisi'");
+            $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
             if(mysqli_num_rows($query) > 0){
                 $no = 1;
                 while($row = mysqli_fetch_array($query)){?>

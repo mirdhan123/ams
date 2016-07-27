@@ -6,18 +6,17 @@
         die();
     } else {
 
-        if(isset($_REQUEST['submit'])){
+        if($_SESSION['admin'] != 2){
+            echo '<script language="javascript">
+                    window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                    window.history.back();
+                  </script>';
+        } else {
 
-            if($_SESSION['admin'] != 2){
-                echo '<script language="javascript">
-                        window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
-                        window.history.back();
-                      </script>';
-            } else {
+        if(isset($_REQUEST['submit'])){
 
             $id_surat = $_REQUEST['id_surat'];
             $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-            $no = 1;
             list($id_surat) = mysqli_fetch_array($query);
 
             //validasi form kosong
@@ -46,7 +45,7 @@
                     } else {
 
                         if(!preg_match("/^[0-9 -]*$/", $batas_waktu)){
-                            $_SESSION['batas_waktu'] = 'Form Batas Waktu hanya boleh mengandung karakter huruf dan minus(-)<br/>';
+                            $_SESSION['batas_waktu'] = 'Form Batas Waktu hanya boleh mengandung karakter huruf dan minus(-)';
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
@@ -56,12 +55,11 @@
                             } else {
 
                                 if(!preg_match("/^[a-zA-Z0 ]*$/", $sifat)){
-                                    $_SESSION['sifat'] = 'Form SIFAT hanya boleh mengandung karakter huruf dan spasi';
+                                    $_SESSION['catatan'] = 'Form SIFAT hanya boleh mengandung karakter huruf dan spasi';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
-                                    $query = mysqli_query($config, "INSERT INTO tbl_disposisi(tujuan,isi_disposisi,sifat,batas_waktu,catatan,id_surat,id_user)
-                                        VALUES('$tujuan','$isi_disposisi','$sifat','$batas_waktu','$catatan','$id_surat','$id_user')");
+                                    $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET tujuan='$tujuan', isi_disposisi='$isi_disposisi', sifat='$sifat', batas_waktu='$batas_waktu', catatan='$catatan', status='1', id_user='$id_user' WHERE id_surat='$id_surat'");
 
                                     if($query == true){
                                         $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
@@ -78,147 +76,155 @@
                     }
                 }
             }
-        }
-        } else {?>
+        } else {
 
-            <!-- Row Start -->
-            <div class="row">
-                <!-- Secondary Nav START -->
-                <div class="col s12">
-                    <nav class="secondary-nav">
-                        <div class="nav-wrapper blue-grey darken-1">
-                            <ul class="left">
-                                <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">description</i> Tambah Disposisi Surat</a></li>
-                            </ul>
-                        </div>
-                    </nav>
+            $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+            if(mysqli_num_rows($query) > 0){
+                $no = 1;
+                while($row = mysqli_fetch_array($query)){?>
+
+                <!-- Row Start -->
+                <div class="row">
+                    <!-- Secondary Nav START -->
+                    <div class="col s12">
+                        <nav class="secondary-nav">
+                            <div class="nav-wrapper blue-grey darken-1">
+                                <ul class="left">
+                                    <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">description</i> Tambah Disposisi Surat</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <!-- Secondary Nav END -->
                 </div>
-                <!-- Secondary Nav END -->
-            </div>
-            <!-- Row END -->
+                <!-- Row END -->
 
-            <?php
-                if(isset($_SESSION['errQ'])){
-                    $errQ = $_SESSION['errQ'];
-                    echo '<div id="alert-message" class="row">
-                            <div class="col m12">
-                                <div class="card red lighten-5">
-                                    <div class="card-content notif">
-                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                <?php
+                    if(isset($_SESSION['errEmpty'])){
+                        $errEmpty = $_SESSION['errEmpty'];
+                        echo '<div id="alert-message" class="row">
+                                <div class="col m12">
+                                    <div class="card red lighten-5">
+                                        <div class="card-content notif">
+                                            <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>';
-                    unset($_SESSION['errQ']);
-                }
-                if(isset($_SESSION['errEmpty'])){
-                    $errEmpty = $_SESSION['errEmpty'];
-                    echo '<div id="alert-message" class="row">
-                            <div class="col m12">
-                                <div class="card red lighten-5">
-                                    <div class="card-content notif">
-                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errEmpty.'</span>
+                            </div>';
+                        unset($_SESSION['errEmpty']);
+                    }
+                    if(isset($_SESSION['errQ'])){
+                        $errQ = $_SESSION['errQ'];
+                        echo '<div id="alert-message" class="row">
+                                <div class="col m12">
+                                    <div class="card red lighten-5">
+                                        <div class="card-content notif">
+                                            <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>';
+                        unset($_SESSION['errQ']);
+                    }
+                ?>
+
+                <!-- Row form Start -->
+                <div class="row jarak-form">
+
+                    <!-- Form START -->
+                    <form class="col s12" method="post" action="">
+
+                        <!-- Row in form START -->
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="hidden" value="<?php echo $row['id_surat'] ;?>">
+                                <i class="material-icons prefix md-prefix">account_box</i>
+                                <input id="tujuan" type="text" class="validate" name="tujuan" required>
+                                    <?php
+                                        if(isset($_SESSION['tujuan'])){
+                                            $tujuan = $_SESSION['tujuan'];
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$tujuan.'</div>';
+                                            unset($_SESSION['tujuan']);
+                                        }
+                                    ?>
+                                <label for="tujuan">Tujuan Disposisi</label>
                             </div>
-                        </div>';
-                    unset($_SESSION['errEmpty']);
-                }
-            ?>
-
-            <!-- Row form Start -->
-            <div class="row jarak-form">
-
-                <!-- Form START -->
-                <form class="col s12" method="post" action="">
-
-                    <!-- Row in form START -->
-                    <div class="row">
-                        <div class="input-field col m6">
-                            <i class="material-icons prefix md-prefix">place</i>
-                            <input id="tujuan" type="text" class="validate" name="tujuan" required>
-                                <?php
-                                    if(isset($_SESSION['tujuan'])){
-                                        $tujuan = $_SESSION['tujuan'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$tujuan.'</div>';
-                                        unset($_SESSION['tujuan']);
-                                    }
-                                ?>
-                            <label for="tujuan">Tujuan Disposisi</label>
-                        </div>
-                        <div class="input-field col m6">
-                            <i class="material-icons prefix md-prefix">alarm</i>
-                            <input id="batas_waktu" type="text" name="batas_waktu" class="datepicker" required>
-                                <?php
-                                    if(isset($_SESSION['batas_waktu'])){
-                                        $batas_waktu = $_SESSION['batas_waktu'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$batas_waktu.'</div>';
-                                        unset($_SESSION['batas_waktu']);
-                                    }
-                                ?>
-                            <label for="batas_waktu">Batas Waktu</label>
-                        </div>
-                        <div class="input-field col m6">
-                            <i class="material-icons prefix md-prefix">description</i>
-                            <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required></textarea>
-                                <?php
-                                    if(isset($_SESSION['isi_disposisi'])){
-                                        $isi_disposisi = $_SESSION['isi_disposisi'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$isi_disposisi.'</div>';
-                                        unset($_SESSION['isi_disposisi']);
-                                    }
-                                ?>
-                            <label for="isi_disposisi">Isi Disposisi</label>
-                        </div>
-                        <div class="input-field col m6">
-                            <i class="material-icons prefix md-prefix">featured_play_list   </i>
-                            <input id="catatan" type="text" class="validate" name="catatan" required>
-                                <?php
-                                    if(isset($_SESSION['catatan'])){
-                                        $catatan = $_SESSION['catatan'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$catatan.'</div>';
-                                        unset($_SESSION['catatan']);
-                                    }
-                                ?>
-                            <label for="catatan">Catatan</label>
-                        </div>
-                        <div class="input-field col m6">
-                            <i class="material-icons prefix md-prefix">low_priority</i><label>Pilih Sifat Disposisi</label><br/>
-                            <div class="input-field col s11 right">
-                                <select class="browser-default validate" name="sifat" id="sifat" required>
-                                    <option value="Biasa">Biasa</option>
-                                    <option value="Penting">Penting</option>
-                                    <option value="Segera">Segera</option>
-                                    <option value="Rahasia">Rahasia</option>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix md-prefix">alarm</i>
+                                <input id="batas_waktu" type="text" name="batas_waktu" class="datepicker" required>
+                                    <?php
+                                        if(isset($_SESSION['batas_waktu'])){
+                                            $batas_waktu = $_SESSION['batas_waktu'];
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$batas_waktu.'</div>';
+                                            unset($_SESSION['batas_waktu']);
+                                        }
+                                    ?>
+                                <label for="batas_waktu">Batas Waktu</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix md-prefix">description</i>
+                                <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required></textarea>
+                                    <?php
+                                        if(isset($_SESSION['isi_disposisi'])){
+                                            $isi_disposisi = $_SESSION['isi_disposisi'];
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$isi_disposisi.'</div>';
+                                            unset($_SESSION['isi_disposisi']);
+                                        }
+                                    ?>
+                                <label for="isi_disposisi">Isi Disposisi</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix md-prefix">featured_play_list   </i>
+                                <input id="catatan" type="text" class="validate" name="catatan" required>
+                                    <?php
+                                        if(isset($_SESSION['catatan'])){
+                                            $catatan = $_SESSION['catatan'];
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$catatan.'</div>';
+                                            unset($_SESSION['catatan']);
+                                        }
+                                    ?>
+                                <label for="catatan">Catatan</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix md-prefix">low_priority</i><label>Pilih Sifat Disposisi</label><br/>
+                                <div class="input-field col s11 right">
+                                    <select class="browser-default validate" name="sifat" id="sifat" required>
+                                        <option value="Biasa">Biasa</option>
+                                        <option value="Penting">Penting</option>
+                                        <option value="Segera">Segera</option>
+                                        <option value="Rahasia">Rahasia</option>
                                 </select>
                             </div>
-                            <?php
-                                if(isset($_SESSION['sifat'])){
-                                    $sifat = $_SESSION['sifat'];
-                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$sifat.'</div>';
-                                    unset($_SESSION['sifat']);
-                                }
-                            ?>
+                                <?php
+                                    if(isset($_SESSION['sifat'])){
+                                        $sifat = $_SESSION['sifat'];
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$sifat.'</div>';
+                                        unset($_SESSION['sifat']);
+                                    }
+                                ?>
                         </div>
-                    </div>
-                    <!-- Row in form END -->
+                        <!-- Row in form END -->
 
-                    <div class="row">
-                        <div class="col 6">
-                            <button type="submit" name ="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
+                        <div class="row">
+                            <div class="col 6">
+                                <button type="submit" name ="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
+                            </div>
+                            <div class="col 6">
+                                <a href="?page=tsm&act=disp&id_surat=<?php echo $row['id_surat']; ?>" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+                            </div>
                         </div>
-                        <div class="col 6">
-                            <button type="reset" onclick="window.history.back();" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></button>
-                        </div>
-                    </div>
 
-                </form>
-                <!-- Form END -->
+                    </form>
+                    <!-- Form END -->
 
-            </div>
-            <!-- Row form END -->
+                </div>
+                <!-- Row form END -->
 
 <?php
+                }
+            }
         }
     }
+}
 ?>

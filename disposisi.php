@@ -6,35 +6,19 @@
         die();
     } else {
 
-        if(isset($_REQUEST['sub'])){
-            $sub = $_REQUEST['sub'];
-            switch ($sub) {
-                case 'add':
-                    include "tambah_disposisi.php";
-                    break;
-                case 'edit':
-                    include "edit_disposisi.php";
-                    break;
-                case 'del':
-                    include "hapus_disposisi.php";
-                    break;
-            }
+        if($_SESSION['admin'] != 2){
+            echo '<script language="javascript">
+                    window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
+                    window.history.back();
+                  </script>';
         } else {
 
-            if($_SESSION['admin'] != 2){
-                echo '<script language="javascript">
-                        window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
-                        window.history.back();
-                      </script>';
-            } else {
+            $id_surat = $_REQUEST['id_surat'];
 
-                $id_surat = $_REQUEST['id_surat'];
-
-                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-
-                if(mysqli_num_rows($query) > 0){
-                    $no = 1;
-                    while($row = mysqli_fetch_array($query)){
+            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+            if(mysqli_num_rows($query) > 0){
+                $no = 1;
+                while($row = mysqli_fetch_array($query)){
 
                     if($_SESSION['admin'] != 2){
                         echo '<script language="javascript">
@@ -42,46 +26,6 @@
                                 window.location.href="./admin.php?page=tsm";
                               </script>';
                     } else {
-
-                        if(isset($_SESSION['succAdd'])){
-                            $succAdd = $_SESSION['succAdd'];
-                            echo '<div id="alert-message" class="row">
-                                    <div class="col m12">
-                                        <div class="card green lighten-5">
-                                            <div class="card-content notif">
-                                                <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succAdd.'</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>';
-                            unset($_SESSION['succAdd']);
-                        }
-                        if(isset($_SESSION['succEdit'])){
-                            $succEdit = $_SESSION['succEdit'];
-                            echo '<div id="alert-message" class="row">
-                                    <div class="col m12">
-                                        <div class="card green lighten-5">
-                                            <div class="card-content notif">
-                                                <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succEdit.'</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>';
-                            unset($_SESSION['succEdit']);
-                        }
-                        if(isset($_SESSION['succDel'])){
-                            $succDel = $_SESSION['succDel'];
-                            echo '<div id="alert-message" class="row">
-                                    <div class="col m12">
-                                        <div class="card green lighten-5">
-                                            <div class="card-content notif">
-                                                <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succDel.'</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>';
-                            unset($_SESSION['succDel']);
-                        }
 
                         if(isset($_REQUEST['arsip'])){
                             header("location: ./");
@@ -100,7 +44,7 @@
                                     <div class="col 12" style="margin-top: -8px">
                                         <div class="card green lighten-5">
                                             <div class="card-content">
-                                                <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;">                                             <i class="material-icons md-36">done</i> Surat ini sudah diperiksa dan disposisi sudah dibuat
+                                                <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;">                                             <i class="material-icons md-36">info</i> Surat ini sudah diperiksa dan disposisi sudah dibuat
                                               </p>
                                             </div>
                                         </div>
@@ -110,7 +54,7 @@
                                     <div class="col 12" style="margin-top: -8px">
                                         <div class="card green lighten-5">
                                             <div class="card-content">
-                                                <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;">                                             <i class="material-icons md-36">done</i> Surat ini sudah diperiksa namun disposisi tidak dibuat
+                                                <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;"><i class="material-icons md-36">info</i> Surat ini sudah diperiksa namun disposisi tidak dibuat
                                               </p>
                                             </div>
                                         </div>
@@ -120,12 +64,52 @@
                                     <div class="col 12" style="margin-top: -8px">
                                         <div class="card yellow lighten-4">
                                             <div class="card-content">
-                                                <p class="orange-text bold" style="margin: -12px 0!important;font-size: 1.6rem;">                                             <i class="material-icons md-36">info</i> Surat ini belum diperiksa
+                                                <p class="orange-text bold" style="margin: -12px 0!important;font-size: 1.6rem;"><i class="material-icons md-36">info</i> Surat ini belum diperiksa
                                               </p>
                                             </div>
                                         </div>
                                     </div>';
                                 }
+                            }
+
+                            if(isset($_SESSION['succAdd'])){
+                                $succAdd = $_SESSION['succAdd'];
+                                echo '<br/><div id="alert-message" class="row">
+                                        <div class="col m12">
+                                            <div class="card green lighten-5">
+                                                <div class="card-content notif">
+                                                    <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succAdd.'</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                unset($_SESSION['succAdd']);
+                            }
+                            if(isset($_SESSION['succEdit'])){
+                                $succEdit = $_SESSION['succEdit'];
+                                echo '<br/><div id="alert-message" class="row">
+                                        <div class="col m12">
+                                            <div class="card green lighten-5">
+                                                <div class="card-content notif">
+                                                    <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succEdit.'</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                unset($_SESSION['succEdit']);
+                            }
+                            if(isset($_SESSION['succDel'])){
+                                $succDel = $_SESSION['succDel'];
+                                echo '<br/><div id="alert-message" class="row">
+                                        <div class="col m12">
+                                            <div class="card green lighten-5">
+                                                <div class="card-content notif">
+                                                    <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succDel.'</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                unset($_SESSION['succDel']);
                             }
 
                             echo '
@@ -295,7 +279,7 @@
                                                 </table>
                                             </div>
                                         <div class="card-action">
-                                            <a href="" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>
+                                            <a href="?page=tsm&act=editd&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>
                                         </div>
                                     </div>
                                 </div>';
@@ -387,7 +371,7 @@
                                             </table>
                                         </div>
                                         <div class="card-action">
-                                            <a href="" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>
+                                            <a href="?page=tsm&act=addd&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -499,11 +483,9 @@
                             echo '
                         </div>
                         <!-- Row form END -->';
-
                         }
                     }
                 }
             }
         }
-    }
 ?>
