@@ -178,7 +178,7 @@
                                                         <tr>
                                                             <td width="13%">Indeks Berkas</td>
                                                             <td width="1%">:</td>
-                                                            <td width="86%">'.$row['no_agenda'].'</td>
+                                                            <td width="86%">'.$row['indeks'].'</td>
                                                         </tr>
                                                         <tr>
                                                             <td width="13%">Asal Surat</td>
@@ -354,7 +354,7 @@
                                                     <tr>
                                                         <td width="13%">Indeks Berkas</td>
                                                         <td width="1%">:</td>
-                                                        <td width="86%">'.$row['no_agenda'].'</td>
+                                                        <td width="86%">'.$row['indeks'].'</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="13%">Asal Surat</td>
@@ -449,15 +449,23 @@
                                                         <td width="86%">'.$row['no_agenda'].'</td>
                                                     </tr>
                                                     <tr>
+                                                        <td width="13%">Kode Klasifikasi</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['kode'].'</td>
+                                                    </tr>
                                                     <tr>
+                                                        <td width="13%">Indeks Berkas</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['indeks'].'</td>
+                                                    </tr>                                                    <tr>
                                                         <td width="13%">Asal Surat</td>
                                                         <td width="1%">:</td>
                                                         <td width="86%">'.$row['asal_surat'].'</td>
                                                     </tr>
-                                                    <td width="13%">Perihal</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['isi'].'</td>
-                                                    </tr>
+                                                        <td width="13%">Perihal</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['isi'].'</td>
+                                                        </tr>
                                                     <tr>
                                                         <td width="13%">No. Surat</td>
                                                         <td width="1%">:</td>
