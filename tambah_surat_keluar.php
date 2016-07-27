@@ -242,13 +242,13 @@
                                 ?>
                             <label for="tujuan">Tujuan Surat</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Sesuaikan Kode Surat dengan Kode Klasifikasi & No Urut dengan No Agenda">
                             <i class="material-icons prefix md-prefix">looks_two</i>
                             <?php
                                 $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_keluar");
-                                $no_agenda = 001;
+                                $no_agenda = 0;
                                 $result = mysqli_num_rows($query);
-                                $counter = 000;
+                                $counter = 0;
                                 while(list($no_agenda) = mysqli_fetch_array($query)){
                                     if (++$counter == $result) {
                                         $no_agenda++;
@@ -288,7 +288,7 @@
                                 }
 
                                 ?>
-                            <input id="no_surat" type="text" class="validate" value="<?php echo $n." / ".$g." / ".$nm." / ".$y; ?>" name="no_surat" required>
+                            <input id="no_surat" type="text" class="validate" value="<?php echo "420 / ".$n." / ".$g." / ".$nm." / ".$y; ?>" name="no_surat" required>
                                 <?php
                                     if(isset($_SESSION['no_suratk'])){
                                         $no_suratk = $_SESSION['no_suratk'];
