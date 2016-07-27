@@ -2,8 +2,8 @@
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 24, 2016 at 06:27 PM
+-- Host: localhost
+-- Generation Time: Jul 27, 2016 at 02:18 
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -19,31 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `ams`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_disposisi`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_disposisi` (
-`id_disposisi` int(10) NOT NULL,
-  `tujuan` varchar(250) NOT NULL,
-  `isi_disposisi` mediumtext NOT NULL,
-  `sifat` varchar(100) NOT NULL,
-  `batas_waktu` date NOT NULL,
-  `catatan` varchar(250) NOT NULL,
-  `id_surat` int(10) NOT NULL,
-  `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_disposisi`
---
-
-INSERT INTO `tbl_disposisi` (`id_disposisi`, `tujuan`, `isi_disposisi`, `sifat`, `batas_waktu`, `catatan`, `id_surat`, `id_user`) VALUES
-(2, 'Nur Hafid', 'Segera Koordinasi Pelaksanaan Zakat Fitrah', 'Segera', '2016-06-12', 'Segera Laksanakan', 11, 5),
-(3, 'Ani Triastuti, S.E., S.Pd', 'Segera hadiri undangan', 'Penting', '2016-05-17', 'Mohon hadir tepat waktu', 14, 5);
 
 -- --------------------------------------------------------
 
@@ -91,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `tbl_klasifikasi` (
 --
 
 INSERT INTO `tbl_klasifikasi` (`id_klasifikasi`, `kode`, `nama`, `uraian`, `id_user`) VALUES
-(1, '420', 'PENDIDIKAN', 'PENDIDIKAN', 1),
+(1, '420', 'Pendidikan', 'Pendidikan', 1),
 (2, '420.1', 'Pendidikan Khusus Klasifikasi disini Pendidikan Putra/I Irja', 'Pendidikan Khusus Klasifikasi disini Pendidikan Putra/I Irja', 1),
 (3, '421', 'Sekolah', 'Sekolah', 1),
 (4, '421.1', 'Pra Sekolah', 'Pra Sekolah', 1),
@@ -160,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `tbl_sett` (
 --
 
 INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `referensi`, `id_user`) VALUES
-(1, 5, 5, 10, 1);
+(1, 5, 5, 10, 3);
 
 -- --------------------------------------------------------
 
@@ -178,9 +153,9 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
   `tgl_surat` date NOT NULL,
   `tgl_catat` date NOT NULL,
   `file` varchar(250) NOT NULL,
-  `keterangan` varchar(250) NOT NULL,
+  `keterangan` varchar(150) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_surat_keluar`
@@ -190,7 +165,11 @@ INSERT INTO `tbl_surat_keluar` (`id_surat`, `no_agenda`, `tujuan`, `no_surat`, `
 (2, 1, 'Siswa', '420 / 015 /SMK.AH/VIII/2015', 'Surat edaran untuk mengikuti kegiatan sholat Idhul Adha di sekolah.', '421.6', '2015-08-28', '2016-07-24', '4718-surat keluar 1.jpg', 'Wajib', 5),
 (3, 2, 'Darmaji, S.T. (Guru)', '421 / 056 /SMK-AH / XII /2015', 'Surat tugas untuk menghadiri undangan Penganugerahan Bursa Khusus SMK', '421', '2015-12-07', '2016-07-24', '7773-surat keluar 2.jpg', '-', 5),
 (4, 3, 'Siswa', '421/059/SMK-AH/XII/2015', 'Surat edaran pelaksanaan praktik kerja industri (Prakerin)', '421', '2015-12-17', '2016-07-24', '', 'Penting', 5),
-(5, 4, 'Guru', '042/067 / SMk-AH/I/2016', 'Surat undangan rapat dinas koordinasi ujian sekolah\r\n', '421', '2016-02-01', '2016-07-24', '', 'Wajib Hadir', 5);
+(5, 4, 'Guru', '042/067 / SMk-AH/I/2016', 'Surat undangan rapat dinas koordinasi ujian sekolah\r\n', '421', '2016-02-01', '2016-07-24', '', 'Wajib Hadir', 5),
+(11, 5, 'ittuy', 'tuyt', 'uytyut', 'Kode Surat', '2016-07-27', '2016-07-27', '', 'kguytyu', 1),
+(12, 6, 'tytryr', 'yurytryt', 'ghh', '421.6', '2016-07-27', '2016-07-27', '', 'fgfhfh', 1),
+(15, 7, 'yutyutu', '421 / 7 / SMK-AH / VII / 2016', 'hjghjgj', '421', '2016-07-27', '2016-07-27', '', 'kjgjghj', 1),
+(16, 8, 'utyu', '421 / 8 / SMK-AH / VII / 2016', 'ytyu', '421', '2016-07-27', '2016-07-27', '', 'tyutuyt', 1);
 
 -- --------------------------------------------------------
 
@@ -209,19 +188,29 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
   `tgl_surat` date NOT NULL,
   `tgl_diterima` date NOT NULL,
   `file` varchar(250) NOT NULL,
-  `keterangan` varchar(250) NOT NULL,
+  `keterangan` varchar(150) NOT NULL,
+  `tujuan` varchar(250) NOT NULL,
+  `isi_disposisi` mediumtext NOT NULL,
+  `sifat` varchar(100) NOT NULL,
+  `batas_waktu` date NOT NULL,
+  `catatan` varchar(150) NOT NULL,
+  `status` tinyint(1) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_surat_masuk`
 --
 
-INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`, `id_user`) VALUES
-(11, 1, '001/PPH/VI/2016', 'Pondok Pesantren Hidayatullah Nganjuk', 'Permohonan Zakat Fitrah', '421.7', 'A.1', '2016-06-09', '2016-07-24', '601-surat masuk 1.jpg', 'Penting', 5),
-(12, 2, '074 / BAZNAZ.JTM / IV / 2016', 'Badan Amil Zakat Nasional Provinsi Jawa Timur', 'Pencairan Dana Bantuan Sebesar Rp. 800.000,- (Delapan Ratus Ribu Rupiah) dari Baznaz.', '422.4', 'A.2', '2016-04-07', '2016-07-24', '7523-surat masuk 2.jpg', 'Penting', 5),
-(13, 3, '3 / XI/M.BIG/2016', 'Musyawarah Guru Mata Pelajaran Bahasa Inggris', 'Surat edaran pertemuan rutin musyawarah guru mata pelajaran bahasa inggris.', '420', 'A.3', '2016-04-19', '2016-07-24', '', '-', 5),
-(14, 4, '560/402.1/411.203/2016', 'Dinas Sosial Tenaga Kerja Dan Transmigrasi Daerah Kabupaten Nganjuk', 'Surat undangan untuk menghadiri acara Pameran Bursa Kerja Untuk Percepatan Penempatan Tenaga Kerja / Job Fair Tahun 2016', '421', 'A.2', '2016-05-12', '2016-07-24', '', 'Segera laksanakan', 5);
+INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`, `tujuan`, `isi_disposisi`, `sifat`, `batas_waktu`, `catatan`, `status`, `id_user`) VALUES
+(11, 1, '001/PPH/VI/2016', 'Pondok Pesantren Hidayatullah Nganjuk', 'Permohonan Zakat Fitrah', '421.7', 'A.1', '2016-06-09', '2016-07-24', '601-surat masuk 1.jpg', 'Penting', '', '', '', '0000-00-00', '', 0, 5),
+(12, 2, '074 / BAZNAZ.JTM / IV / 2016', 'Badan Amil Zakat Nasional Provinsi Jawa Timur', 'Pencairan Dana Bantuan Sebesar Rp. 800.000,- (Delapan Ratus Ribu Rupiah) dari Baznaz.', '422.4', 'A.2', '2016-04-07', '2016-07-24', '7523-surat masuk 2.jpg', 'Penting', '', '', '', '0000-00-00', '', 0, 5),
+(13, 3, '3 / XI/M.BIG/2016', 'Musyawarah Guru Mata Pelajaran Bahasa Inggris', 'Surat edaran pertemuan rutin musyawarah guru mata pelajaran bahasa inggris.', '420', 'A.3', '2016-04-19', '2016-07-24', '', '-', '', '', '', '0000-00-00', '', 0, 5),
+(14, 4, '560/402.1/411.203/2016', 'Dinas Sosial Tenaga Kerja Dan Transmigrasi Daerah Kabupaten Nganjuk', 'Surat undangan untuk menghadiri acara Pameran Bursa Kerja Untuk Percepatan Penempatan Tenaga Kerja / Job Fair Tahun 2016', '421', 'A.2', '2016-05-12', '2016-07-24', '', 'Segera laksanakan', '', '', '', '0000-00-00', '', 0, 5),
+(16, 5, 'fghfhg', 'jhffh', 'jkhkhkj', '421.4', 'jghgh', '2016-07-27', '2016-07-27', '331-CONTOH PROPOSAL.docx', 'jkhkj', '', '', '', '0000-00-00', '', 0, 1),
+(17, 6, 'ftyyryr', 'jhfghfg', 'hkjhkjgjk', '420', 'a', '2016-07-27', '2016-07-27', '', 'hkjhkj', '', '', '', '0000-00-00', '', 0, 1),
+(18, 7, 'uytyutuyt', 'ktyuty', 'kjgytuyt', '421.4', 'yutyut', '2016-07-27', '2016-07-27', '', 'utyut', '', '', '', '0000-00-00', '', 2, 1),
+(19, 8, '1234567890', 'Nganjuk Dikpora', 'isi', '420', 'A.1', '2012-10-25', '2016-07-27', '9607-CONTOH PROPOSAL.docx', 'keterangan', 'Dodik', 'isi disposisi', 'penting', '2016-07-28', 'segera laksanakan', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -231,12 +220,12 @@ INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`
 
 CREATE TABLE IF NOT EXISTS `tbl_user` (
 `id_user` tinyint(2) NOT NULL,
-  `username` varchar(30) NOT NULL,
+  `username` varchar(30) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
   `password` varchar(35) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_user`
@@ -244,18 +233,12 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'M. Rudianto', '-', 1),
-(4, 'administrator', '200ceb26807d6bf99fd6f4f0d1ca54d4', 'Administrator', '-', 2),
-(5, 'disposisi', '13bb8b589473803f26a02e338f949b8c', 'Petugas Disposisi', '-', 3);
+(2, 'kepsek', '8561863b55faf85b9ad67c52b3b851ac', 'H. Riza Fachri, S.Kom', '-', 2),
+(3, 'disposisi', '13bb8b589473803f26a02e338f949b8c', 'Petugas Disposisi', '-', 3);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `tbl_disposisi`
---
-ALTER TABLE `tbl_disposisi`
- ADD PRIMARY KEY (`id_disposisi`);
 
 --
 -- Indexes for table `tbl_instansi`
@@ -298,11 +281,6 @@ ALTER TABLE `tbl_user`
 --
 
 --
--- AUTO_INCREMENT for table `tbl_disposisi`
---
-ALTER TABLE `tbl_disposisi`
-MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
 -- AUTO_INCREMENT for table `tbl_klasifikasi`
 --
 ALTER TABLE `tbl_klasifikasi`
@@ -311,17 +289,17 @@ MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
