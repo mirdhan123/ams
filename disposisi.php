@@ -157,7 +157,7 @@
 
                                 if($row['status'] == 1){
                                     echo '
-                                    <div class="col s6">
+                                    <div class="col l6">
                                         <div class="card">
                                             <div class="card-content">
                                                 <table>
@@ -171,14 +171,23 @@
                                                             <td width="86%">'.$row['no_agenda'].'</td>
                                                         </tr>
                                                         <tr>
+                                                            <td width="13%">Kode Klasifikasi</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['kode'].'</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="13%">Indeks Berkas</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['no_agenda'].'</td>
+                                                        </tr>
                                                         <tr>
                                                             <td width="13%">Asal Surat</td>
                                                             <td width="1%">:</td>
                                                             <td width="86%">'.$row['asal_surat'].'</td>
                                                         </tr>
-                                                        <td width="13%">Perihal</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['isi'].'</td>
+                                                            <td width="13%">Perihal</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['isi'].'</td>
                                                         </tr>
                                                         <tr>
                                                             <td width="13%">No. Surat</td>
@@ -245,7 +254,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col s6">
+                                    <div class="col l6">
                                         <div class="card">
                                             <div class="card-content">
                                                 <table>
@@ -259,15 +268,14 @@
                                                             <td width="86%">'.$row['tujuan'].'</td>
                                                         </tr>
                                                         <tr>
-                                                        <tr>
                                                             <td width="13%">Isi Disposisi</td>
                                                             <td width="1%">:</td>
                                                             <td width="86%">'.$row['isi_disposisi'].'</td>
                                                         </tr>
-                                                        <td width="13%">Sifat</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['sifat'].'</td>
-                                                        </tr>
+                                                            <td width="13%">Sifat</td>
+                                                            <td width="1%">:</td>
+                                                            <td width="86%">'.$row['sifat'].'</td>
+                                                            </tr>
                                                         <tr>
                                                             <td width="13%">Batas Waktu</td>
                                                             <td width="1%">:</td>';
@@ -315,6 +323,9 @@
                                             </div>
                                         <div class="card-action">
                                             <a href="?page=tsm&act=editd&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>
+
+                                            <a class="btn-large yellow darken-3 waves-effect waves-light white-text" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">CETAK <i class="material-icons">print</i></a>
+
                                         </div>
                                     </div>
                                 </div>';
@@ -336,15 +347,24 @@
                                                         <td width="86%">'.$row['no_agenda'].'</td>
                                                     </tr>
                                                     <tr>
+                                                        <td width="13%">Kode Klasifikasi</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['kode'].'</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="13%">Indeks Berkas</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['no_agenda'].'</td>
+                                                    </tr>
                                                     <tr>
                                                         <td width="13%">Asal Surat</td>
                                                         <td width="1%">:</td>
                                                         <td width="86%">'.$row['asal_surat'].'</td>
                                                     </tr>
-                                                    <td width="13%">Perihal</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['isi'].'</td>
-                                                    </tr>
+                                                        <td width="13%">Perihal</td>
+                                                        <td width="1%">:</td>
+                                                        <td width="86%">'.$row['isi'].'</td>
+                                                        </tr>
                                                     <tr>
                                                         <td width="13%">No. Surat</td>
                                                         <td width="1%">:</td>
@@ -502,7 +522,7 @@
                                             <div class="col s12">
                                                 <form method="post" enctype="multipart/form-data">
                                                     <input class="with-gap" name="status" type="radio" id="setuju" value="1" required/>
-                                                    <label for="setuju" style="color: #444;font-size: 1.2rem">Setuju dan buat disposisi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                                                    <label for="setuju" style="color: #444;font-size: 1.2rem">Setujui dan buat disposisi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
                                                     if(isset($_SESSION['status'])){
                                                         $status = $_SESSION['status'];
