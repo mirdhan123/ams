@@ -47,8 +47,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            opacity: 0.10;
-            filter:alpha(opacity=10);
+            opacity: 0.08;
+            filter:alpha(opacity=08);
         }
         #header-instansi {
             margin-top: 1%;

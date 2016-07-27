@@ -271,13 +271,7 @@
                                 <td id="right"><strong>Tanggal Penyelesaian</strong></td>
                                 <td id="left" colspan="2">: </td>
                             </tr>
-                            <tr>';
-                            $query3 = mysqli_query($config, "SELECT * FROM tbl_disposisi JOIN tbl_surat_masuk ON tbl_disposisi.id_surat = tbl_surat_masuk.id_surat WHERE tbl_disposisi.id_surat='$id_surat'");
-
-                            if(mysqli_num_rows($query3) > 0){
-                                $no = 0;
-                                $row = mysqli_fetch_array($query3);{
-                                echo '
+                            <tr>
                             <tr class="isi">
                                 <td colspan="2">
                                     <strong>Isi Disposisi :</strong><br/>'.$row['isi_disposisi'].'
@@ -288,42 +282,33 @@
                                     <div style="height: 25px;"></div>
                                 </td>
                                 <td><strong>Diteruskan Kepada</strong> : <br/>'.$row['tujuan'].'</td>
-                            </tr>';
-                                }
-                            } else {
-                                echo '
-                                <tr class="isi">
-                                    <td colspan="2"><strong>Isi Disposisi :</strong>
-                                    </td>
-                                    <td><strong>Diteruskan Kepada</strong> : </td>
-                                </tr>';
-                            }
-                        } echo '
-                </tbody>
-            </table>
-            <div id="lead">
-                <p>Kepala Sekolah</p>
-                <div style="height: 50px;"></div>';
-                $query = mysqli_query($config, "SELECT kepsek, nip FROM tbl_instansi");
-                list($kepsek,$nip) = mysqli_fetch_array($query);
-                if(!empty($kepsek)){
-                    echo '<p class="lead">'.$kepsek.'</p>';
-                } else {
-                    echo '<p class="lead">H. Riza Fachri, S.Kom.</p>';
-                }
-                if(!empty($nip)){
-                    echo '<p>NIP. '.$nip.'</p>';
-                } else {
-                    echo '<p>NIP. -</p>';
-                }
-                echo '
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="lead">
+                        <p>Kepala Sekolah</p>
+                        <div style="height: 50px;"></div>';
+                        $query = mysqli_query($config, "SELECT kepsek, nip FROM tbl_instansi");
+                        list($kepsek,$nip) = mysqli_fetch_array($query);
+                        if(!empty($kepsek)){
+                            echo '<p class="lead">'.$kepsek.'</p>';
+                        } else {
+                            echo '<p class="lead">H. Riza Fachri, S.Kom.</p>';
+                        }
+                        if(!empty($nip)){
+                            echo '<p>NIP. '.$nip.'</p>';
+                        } else {
+                            echo '<p>NIP. -</p>';
+                        }
+                        echo '
+                    </div>
+                </div>
+                <div class="jarak2"></div>
             </div>
-        </div>
-        <div class="jarak2"></div>
-    </div>
-    <!-- Container END -->
+            <!-- Container END -->
 
-    </body>';
+            </body>';
+        }
     }
 }
 ?>

@@ -109,14 +109,11 @@
                 //menghitung jumlah surat masuk
                 $count2 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_keluar"));
 
-                //menghitung jumlah surat masuk
-                $count3 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_disposisi"));
-
                 //menghitung jumlah klasifikasi
-                $count4 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_klasifikasi"));
+                $count3 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_klasifikasi"));
 
                 //menghitung jumlah pengguna
-                $count5 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
+                $count4 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
             ?>
 
             <!-- Info Statistic START -->
@@ -139,19 +136,10 @@
             </div>
 
             <div class="col s12 l4">
-                <div class="card yellow darken-3">
-                    <div class="card-content">
-                        <span class="card-title white-text"><i class="material-icons md-36">description</i> Jumlah Disposisi</span>
-                        <?php echo '<h5 class="white-text link">'.$count3.' Disposisi</h5>'; ?>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 l4">
-                <div class="card deep-orange">
+                <div class="card yellow darken-2">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">class</i> Jumlah Klasifikasi Surat</span>
-                        <?php echo '<h5 class="white-text link">'.$count4.' Klasifikasi Surat</h5>'; ?>
+                        <?php echo '<h5 class="white-text link">'.$count3.' Klasifikasi Surat</h5>'; ?>
                     </div>
                 </div>
             </div>
@@ -159,10 +147,10 @@
         <?php
             if($_SESSION['id_user'] == 1){?>
             <div class="col s12 l4">
-                <div class="card blue accent-2">
+                <div class="card deep-orange">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">people</i> Jumlah Pengguna</span>
-                        <?php echo '<h5 class="white-text link">'.$count5.' Pengguna</h5>'; ?>
+                        <?php echo '<h5 class="white-text link">'.$count4.' Pengguna</h5>'; ?>
                     </div>
                 </div>
             </div>
