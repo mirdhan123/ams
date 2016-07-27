@@ -46,8 +46,8 @@
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
-                                    $_SESSION['kodek'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
+                                if(!preg_match("/^[a-zA-Z0-9. ]*$/", $nkode)){
+                                    $_SESSION['kodek'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi dan titik(.)';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
@@ -186,21 +186,20 @@
                     <div class="row">
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isi dengan angka">
                             <i class="material-icons prefix md-prefix">looks_one</i>
-                            <?php
-                                $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_keluar");
-                                    echo '<input id="no_agenda" type="number" class="validate" value="';
-                                $no_agenda = 0;
-                                $result = mysqli_num_rows($query);
-                                $counter = 0;
-                                while(list($no_agenda) = mysqli_fetch_array($query)){
-                                    if (++$counter == $result) {
-                                        $no_agenda++;
-                                        echo $no_agenda;
-                                    }
-                                }
-                                echo '"name="no_agenda" required>';
-                            ?>
                                 <?php
+                                    $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_keluar");
+                                        echo '<input id="no_agenda" type="number" class="validate" value="';
+                                    $no_agenda = 0;
+                                    $result = mysqli_num_rows($query);
+                                    $counter = 0;
+                                    while(list($no_agenda) = mysqli_fetch_array($query)){
+                                        if (++$counter == $result) {
+                                            $no_agenda++;
+                                            echo $no_agenda;
+                                        }
+                                    }
+                                    echo '"name="no_agenda" required>';
+
                                     if(isset($_SESSION['no_agendak'])){
                                         $no_agendak = $_SESSION['no_agendak'];
                                         echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$no_agendak.'</div>';
@@ -209,17 +208,27 @@
                                 ?>
                             <label for="no_agenda">Nomor Agenda</label>
                         </div>
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data referensi kode klasifikasi">
-                            <i class="material-icons prefix md-prefix">bookmark</i>
-                            <input id="kode" type="text" class="validate" name="kode" required>
-                                <?php
-                                    if(isset($_SESSION['kodek'])){
-                                        $kodek = $_SESSION['kodek'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kodek.'</div>';
-                                        unset($_SESSION['kodek']);
-                                    }
-                                ?>
-                            <label for="kode">Kode Klasifikasi</label>
+                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Kode klasifikasi diambil dari data Referensi">
+                            <i class="material-icons prefix md-prefix">low_priority</i><label>Pilih Kode Klasifikasi</label><br/>
+                            <div class="input-field col s11 right">
+                                <select class="browser-default validate" name="kode" id="kode" required style="margin: 0 0 10px;">
+                                    <?php
+                                        $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi");
+                                        if(mysqli_num_rows($query) > 0){
+                                            while($row = mysqli_fetch_array($query)){
+                                                echo '<option value="'.$row['kode'].'">'.$row['kode']. " &nbsp;".$row['nama'].'</option>';
+                                            }
+                                        } echo 'Tidak ada kode surat';
+                                    ?>
+                                </select>
+                            </div>
+                            <?php
+                                if(isset($_SESSION['kodek'])){
+                                    $kodek = $_SESSION['kodek'];
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kodek.'</div>';
+                                    unset($_SESSION['kodek']);
+                                }
+                            ?>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">place</i>
@@ -235,7 +244,51 @@
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">looks_two</i>
-                            <input id="no_surat" type="text" class="validate" name="no_surat" required>
+                            <?php
+                                $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_keluar");
+                                $no_agenda = 001;
+                                $result = mysqli_num_rows($query);
+                                $counter = 000;
+                                while(list($no_agenda) = mysqli_fetch_array($query)){
+                                    if (++$counter == $result) {
+                                        $no_agenda++;
+                                        $n = $no_agenda;
+                                    }
+                                }
+
+                                $date = date("d-m-Y");
+                                $y = substr($date,6,4);
+                                $m = substr($date,3,2);
+                                $g = "SMK-AH";
+
+                                if($m == "01"){
+                                    $nm = "I";
+                                } elseif($m == "02"){
+                                    $nm = "II";
+                                } elseif($m == "03"){
+                                    $nm = "III";
+                                } elseif($m == "04"){
+                                    $nm = "IV";
+                                } elseif($m == "05"){
+                                    $nm = "V";
+                                } elseif($m == "06"){
+                                    $nm = "VI";
+                                } elseif($m == "07"){
+                                    $nm = "VII";
+                                } elseif($m == "08"){
+                                    $nm = "VIII";
+                                } elseif($m == "09"){
+                                    $nm = "IX";
+                                } elseif($m == "10"){
+                                    $nm = "X";
+                                } elseif($m == "11"){
+                                    $nm = "XI";
+                                } elseif($m == "12"){
+                                    $nm = "XII";
+                                }
+
+                                ?>
+                            <input id="no_surat" type="text" class="validate" value="<?php echo $n." / ".$g." / ".$nm." / ".$y; ?>" name="no_surat" required>
                                 <?php
                                     if(isset($_SESSION['no_suratk'])){
                                         $no_suratk = $_SESSION['no_suratk'];

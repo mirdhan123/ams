@@ -196,14 +196,20 @@
                     <div class="row">
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isi dengan angka">
                             <i class="material-icons prefix md-prefix">looks_one</i>
-                            <input id="no_agenda" type="number" class="validate" name="no_agenda" required>
-                                <?php
-                                    if(isset($_SESSION['no_agenda'])){
-                                        $no_agenda = $_SESSION['no_agenda'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$no_agenda.'</div>';
-                                        unset($_SESSION['no_agenda']);
+                            <?php
+                                $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_masuk");
+                                    echo '<input id="no_agenda" type="number" class="validate" value="';
+                                $no_agenda = 0;
+                                $result = mysqli_num_rows($query);
+                                $counter = 0;
+                                while(list($no_agenda) = mysqli_fetch_array($query)){
+                                    if (++$counter == $result) {
+                                        $no_agenda++;
+                                        echo $no_agenda;
                                     }
-                                ?>
+                                }
+                                echo '"name="no_agenda" required>';
+                            ?>
                             <label for="no_agenda">Nomor Agenda</label>
                         </div>
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data referensi kode klasifikasi">
