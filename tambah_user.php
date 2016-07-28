@@ -23,7 +23,7 @@
             } else {
 
                 $username = $_REQUEST['username'];
-                $password = $_REQUEST['password'];
+                $password = SHA1($_REQUEST['password']);
                 $nama = $_REQUEST['nama'];
                 $nip = $_REQUEST['nip'];
                 $admin = $_REQUEST['admin'];
@@ -67,7 +67,7 @@
                                             echo '<script language="javascript">window.history.back();</script>';
                                         } else {
 
-                                            $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,nip,admin) VALUES('$username',sha1('$password'),'$nama','$nip','$admin')");
+                                            $query = mysqli_query($config, "INSERT INTO tbl_user(username,password,nama,nip,admin) VALUES('$username','$password','$nama','$nip','$admin')");
 
                                             if($query != false){
                                                 $_SESSION['succAdd'] = 'SUKSES! User baru berhasil ditambahkan';

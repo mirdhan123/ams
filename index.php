@@ -221,7 +221,7 @@
                             } else {
 
                                 $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
-                                $password = sha1(trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password']))));
+                                $password = SHA1(trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password']))));
 
                                 $query = mysqli_query($config, "SELECT id_user, username, nama, nip, admin FROM tbl_user WHERE username=BINARY'$username' AND password='$password'");
 
