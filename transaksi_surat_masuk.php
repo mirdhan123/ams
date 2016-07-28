@@ -215,8 +215,6 @@
                                     <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                     <td>';
 
-                                    $string = $row['id_surat'];
-
                                     if($_SESSION['admin'] == 2){
                                         echo '
                                             <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> DISPOSISI</a>';
@@ -417,8 +415,6 @@
 
                                         <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                         <td>';
-
-                                        $string = $row['id_surat'];
 
                                         if($_SESSION['admin'] == 2){
                                             echo '

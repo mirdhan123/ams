@@ -154,8 +154,10 @@
                                         <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
                                         <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
+                                        $string = $row['id_surat'];
+
                                         if(!empty($row['file'])){
-                                            echo ' <strong><a href="?page=gsk&act=fsk&id_surat='.$row['id_surat'].'">'.$row['file'].'</a></strong>';
+                                            echo ' <strong><a href="?page=gsk&act=fsk&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a></strong>';
                                         } else {
                                             echo ' <em>Tidak ada file yang diupload</em>';
                                         } echo '</td>
@@ -194,10 +196,8 @@
 
                                         <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                         <td>
-                                            <a class="btn small blue waves-effect waves-light" href="?page=tsk&act=edit&id_surat='.$row['id_surat'].'">
-                                                <i class="material-icons">edit</i> EDIT</a>
-                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsk&act=del&id_surat='.$row['id_surat'].'">
-                                                <i class="material-icons">delete</i> DEL</a>
+                                            <a class="btn small blue waves-effect waves-light" href="?page=tsk&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
+                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsk&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> DEL</a>
                                         </td>
                                     </tr>
                                 </tbody>';
@@ -269,19 +269,39 @@
                                         <div id="modal" class="modal">
                                             <div class="modal-content white">
                                                 <h5>Jumlah data yang ditampilkan per halaman</h5>';
-                                                $query = mysqli_query($config, "SELECT id_sett,surat_keluar FROM tbl_sett");
-                                                list($id_sett,$surat_keluar) = mysqli_fetch_array($query);
+                                                if(isset($_REQUEST['simpan'])){
+
+                                                    $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
+                                                    $id_sett = decrypt($string, $salt);
+                                                    $surat_keluar = $_REQUEST['surat_keluar'];                                                                    $id_user = $_SESSION['id_user'];
+
+                                                    if($surat_keluar < 5){
+                                                        header("Location: ./admin.php?page=tsk");
+                                                        die();
+                                                    } else {
+
+                                                    $query = mysqli_query($config, "UPDATE tbl_sett SET surat_keluar='$surat_keluar', id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                    if($query == true){
+                                                        header("Location: ./admin.php?page=tsk");
+                                                        die();
+                                                    }
+                                                }
+                                            } else {
+
+                                                $query = mysqli_query($config, "SELECT id_sett, surat_keluar FROM tbl_sett");
+                                                list($id_sett, $surat_keluar) = mysqli_fetch_array($query);
+                                                $string = $id_sett;
                                                 echo '
                                                 <div class="row">
                                                     <form method="post" action="">
                                                         <div class="input-field col s12">
-                                                            <input type="hidden" value="'.$id_sett.'" name="id_sett">
+                                                                <input type="hidden" value="'.encrypt($string, $salt).'" name="id_sett">
                                                             <div class="input-field col s1" style="float: left;">
                                                                 <i class="material-icons prefix md-prefix">looks_one</i>
                                                             </div>
                                                             <div class="input-field col s11 right" style="margin: -5px 0 20px;">
                                                                 <select class="browser-default validate" name="surat_keluar" required>
-                                                                    <option value="'.$surat_keluar.'">'.$surat_keluar.'</option>
+                                                                        <option value="'.$surat_keluar.'">'.$surat_keluar.'</option>
                                                                     <option value="5">5</option>
                                                                     <option value="10">10</option>
                                                                     <option value="20">20</option>
@@ -290,26 +310,17 @@
                                                                 </select>
                                                             </div>
                                                             <div class="modal-footer white">
-                                                                <button type="submit" class="modal-action waves-effect waves-green btn-flat" name="simpan">Simpan</button>';
-                                                                if(isset($_REQUEST['simpan'])){
-                                                                    $id_sett = "1";
-                                                                    $surat_keluar = $_REQUEST['surat_keluar'];
-                                                                    $id_user = $_SESSION['id_user'];
-
-                                                                    $query = mysqli_query($config, "UPDATE tbl_sett SET surat_keluar='$surat_keluar',id_user='$id_user' WHERE id_sett='$id_sett'");
-                                                                    if($query == true){
-                                                                        header("Location: ./admin.php?page=tsk");
-                                                                        die();
-                                                                    }
-                                                                } echo '
+                                                                <button type="submit" class="modal-action waves-effect waves-green btn-flat" name="simpan">Simpan</button>
                                                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Batal</a>
                                                             </div>
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>';
+                                    }
 
+                                    echo '
                                 </tr>
                             </thead>
 
@@ -325,8 +336,10 @@
                                     <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
                                     <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
+                                    $string = $row['id_surat'];
+
                                     if(!empty($row['file'])){
-                                        echo ' <strong><a href="?page=gsk&act=fsk&id_surat='.$row['id_surat'].'">'.$row['file'].'</a></strong>';
+                                        echo ' <strong><a href="?page=gsk&act=fsk&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a></strong>';
                                     } else {
                                         echo ' <em>Tidak ada file yang diupload</em>';
                                     } echo '</td>
@@ -365,10 +378,8 @@
 
                                     <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                     <td>
-                                        <a class="btn small blue waves-effect waves-light" href="?page=tsk&act=edit&id_surat='.$row['id_surat'].'">
-                                            <i class="material-icons">edit</i> EDIT</a>
-                                        <a class="btn small deep-orange waves-effect waves-light" href="?page=tsk&act=del&id_surat='.$row['id_surat'].'">
-                                            <i class="material-icons">delete</i> DEL</a>
+                                        <a class="btn small blue waves-effect waves-light" href="?page=tsk&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
+                                        <a class="btn small deep-orange waves-effect waves-light" href="?page=tsk&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">delete</i> DEL</a>
                                     </td>
                                 </tr>
                             </tbody>';
