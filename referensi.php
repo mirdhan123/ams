@@ -161,15 +161,14 @@
                             $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE uraian LIKE '%$cari%' ORDER BY id_klasifikasi DESC LIMIT $curr, $limit");
                             if(mysqli_num_rows($query) > 0){
                                 while($row = mysqli_fetch_array($query)){
+
+                                    $string = $row['id_klasifikasi'];
+
                                     echo '
                                         <td>'.$row['kode'].'</td>
                                         <td>'.$row['nama'].'</td>
                                         <td>'.$row['uraian'].'</td>
-                                        <td>';
-
-                                        $string = $row['id_klasifikasi'];
-                                        echo '
-
+                                        <td>
                                             <a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">edit</i> EDIT</a>
                                             <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>
                                         </td>
@@ -303,14 +302,13 @@
                                     $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi ORDER BY id_klasifikasi DESC LIMIT $curr, $limit");
                                     if(mysqli_num_rows($query) > 0){
                                         while($row = mysqli_fetch_array($query)){
+
+                                            $string = $row['id_klasifikasi'];
+
                                           echo '<td>'.$row['kode'].'</td>
                                                 <td>'.$row['nama'].'</td>
                                                 <td>'.$row['uraian'].'</td>
-                                                <td>';
-
-                                                $string = $row['id_klasifikasi'];
-                                                echo '
-
+                                                <td>
                                                     <a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">edit</i> EDIT</a>
                                                     <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>
                                                 </td>

@@ -150,11 +150,12 @@
                                 if(mysqli_num_rows($query) > 0){
                                     $no = 1;
                                     while($row = mysqli_fetch_array($query)){
+
+                                        $string = $row['id_surat'];
+
                                       echo '
                                         <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
                                         <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
-
-                                        $string = $row['id_surat'];
 
                                         if(!empty($row['file'])){
                                             echo ' <strong><a href="?page=gsk&act=fsk&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a></strong>';
@@ -332,11 +333,12 @@
                             if(mysqli_num_rows($query) > 0){
                                 $no = 1;
                                 while($row = mysqli_fetch_array($query)){
+
+                                    $string = $row['id_surat'];
+
                                   echo '
                                     <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
                                     <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
-
-                                    $string = $row['id_surat'];
 
                                     if(!empty($row['file'])){
                                         echo ' <strong><a href="?page=gsk&act=fsk&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a></strong>';
