@@ -13,9 +13,14 @@
                   </script>';
         } else {
 
-        if(isset($_REQUEST['submit'])){
+            $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $id_surat = urldecode(decrypt($string, $salt));
 
-            $id_surat = $_REQUEST['id_surat'];
+            if(isset($_REQUEST['submit'])){
+
+            $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $id_surat = decrypt($string, $salt);
+
             $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
             list($id_surat) = mysqli_fetch_array($query);
 
@@ -62,8 +67,9 @@
 
                                     if($query == true){
                                         $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
+                                        $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
                                         echo '<script language="javascript">
-                                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
+                                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'";
                                               </script>';
                                     } else {
                                         $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -77,10 +83,8 @@
             }
         } else {
 
-            $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
             $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
             if(mysqli_num_rows($query) > 0){
-                $no = 1;
                 while($row = mysqli_fetch_array($query)){?>
 
                 <!-- Row Start -->
@@ -137,7 +141,10 @@
                         <!-- Row in form START -->
                         <div class="row">
                             <div class="input-field col s6">
-                                <input type="hidden" value="<?php echo $row['id_surat'] ;?>">
+                                <?php
+                                    $string = $row['id_surat'];
+                                ?>
+                                <input type="hidden" value="<?php echo encrypt($string, $salt); ?>" name="id_surat">
                                 <i class="material-icons prefix md-prefix">account_box</i>
                                 <input id="tujuan" type="text" class="validate" name="tujuan" required>
                                     <?php

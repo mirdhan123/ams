@@ -153,8 +153,9 @@
                                 <div class="modal-content white">
                                     <h5 style="color: #444">Edit kode instansi dalam nomor surat</h5>
                                     <?php
-                                    $query = mysqli_query($config, "SELECT id_sett,kode_instansi FROM tbl_sett");
-                                    list($id_sett,$kode_instansi) = mysqli_fetch_array($query);?>
+                                    $query = mysqli_query($config, "SELECT id_sett, kode_instansi FROM tbl_sett");
+                                    list($id_sett, $kode_instansi) = mysqli_fetch_array($query);
+                                    $string = $id_sett;?>
                                     <div class="row">
                                         <style>
                                             .ins {
@@ -175,7 +176,7 @@
                                         <form method="post" action="">
                                             <div class="input-field col s12">
                                                 <div class="input-field col s1">
-                                                    <input type="hidden" value="<?php echo $id_sett; ?>" name="id_sett">
+                                                    <input type="hidden" value="<?php echo encrypt($string, $salt); ?>" name="id_sett">
                                                     <i class="material-icons prefix md-prefix">font_download</i>
                                                 </div>
                                                 <div class="input-field col s11 ins">
@@ -184,16 +185,23 @@
                                                 <div class="modal-footer white">
                                                     <button type="submit" class="modal-action waves-effect waves-green btn-flat" name="simpan">Simpan</button>
                                                     <?php
-                                                    if(isset($_REQUEST['simpan'])){
-                                                        $id_sett = "1";
-                                                        $kode_instansi = $_REQUEST['kode_instansi'];                                                                    $id_user = $_SESSION['id_user'];
+                                                        if(isset($_REQUEST['simpan'])){
 
-                                                        $query = mysqli_query($config, "UPDATE tbl_sett SET kode_instansi='$kode_instansi',id_user='$id_user' WHERE id_sett='$id_sett'");
-                                                        if($query == true){
-                                                            header("Location: ./admin.php?page=tsk&act=add");
-                                                            die();
+                                                            $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
+                                                            $id_sett = decrypt($string, $salt);                                                        $kode_instansi = $_REQUEST['kode_instansi'];                                                                    $id_user = $_SESSION['id_user'];
+
+                                                            if(!preg_match("/^[a-zA-Z0-9., -]*$/", $kode_instansi)){
+                                                                echo '<script language="javascript">window.history.back();</script>';
+                                                            } else {
+
+                                                                $query = mysqli_query($config, "UPDATE tbl_sett SET kode_instansi='$kode_instansi',id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                                if($query == true){
+                                                                    header("Location: ./admin.php?page=tsk&act=add");
+                                                                    die();
+                                                                }
+                                                            }
                                                         }
-                                                    } ?>
+                                                    ?>
                                                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Batal</a>
                                                 </div>
                                             </div>

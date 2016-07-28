@@ -15,14 +15,8 @@
 
         if(isset($_REQUEST['submit'])){
 
-            $disposisi = $_REQUEST['id_surat'];
-            $salt = md5('masrud.com');
-
-            function decrypt($disposisi, $salt){
-               return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($disposisi), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
-            }
-
-            $id_surat = decrypt($disposisi, $salt);
+            $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $id_surat = decrypt($string, $salt);
 
             //validasi form kosong
             if($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
@@ -82,10 +76,11 @@
             }
         } else {
 
-            $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $id_surat = urlencode(decrypt($string, $salt));
+
             $query = mysqli_query($config, "SELECT tujuan, isi_disposisi, sifat, batas_waktu, catatan FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
             if(mysqli_num_rows($query) > 0){
-                $no = 1;
                 list($tujuan, $isi_disposisi, $sifat, $batas_waktu, $catatan) = mysqli_fetch_array($query);{?>
 
                 <!-- Row Start -->
@@ -143,14 +138,9 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <?php
-                                    $disposisi = $id_surat;
-                                    $salt = md5('masrud.com');
-
-                                    function encrypt($disposisi, $salt){
-                                       return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $disposisi, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
-                                    }
+                                    $string = $id_surat;
                                 ?>
-                                <input type="hidden" value="<?php echo encrypt($disposisi, $salt); ?>" name="id_surat">
+                                <input type="hidden" value="<?php echo encrypt($string, $salt); ?>" name="id_surat">
                                 <i class="material-icons prefix md-prefix">account_box</i>
                                 <input id="tujuan" type="text" class="validate" name="tujuan" value="<?php echo $tujuan; ?>" required>
                                     <?php

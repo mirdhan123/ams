@@ -14,15 +14,18 @@
         } else {
 
             if(isset($_REQUEST['simpan'])){
+
+                $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                $id_surat = decrypt($string, $salt);
                 $status = $_REQUEST['status'];
-                $id_surat = $_REQUEST['id_surat'];
 
                 //validasi input data
                 if(!preg_match("/^[1-2]*$/", $status)){
                     $_SESSION['status'] = 'Form Status hanya boleh mengandung angka 1 atau 2';
-                    header("Location: ./admin.php?page=tsm&act=disp&id_surat=$id_surat");
-                    die();
+                    echo '<script language="javascript">window.history.back();</script>';
                 } else {
+
+                    $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
 
                     if($status == 1){
 
@@ -30,7 +33,7 @@
                         if($query == true){
                             echo '<script language="javascript">
                                     window.alert("SUKSES! Status data surat berhasil diupdate");
-                                    window.location.href="./admin.php?page=tsm&act=addd&id_surat='.$id_surat.'";
+                                    window.location.href="./admin.php?page=tsm&act=addd&id_surat='.urlencode(encrypt($string, $salt)).'";
                                   </script>';
                         }
                     } elseif($status == 2) {
@@ -38,22 +41,25 @@
                         if($query == true){
                             echo '<script language="javascript">
                                     window.alert("SUKSES! Status data surat berhasil diupdate");
-                                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
+                                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'";
                                   </script>';
                         }
                     } else {
-                        header("Location: ./admin.php?page=tsm&act=disp&id_surat=$id_surat");
-                        die();
+                        echo '<script language="javascript">
+                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'";
+                              </script>';
                     }
             }
         }
 
-            $id_surat = $_REQUEST['id_surat'];
+        $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+        $id_surat = urldecode(decrypt($string, $salt));
 
-            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
             if(mysqli_num_rows($query) > 0){
-                $no = 1;
                 while($row = mysqli_fetch_array($query)){
+
+                    $string = $row['id_surat'];
 
                     if($_SESSION['admin'] != 2){
                         echo '<script language="javascript">
@@ -236,7 +242,7 @@
                                                             <td width="1%">:</td>
                                                             <td width="86%">';
                                                             if(!empty($row['file'])){
-                                                                echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
+                                                                echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
                                                             } else {
                                                                 echo ' Tidak ada file yang diupload';
                                                             } echo '</td>
@@ -322,10 +328,9 @@
                                                 </table>
                                             </div>
                                         <div class="card-action">
-                                            <a href="?page=tsm&act=editd&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>
+                                            <a href="?page=tsm&act=editd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>
 
-                                            <a class="btn-large yellow darken-3 waves-effect waves-light white-text" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank">CETAK <i class="material-icons">print</i></a>
-
+                                            <a class="btn-large yellow darken-3 waves-effect waves-light white-text" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank">CETAK <i class="material-icons">print</i></a>
                                         </div>
                                     </div>
                                 </div>';
@@ -412,7 +417,7 @@
                                                         <td width="1%">:</td>
                                                         <td width="86%">';
                                                         if(!empty($row['file'])){
-                                                            echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
+                                                            echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
                                                         } else {
                                                             echo ' Tidak ada file yang diupload';
                                                         } echo '</td>
@@ -426,7 +431,7 @@
                                             </table>
                                         </div>
                                         <div class="card-action">
-                                            <a href="?page=tsm&act=addd&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>
+                                            <a href="?page=tsm&act=addd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -457,7 +462,8 @@
                                                         <td width="13%">Indeks Berkas</td>
                                                         <td width="1%">:</td>
                                                         <td width="86%">'.$row['indeks'].'</td>
-                                                    </tr>                                                    <tr>
+                                                    </tr>
+                                                    <tr>
                                                         <td width="13%">Asal Surat</td>
                                                         <td width="1%">:</td>
                                                         <td width="86%">'.$row['asal_surat'].'</td>
@@ -513,7 +519,7 @@
                                                         <td width="1%">:</td>
                                                         <td width="86%">';
                                                         if(!empty($row['file'])){
-                                                            echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
+                                                            echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
                                                         } else {
                                                             echo ' Tidak ada file yang diupload';
                                                         } echo '</td>
