@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 27, 2016 at 02:18 
+-- Generation Time: Jul 28, 2016 at 02:07 
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -126,6 +126,7 @@ CREATE TABLE IF NOT EXISTS `tbl_sett` (
   `id_sett` tinyint(1) NOT NULL,
   `surat_masuk` tinyint(2) NOT NULL,
   `surat_keluar` tinyint(2) NOT NULL,
+  `kode_instansi` varchar(10) NOT NULL,
   `referensi` tinyint(2) NOT NULL,
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -134,8 +135,8 @@ CREATE TABLE IF NOT EXISTS `tbl_sett` (
 -- Dumping data for table `tbl_sett`
 --
 
-INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `referensi`, `id_user`) VALUES
-(1, 5, 5, 10, 3);
+INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `kode_instansi`, `referensi`, `id_user`) VALUES
+(1, 5, 5, 'SMK-AH', 10, 3);
 
 -- --------------------------------------------------------
 
@@ -155,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(150) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_surat_keluar`
@@ -169,7 +170,9 @@ INSERT INTO `tbl_surat_keluar` (`id_surat`, `no_agenda`, `tujuan`, `no_surat`, `
 (11, 5, 'ittuy', 'tuyt', 'uytyut', 'Kode Surat', '2016-07-27', '2016-07-27', '', 'kguytyu', 1),
 (12, 6, 'tytryr', 'yurytryt', 'ghh', '421.6', '2016-07-27', '2016-07-27', '', 'fgfhfh', 1),
 (15, 7, 'yutyutu', '421 / 7 / SMK-AH / VII / 2016', 'hjghjgj', '421', '2016-07-27', '2016-07-27', '', 'kjgjghj', 1),
-(16, 8, 'utyu', '421 / 8 / SMK-AH / VII / 2016', 'ytyu', '421', '2016-07-27', '2016-07-27', '', 'tyutuyt', 1);
+(18, 8, 'gjgjhgj', '420 / 8 / SMK-AH / VII / 2016', 'hghjghj', '420', '2016-07-28', '2016-07-28', '3207-Form Tugas Akhir AKN (1).docx', 'ghjghjg', 1),
+(19, 9, 'kjgjgjhgjh', '420 / 9 / SMK-AH / VII / 2016', 'kjhkjhjk', '420', '2016-07-28', '2016-07-28', '9540-Form Tugas Akhir AKN (1).docx', 'lkhu', 1),
+(20, 10, 'jghj', '420 / 10 / SMK-AH / VII / 2016', 'ghghj', '420', '2016-07-28', '2016-07-28', '8570-Form Tugas Akhir AKN (1).docx', 'ghfhj', 1);
 
 -- --------------------------------------------------------
 
@@ -196,21 +199,24 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
   `catatan` varchar(150) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_surat_masuk`
 --
 
 INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`, `tujuan`, `isi_disposisi`, `sifat`, `batas_waktu`, `catatan`, `status`, `id_user`) VALUES
-(11, 1, '001/PPH/VI/2016', 'Pondok Pesantren Hidayatullah Nganjuk', 'Permohonan Zakat Fitrah', '421.7', 'A.1', '2016-06-09', '2016-07-24', '601-surat masuk 1.jpg', 'Penting', '', '', '', '0000-00-00', '', 0, 5),
-(12, 2, '074 / BAZNAZ.JTM / IV / 2016', 'Badan Amil Zakat Nasional Provinsi Jawa Timur', 'Pencairan Dana Bantuan Sebesar Rp. 800.000,- (Delapan Ratus Ribu Rupiah) dari Baznaz.', '422.4', 'A.2', '2016-04-07', '2016-07-24', '7523-surat masuk 2.jpg', 'Penting', '', '', '', '0000-00-00', '', 0, 5),
-(13, 3, '3 / XI/M.BIG/2016', 'Musyawarah Guru Mata Pelajaran Bahasa Inggris', 'Surat edaran pertemuan rutin musyawarah guru mata pelajaran bahasa inggris.', '420', 'A.3', '2016-04-19', '2016-07-24', '', '-', '', '', '', '0000-00-00', '', 0, 5),
-(14, 4, '560/402.1/411.203/2016', 'Dinas Sosial Tenaga Kerja Dan Transmigrasi Daerah Kabupaten Nganjuk', 'Surat undangan untuk menghadiri acara Pameran Bursa Kerja Untuk Percepatan Penempatan Tenaga Kerja / Job Fair Tahun 2016', '421', 'A.2', '2016-05-12', '2016-07-24', '', 'Segera laksanakan', '', '', '', '0000-00-00', '', 0, 5),
-(16, 5, 'fghfhg', 'jhffh', 'jkhkhkj', '421.4', 'jghgh', '2016-07-27', '2016-07-27', '331-CONTOH PROPOSAL.docx', 'jkhkj', '', '', '', '0000-00-00', '', 0, 1),
-(17, 6, 'ftyyryr', 'jhfghfg', 'hkjhkjgjk', '420', 'a', '2016-07-27', '2016-07-27', '', 'hkjhkj', '', '', '', '0000-00-00', '', 0, 1),
-(18, 7, 'uytyutuyt', 'ktyuty', 'kjgytuyt', '421.4', 'yutyut', '2016-07-27', '2016-07-27', '', 'utyut', '', '', '', '0000-00-00', '', 2, 1),
-(19, 8, '1234567890', 'Nganjuk Dikpora', 'isi', '420', 'A.1', '2012-10-25', '2016-07-27', '9607-CONTOH PROPOSAL.docx', 'keterangan', 'Dodik', 'isi disposisi', 'penting', '2016-07-28', 'segera laksanakan', 1, 3);
+(11, 1, '001/PPH/VI/2016', 'Pondok Pesantren Hidayatullah Nganjuk', 'Permohonan Zakat Fitrah', '421.7', 'A.1', '2016-06-09', '2016-07-24', '601-surat masuk 1.jpg', 'Penting', '', '', '', '0000-00-00', '', 2, 5),
+(12, 2, '074 / BAZNAZ.JTM / IV / 2016', 'Badan Amil Zakat Nasional Provinsi Jawa Timur', 'Pencairan Dana Bantuan Sebesar Rp. 800.000,- (Delapan Ratus Ribu Rupiah) dari Baznaz.', '422.4', 'A.2', '2016-04-07', '2016-07-24', '7523-surat masuk 2.jpg', 'Penting', '', '', '', '0000-00-00', '', 2, 5),
+(13, 3, '3 / XI/M.BIG/2016', 'Musyawarah Guru Mata Pelajaran Bahasa Inggris', 'Surat edaran pertemuan rutin musyawarah guru mata pelajaran bahasa inggris.', '420', 'A.3', '2016-04-19', '2016-07-24', '', '-', '', '', '', '0000-00-00', '', 2, 5),
+(30, 4, 'fhgfhgfgh', 'jfhgfgf', 'lhjkh', '420', 'hgghfgh', '2016-07-28', '2016-07-28', '', 'kjhkhkj', 'gjhghjg', 'gfgh', 'Biasa', '1899-11-30', 'ghfhg', 1, 2),
+(31, 5, 'hjgjh', 'gjgh', 'hhgj', '420', 'ghjg', '2016-07-28', '2016-07-28', '', 'gjghjgj', 'hfgh', 'hghjff', 'Segera', '1899-12-07', 'ghfhgfh', 1, 2),
+(33, 6, 'hfhfhg', 'ghfhgf', 'bhghjgjh', '420', 'fghf', '2016-07-28', '2016-07-28', '', 'hjgjh', 'nbnvgfghf', 'jgkjhgjh', 'Biasa', '2016-07-28', 'jhghj', 1, 3),
+(34, 7, 'jhghjghj', 'kjgjgh', 'hjgjhg', '420', 'jhgjhg', '2016-07-28', '2016-07-28', '6430-Form Tugas Akhir AKN (1).docx', 'jhghj', '', '', '', '0000-00-00', '', 0, 1),
+(35, 8, 'hjghjghj', 'kghj', ',hhg', '420', 'hjg', '2016-07-28', '2016-07-28', '', 'hjghj', '', '', '', '0000-00-00', '', 0, 1),
+(36, 9, 'hjghjgjh', 'hhjghjg', 'jghjghj', '420', 'hghjghj', '2016-07-28', '2016-07-28', '7107-PENGUMUMAN SIDANG TA AKN NGANJUK 2016.docx', 'gjhghj', '', '', '', '0000-00-00', '', 0, 1),
+(37, 10, 'kjhkjhjk', 'jhkjh', 'hghjghj', '420', 'jhkjh', '2016-07-28', '2016-07-28', '710-Form Tugas Akhir AKN (1).docx', 'ggjhjghj', '', '', '', '0000-00-00', '', 0, 1),
+(38, 11, 'hjghjg', 'jjgjhg', 'hjkgj', '420', 'g', '2016-07-28', '2016-07-28', '9606-PENGUMUMAN SIDANG TA AKN NGANJUK 2016.docx', 'hjjkhkj', '', '', '', '0000-00-00', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -289,12 +295,12 @@ MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --

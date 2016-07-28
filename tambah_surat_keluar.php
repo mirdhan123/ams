@@ -160,24 +160,28 @@
                                     <div class="row">
                                         <style>
                                             .ins {
+                                                float: right!important;
                                                 font-size: 1.2rem;
                                                 color: #444;
-                                                border-bottom: 1px solid #e0e0e0
+                                                border-bottom: 1px solid #e0e0e0;
+                                                width: 90%!important
                                             }
                                             .md-prefix {
                                                 margin-left: -12px
                                             }
                                             .inp {
-                                                margin-left: 10px!important;
+                                                margin-left: -40px!important;
+                                                line-height: 2rem;
                                             }
                                         </style>
                                         <form method="post" action="">
                                             <div class="input-field col s12">
-                                                <div class="input-field col s12 ins">
+                                                <div class="input-field col s1">
                                                     <input type="hidden" value="<?php echo $id_sett; ?>" name="id_sett">
                                                     <i class="material-icons prefix md-prefix">font_download</i>
+                                                </div>
+                                                <div class="input-field col s11 ins">
                                                     <input id="kode_instansi" type="text" name="kode_instansi" value="<?php echo $kode_instansi; ?>" class="inp" required>
-                                                    <br/>
                                                 </div>
                                                 <div class="modal-footer white">
                                                     <button type="submit" class="modal-action waves-effect waves-green btn-flat" name="simpan">Simpan</button>
