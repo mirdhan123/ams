@@ -92,39 +92,39 @@
                 	global $rest_dir;
 
                     //konfigurasi database
-                	$koneksi=mysqli_connect("localhost","root","","ams");
+                	$config = mysqli_connect("localhost","root","","ams");
 
-                	$nama_file	= $file['name'];
-                	$ukrn_file	= $file['size'];
-                	$tmp_file	= $file['tmp_name'];
+                	$file_name = $file['name'];
+                	$file_siza = $file['size'];
+                	$tmp_file = $file['tmp_name'];
 
-                	if($nama_file == "" || $_REQUEST['password'] == ""){
+                	if($file_name == "" || $_REQUEST['password'] == ""){
                         $_SESSION['errEmpty'] = 'ERROR! Semua Form wajib diisi';
                         header("Location: ./admin.php?page=sett&sub=rest");
                         die();
                     } else {
 
-                        $password = $_REQUEST['password'];
+                        $password = SHA1($_REQUEST['password']);
                         $id_user = $_SESSION['id_user'];
 
-                        $query = mysqli_query($koneksi, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password=MD5('$password')");
+                        $query = mysqli_query($config, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password='$password'");
                         if(mysqli_num_rows($query) > 0){
 
-                    		$alamatfile	= $rest_dir.$nama_file;
+                    		$file_dir	= $rest_dir.$file_name;
                     		$templine	= array();
 
                             $ekstensi = array('sql');
-                            $nama_file	= $file['name'];
-                            $x = explode('.', $nama_file);
+                            $file_name	= $file['name'];
+                            $x = explode('.', $file_name);
                             $eks = strtolower(end($x));
 
                             //validasi tipe file
                             if(in_array($eks, $ekstensi) == true){
 
-                        		if(move_uploaded_file($tmp_file , $alamatfile)){
+                        		if(move_uploaded_file($tmp_file , $file_dir)){
 
                         			$templine	= '';
-                        			$lines		= file($alamatfile);
+                        			$lines		= file($file_dir);
 
                         			foreach ($lines as $line){
                         				if(substr($line, 0, 2) == '--' || $line == '')
@@ -133,7 +133,7 @@
                         				$templine .= $line;
 
                         				if(substr(trim($line), -1, 1) == ';'){
-                        					mysqli_query($koneksi, $templine);
+                        					mysqli_query($config, $templine);
                         					$templine = '';
                         				}
                         			}

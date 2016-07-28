@@ -9,30 +9,43 @@
         $string = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
         $id_klasifikasi = urlencode(decrypt($string, $salt));
 
-        $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
-    	if(mysqli_num_rows($query) > 0){
-            while($row = mysqli_fetch_array($query)){
+        if(isset($_SESSION['errQ'])){
+            $errQ = $_SESSION['errQ'];
+            echo '<div id="alert-message" class="row jarak-card">
+                    <div class="col m12">
+                        <div class="card red lighten-5">
+                            <div class="card-content notif">
+                                <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+            unset($_SESSION['errQ']);
+        }
+            if(isset($_REQUEST['submit'])){
 
-            if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
-                echo '<script language="javascript">
-                        window.alert("ERROR! Anda tidak memiliki hak akses untuk menghapus data ini");
-                        window.history.back();
-                      </script>';
+                $query = mysqli_query($config, "DELETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
+                if($query == true){
+                    $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
+                    header("Location: ./admin.php?page=ref");
+                    die();
+                } else {
+                    $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
+                    echo '<script language="javascript">window.history.back();</script>';
+                }
             } else {
 
-                if(isset($_SESSION['errQ'])){
-                    $errQ = $_SESSION['errQ'];
-                    echo '<div id="alert-message" class="row jarak-card">
-                            <div class="col m12">
-                                <div class="card red lighten-5">
-                                    <div class="card-content notif">
-                                        <span class="card-title red-text"><i class="material-icons md-36">clear</i> '.$errQ.'</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>';
-                    unset($_SESSION['errQ']);
-                }
+                $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
+                if(mysqli_num_rows($query) > 0){
+                    while($row = mysqli_fetch_array($query)){
+
+                    if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Anda tidak memiliki hak akses untuk menghapus data ini");
+                                window.history.back();
+                              </script>';
+                    } else {
+            }
 
     	  echo '
           <!-- Row form Start -->
@@ -78,23 +91,8 @@
             </div>
             <!-- Row form END -->';
 
-        	if(isset($_REQUEST['submit'])){
-                $string = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
-                $id_klasifikasi = urldecode(decrypt($string, $salt));
-
-                $query = mysqli_query($config, "DEETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
-
-            	if($query == true){
-                    $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
-                    header("Location: ./admin.php?page=ref");
-                    die();
-            	} else {
-                    $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                    echo '<script language="javascript">window.history.back();</script>';
-            	}
-            }
-	    }
+                }
+    	    }
+        }
     }
-}
-}
 ?>

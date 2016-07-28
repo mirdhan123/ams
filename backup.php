@@ -34,10 +34,10 @@
                 <!-- Row END -->';
 
                 // download file hasil backup
-                if(isset($_REQUEST['nama_file'])){
+                if(isset($_REQUEST['file_name'])){
 
                     $back_dir = "./";
-                	$file = $back_dir.$_REQUEST['nama_file'];
+                	$file = $back_dir.$_REQUEST['file_name'];
 
                     $x = explode('.', $file);
                     $eks = strtolower(end($x));
@@ -74,16 +74,16 @@
                 }
 
                 // proses backup  database dilakukan oleh Fungsi
-                function backup($host,$user,$pass,$name,$nama_file,$tables){
+                function backup($host, $user, $pass, $name, $file_name, $tables){
 
                     //untuk koneksi database
                     $return = "";
-                    $link = mysqli_connect($host,$user,$pass,$name);
+                    $config = mysqli_connect($host, $user, $pass, $name);
 
                     //backup semua tabel database
                     if($tables == '*'){
                         $tables = array();
-                        $result = mysqli_query($link, 'SHOW TABLES');
+                        $result = mysqli_query($config, 'SHOW TABLES');
                         while($row = mysqli_fetch_row($result)){
                             $tables[] = $row[0];
                         }
@@ -95,11 +95,11 @@
 
                     //looping table
                     foreach($tables as $table){
-                        $result = mysqli_query($link, 'SELECT * FROM '.$table);
+                        $result = mysqli_query($config, 'SELECT * FROM '.$table);
                         $num_fields = mysqli_num_fields($result);
 
                         $return.= 'DROP TABLE '.$table.';';
-                        $row2 = mysqli_fetch_row(mysqli_query($link, 'SHOW CREATE TABLE '.$table));
+                        $row2 = mysqli_fetch_row(mysqli_query($config, 'SHOW CREATE TABLE '.$table));
                         $return.= "\n\n".$row2[1].";\n\n";
 
                         //looping field table
@@ -107,7 +107,7 @@
                             while($row = mysqli_fetch_row($result)){
                                 $return.= 'INSERT INTO '.$table.' VALUES(';
 
-                                for($j=0; $j<$num_fields; $j++){
+                                for($j = 0; $j < $num_fields; $j++){
                                     $row[$j] = addslashes($row[$j]);
                                     $row[$j] = ereg_replace("\n","\\n",$row[$j]);
 
@@ -116,7 +116,7 @@
                                     } else {
                                         $return.= '""';
                                     }
-                                    if ($j<($num_fields-1)){
+                                    if ($j < ($num_fields-1)){
                                         $return.= ',';
                                     }
                                 }
@@ -127,21 +127,21 @@
                     }
 
                     //otomatis menyimpan hasil backup database dalam root folder aplikasi
-                    $nama_file;
-                    $handle = fopen($nama_file,'w+');
+                    $file_name;
+                    $handle = fopen($file_name,'w+');
                     fwrite($handle,$return);
                     fclose($handle);
                 }
 
                 //nama database hasil backup
                 $database = 'Backup';
-                $file = $database.'_'.date("d_M_Y").'_'.time().'.sql';
+                $file = $database.'_'.date("d_M_Y").'.sql';
 
                 //backup database
                 if(isset($_REQUEST['backup'])){
 
                     //konfigurasi database dan backup semua tabel
-                    backup("localhost","root","","ams",$file,"*");
+                    backup("localhost", "root", "", "ams", $file, "*");
 
                     //backup hanya tabel tertentu
                     //backup("localhost","user_database","pass_database","nama_database",$file,"tabel1,tabel2,tabel3");
@@ -157,7 +157,7 @@
                                     </div>
                                     <div class="card-action">
                                         <form method="post" enctype="multipart/form-data" >
-                                            <a href="?page=sett&sub=back&nama_file='.$file.'" class="btn-large blue waves-effect waves-light white-text">DOWNLOAD <i class="material-icons">file_download</i></a>
+                                            <a href="?page=sett&sub=back&file_name='.$file.'" class="btn-large blue waves-effect waves-light white-text">DOWNLOAD <i class="material-icons">file_download</i></a>
                                         </form>
                                     </div>
                                 </div>
