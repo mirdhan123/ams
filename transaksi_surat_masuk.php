@@ -314,15 +314,20 @@
                                                         $id_sett = decrypt($string, $salt);
                                                         $surat_masuk = $_REQUEST['surat_masuk'];                                                                    $id_user = $_SESSION['id_user'];
 
-                                                        if($surat_masuk < 5){
+                                                        if(!preg_match("/^[0-9]*$/", $surat_masuk)){
+                                                            echo '<script language="javascript">window.history.back();</script>';
+                                                        } else {
+
+                                                        if(strlen($surat_masuk) < 5){
                                                             header("Location: ./admin.php?page=tsm");
                                                             die();
                                                         } else {
 
-                                                        $query = mysqli_query($config, "UPDATE tbl_sett SET surat_masuk='$surat_masuk', id_user='$id_user' WHERE id_sett='$id_sett'");
-                                                        if($query == true){
-                                                            header("Location: ./admin.php?page=tsm");
-                                                            die();
+                                                            $query = mysqli_query($config, "UPDATE tbl_sett SET surat_masuk='$surat_masuk', id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                            if($query == true){
+                                                                header("Location: ./admin.php?page=tsm");
+                                                                die();
+                                                            }
                                                         }
                                                     }
                                                 } else {

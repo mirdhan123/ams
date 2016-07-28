@@ -246,15 +246,20 @@
                                                             $id_sett = decrypt($string, $salt);
                                                             $referensi = $_REQUEST['referensi'];                                                                    $id_user = $_SESSION['id_user'];
 
-                                                            if($referensi < 5){
-                                                                header("Location: ./admin.php?page=ref");
-                                                                die();
+                                                            if(!preg_match("/^[0-9]*$/", $referensi)){
+                                                                echo '<script language="javascript">window.history.back();</script>';
                                                             } else {
 
-                                                            $query = mysqli_query($config, "UPDATE tbl_sett SET referensi='$referensi', id_user='$id_user' WHERE id_sett='$id_sett'");
-                                                            if($query == true){
-                                                                header("Location: ./admin.php?page=ref");
-                                                                die();
+                                                                if(strlen($referensi) < 5){
+                                                                    header("Location: ./admin.php?page=ref");
+                                                                    die();
+                                                                } else {
+
+                                                                $query = mysqli_query($config, "UPDATE tbl_sett SET referensi='$referensi', id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                                if($query == true){
+                                                                    header("Location: ./admin.php?page=ref");
+                                                                    die();
+                                                                }
                                                             }
                                                         }
                                                     } else {
