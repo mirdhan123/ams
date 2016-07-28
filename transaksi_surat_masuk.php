@@ -319,7 +319,7 @@
                                                         echo '<script language="javascript">window.history.back();</script>';
                                                     } else {
 
-                                                    if(strlen($surat_masuk) < 5){
+                                                    if($surat_masuk < 5){
                                                         header("Location: ./admin.php?page=tsm");
                                                         die();
                                                     } else {

@@ -251,7 +251,7 @@
                                                             echo '<script language="javascript">window.history.back();</script>';
                                                         } else {
 
-                                                            if(strlen($referensi) < 5){
+                                                            if($referensi < 5){
                                                                 header("Location: ./admin.php?page=ref");
                                                                 die();
                                                             } else {

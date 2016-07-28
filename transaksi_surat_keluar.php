@@ -281,7 +281,7 @@
                                                     echo '<script language="javascript">window.history.back();</script>';
                                                 } else {
 
-                                                    if(strlen($surat_keluar) < 5){
+                                                    if($surat_keluar < 5){
                                                         header("Location: ./admin.php?page=tsk");
                                                         die();
                                                     } else {
