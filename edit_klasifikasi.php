@@ -15,7 +15,14 @@
 
         if(isset($_REQUEST['submit'])){
 
-                $id_klasifikasi = $_REQUEST['id_klasifikasi'];
+            $klasifikasi = $_REQUEST['id_klasifikasi'];
+            $salt = md5('masrud.com');
+
+            function decrypt($klasifikasi, $salt){
+               return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($klasifikasi), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
+            }
+
+                $id_klasifikasi = decrypt($klasifikasi, $salt);
                 $kode = $_REQUEST['kode'];
                 $nama = $_REQUEST['nama'];
                 $uraian = $_REQUEST['uraian'];
@@ -127,7 +134,15 @@
                             <!-- Row in form START -->
                             <div class="row">
                                 <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Isi dengan huruf, angka, spasi dan titik(.)">
-                                    <input type="hidden" value="<?php echo $row['id_klasifikasi']; ?>" name="id_klasifikasi">
+                                    <?php
+                                        $klasifikasi = $row['id_klasifikasi'];
+                                        $salt = md5('masrud.com');
+
+                                        function encrypt($klasifikasi, $salt){
+                                           return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $klasifikasi, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
+                                        }
+                                    ?>
+                                    <input type="hidden" value="<?php echo encrypt($klasifikasi,$salt); ?>" name="id_klasifikasi">
                                     <i class="material-icons prefix md-prefix">font_download</i>
                                     <input id="kd" type="text" class="validate" name="kode" maxlength="30" value="<?php echo $row['kode']; ?>" required>
                                         <?php
