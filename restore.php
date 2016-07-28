@@ -95,7 +95,7 @@
                 	$config = mysqli_connect("localhost","root","","ams");
 
                 	$file_name = $file['name'];
-                	$file_siza = $file['size'];
+                	$file_size = $file['size'];
                 	$tmp_file = $file['tmp_name'];
 
                 	if($file_name == "" || $_REQUEST['password'] == ""){

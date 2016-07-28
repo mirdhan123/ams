@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 28, 2016 at 02:07 
+-- Generation Time: Jul 28, 2016 at 01:29 
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -55,7 +55,7 @@ INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alama
 
 CREATE TABLE IF NOT EXISTS `tbl_klasifikasi` (
 `id_klasifikasi` int(5) NOT NULL,
-  `kode` varchar(30) NOT NULL,
+  `kode` varchar(10) NOT NULL,
   `nama` varchar(250) NOT NULL,
   `uraian` mediumtext NOT NULL,
   `id_user` tinyint(2) NOT NULL
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_keluar` (
   `tujuan` varchar(250) NOT NULL,
   `no_surat` varchar(50) NOT NULL,
   `isi` mediumtext NOT NULL,
-  `kode` varchar(30) NOT NULL,
+  `kode` varchar(10) NOT NULL,
   `tgl_surat` date NOT NULL,
   `tgl_catat` date NOT NULL,
   `file` varchar(250) NOT NULL,
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `tbl_surat_masuk` (
   `no_surat` varchar(50) NOT NULL,
   `asal_surat` varchar(250) NOT NULL,
   `isi` mediumtext NOT NULL,
-  `kode` varchar(30) NOT NULL,
+  `kode` varchar(10) NOT NULL,
   `indeks` varchar(30) NOT NULL,
   `tgl_surat` date NOT NULL,
   `tgl_diterima` date NOT NULL,
@@ -227,7 +227,7 @@ INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`
 CREATE TABLE IF NOT EXISTS `tbl_user` (
 `id_user` tinyint(2) NOT NULL,
   `username` varchar(30) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
-  `password` varchar(35) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `admin` tinyint(1) NOT NULL
@@ -238,9 +238,9 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'M. Rudianto', '-', 1),
-(2, 'kepsek', '8561863b55faf85b9ad67c52b3b851ac', 'H. Riza Fachri, S.Kom', '-', 2),
-(3, 'disposisi', '13bb8b589473803f26a02e338f949b8c', 'Petugas Disposisi', '-', 3);
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'M. Rudianto', '-', 1),
+(2, 'kepsek', '82b7283910ac7cb508ea7ecc645e5c944d7fb612', 'H. Riza Fachri, S.Kom', '-', 2),
+(3, 'disposisi', '73c3467d32dd78ef01784a53416fffede068b019', 'Petugas Disposisi', '-', 3);
 
 --
 -- Indexes for dumped tables
