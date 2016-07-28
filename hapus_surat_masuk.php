@@ -27,6 +27,8 @@
     	if(mysqli_num_rows($query) > 0){
             while($row = mysqli_fetch_array($query)){
 
+            $string = $row['id_surat'];
+
             if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
                 echo '<script language="javascript">
                         window.alert("ERROR! Anda tidak memiliki hak akses untuk menghapus data ini");
@@ -38,109 +40,108 @@
                 <!-- Row form Start -->
 				<div class="row jarak-card">
 				    <div class="col m12">
-                    <div class="card">
-                        <div class="card-content">
-				        <table>
-				            <thead class="red lighten-5 red-text">
-				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
-				                Apakah Anda yakin akan menghapus data ini?</div>
-				            </thead>
+                        <div class="card">
+                            <div class="card-content">
+        				        <table>
+        				            <thead class="red lighten-5 red-text">
+        				                <div class="confir red-text"><i class="material-icons md-36">error_outline</i>
+        				                Apakah Anda yakin akan menghapus data ini?</div>
+        				            </thead>
 
-				            <tbody>
-				                <tr>
-				                    <td width="13%">No. Agenda</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['no_agenda'].'</td>
-				                </tr>
-				                <tr>
-				                    <td width="13%">Kode Klasifikasi</td>
-				                    <td width="1%">:</td>
-				                    <td width="86%">'.$row['kode'].'</td>
-				                </tr>
-                                    <td width="13%">Indeks Berkas</td>
-                                    <td width="1%">:</td>
-                                    <td width="86%">'.$row['indeks'].'</td>
-                                </tr>
-    			                <tr>
-                                <tr>
-                                    <td width="13%">Asal Surat</td>
-                                    <td width="1%">:</td>
-                                    <td width="86%">'.$row['asal_surat'].'</td>
-                                </tr>
-        		                    <td width="13%">Isi Ringkas</td>
-        		                    <td width="1%">:</td>
-        		                    <td width="86%">'.$row['isi'].'</td>
-    			                </tr>
-                                <tr>
-    			                    <td width="13%">No. Surat</td>
-    			                    <td width="1%">:</td>
-    			                    <td width="86%">'.$row['no_surat'].'</td>
-    			                </tr>
-    			                <tr>
-    			                    <td width="13%">Tanggal Surat</td>
-    			                    <td width="1%">:</td>';
+        				            <tbody>
+        				                <tr>
+        				                    <td width="13%">No. Agenda</td>
+        				                    <td width="1%">:</td>
+        				                    <td width="86%">'.$row['no_agenda'].'</td>
+        				                </tr>
+        				                <tr>
+        				                    <td width="13%">Kode Klasifikasi</td>
+        				                    <td width="1%">:</td>
+        				                    <td width="86%">'.$row['kode'].'</td>
+        				                </tr>
+                                            <td width="13%">Indeks Berkas</td>
+                                            <td width="1%">:</td>
+                                            <td width="86%">'.$row['indeks'].'</td>
+                                        </tr>
+            			                <tr>
+                                        <tr>
+                                            <td width="13%">Asal Surat</td>
+                                            <td width="1%">:</td>
+                                            <td width="86%">'.$row['asal_surat'].'</td>
+                                        </tr>
+                		                    <td width="13%">Isi Ringkas</td>
+                		                    <td width="1%">:</td>
+                		                    <td width="86%">'.$row['isi'].'</td>
+            			                </tr>
+                                        <tr>
+            			                    <td width="13%">No. Surat</td>
+            			                    <td width="1%">:</td>
+            			                    <td width="86%">'.$row['no_surat'].'</td>
+            			                </tr>
+            			                <tr>
+            			                    <td width="13%">Tanggal Surat</td>
+            			                    <td width="1%">:</td>';
 
-                                    $y = substr($row['tgl_surat'],0,4);
-                                    $m = substr($row['tgl_surat'],5,2);
-                                    $d = substr($row['tgl_surat'],8,2);
+                                            $y = substr($row['tgl_surat'],0,4);
+                                            $m = substr($row['tgl_surat'],5,2);
+                                            $d = substr($row['tgl_surat'],8,2);
 
-                                    if($m == "01"){
-                                        $nm = "Januari";
-                                    } elseif($m == "02"){
-                                        $nm = "Februari";
-                                    } elseif($m == "03"){
-                                        $nm = "Maret";
-                                    } elseif($m == "04"){
-                                        $nm = "April";
-                                    } elseif($m == "05"){
-                                        $nm = "Mei";
-                                    } elseif($m == "06"){
-                                        $nm = "Juni";
-                                    } elseif($m == "07"){
-                                        $nm = "Juli";
-                                    } elseif($m == "08"){
-                                        $nm = "Agustus";
-                                    } elseif($m == "09"){
-                                        $nm = "September";
-                                    } elseif($m == "10"){
-                                        $nm = "Oktober";
-                                    } elseif($m == "11"){
-                                        $nm = "November";
-                                    } elseif($m == "12"){
-                                        $nm = "Desember";
-                                    }
-                                    echo '
+                                            if($m == "01"){
+                                                $nm = "Januari";
+                                            } elseif($m == "02"){
+                                                $nm = "Februari";
+                                            } elseif($m == "03"){
+                                                $nm = "Maret";
+                                            } elseif($m == "04"){
+                                                $nm = "April";
+                                            } elseif($m == "05"){
+                                                $nm = "Mei";
+                                            } elseif($m == "06"){
+                                                $nm = "Juni";
+                                            } elseif($m == "07"){
+                                                $nm = "Juli";
+                                            } elseif($m == "08"){
+                                                $nm = "Agustus";
+                                            } elseif($m == "09"){
+                                                $nm = "September";
+                                            } elseif($m == "10"){
+                                                $nm = "Oktober";
+                                            } elseif($m == "11"){
+                                                $nm = "November";
+                                            } elseif($m == "12"){
+                                                $nm = "Desember";
+                                            }
+                                            echo '
 
-    			                    <td width="86%">'.$d." ".$nm." ".$y.'</td>
-    			                </tr>
+            			                    <td width="86%">'.$d." ".$nm." ".$y.'</td>
+            			                </tr>
 
-    			                <tr>
-    			                    <td width="13%">File</td>
-    			                    <td width="1%">:</td>
-    			                    <td width="86%">';
-                                    if(!empty($row['file'])){
-                                        $string = $row['id_surat'];
-                                        echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
-                                    } else {
-                                        echo ' Tidak ada file yang diupload';
-                                    } echo '</td>
-    			                </tr>
-    			                <tr>
-                                    <td width="13%">Keterangan</td>
-                                    <td width="1%">:</td>
-                                    <td width="86%">'.$row['keterangan'].'</td>
-                                </tr>
-    			            </tbody>
-    			   		</table>
-                        </div>
-                        <div class="card-action">
-        	                <a href="?page=tsm&act=del&submit=yes&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
-        	                <a href="?page=tsm" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
-    	                </div>
-    	            </div>
+            			                <tr>
+            			                    <td width="13%">File</td>
+            			                    <td width="1%">:</td>
+            			                    <td width="86%">';
+                                            if(!empty($row['file'])){
+                                                echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
+                                            } else {
+                                                echo ' Tidak ada file yang diupload';
+                                            } echo '</td>
+            			                </tr>
+            			                <tr>
+                                            <td width="13%">Keterangan</td>
+                                            <td width="1%">:</td>
+                                            <td width="86%">'.$row['keterangan'].'</td>
+                                        </tr>
+            			            </tbody>
+            			   		</table>
+                            </div>
+                            <div class="card-action">
+            	                <a href="?page=tsm&act=del&submit=yes&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
+            	                <a href="?page=tsm" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
+        	                </div>
+        	            </div>
+                    </div>
                 </div>
-            </div>
-            <!-- Row form END -->';
+                <!-- Row form END -->';
 
             	if(isset($_REQUEST['submit'])){
                     $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
@@ -148,6 +149,7 @@
 
                     //jika ada file akan mengekseskusi script dibawah ini
                     if(!empty($row['file'])){
+
                         unlink("upload/surat_masuk/".$row['file']);
                         $query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 

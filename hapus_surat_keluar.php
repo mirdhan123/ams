@@ -20,12 +20,14 @@
             unset($_SESSION['errQ']);
         }
 
-    	$id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
-    	$query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
+        $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+        $id_surat = decrypt($string, $salt);
 
+        $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
     	if(mysqli_num_rows($query) > 0){
-            $no = 1;
             while($row = mysqli_fetch_array($query)){
+
+            $string = $row['id_surat'];
 
             if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
                 echo '<script language="javascript">
@@ -34,7 +36,8 @@
                       </script>';
             } else {
 
-    		  echo '<!-- Row form Start -->
+    		  echo '
+                <!-- Row form Start -->
 				<div class="row jarak-card">
 				    <div class="col m12">
                         <div class="card">
@@ -113,7 +116,7 @@
         				                    <td width="1%">:</td>
                                             <td width="86%">';
                                             if(!empty($row['file'])){
-                                                echo ' <a class="blue-text" href="?page=gsk&act=fsk&id_surat='.$row['id_surat'].'">'.$row['file'].'</a>';
+                                                echo ' <a class="blue-text" href="?page=gsk&act=fsk&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
                                             } else {
                                                 echo ' Tidak ada file yang diupload';
                                             } echo '</td>
@@ -127,7 +130,7 @@
     				   		    </table>
 				            </div>
                             <div class="card-action">
-        		                <a href="?page=tsk&act=del&submit=yes&id_surat='.$row['id_surat'].'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
+        		                <a href="?page=tsk&act=del&submit=yes&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
         		                <a href="?page=tsk" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
                             </div>
                         </div>
@@ -136,7 +139,8 @@
                 <!-- Row form END -->';
 
             	if(isset($_REQUEST['submit'])){
-            		$id_surat = $_REQUEST['id_surat'];
+                    $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                    $id_surat = urldecode(decrypt($string, $salt));
 
                     //jika ada file akan mengekseskusi script dibawah ini
                     if(!empty($row['file'])){
@@ -150,9 +154,7 @@
                             die();
                 		} else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                            echo '<script language="javascript">
-                                    window.location.href="./admin.php?page=tsk&act=del&id_surat='.$id_surat.'";
-                                  </script>';
+                            echo '<script language="javascript">window.history.back();</script>';
                 		}
                 	} else {
 
@@ -165,9 +167,7 @@
                             die();
                         } else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                            echo '<script language="javascript">
-                                    window.location.href="./admin.php?page=tsk&act=del&id_surat='.$id_surat.'";
-                                  </script>';
+                            echo '<script language="javascript">window.history.back();</script>';
                         }
                     }
                 }
