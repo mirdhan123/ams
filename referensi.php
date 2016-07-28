@@ -1,4 +1,4 @@
-<?php
+    <?php
     //cek session
     if(empty($_SESSION['admin'])){
         $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
@@ -240,26 +240,27 @@
                                                 <div id="modal" class="modal">
                                                     <div class="modal-content white">
                                                         <h5>Jumlah data yang ditampilkan per halaman</h5>';
-                                                        if(isset($_REQUEST['simpan'])){
 
-                                                            $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
-                                                            $id_sett = decrypt($string, $salt);
-                                                            $referensi = $_REQUEST['referensi'];                                                                    $id_user = $_SESSION['id_user'];
+                                                    if(isset($_REQUEST['simpan'])){
 
-                                                            if(!preg_match("/^[0-9]*$/", $referensi)){
-                                                                echo '<script language="javascript">window.history.back();</script>';
+                                                        $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
+                                                        $id_sett = decrypt($string, $salt);
+                                                        $referensi = $_REQUEST['referensi'];                                                                    $id_user = $_SESSION['id_user'];
+
+                                                        if(!preg_match("/^[0-9]*$/", $referensi)){
+                                                            echo '<script language="javascript">window.history.back();</script>';
+                                                        } else {
+
+                                                            if(strlen($referensi) < 5){
+                                                                header("Location: ./admin.php?page=ref");
+                                                                die();
                                                             } else {
 
-                                                                if(strlen($referensi) < 5){
-                                                                    header("Location: ./admin.php?page=ref");
-                                                                    die();
-                                                                } else {
-
-                                                                $query = mysqli_query($config, "UPDATE tbl_sett SET referensi='$referensi', id_user='$id_user' WHERE id_sett='$id_sett'");
-                                                                if($query == true){
-                                                                    header("Location: ./admin.php?page=ref");
-                                                                    die();
-                                                                }
+                                                            $query = mysqli_query($config, "UPDATE tbl_sett SET referensi='$referensi', id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                            if($query == true){
+                                                                header("Location: ./admin.php?page=ref");
+                                                                die();
+                                                            }
                                                             }
                                                         }
                                                     } else {

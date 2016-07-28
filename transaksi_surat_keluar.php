@@ -270,26 +270,27 @@
                                         <div id="modal" class="modal">
                                             <div class="modal-content white">
                                                 <h5>Jumlah data yang ditampilkan per halaman</h5>';
+
                                                 if(isset($_REQUEST['simpan'])){
 
-                                                    $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
-                                                    $id_sett = decrypt($string, $salt);
-                                                    $surat_keluar = $_REQUEST['surat_keluar'];                                                                    $id_user = $_SESSION['id_user'];
+                                                $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
+                                                $id_sett = decrypt($string, $salt);
+                                                $surat_keluar = $_REQUEST['surat_keluar'];                                                                    $id_user = $_SESSION['id_user'];
 
-                                                    if(!preg_match("/^[0-9]*$/", $surat_keluar)){
-                                                        echo '<script language="javascript">window.history.back();</script>';
+                                                if(!preg_match("/^[0-9]*$/", $surat_keluar)){
+                                                    echo '<script language="javascript">window.history.back();</script>';
+                                                } else {
+
+                                                    if(strlen($surat_keluar) < 5){
+                                                        header("Location: ./admin.php?page=tsk");
+                                                        die();
                                                     } else {
 
-                                                        if(strlen($surat_keluar) < 5){
-                                                            header("Location: ./admin.php?page=tsk");
-                                                            die();
-                                                        } else {
-
-                                                        $query = mysqli_query($config, "UPDATE tbl_sett SET surat_keluar='$surat_keluar', id_user='$id_user' WHERE id_sett='$id_sett'");
-                                                        if($query == true){
-                                                            header("Location: ./admin.php?page=tsk");
-                                                            die();
-                                                        }
+                                                    $query = mysqli_query($config, "UPDATE tbl_sett SET surat_keluar='$surat_keluar', id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                    if($query == true){
+                                                        header("Location: ./admin.php?page=tsk");
+                                                        die();
+                                                    }
                                                     }
                                                 }
                                             } else {

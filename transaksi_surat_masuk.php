@@ -308,27 +308,28 @@
                                             <div id="modal" class="modal">
                                                 <div class="modal-content white">
                                                     <h5>Jumlah data yang ditampilkan per halaman</h5>';
-                                                    if(isset($_REQUEST['simpan'])){
 
-                                                        $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
-                                                        $id_sett = decrypt($string, $salt);
-                                                        $surat_masuk = $_REQUEST['surat_masuk'];                                                                    $id_user = $_SESSION['id_user'];
+                                                if(isset($_REQUEST['simpan'])){
 
-                                                        if(!preg_match("/^[0-9]*$/", $surat_masuk)){
-                                                            echo '<script language="javascript">window.history.back();</script>';
-                                                        } else {
+                                                    $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
+                                                    $id_sett = decrypt($string, $salt);
+                                                    $surat_masuk = $_REQUEST['surat_masuk'];                                                                    $id_user = $_SESSION['id_user'];
 
-                                                        if(strlen($surat_masuk) < 5){
+                                                    if(!preg_match("/^[0-9]*$/", $surat_masuk)){
+                                                        echo '<script language="javascript">window.history.back();</script>';
+                                                    } else {
+
+                                                    if(strlen($surat_masuk) < 5){
+                                                        header("Location: ./admin.php?page=tsm");
+                                                        die();
+                                                    } else {
+
+                                                        $query = mysqli_query($config, "UPDATE tbl_sett SET surat_masuk='$surat_masuk', id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                        if($query == true){
                                                             header("Location: ./admin.php?page=tsm");
                                                             die();
-                                                        } else {
-
-                                                            $query = mysqli_query($config, "UPDATE tbl_sett SET surat_masuk='$surat_masuk', id_user='$id_user' WHERE id_sett='$id_sett'");
-                                                            if($query == true){
-                                                                header("Location: ./admin.php?page=tsm");
-                                                                die();
-                                                            }
                                                         }
+                                                    }
                                                     }
                                                 } else {
 
