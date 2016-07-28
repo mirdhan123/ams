@@ -104,7 +104,7 @@
 
                                                             move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
-                                                            $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda',tujuan='$tujuan',no_surat='$no_surat',isi='$isi',kode='$nkode',tgl_surat='$tgl_surat',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+                                                            $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda', tujuan='$tujuan', no_surat='$no_surat', isi='$isi', kode='$nkode', tgl_surat='$tgl_surat', file='$nfile', keterangan='$keterangan', id_user='$id_user' WHERE id_surat='$id_surat'");
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -119,7 +119,7 @@
                                                             //jika file kosong akan mengeksekusi script dibawah ini
                                                             move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
-                                                            $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda',tujuan='$tujuan',no_surat='$no_surat',isi='$isi',kode='$nkode',tgl_surat='$tgl_surat',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+                                                            $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda', tujuan='$tujuan', no_surat='$no_surat', isi='$isi', kode='$nkode', tgl_surat='$tgl_surat', file='$nfile', keterangan='$keterangan', id_user='$id_user' WHERE id_surat='$id_surat'");
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -150,7 +150,7 @@
 
                                                 $id_surat = decrypt($surat, $salt);
 
-                                                $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda',tujuan='$tujuan',no_surat='$no_surat',isi='$isi',kode='$nkode',tgl_surat='$tgl_surat',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+                                                $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda', tujuan='$tujuan', no_surat='$no_surat', isi='$isi', kode='$nkode', tgl_surat='$tgl_surat', keterangan='$keterangan', id_user='$id_user' WHERE id_surat='$id_surat'");
 
                                                 if($query == true){
                                                     $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';

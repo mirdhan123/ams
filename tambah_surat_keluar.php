@@ -93,9 +93,8 @@
 
                                                             move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
-                                                            $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda,tujuan,no_surat,isi,kode,tgl_surat,
-                                                                tgl_catat,file,keterangan,id_user)
-                                                                VALUES('$no_agenda','$tujuan','$no_surat','$isi','$nkode','$tgl_surat',NOW(),'$nfile','$keterangan','$id_user')");
+                                                            $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda, tujuan, no_surat, isi, kode, tgl_surat, tgl_catat, file, keterangan, id_user)
+                                                                VALUES('$no_agenda', '$tujuan', '$no_surat', '$isi', '$nkode', '$tgl_surat', NOW(), '$nfile', '$keterangan', '$id_user')");
 
                                                             if($query == true){
                                                                 $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
@@ -114,9 +113,8 @@
                                                         echo '<script language="javascript">window.history.back();</script>';
                                                     }
                                                 } else {
-                                                    $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda,tujuan,no_surat,isi,kode,tgl_surat,
-                                                        tgl_catat,keterangan,id_user)
-                                                        VALUES('$no_agenda','$tujuan','$no_surat','$isi','$nkode','$tgl_surat',NOW(),'$keterangan','$id_user')");
+                                                    $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda, tujuan, no_surat, isi, kode, tgl_surat, tgl_catat, keterangan, id_user)
+                                                        VALUES('$no_agenda', '$tujuan', '$no_surat', '$isi', '$nkode', '$tgl_surat', NOW(), '$keterangan', '$id_user')");
 
                                                     if($query == true){
                                                         $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
