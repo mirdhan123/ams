@@ -78,7 +78,7 @@ INSERT INTO tbl_klasifikasi VALUES("45","426.3","Pesta Olah Raga, Klasifikasi ny
 INSERT INTO tbl_klasifikasi VALUES("46","426.4","KONI","KONI","1");
 INSERT INTO tbl_klasifikasi VALUES("47","427","Kepramukaan Meliputi: Organisasi dan Kegiatan Remaja","Kepramukaan Meliputi: Organisasi dan Kegiatan Remaja","1");
 INSERT INTO tbl_klasifikasi VALUES("48","428","Kepramukaan","Kepramukaan","1");
-INSERT INTO tbl_klasifikasi VALUES("49","429","Pendidikan Kedinasan Untuk Depdagri","Pendidikan Kedinasan Untuk Depdagri","1");
+INSERT INTO tbl_klasifikasi VALUES("49","429","Pendidikan  Kedinasan Untuk Depdagri","Pendidikan  Kedinasan Untuk Depdagri","1");
 
 
 
@@ -94,7 +94,7 @@ CREATE TABLE `tbl_sett` (
   PRIMARY KEY (`id_sett`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO tbl_sett VALUES("1","5","5","SMK-AH","10","3");
+INSERT INTO tbl_sett VALUES("1","5","5","SMK-AH","10","1");
 
 
 

@@ -12,7 +12,7 @@
                     window.history.back();
                   </script>';
         } else {
-        
+
             //proses upload file
             if(isset($_POST['submit'])){
 
