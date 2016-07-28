@@ -165,9 +165,13 @@
                                         <td>'.$row['kode'].'</td>
                                         <td>'.$row['nama'].'</td>
                                         <td>'.$row['uraian'].'</td>
-                                        <td>
-                                            <a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.$row['id_klasifikasi'].'"> <i class="material-icons">edit</i> EDIT</a>
-                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.$row['id_klasifikasi'].'"><i class="material-icons">delete</i> DEL</a>
+                                        <td>';
+
+                                        $string = $row['id_klasifikasi'];
+                                        echo '
+
+                                            <a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">edit</i> EDIT</a>
+                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> DEL</a>
                                         </td>
                                     </tr>
                                 </tbody>';
@@ -290,9 +294,13 @@
                                           echo '<td>'.$row['kode'].'</td>
                                                 <td>'.$row['nama'].'</td>
                                                 <td>'.$row['uraian'].'</td>
-                                                <td>
-                                                    <a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.$row['id_klasifikasi'].'"> <i class="material-icons">edit</i> EDIT</a>
-                                                    <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.$row['id_klasifikasi'].'"><i class="material-icons">delete</i> DEL</a>
+                                                <td>';
+
+                                                $string = $row['id_klasifikasi'];
+                                                echo '
+
+                                                    <a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">edit</i> EDIT</a>
+                                                    <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> DEL</a>
                                                 </td>
                                             </tr>
                                         </tbody>';

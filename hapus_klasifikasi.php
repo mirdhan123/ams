@@ -6,9 +6,10 @@
         die();
     } else {
 
-        $id_klasifikasi = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
-        $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
+        $string = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
+        $id_klasifikasi = decrypt($string, $salt);
 
+        $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
     	if(mysqli_num_rows($query) > 0){
             $no = 1;
             while($row = mysqli_fetch_array($query)){
@@ -65,8 +66,12 @@
         			            </tbody>
         			   		</table>
     			        </div>
-                        <div class="card-action">
-        	                <a href="?page=ref&act=del&submit=yes&id_klasifikasi='.$row['id_klasifikasi'].'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
+                        <div class="card-action">';
+
+                        $string = $row['id_klasifikasi'];
+                        echo '
+
+        	                <a href="?page=ref&act=del&submit=yes&id_klasifikasi='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
         	                <a href="?page=ref" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
         	            </div>
                     </div>
@@ -75,7 +80,8 @@
             <!-- Row form END -->';
 
         	if(isset($_REQUEST['submit'])){
-        		$id_klasifikasi = $_REQUEST['id_klasifikasi'];
+                $string = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
+                $id_klasifikasi = decrypt($string, $salt);
 
                 $query = mysqli_query($config, "DELETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
 

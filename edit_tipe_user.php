@@ -30,9 +30,8 @@
 
                 if(isset($_REQUEST['submit'])){
 
-                    $user = $_REQUEST['id_user'];
-
-                    $id_user = decrypt($user, $salt);
+                    $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
+                    $id_user = decrypt($string, $salt);
                     $admin = $_REQUEST['admin'];
 
                     if($id_user == $_SESSION['id_user']){
@@ -63,7 +62,9 @@
                     }
                 } else {
 
-                    $id_user = mysqli_real_escape_string($config, $_REQUEST['id_user']);
+                    $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
+                    $id_user = decrypt($string, $salt);
+
                     $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
                     if(mysqli_num_rows($query) > 0){
                         $no = 1;
@@ -111,9 +112,9 @@
                                 <div class="row">
                                     <div class="input-field col s6">
                                         <?php
-                                            $user = $row['id_user'];
+                                            $string = $row['id_user'];
                                         ?>
-                                        <input type="hidden" value="<?php echo encrypt($user, $salt); ?>" name="id_user">
+                                        <input type="hidden" value="<?php echo encrypt($string, $salt); ?>" name="id_user">
                                         <i class="material-icons prefix md-prefix">account_circle</i>
                                         <input id="username" type="text" value="<?php echo $row['username'] ;?>" readonly class="grey-text">
                                         <label  for="username">Username</label>
