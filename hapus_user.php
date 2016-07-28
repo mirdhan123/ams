@@ -13,11 +13,8 @@
                   </script>';
         } else {
 
-        function base64_url_decode($input){
-            return base64_decode(strtr($input, '-_,', '+/='));
-        }
-
-        $id_user = base64_url_decode(mysqli_real_escape_string($config, $_REQUEST['id_user']));
+        $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
+        $id_user = decrypt($string, $salt);
 
         if($id_user == 1){
             echo '<script language="javascript">
@@ -98,11 +95,10 @@
     				            </div>
                                 <div class="card-action">';
 
-                                function base64_url_encode($input){
-                                    return strtr(base64_encode($input), '+/=', '-_,');
-                                } echo '
+                                $string = $row['id_user'];
+                                echo '
 
-            		                <a href="?page=sett&sub=usr&act=del&submit=yes&id_user='.base64_url_encode($row['id_user']).'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
+            		                <a href="?page=sett&sub=usr&act=del&submit=yes&id_user='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
             		                <a href="?page=sett&sub=usr" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
             		            </div>
                             </div>
@@ -111,10 +107,11 @@
         			<!-- Row form END -->';
 
                 	if(isset($_REQUEST['submit'])){
-                        $id_user = base64_url_decode(mysqli_real_escape_string($config, $_REQUEST['id_user']));
+
+                        $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
+                        $id_user = decrypt($string, $salt);
 
                         $query = mysqli_query($config, "DELETE FROM tbl_user WHERE id_user='$id_user'");
-
                 		if($query == true){
                             $_SESSION['succDel'] = 'SUKSES! User berhasil dihapus<br/>';
                             header("Location: ./admin.php?page=sett&sub=usr");

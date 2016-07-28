@@ -25,7 +25,7 @@
                     case 'usr':
                         include "user.php";
                         break;
-                    }
+                }
             } else {
 
                 if(isset($_REQUEST['submit'])){
@@ -38,7 +38,9 @@
                         die();
                     } else {
 
-                        $id_instansi = "1";
+                        $string = mysqli_real_escape_string($config, $_REQUEST['id_instansi']);
+
+                        $id_instansi = decrypt($string, $salt);
                         $institusi = $_REQUEST['institusi'];
                         $nama = $_REQUEST['nama'];
                         $status = $_REQUEST['status'];
@@ -232,14 +234,9 @@
                                 <div class="row">
                                     <div class="input-field col s6">
                                         <?php
-                                            $instansi = $row['id_instansi'];
-                                            $salt = MD5('masrud.com');
-
-                                            function encrypt($instansi,$salt){
-                                               return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $instansi, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
-                                            }
+                                            $string = $row['id_instansi'];
                                         ?>
-                                        <input type="hidden" value="<?php echo encrypt($instansi, $salt); ?>" name="id_instansi">
+                                        <input type="hidden" value="<?php echo encrypt($string, $salt); ?>" name="id_instansi">
                                         <i class="material-icons prefix md-prefix">school</i>
                                         <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>" required>
                                             <?php

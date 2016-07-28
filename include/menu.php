@@ -1,6 +1,17 @@
 <?php
     //cek session
     if(!empty($_SESSION['admin'])){
+
+        $salt = md5('masrud.com');
+
+        function encrypt($string,$salt){
+           return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $string, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
+        }
+
+        function decrypt($string, $salt){
+           return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($string), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
+        }
+
 ?>
 
 <nav class="blue-grey darken-1">

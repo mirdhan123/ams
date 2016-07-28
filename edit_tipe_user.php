@@ -31,11 +31,6 @@
                 if(isset($_REQUEST['submit'])){
 
                     $user = $_REQUEST['id_user'];
-                    $salt = md5('masrud.com');
-
-                    function decrypt($user, $salt){
-                       return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($user), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
-                    }
 
                     $id_user = decrypt($user, $salt);
                     $admin = $_REQUEST['admin'];
@@ -117,11 +112,6 @@
                                     <div class="input-field col s6">
                                         <?php
                                             $user = $row['id_user'];
-                                            $salt = md5('masrud.com');
-
-                                            function encrypt($user, $salt){
-                                               return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $user, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
-                                            }
                                         ?>
                                         <input type="hidden" value="<?php echo encrypt($user, $salt); ?>" name="id_user">
                                         <i class="material-icons prefix md-prefix">account_circle</i>
