@@ -252,16 +252,16 @@
                                                                 die();
                                                             } else {
 
-                                                            $query = mysqli_query($config, "UPDATE tbl_sett SET referensi='$referensi',id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                            $query = mysqli_query($config, "UPDATE tbl_sett SET referensi='$referensi', id_user='$id_user' WHERE id_sett='$id_sett'");
                                                             if($query == true){
                                                                 header("Location: ./admin.php?page=ref");
                                                                 die();
                                                             }
                                                         }
-                                                        } else {
+                                                    } else {
 
-                                                        $query = mysqli_query($config, "SELECT id_sett,referensi FROM tbl_sett");
-                                                        list($id_sett,$referensi) = mysqli_fetch_array($query);
+                                                        $query = mysqli_query($config, "SELECT id_sett, referensi FROM tbl_sett");
+                                                        list($id_sett, $referensi) = mysqli_fetch_array($query);
                                                         $string = $id_sett;
                                                         echo '
                                                         <div class="row">

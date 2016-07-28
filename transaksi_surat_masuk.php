@@ -172,6 +172,8 @@
                                     <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
                                     <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
+                                    $string = $row['id_surat'];
+
                                     if(!empty($row['file'])){
                                         echo ' <strong><a href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a></strong>';
                                     } else {
@@ -307,13 +309,33 @@
                                             <div id="modal" class="modal">
                                                 <div class="modal-content white">
                                                     <h5>Jumlah data yang ditampilkan per halaman</h5>';
-                                                    $query = mysqli_query($config, "SELECT id_sett,surat_masuk FROM tbl_sett");
-                                                    list($id_sett,$surat_masuk) = mysqli_fetch_array($query);
+                                                    if(isset($_REQUEST['simpan'])){
+
+                                                        $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
+                                                        $id_sett = decrypt($string, $salt);
+                                                        $surat_masuk = $_REQUEST['surat_masuk'];                                                                    $id_user = $_SESSION['id_user'];
+
+                                                        if($surat_masuk < 5){
+                                                            header("Location: ./admin.php?page=tsm");
+                                                            die();
+                                                        } else {
+
+                                                        $query = mysqli_query($config, "UPDATE tbl_sett SET surat_masuk='$surat_masuk', id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                        if($query == true){
+                                                            header("Location: ./admin.php?page=tsm");
+                                                            die();
+                                                        }
+                                                    }
+                                                } else {
+
+                                                    $query = mysqli_query($config, "SELECT id_sett, surat_masuk FROM tbl_sett");
+                                                    list($id_sett, $surat_masuk) = mysqli_fetch_array($query);
+                                                    $string = $id_sett;
                                                     echo '
                                                     <div class="row">
                                                         <form method="post" action="">
                                                             <div class="input-field col s12">
-                                                                <input type="hidden" value="'.$id_sett.'" name="id_sett">
+                                                                    <input type="hidden" value="'.encrypt($string, $salt).'" name="id_sett">
                                                                 <div class="input-field col s1" style="float: left;">
                                                                     <i class="material-icons prefix md-prefix">looks_one</i>
                                                                 </div>
@@ -328,26 +350,17 @@
                                                                     </select>
                                                                 </div>
                                                                 <div class="modal-footer white">
-                                                                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" name="simpan">Simpan</button>';
-                                                                    if(isset($_REQUEST['simpan'])){
-                                                                        $id_sett = "1";
-                                                                        $surat_masuk = $_REQUEST['surat_masuk'];
-                                                                        $id_user = $_SESSION['id_user'];
-
-                                                                        $query = mysqli_query($config, "UPDATE tbl_sett SET surat_masuk='$surat_masuk',id_user='$id_user' WHERE id_sett='$id_sett'");
-                                                                        if($query == true){
-                                                                            header("Location: ./admin.php?page=tsm");
-                                                                            die();
-                                                                        }
-                                                                    } echo '
+                                                                    <button type="submit" class="modal-action waves-effect waves-green btn-flat" name="simpan">Simpan</button>
                                                                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Batal</a>
                                                                 </div>
                                                             </div>
                                                         </form>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>';
+                                        }
 
+                                        echo '
                                     </tr>
                                 </thead>
                                 <tbody>

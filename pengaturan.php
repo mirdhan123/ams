@@ -118,7 +118,7 @@
 
                                                                     move_uploaded_file($_FILES['logo']['tmp_name'], $target_dir.$nlogo);
 
-                                                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET institusi='$institusi',nama='$nama',status='$status',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$nlogo',id_user='$id_user' WHERE id_instansi='$id_instansi'");
+                                                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET institusi='$institusi', nama='$nama', status='$status', alamat='$alamat', kepsek='$kepsek', nip='$nip', website='$website', email='$email', logo='$nlogo', id_user='$id_user' WHERE id_instansi='$id_instansi'");
 
                                                                     if($query == true){
                                                                         $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
@@ -139,7 +139,7 @@
                                                         } else {
 
                                                             //jika form logo kosong akan mengeksekusi script dibawah ini
-                                                            $query = mysqli_query($config, "UPDATE tbl_instansi SET institusi='$institusi',nama='$nama',status='$status',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',id_user='$id_user' WHERE id_instansi='$id_instansi'");
+                                                            $query = mysqli_query($config, "UPDATE tbl_instansi SET institusi='$institusi', nama='$nama', status='$status', alamat='$alamat', kepsek='$kepsek', nip='$nip', website='$website', email='$email', id_user='$id_user' WHERE id_instansi='$id_instansi'");
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
