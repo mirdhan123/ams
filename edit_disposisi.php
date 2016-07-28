@@ -15,9 +15,14 @@
 
         if(isset($_REQUEST['submit'])){
 
-            $id_surat = $_REQUEST['id_surat'];
-            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-            list($id_surat) = mysqli_fetch_array($query);
+            $disposisi = $_REQUEST['id_surat'];
+            $salt = md5('masrud.com');
+
+            function decrypt($disposisi, $salt){
+               return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($disposisi), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
+            }
+
+            $id_surat = decrypt($disposisi, $salt);
 
             //validasi form kosong
             if($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
@@ -78,10 +83,10 @@
         } else {
 
             $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
-            $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+            $query = mysqli_query($config, "SELECT tujuan, isi_disposisi, sifat, batas_waktu, catatan FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
             if(mysqli_num_rows($query) > 0){
                 $no = 1;
-                while($row = mysqli_fetch_array($query)){?>
+                list($tujuan, $isi_disposisi, $sifat, $batas_waktu, $catatan) = mysqli_fetch_array($query);{?>
 
                 <!-- Row Start -->
                 <div class="row">
@@ -137,9 +142,17 @@
                         <!-- Row in form START -->
                         <div class="row">
                             <div class="input-field col s6">
-                                <input type="hidden" value="<?php echo $row['id_disposisi'] ;?>">
+                                <?php
+                                    $disposisi = $id_surat;
+                                    $salt = md5('masrud.com');
+
+                                    function encrypt($disposisi, $salt){
+                                       return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $disposisi, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
+                                    }
+                                ?>
+                                <input type="hidden" value="<?php echo encrypt($disposisi, $salt); ?>" name="id_surat">
                                 <i class="material-icons prefix md-prefix">account_box</i>
-                                <input id="tujuan" type="text" class="validate" name="tujuan" value="<?php echo $row['tujuan'] ;?>" required>
+                                <input id="tujuan" type="text" class="validate" name="tujuan" value="<?php echo $tujuan; ?>" required>
                                     <?php
                                         if(isset($_SESSION['tujuan'])){
                                             $tujuan = $_SESSION['tujuan'];
@@ -151,7 +164,7 @@
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">alarm</i>
-                                <input id="batas_waktu" type="text" name="batas_waktu" class="datepicker" value="<?php echo $row['batas_waktu']; ?>"required>
+                                <input id="batas_waktu" type="text" name="batas_waktu" class="datepicker" value="<?php echo $batas_waktu; ?>"required>
                                     <?php
                                         if(isset($_SESSION['batas_waktu'])){
                                             $batas_waktu = $_SESSION['batas_waktu'];
@@ -163,7 +176,7 @@
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">description</i>
-                                <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required><?php echo $row['isi_disposisi'] ;?></textarea>
+                                <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required><?php echo $isi_disposisi; ?></textarea>
                                     <?php
                                         if(isset($_SESSION['isi_disposisi'])){
                                             $isi_disposisi = $_SESSION['isi_disposisi'];
@@ -175,7 +188,7 @@
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">featured_play_list   </i>
-                                <input id="catatan" type="text" class="validate" name="catatan" value="<?php echo $row['catatan'] ;?>" required>
+                                <input id="catatan" type="text" class="validate" name="catatan" value="<?php echo $catatan; ?>" required>
                                     <?php
                                         if(isset($_SESSION['catatan'])){
                                             $catatan = $_SESSION['catatan'];
@@ -189,7 +202,7 @@
                                 <i class="material-icons prefix md-prefix">low_priority</i><label>Pilih Sifat Disposisi</label><br/>
                                 <div class="input-field col s11 right">
                                     <select class="browser-default validate" name="sifat" id="sifat" required>
-                                        <option value="<?php echo $row['sifat']; ?>"><?php echo $row['sifat']; ?></option>
+                                        <option value="<?php echo $sifat; ?>"><?php echo $sifat; ?></option>
                                         <option value="Biasa">Biasa</option>
                                         <option value="Penting">Penting</option>
                                         <option value="Segera">Segera</option>
