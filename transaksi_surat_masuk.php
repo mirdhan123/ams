@@ -229,7 +229,7 @@
 
                                     if(!empty($row['tujuan'])){
                                         echo '
-                                                <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
+                                            <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
                                     } else {
                                         echo '';
                                     }
