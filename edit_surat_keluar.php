@@ -86,7 +86,15 @@
                                                 if(in_array($eks, $ekstensi) == true){
                                                     if($ukuran < 2500000){
 
-                                                        $id_surat = $_REQUEST['id_surat'];
+                                                        $surat = $_REQUEST['id_surat'];
+                                                        $salt = md5('masrud.com');
+
+                                                        function decrypt($surat, $salt){
+                                                           return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($surat), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
+                                                        }
+
+                                                        $id_surat = decrypt($surat, $salt);
+
                                                         $query = mysqli_query($config, "SELECT file FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
                                                         list($file) = mysqli_fetch_array($query);
 
@@ -133,7 +141,14 @@
                                             } else {
 
                                                 //jika form file kosong akan mengeksekusi script dibawah ini
-                                                $id_surat = $_REQUEST['id_surat'];
+                                                $surat = $_REQUEST['id_surat'];
+                                                $salt = md5('masrud.com');
+
+                                                function decrypt($surat, $salt){
+                                                   return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($surat), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
+                                                }
+
+                                                $id_surat = decrypt($surat, $salt);
 
                                                 $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda',tujuan='$tujuan',no_surat='$no_surat',isi='$isi',kode='$nkode',tgl_surat='$tgl_surat',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
 
@@ -220,7 +235,15 @@
                         <!-- Row in form START -->
                         <div class="row">
                             <div class="input-field col s6">
-                                <input type="hidden" name="id_surat" value="<?php echo $id_surat ;?>">
+                                <?php
+                                    $surat = $id_surat;
+                                    $salt = md5('masrud.com');
+
+                                    function encrypt($surat, $salt){
+                                       return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $surat, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
+                                    }
+                                ?>
+                                <input type="hidden" name="id_surat" value="<?php echo encrypt($surat, $salt); ?>">
                                 <i class="material-icons prefix md-prefix">looks_one</i>
                                 <input id="no_agenda" type="number" class="validate" name="no_agenda" value="<?php echo $no_agenda ;?>" required>
                                     <?php
