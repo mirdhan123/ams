@@ -130,8 +130,11 @@
                                     if($row['id_user'] == 1 || $row['id_user'] == 2 || $row['id_user'] == 3){
                                         echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
                                     } else {
+                                        function base64_url_encode($input){
+                                            return strtr(base64_encode($input), '+/=', '-_,');
+                                        }
                                           echo '
-                                                 <a class="btn small deep-orange waves-effect waves-light" href="?page=sett&sub=usr&act=del&id_user='.$row['id_user'].'"><i class="material-icons">delete</i> DEL</a>';
+                                                 <a class="btn small deep-orange waves-effect waves-light" href="?page=sett&sub=usr&act=del&id_user='.base64_url_encode($row['id_user']).'"><i class="material-icons">delete</i> DEL</a>';
                                     }
                                     echo '
                                         </td>

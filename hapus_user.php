@@ -13,7 +13,12 @@
                   </script>';
         } else {
 
-        $id_user = mysqli_real_escape_string($config, $_REQUEST['id_user']);
+        function base64_url_decode($input){
+            return base64_decode(strtr($input, '-_,', '+/='));
+        }
+
+        $id_user = base64_url_decode(mysqli_real_escape_string($config, $_REQUEST['id_user']));
+
         if($id_user == 1){
             echo '<script language="javascript">
                     window.alert("ERROR! Administrator tidak boleh dihapus");
@@ -91,8 +96,13 @@
             				            </tbody>
             				   		</table>
     				            </div>
-                                <div class="card-action">
-            		                <a href="?page=sett&sub=usr&act=del&submit=yes&id_user='.$row['id_user'].'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
+                                <div class="card-action">';
+
+                                function base64_url_encode($input){
+                                    return strtr(base64_encode($input), '+/=', '-_,');
+                                } echo '
+
+            		                <a href="?page=sett&sub=usr&act=del&submit=yes&id_user='.base64_url_encode($row['id_user']).'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
             		                <a href="?page=sett&sub=usr" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
             		            </div>
                             </div>
@@ -101,7 +111,7 @@
         			<!-- Row form END -->';
 
                 	if(isset($_REQUEST['submit'])){
-                		$id_user = $_REQUEST['id_user'];
+                        $id_user = base64_url_decode(mysqli_real_escape_string($config, $_REQUEST['id_user']));
 
                         $query = mysqli_query($config, "DELETE FROM tbl_user WHERE id_user='$id_user'");
 
