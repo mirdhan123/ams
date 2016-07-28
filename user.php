@@ -131,10 +131,12 @@
                                         echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
                                     } else {
 
-                                            $string = $row['id_user'];
-                                            echo '
+                                        $string = $row['id_user'];
+                                        echo '
 
-                                                <a class="btn small deep-orange waves-effect waves-light" href="?page=sett&sub=usr&act=del&id_user='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> DEL</a>';
+                                            <a class="btn small blue waves-effect waves-light" href="?page=sett&sub=usr&act=edit&id_user='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
+
+                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=sett&sub=usr&act=del&id_user='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>';
                                     }
                                     echo '
                                         </td>

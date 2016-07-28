@@ -14,7 +14,7 @@
         } else {
 
         $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
-        $id_user = decrypt($string, $salt);
+        $id_user = urldecode(decrypt($string, $salt));
 
         if($id_user == 1){
             echo '<script language="javascript">
@@ -45,7 +45,6 @@
                 }
 
                 $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
-
             	if(mysqli_num_rows($query) > 0){
                     $no = 1;
                     while($row = mysqli_fetch_array($query)){
@@ -109,7 +108,7 @@
                 	if(isset($_REQUEST['submit'])){
 
                         $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
-                        $id_user = decrypt($string, $salt);
+                        $id_user = urldecode(decrypt($string, $salt));
 
                         $query = mysqli_query($config, "DELETE FROM tbl_user WHERE id_user='$id_user'");
                 		if($query == true){
@@ -119,7 +118,7 @@
                 		} else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
                             echo '<script language="javascript">
-                                    window.location.href="./admin.php?page=sett&sub=usr&act=del&id_user='.$id_user.'";
+                                    window.history.back();
                                   </script>';
                 		}
                 	}

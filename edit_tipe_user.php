@@ -31,7 +31,7 @@
                 if(isset($_REQUEST['submit'])){
 
                     $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
-                    $id_user = decrypt($string, $salt);
+                    $id_user = urldecode(decrypt($string, $salt));
                     $admin = $_REQUEST['admin'];
 
                     if($id_user == $_SESSION['id_user']){
@@ -55,7 +55,7 @@
                             } else {
                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
                                 echo '<script language="javascript">
-                                        window.location.href="./admin.php?page=sett&sub=usr&act=edit&id_user='.$id_user.'";
+                                        window.history.back();
                                       </script>';
                             }
                         }
@@ -63,7 +63,7 @@
                 } else {
 
                     $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
-                    $id_user = decrypt($string, $salt);
+                    $id_user = urldecode(decrypt($string, $salt));
 
                     $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
                     if(mysqli_num_rows($query) > 0){
@@ -131,7 +131,7 @@
                                                 <option value="<?php echo $row['admin']; ?>">
                                                     <?php
                                                         if($row['admin'] == 2){
-                                                            echo 'Administrator';
+                                                            echo 'Pimpinan Instansi';
                                                         } else {
                                                             echo 'User Biasa';
                                                         }
