@@ -196,9 +196,10 @@
                 </div>
                 <div class="separator"></div>';
 
-                $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
-                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+                $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                $id_surat = urldecode(decrypt($string, $salt));
 
+                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
                 if(mysqli_num_rows($query) > 0){
                 $no = 0;
                 while($row = mysqli_fetch_array($query)){
