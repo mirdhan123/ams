@@ -26,9 +26,7 @@
                 //validasi form kosong
                 if($_REQUEST['kode'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['uraian'] == ""){
                     $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
-                    echo '<script language="javascript">
-                            window.location.href="./admin.php?page=ref&act=edit&id_klasifikasi='.$id_klasifikasi.'";
-                          </script>';
+                    echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
                 //validasi input data

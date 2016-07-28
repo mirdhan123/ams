@@ -117,9 +117,7 @@
                             die();
                 		} else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                            echo '<script language="javascript">
-                                    window.history.back();
-                                  </script>';
+                            echo '<script language="javascript">window.history.back();</script>';
                 		}
                 	}
     		        }
