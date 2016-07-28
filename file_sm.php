@@ -6,7 +6,9 @@
         die();
     } else {
 
-        $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+        $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+        $id_surat = urldecode(decrypt($string, $salt));
+
         $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
         if(mysqli_num_rows($query) > 0){
             while($row = mysqli_fetch_array($query)){
@@ -51,7 +53,7 @@
                                                     <tr>
                                                         <td width="13%">Tanggal Surat</td>
                                                         <td width="1%">:</td>';
-                                                        
+
                                                         $y = substr($row['tgl_surat'],0,4);
                                                         $m = substr($row['tgl_surat'],5,2);
                                                         $d = substr($row['tgl_surat'],8,2);
