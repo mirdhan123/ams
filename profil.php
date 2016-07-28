@@ -56,9 +56,9 @@
                                         die();
                                     } else {
 
-                                        $query = mysqli_query($config, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password=MD5('$password_lama')");
+                                        $query = mysqli_query($config, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password=sha1('$password_lama')");
                                         if(mysqli_num_rows($query) > 0){
-                                            $do = mysqli_query($config, "UPDATE tbl_user SET username='$username', password=MD5('$password'), nama='$nama', nip='$nip' WHERE id_user='$id_user'");
+                                            $do = mysqli_query($config, "UPDATE tbl_user SET username='$username', password=sha1('$password'), nama='$nama', nip='$nip' WHERE id_user='$id_user'");
 
                                             if($do == true){
                                                 echo '<script language="javascript">

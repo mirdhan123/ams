@@ -231,7 +231,19 @@
                                 <!-- Row in form START -->
                                 <div class="row">
                                     <div class="input-field col s6">
-                                        <input type="hidden" value="<?php echo $id_instansi; ?>" name="id_instansi">
+                                        <?php
+                                            $string = $row['id_instansi'];
+                                            $salt = 'masrud.com';
+
+                                            function encrypt($string,$salt){
+                                               return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $string, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
+                                            }
+
+                                            function decrypt($string,$salt){
+                                               return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($string), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
+                                            }
+                                        ?>
+                                        <input type="hidden" value="<?php echo encrypt($string, $salt); ?>" name="id_instansi">
                                         <i class="material-icons prefix md-prefix">school</i>
                                         <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>" required>
                                             <?php
