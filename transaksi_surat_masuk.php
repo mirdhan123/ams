@@ -173,7 +173,7 @@
                                     <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
                                     if(!empty($row['file'])){
-                                        echo ' <strong><a href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a></strong>';
+                                        echo ' <strong><a href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a></strong>';
                                     } else {
                                         echo '<em>Tidak ada file yang di upload</em>';
                                     } echo '</td>
@@ -213,21 +213,23 @@
                                     <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                     <td>';
 
+                                    $string = $row['id_surat'];
+
                                     if($_SESSION['admin'] == 2){
                                         echo '
-                                            <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">description</i> DISPOSISI</a>';
+                                            <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> DISPOSISI</a>';
 
                                     } else {
                                         echo '
-                                            <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
+                                            <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'">
                                                 <i class="material-icons">edit</i> EDIT</a>
-                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.$row['id_surat'].'">
+                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'">
                                                 <i class="material-icons">delete</i> HAPUS</a>';
                                     }
 
                                     if(!empty($row['tujuan'])){
                                         echo '
-                                                <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
+                                                <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
                                     } else {
                                         echo '';
                                     }
@@ -360,8 +362,10 @@
                                         <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
                                         <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
+                                        $string = $row['id_surat'];
+
                                         if(!empty($row['file'])){
-                                            echo ' <strong><a href="?page=gsm&act=fsm&id_surat='.$row['id_surat'].'">'.$row['file'].'</a></strong>';
+                                            echo ' <strong><a href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a></strong>';
                                         } else {
                                             echo '<em>Tidak ada file yang di upload</em>';
                                         } echo '</td>
@@ -401,21 +405,23 @@
                                         <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                         <td>';
 
+                                        $string = $row['id_surat'];
+
                                         if($_SESSION['admin'] == 2){
                                             echo '
-                                                <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'"><i class="material-icons">description</i> DISPOSISI</a>';
+                                                <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> DISPOSISI</a>';
 
                                         } else {
                                             echo '
-                                                <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat'].'">
+                                                <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'">
                                                     <i class="material-icons">edit</i> EDIT</a>
-                                                <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.$row['id_surat'].'">
+                                                <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'">
                                                     <i class="material-icons">delete</i> HAPUS</a>';
                                         }
 
                                         if(!empty($row['status'])){
                                             echo '
-                                                    <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat'].'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
+                                                <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
                                         } else {
                                             echo '';
                                         }
