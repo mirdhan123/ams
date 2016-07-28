@@ -7,11 +7,10 @@
     } else {
 
         $string = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
-        $id_klasifikasi = decrypt($string, $salt);
+        $id_klasifikasi = urlencode(decrypt($string, $salt));
 
         $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
     	if(mysqli_num_rows($query) > 0){
-            $no = 1;
             while($row = mysqli_fetch_array($query)){
 
             if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
@@ -81,9 +80,9 @@
 
         	if(isset($_REQUEST['submit'])){
                 $string = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
-                $id_klasifikasi = decrypt($string, $salt);
+                $id_klasifikasi = urldecode(decrypt($string, $salt));
 
-                $query = mysqli_query($config, "DELETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
+                $query = mysqli_query($config, "DEETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
 
             	if($query == true){
                     $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
@@ -91,9 +90,7 @@
                     die();
             	} else {
                     $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                    echo '<script language="javascript">
-                            window.location.href="./admin.php?page=ref&act=del&id_klasifikasi='.$id_klasifikasi.'";
-                          </script>';
+                    echo '<script language="javascript">window.history.back();</script>';
             	}
             }
 	    }

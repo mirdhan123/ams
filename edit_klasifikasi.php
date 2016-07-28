@@ -62,7 +62,7 @@
         } else {
 
             $string = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
-            $id_klasifikasi = decrypt($string, $salt);
+            $id_klasifikasi = urldecode(decrypt($string, $salt));
 
             $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
             if(mysqli_num_rows($query) > 0){
@@ -132,7 +132,7 @@
                                     <?php
                                         $string = $row['id_klasifikasi'];
                                     ?>
-                                    <input type="hidden" value="<?php echo encrypt($string,$salt); ?>" name="id_klasifikasi">
+                                    <input type="hidden" value="<?php echo encrypt($string, $salt); ?>" name="id_klasifikasi">
                                     <i class="material-icons prefix md-prefix">font_download</i>
                                     <input id="kd" type="text" class="validate" name="kode" maxlength="30" value="<?php echo $row['kode']; ?>" required>
                                         <?php
