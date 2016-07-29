@@ -205,7 +205,12 @@
                             <?php
                                 $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_masuk");
                                     echo '<input id="no_agenda" type="number" class="validate" value="';
-                                $no_agenda = 0;
+
+                                $no_agenda = 1;
+                                if(mysqli_num_rows($query) == 0){
+                                    echo $no_agenda;
+                                }
+
                                 $result = mysqli_num_rows($query);
                                 $counter = 0;
                                 while(list($no_agenda) = mysqli_fetch_array($query)){

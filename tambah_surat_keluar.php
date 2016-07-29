@@ -259,7 +259,12 @@
                                 <?php
                                     $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_keluar");
                                         echo '<input id="no_agenda" type="number" class="validate" value="';
-                                    $no_agenda = 0;
+
+                                    $no_agenda = 1;
+                                    if(mysqli_num_rows($query) == 0){
+                                        echo $no_agenda;
+                                    }
+
                                     $result = mysqli_num_rows($query);
                                     $counter = 0;
                                     while(list($no_agenda) = mysqli_fetch_array($query)){
@@ -316,7 +321,7 @@
                             <i class="material-icons prefix md-prefix">looks_two</i>
                             <?php
                                 $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_keluar");
-                                $no_agenda = 0;
+
                                 $result = mysqli_num_rows($query);
                                 $counter = 0;
                                 while(list($no_agenda) = mysqli_fetch_array($query)){
@@ -358,6 +363,11 @@
                                     $nm = "XI";
                                 } elseif($m == "12"){
                                     $nm = "XII";
+                                }
+
+                                $no_agenda = 1;
+                                if(mysqli_num_rows($query) == 0){
+                                    $n = $no_agenda;
                                 }
 
                                 ?>
