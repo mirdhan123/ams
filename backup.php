@@ -116,7 +116,7 @@
                                     } else {
                                         $return.= '""';
                                     }
-                                    if ($j < ($num_fields-1)){
+                                    if ($j < ($num_fields - 1)){
                                         $return.= ',';
                                     }
                                 }
@@ -129,7 +129,7 @@
                     //otomatis menyimpan hasil backup database dalam root folder aplikasi
                     $file_name;
                     $handle = fopen($file_name,'w+');
-                    fwrite($handle,$return);
+                    fwrite($handle, $return);
                     fclose($handle);
                 }
 
