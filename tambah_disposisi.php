@@ -217,7 +217,8 @@
                                 <button type="submit" name ="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
                             </div>
                             <div class="col 6">
-                                <a href="?page=tsm&act=disp&id_surat=<?php echo $row['id_surat']; ?>" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+                                <?php $string = $row['id_surat']; ?>
+                                <a href="?page=tsm&act=disp&id_surat=<?php echo urlencode(encrypt($string, $salt)); ?>" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
                             </div>
                         </div>
 

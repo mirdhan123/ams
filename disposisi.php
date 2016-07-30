@@ -25,7 +25,8 @@
                     echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
-                    $id_surat = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                    $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                    $id_surat = decrypt($string, $salt);
 
                     if($status == 1){
 
@@ -33,21 +34,21 @@
                         if($query == true){
                             echo '<script language="javascript">
                                     window.alert("SUKSES! Status data surat berhasil diupdate");
-                                    window.location.href="./admin.php?page=tsm&act=addd&id_surat='.urlencode($id_surat).'";
+                                    window.location.href="./admin.php?page=tsm&act=addd&id_surat='.urlencode($string).'";
                                   </script>';
                         }
-                    } elseif($status == 2) {
+                    } elseif($status == 2){
 
                         $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
                         if($query == true){
                             echo '<script language="javascript">
                                     window.alert("SUKSES! Status data surat berhasil diupdate");
-                                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode($id_surat).'";
+                                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode($string).'";
                                   </script>';
                         }
                     } else {
                         echo '<script language="javascript">
-                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode($id_surat).'";
+                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode($string).'";
                               </script>';
                     }
             }
@@ -535,7 +536,7 @@
                                         </div>
                                         <div class="card-action">
                                             <div class="col s12">
-                                                <form method="post" enctype="multipart/form-data">
+                                                <form method="post">
                                                     <input class="with-gap" name="status" type="radio" id="setuju" value="1" required/>
                                                     <label for="setuju" style="color: #444;font-size: 1.4rem">Setujui dan buat disposisi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 

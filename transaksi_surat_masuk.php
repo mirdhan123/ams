@@ -449,7 +449,13 @@
                                 </tbody>';
                                 }
                             } else {
-                                echo '<tr><td colspan="5"><center><p class="add">Tidak ada data untuk ditampilkan. <u><a href="?page=tsm&act=add">Tambah data baru</a></u></p></center></td></tr>';
+                                echo '<tr><td colspan="5"><center><p class="add">Tidak ada data untuk ditampilkan.';
+
+                                if($_SESSION['admin'] == 2){
+                                    echo '';
+                                } else {
+                                    echo '<u><a href="?page=tsm&act=add">Tambah data baru</a></u></p></center></td></tr>';
+                                }
                             }
                           echo '</table>
                         </div>
