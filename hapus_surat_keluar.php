@@ -24,7 +24,12 @@
         $id_surat = decrypt($string, $salt);
 
         $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
-    	if(mysqli_num_rows($query) > 0){
+
+        if(mysqli_num_rows($query) == 0){
+            header("Location: ?page=tsk");
+            die();
+        }
+
             while($row = mysqli_fetch_array($query)){
 
             $string = $row['id_surat'];
@@ -174,5 +179,4 @@
 		    }
 	    }
     }
-}
 ?>

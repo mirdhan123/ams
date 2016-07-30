@@ -36,7 +36,7 @@
 
                     if($id_user == $_SESSION['id_user']){
                         echo '<script language="javascript">
-                                window.alert("ERROR! Anda tidak boleh mengedit akun Anda sendiri. Hubungi super admin untuk mengeditnya");
+                                window.alert("ERROR! Akun Anda tidak boleh diubah");
                                 window.location.href="./admin.php?page=sett&sub=usr";
                               </script>';
                     } else {
@@ -64,9 +64,13 @@
                     $id_user = urldecode(decrypt($string, $salt));
 
                     $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
-                    if(mysqli_num_rows($query) > 0){
-                        $no = 1;
-                        while($row = mysqli_fetch_array($query)){?>
+
+                    if(mysqli_num_rows($query) == 0){
+                        header("Location: ?page=sett&sub=usr");
+                        die();
+                    }
+
+                    while($row = mysqli_fetch_array($query)){?>
 
                         <!-- Row Start -->
                         <div class="row">
@@ -104,7 +108,7 @@
                         <div class="row jarak-form">
 
                             <!-- Form START -->
-                            <form class="col s12" method="post" action="?page=sett&sub=usr&act=edit">
+                            <form class="col s12" method="post" action="">
 
                                 <!-- Row in form START -->
                                 <div class="row">
@@ -172,5 +176,4 @@
             }
         }
     }
-}
 ?>

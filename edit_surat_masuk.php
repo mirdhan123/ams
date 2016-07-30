@@ -168,6 +168,12 @@
         $id_surat = urldecode(decrypt($string, $salt));
 
         $query = mysqli_query($config, "SELECT id_surat, no_agenda, no_surat, asal_surat, isi, kode, indeks, tgl_surat, file, keterangan, id_user FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+
+        if(mysqli_num_rows($query) == 0){
+            header("Location: ?page=tsm");
+            die();
+        }
+        
         list($id_surat, $no_agenda, $no_surat, $asal_surat, $isi, $kode, $indeks, $tgl_surat, $file, $keterangan, $id_user) = mysqli_fetch_array($query);
 
         if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){

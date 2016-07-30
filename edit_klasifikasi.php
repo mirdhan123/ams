@@ -65,8 +65,10 @@
             $id_klasifikasi = urldecode(decrypt($string, $salt));
 
             $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
-            if(mysqli_num_rows($query) > 0){
-                $no = 1;
+            if(mysqli_num_rows($query) == 0){
+                header("Location: ?page=ref");
+                die();
+            }
                 while($row = mysqli_fetch_array($query))
                 if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
                     echo '<script language="javascript">
@@ -186,7 +188,6 @@
                     <!-- Row form END -->
 
 <?php
-                }
             }
         }
     }

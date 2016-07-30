@@ -10,7 +10,12 @@
         $id_surat = urldecode(decrypt($string, $salt));
 
         $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-        if(mysqli_num_rows($query) > 0){
+
+        if(mysqli_num_rows($query) == 0){
+            header("Location: ?page=gsm");
+            die();
+        }
+
             while($row = mysqli_fetch_array($query)){
                 echo '
                     <div class="row jarak-form">
@@ -165,5 +170,4 @@
                     </div>';
             }
         }
-    }
 ?>

@@ -58,8 +58,13 @@
                     }
 
                     $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
-                	if(mysqli_num_rows($query) > 0){
-                        while($row = mysqli_fetch_array($query)){
+
+                    if(mysqli_num_rows($query) == 0){
+                        header("Location: ?page=sett&sub=usr");
+                        die();
+                    }
+
+                    while($row = mysqli_fetch_array($query)){
 
             		 echo '
                         <!-- Row form Start -->
@@ -122,5 +127,4 @@
             }
         }
     }
-}
 ?>

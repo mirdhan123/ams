@@ -83,7 +83,10 @@
             $id_surat = urlencode(decrypt($string, $salt));
 
             $query = mysqli_query($config, "SELECT tujuan, isi_disposisi, sifat, batas_waktu, catatan FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-            if(mysqli_num_rows($query) > 0){
+            if(mysqli_num_rows($query) == 0){
+                header("Location: ?page=tsm");
+                die();
+            }
                 list($tujuan, $isi_disposisi, $sifat, $batas_waktu, $catatan) = mysqli_fetch_array($query);{?>
 
                 <!-- Row Start -->
@@ -229,7 +232,6 @@
                 <!-- Row form END -->
 
 <?php
-                }
             }
         }
     }
