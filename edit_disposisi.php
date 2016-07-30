@@ -61,8 +61,11 @@
 
                                     if($query == true){
                                         $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
+
+                                        $string = $id_surat;
+
                                         echo '<script language="javascript">
-                                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.$id_surat.'";
+                                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'";
                                               </script>';
                                     } else {
                                         $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -214,7 +217,8 @@
                                 <button type="submit" name ="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
                             </div>
                             <div class="col 6">
-                                <a href="?page=tsm&act=disp&id_surat=<?php echo $row['id_surat']; ?>" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+                                <?php $string = $id_surat; ?>
+                                <a href="?page=tsm&act=disp&id_surat=<?php echo urlencode(encrypt($string, $salt)); ?>" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
                             </div>
                         </div>
 

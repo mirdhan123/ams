@@ -67,7 +67,7 @@
 
                                     if($query == true){
                                         $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
-                                        $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                                        $string = $id_surat;
                                         echo '<script language="javascript">
                                                 window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'";
                                               </script>';

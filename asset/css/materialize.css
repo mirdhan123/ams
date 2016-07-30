@@ -5341,8 +5341,8 @@
 	padding-left:35px;
 	cursor:pointer;
 	display:inline-block;
-	height:35px;
-	line-height:30px;
+	height:45px;
+	line-height:35px;
 	font-size:1rem;
 	-webkit-transition:.28s ease;
 	-moz-transition:.28s ease;
@@ -5361,8 +5361,8 @@
 	left:0;
 	top:0;
 	margin:5px;
-	width:20px;
-	height:20px;
+	width:25px;
+	height:25px;
 	z-index:0;
 	-webkit-transition:.28s ease;
 	-moz-transition:.28s ease;
@@ -5373,7 +5373,7 @@
 	[type="radio"]:not(:checked) + label:before
 {
 	border-radius:50%;
-	border:2px solid #5a5a5a
+	border:3px solid #5a5a5a
 }
 	[type="radio"]:not(:checked) + label:after
 {
@@ -5406,12 +5406,12 @@
 	[type="radio"].with-gap:checked + label:before
 {
 	border-radius:50%;
-	border:2px solid #8BC34A
+	border:3px solid #8BC34A
 }
 	[type="radio"].with-gap:checked + label:after
 {
 	border-radius:50%;
-	border:2px solid #7cb342;
+	border:3px solid #7cb342;
 	background-color:#7cb342;
 	z-index:0;
 	-webkit-transform:scale(0.5);
