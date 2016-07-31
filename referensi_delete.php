@@ -6,7 +6,7 @@
         die();
     } else {
 
-        $string = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
+        $string = mysqli_real_escape_string($_config, $_REQUEST['id_klasifikasi']);
         $id_klasifikasi = urlencode(decrypt($string, $salt));
 
         if(isset($_SESSION['errQ'])){
@@ -24,7 +24,7 @@
         }
             if(isset($_REQUEST['submit'])){
 
-                $query = mysqli_query($config, "DELETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
+                $query = mysqli_query($_config, "DELETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
                 if($query == true){
                     $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
                     header("Location: ?page=ref");
@@ -35,7 +35,7 @@
                 }
             } else {
 
-                $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
+                $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
 
                 if(mysqli_num_rows($query) == 0){
                     header("Location: ?page=ref");

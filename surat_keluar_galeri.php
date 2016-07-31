@@ -49,7 +49,7 @@
                         die();
                     } else {
 
-                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE tgl_catat BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER By id_surat DESC");
+                    $query = mysqli_query($_config, "SELECT * FROM tbl_surat_keluar WHERE tgl_catat BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER By id_surat DESC");
 
                     echo '<!-- Row form Start -->
                             <div class="row jarak-form black-text">
@@ -201,7 +201,7 @@
                             }
 
                         //script untuk menampilkan data
-                        $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar ORDER BY id_surat DESC LIMIT $curr, $limit");
+                        $query = mysqli_query($_config, "SELECT * FROM tbl_surat_keluar ORDER BY id_surat DESC LIMIT $curr, $limit");
                         if(mysqli_num_rows($query) > 0){
 
                             echo '
@@ -273,7 +273,7 @@
                         } echo '
                         </div>';
 
-                        $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar");
+                        $query = mysqli_query($_config, "SELECT * FROM tbl_surat_keluar");
                         $cdata = mysqli_num_rows($query);
                         $cpg = ceil($cdata/$limit);
 

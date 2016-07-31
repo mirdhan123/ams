@@ -23,7 +23,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <?php
-        $query = mysqli_query($config, "SELECT logo from tbl_instansi");
+        $query = mysqli_query($_config, "SELECT logo from tbl_instansi");
         list($logo) = mysqli_fetch_array($query);
         if(!empty($logo)){
             echo '<link rel="shortcut icon" href="./upload/'.$logo.'" type="image/x-icon">
@@ -180,7 +180,7 @@
                     <div class="row">
 
                     <?php
-                        $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                        $query = mysqli_query($_config, "SELECT * FROM tbl_instansi");
                         while($data = mysqli_fetch_array($query)){
                     ?>
                     <!-- Logo and title START -->
@@ -220,10 +220,10 @@
                                 <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke login form</a></div>';
                             } else {
 
-                                $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
-                                $password = SHA1(trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password']))));
+                                $username = trim(htmlspecialchars(mysqli_real_escape_string($_config, $_REQUEST['username'])));
+                                $password = SHA1(trim(htmlspecialchars(mysqli_real_escape_string($_config, $_REQUEST['password']))));
 
-                                $query = mysqli_query($config, "SELECT id_user, username, nama, nip, admin FROM tbl_user WHERE username=BINARY'$username' AND password='$password'");
+                                $query = mysqli_query($_config, "SELECT id_user, username, nama, nip, admin FROM tbl_user WHERE username=BINARY'$username' AND password='$password'");
 
                                 if(mysqli_num_rows($query) > 0){
                                     list($id_user, $username, $nama, $nip, $admin) = mysqli_fetch_array($query);

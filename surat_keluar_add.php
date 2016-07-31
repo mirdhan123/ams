@@ -68,7 +68,7 @@
                                             echo '<script language="javascript">window.history.back();</script>';
                                         } else {
 
-                                            $cek = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE no_surat='$no_surat'");
+                                            $cek = mysqli_query($_config, "SELECT * FROM tbl_surat_keluar WHERE no_surat='$no_surat'");
                                             $result = mysqli_num_rows($cek);
 
                                             if($result > 0){
@@ -93,7 +93,7 @@
 
                                                             move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
-                                                            $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda, tujuan, no_surat, isi, kode, tgl_surat, tgl_catat, file, keterangan, id_user)
+                                                            $query = mysqli_query($_config, "INSERT INTO tbl_surat_keluar(no_agenda, tujuan, no_surat, isi, kode, tgl_surat, tgl_catat, file, keterangan, id_user)
                                                                 VALUES('$no_agenda', '$tujuan', '$no_surat', '$isi', '$nkode', '$tgl_surat', NOW(), '$nfile', '$keterangan', '$id_user')");
 
                                                             if($query == true){
@@ -113,7 +113,7 @@
                                                         echo '<script language="javascript">window.history.back();</script>';
                                                     }
                                                 } else {
-                                                    $query = mysqli_query($config, "INSERT INTO tbl_surat_keluar(no_agenda, tujuan, no_surat, isi, kode, tgl_surat, tgl_catat, keterangan, id_user)
+                                                    $query = mysqli_query($_config, "INSERT INTO tbl_surat_keluar(no_agenda, tujuan, no_surat, isi, kode, tgl_surat, tgl_catat, keterangan, id_user)
                                                         VALUES('$no_agenda', '$tujuan', '$no_surat', '$isi', '$nkode', '$tgl_surat', NOW(), '$keterangan', '$id_user')");
 
                                                     if($query == true){
@@ -153,7 +153,7 @@
                                 <div class="modal-content white">
                                     <h5 style="color: #444">Edit kode instansi dalam nomor surat</h5>
                                     <?php
-                                    $query = mysqli_query($config, "SELECT id_sett, kode_instansi FROM tbl_sett");
+                                    $query = mysqli_query($_config, "SELECT id_sett, kode_instansi FROM tbl_sett");
                                     list($id_sett, $kode_instansi) = mysqli_fetch_array($query);
                                     $string = $id_sett;?>
                                     <div class="row">
@@ -187,14 +187,14 @@
                                                     <?php
                                                         if(isset($_REQUEST['simpan'])){
 
-                                                            $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
+                                                            $string = mysqli_real_escape_string($_config, $_REQUEST['id_sett']);
                                                             $id_sett = decrypt($string, $salt);                                                        $kode_instansi = $_REQUEST['kode_instansi'];                                                                    $id_user = $_SESSION['id_user'];
 
                                                             if(!preg_match("/^[a-zA-Z0-9., -]*$/", $kode_instansi)){
                                                                 echo '<script language="javascript">window.history.back();</script>';
                                                             } else {
 
-                                                                $query = mysqli_query($config, "UPDATE tbl_sett SET kode_instansi='$kode_instansi',id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                                $query = mysqli_query($_config, "UPDATE tbl_sett SET kode_instansi='$kode_instansi',id_user='$id_user' WHERE id_sett='$id_sett'");
                                                                 if($query == true){
                                                                     header("Location: ?page=tsk&act=add");
                                                                     die();
@@ -257,7 +257,7 @@
                         <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">looks_one</i>
                                 <?php
-                                    $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_keluar");
+                                    $query = mysqli_query($_config, "SELECT no_agenda FROM tbl_surat_keluar");
                                         echo '<input id="no_agenda" type="number" class="validate" value="';
 
                                     $no_agenda = 1;
@@ -288,7 +288,7 @@
                             <div class="input-field col s11 right">
                                 <select class="browser-default validate" name="kode" id="kode" required style="margin: -15px 0 20px;">
                                     <?php
-                                        $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi");
+                                        $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi");
                                         if(mysqli_num_rows($query) > 0){
                                             while($row = mysqli_fetch_array($query)){
                                                 echo '<option value="'.$row['kode'].'">'.$row['kode']. " &nbsp;".$row['nama'].'</option>';
@@ -320,7 +320,7 @@
                         <div class="input-field col m6 tooltipped" data-position="top" data-tooltip="Sesuaikan Kode Surat dengan Kode Klasifikasi & No Urut dengan No Agenda">
                             <i class="material-icons prefix md-prefix">looks_two</i>
                             <?php
-                                $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_keluar");
+                                $query = mysqli_query($_config, "SELECT no_agenda FROM tbl_surat_keluar");
 
                                 $result = mysqli_num_rows($query);
                                 $counter = 0;
@@ -335,7 +335,7 @@
                                 $y = substr($date,6,4);
                                 $m = substr($date,3,2);
 
-                                $query1 = mysqli_query($config, "SELECT kode_instansi FROM tbl_sett WHERE id_sett='1'");
+                                $query1 = mysqli_query($_config, "SELECT kode_instansi FROM tbl_sett WHERE id_sett='1'");
                                 list($kode_instansi) = mysqli_fetch_array($query1);
                                 $g = "$kode_instansi";
 

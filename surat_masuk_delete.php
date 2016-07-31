@@ -20,10 +20,10 @@
             unset($_SESSION['errQ']);
         }
 
-    	$string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+    	$string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
         $id_surat = decrypt($string, $salt);
 
-    	$query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+    	$query = mysqli_query($_config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
         if(mysqli_num_rows($query) == 0){
             header("Location: ?page=tsm");
@@ -149,14 +149,14 @@
                 <!-- Row form END -->';
 
             	if(isset($_REQUEST['submit'])){
-                    $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                    $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
                     $id_surat = urldecode(decrypt($string, $salt));
 
                     //jika ada file akan mengekseskusi script dibawah ini
                     if(!empty($row['file'])){
 
                         unlink("upload/surat_masuk/".$row['file']);
-                        $query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+                        $query = mysqli_query($_config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
                 		if($query == true){
                             $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
@@ -169,7 +169,7 @@
                 	} else {
 
                         //jika tidak ada file akan mengekseskusi script dibawah ini
-                        $query = mysqli_query($config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+                        $query = mysqli_query($_config, "DELETE FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
                         if($query == true){
                             $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';

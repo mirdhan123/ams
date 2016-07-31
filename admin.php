@@ -104,19 +104,19 @@
 
             <?php
                 //menghitung jumlah surat masuk
-                $count1 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk"));
+                $count1 = mysqli_num_rows(mysqli_query($_config, "SELECT * FROM tbl_surat_masuk"));
 
                 //menghitung jumlah surat masuk
-                $count2 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_keluar"));
+                $count2 = mysqli_num_rows(mysqli_query($_config, "SELECT * FROM tbl_surat_keluar"));
 
                 //menghitung jumlah klasifikasi
-                $count3 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_klasifikasi"));
+                $count3 = mysqli_num_rows(mysqli_query($_config, "SELECT * FROM tbl_klasifikasi"));
 
                 //menghitung jumlah pengguna
-                $count4 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
+                $count4 = mysqli_num_rows(mysqli_query($_config, "SELECT * FROM tbl_user"));
 
                 //menghitung jumlah surat yang belum diperiksa
-                $count5 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE status='0'"));
+                $count5 = mysqli_num_rows(mysqli_query($_config, "SELECT * FROM tbl_surat_masuk WHERE status='0'"));
             ?>
 
             <!-- Info Statistic START -->

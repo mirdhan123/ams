@@ -28,7 +28,7 @@
             }
         } else {
 
-            $query = mysqli_query($config, "SELECT surat_keluar FROM tbl_sett");
+            $query = mysqli_query($_config, "SELECT surat_keluar FROM tbl_sett");
             list($surat_keluar) = mysqli_fetch_array($query);
 
             //pagging
@@ -120,7 +120,7 @@
 
                 <?php
                     if(isset($_REQUEST['submit'])){
-                    $cari = mysqli_real_escape_string($config, $_REQUEST['cari']);
+                    $cari = mysqli_real_escape_string($_config, $_REQUEST['cari']);
                         echo '
                         <div class="col s12" style="margin-top: -18px;">
                             <div class="card blue lighten-5">
@@ -146,7 +146,7 @@
                                     <tr>';
 
                                 //script untuk mencari data
-                                $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE isi LIKE '%$cari%' ORDER by id_surat DESC LIMIT $curr, $limit");
+                                $query = mysqli_query($_config, "SELECT * FROM tbl_surat_keluar WHERE isi LIKE '%$cari%' ORDER by id_surat DESC LIMIT $curr, $limit");
                                 if(mysqli_num_rows($query) > 0){
                                     $no = 1;
                                     while($row = mysqli_fetch_array($query)){
@@ -211,7 +211,7 @@
                         </div>
                         <!-- Row form END -->';
 
-                        $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar");
+                        $query = mysqli_query($_config, "SELECT * FROM tbl_surat_keluar");
                         $cdata = mysqli_num_rows($query);
                         $cpg = ceil($cdata/$limit);
 
@@ -273,7 +273,7 @@
 
                                                 if(isset($_REQUEST['simpan'])){
 
-                                                $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
+                                                $string = mysqli_real_escape_string($_config, $_REQUEST['id_sett']);
                                                 $id_sett = decrypt($string, $salt);
                                                 $surat_keluar = $_REQUEST['surat_keluar'];                                                                    $id_user = $_SESSION['id_user'];
 
@@ -286,7 +286,7 @@
                                                         die();
                                                     } else {
 
-                                                    $query = mysqli_query($config, "UPDATE tbl_sett SET surat_keluar='$surat_keluar', id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                    $query = mysqli_query($_config, "UPDATE tbl_sett SET surat_keluar='$surat_keluar', id_user='$id_user' WHERE id_sett='$id_sett'");
                                                     if($query == true){
                                                         header("Location: ?page=tsk");
                                                         die();
@@ -295,7 +295,7 @@
                                                 }
                                             } else {
 
-                                                $query = mysqli_query($config, "SELECT id_sett, surat_keluar FROM tbl_sett");
+                                                $query = mysqli_query($_config, "SELECT id_sett, surat_keluar FROM tbl_sett");
                                                 list($id_sett, $surat_keluar) = mysqli_fetch_array($query);
                                                 $string = $id_sett;
                                                 echo '
@@ -335,7 +335,7 @@
                                 <tr>';
 
                             //script untuk mencari data
-                            $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar ORDER by id_surat DESC LIMIT $curr, $limit");
+                            $query = mysqli_query($_config, "SELECT * FROM tbl_surat_keluar ORDER by id_surat DESC LIMIT $curr, $limit");
                             if(mysqli_num_rows($query) > 0){
                                 $no = 1;
                                 while($row = mysqli_fetch_array($query)){
@@ -400,7 +400,7 @@
                     </div>
                     <!-- Row form END -->';
 
-                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar");
+                    $query = mysqli_query($_config, "SELECT * FROM tbl_surat_keluar");
                     $cdata = mysqli_num_rows($query);
                     $cpg = ceil($cdata/$limit);
 

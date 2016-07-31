@@ -15,7 +15,7 @@
 
         if(isset($_REQUEST['submit'])){
 
-            $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
             $id_surat = decrypt($string, $salt);
 
             //validasi form kosong
@@ -57,7 +57,7 @@
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
-                                    $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET tujuan='$tujuan', isi_disposisi='$isi_disposisi', sifat='$sifat', batas_waktu='$batas_waktu', catatan='$catatan' WHERE id_surat='$id_surat'");
+                                    $query = mysqli_query($_config, "UPDATE tbl_surat_masuk SET tujuan='$tujuan', isi_disposisi='$isi_disposisi', sifat='$sifat', batas_waktu='$batas_waktu', catatan='$catatan' WHERE id_surat='$id_surat'");
 
                                     if($query == true){
                                         $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -79,10 +79,10 @@
             }
         } else {
 
-            $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
             $id_surat = urlencode(decrypt($string, $salt));
 
-            $query = mysqli_query($config, "SELECT tujuan, isi_disposisi, sifat, batas_waktu, catatan FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+            $query = mysqli_query($_config, "SELECT tujuan, isi_disposisi, sifat, batas_waktu, catatan FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
             if(mysqli_num_rows($query) == 0){
                 header("Location: ?page=tsm");
                 die();

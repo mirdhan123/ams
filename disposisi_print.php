@@ -165,7 +165,7 @@
         <div class="container">
             <div id="colres">
                 <div class="disp">';
-                    $query2 = mysqli_query($config, "SELECT institusi, nama, status, alamat, logo FROM tbl_instansi");
+                    $query2 = mysqli_query($_config, "SELECT institusi, nama, status, alamat, logo FROM tbl_instansi");
                     list($institusi, $nama, $status, $alamat, $logo) = mysqli_fetch_array($query2);
                     if(!empty($logo)){
                         echo '<img class="logodisp" src="./upload/'.$logo.'"/>';
@@ -196,10 +196,10 @@
                 </div>
                 <div class="separator"></div>';
 
-                $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
                 $id_surat = urldecode(decrypt($string, $salt));
 
-                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+                $query = mysqli_query($_config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
                 if(mysqli_num_rows($query) == 0){
                     header("Location: ?page=tsm");
                     die();
@@ -291,7 +291,7 @@
                     <div id="lead">
                         <p>Kepala Sekolah</p>
                         <div style="height: 50px;"></div>';
-                        $query = mysqli_query($config, "SELECT kepsek, nip FROM tbl_instansi");
+                        $query = mysqli_query($_config, "SELECT kepsek, nip FROM tbl_instansi");
                         list($kepsek,$nip) = mysqli_fetch_array($query);
                         if(!empty($kepsek)){
                             echo '<p class="lead">'.$kepsek.'</p>';

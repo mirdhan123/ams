@@ -8,7 +8,7 @@
 
         if(isset($_REQUEST['simpan'])){
 
-            $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
             $id_surat = decrypt($string, $salt);
             $status = $_REQUEST['status'];
 
@@ -18,12 +18,12 @@
                     echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
-                    $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                    $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
                     $id_surat = decrypt($string, $salt);
 
                     if($status == 1){
 
-                        $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
+                        $query = mysqli_query($_config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
                         if($query == true){
                             echo '<script language="javascript">
                                     window.alert("SUKSES! Status data surat berhasil diupdate");
@@ -32,7 +32,7 @@
                         }
                     } elseif($status == 2){
 
-                        $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
+                        $query = mysqli_query($_config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
                         if($query == true){
                             echo '<script language="javascript">
                                     window.alert("SUKSES! Status data surat berhasil diupdate");
@@ -47,10 +47,10 @@
             }
         }
 
-        $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+        $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
         $id_surat = urldecode(decrypt($string, $salt));
 
-        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+        $query = mysqli_query($_config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
         if(mysqli_num_rows($query) == 0){
             header("Location: ?page=tsm");
             die();

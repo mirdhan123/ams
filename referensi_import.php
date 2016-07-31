@@ -49,7 +49,7 @@
                             while(($data = fgetcsv($handle, 1000, ",")) !== FALSE){
 
                                 //insert data ke dalam database
-                                $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi, kode, nama, uraian, id_user) values(null, '$data[1]', '$data[2]', '$data[3]', '$id_user')");
+                                $query = mysqli_query($_config, "INSERT into tbl_klasifikasi(id_klasifikasi, kode, nama, uraian, id_user) values(null, '$data[1]', '$data[2]', '$data[3]', '$id_user')");
                             }
                             fclose($handle);
                             header("Location: ?page=ref");
@@ -57,7 +57,7 @@
                         } else {
 
                             //mengosongkan table klasifikasi
-                            mysqli_query($config, "TRUNCATE TABLE tbl_klasifikasi");
+                            mysqli_query($_config, "TRUNCATE TABLE tbl_klasifikasi");
 
                             //upload file
                             if(is_uploaded_file($file)){
@@ -76,7 +76,7 @@
                             while(($data = fgetcsv($handle, 1000, ",")) !== FALSE){
 
                                 //insert data ke dalam database
-                                $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi, kode, nama, uraian, id_user) values('$data[0]', '$data[1]', '$data[2]', '$data[3]', '$id_user')");
+                                $query = mysqli_query($_config, "INSERT into tbl_klasifikasi(id_klasifikasi, kode, nama, uraian, id_user) values('$data[0]', '$data[1]', '$data[2]', '$data[3]', '$id_user')");
                             }
                             fclose($handle);
                             header("Location: ?page=ref");
@@ -166,12 +166,12 @@
                                 if(isset($_REQUEST['dl'])){
 
                                     $dir = "./asset/";
-                                    $file = $dir."contoh_format.csv";
+                                    $file = $dir."_contoh_format.csv";
 
                                     if(file_exists($file)){
                                         header('Content-Description: File Transfer');
                                         header('Content-Type: application/octet-stream');
-                                        header('Content-Disposition: attachment; filename="contoh_format.csv"');
+                                        header('Content-Disposition: attachment; filename="_contoh_format.csv"');
                                         header('Content-Transfer-Encoding: binary');
                                         header('Expires: 0');
                                         header('Cache-Control: private');

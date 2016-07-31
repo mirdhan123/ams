@@ -1,7 +1,7 @@
 <?php
     //cek session
     if(!empty($_SESSION['admin'])){
-        $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+        $query = mysqli_query($_config, "SELECT * FROM tbl_instansi");
         while($data = mysqli_fetch_array($query)){
             echo '
                 <div class="col s12" id="header-instansi">

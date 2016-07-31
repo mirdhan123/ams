@@ -67,9 +67,9 @@
                 die();
             } else {
 
-                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE tgl_diterima BETWEEN '$dari_tanggal' AND '$sampai_tanggal'");
+                $query = mysqli_query($_config, "SELECT * FROM tbl_surat_masuk WHERE tgl_diterima BETWEEN '$dari_tanggal' AND '$sampai_tanggal'");
 
-                $query2 = mysqli_query($config, "SELECT nama FROM tbl_instansi");
+                $query2 = mysqli_query($_config, "SELECT nama FROM tbl_instansi");
                 list($nama) = mysqli_fetch_array($query2);
 
                 echo '
@@ -117,7 +117,7 @@
                     <div class="row agenda">
                         <div class="col s10">
                             <div class="disp hidd">';
-                                $query2 = mysqli_query($config, "SELECT institusi, nama, status, alamat, logo FROM tbl_instansi");
+                                $query2 = mysqli_query($_config, "SELECT institusi, nama, status, alamat, logo FROM tbl_instansi");
                                 list($institusi, $nama, $status, $alamat, $logo) = mysqli_fetch_array($query2);
                                 if(!empty($logo)){
                                     echo '<img class="logodisp" src="./upload/'.$logo.'"/>';
@@ -278,7 +278,7 @@
                                         <td>';
 
                                         $id_user = $row['id_user'];
-                                        $query3 = mysqli_query($config, "SELECT nama FROM tbl_user WHERE id_user='$id_user'");
+                                        $query3 = mysqli_query($_config, "SELECT nama FROM tbl_user WHERE id_user='$id_user'");
                                         list($nama) = mysqli_fetch_array($query3);{
                                             $row['id_user'] = ''.$nama.'';
                                         }

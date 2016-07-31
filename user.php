@@ -28,7 +28,7 @@
                       </script>';
             } else {
 
-                $query = mysqli_query($config, "SELECT * FROM tbl_user");
+                $query = mysqli_query($_config, "SELECT * FROM tbl_user");
                 echo '<!-- Row Start -->
                     <div class="row">
                         <!-- Secondary Nav START -->

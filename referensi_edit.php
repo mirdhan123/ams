@@ -15,7 +15,7 @@
 
         if(isset($_REQUEST['submit'])){
 
-            $string = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
+            $string = mysqli_real_escape_string($_config, $_REQUEST['id_klasifikasi']);
 
             $id_klasifikasi = decrypt($string, $salt);
             $kode = $_REQUEST['kode'];
@@ -45,7 +45,7 @@
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
-                            $query = mysqli_query($config, "UPDATE tbl_klasifikasi SET kode='$kode', nama='$nama', uraian='$uraian', id_user='$id_user' WHERE id_klasifikasi='$id_klasifikasi'");
+                            $query = mysqli_query($_config, "UPDATE tbl_klasifikasi SET kode='$kode', nama='$nama', uraian='$uraian', id_user='$id_user' WHERE id_klasifikasi='$id_klasifikasi'");
 
                             if($query != false){
                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -61,10 +61,10 @@
             }
         } else {
 
-            $string = mysqli_real_escape_string($config, $_REQUEST['id_klasifikasi']);
+            $string = mysqli_real_escape_string($_config, $_REQUEST['id_klasifikasi']);
             $id_klasifikasi = urldecode(decrypt($string, $salt));
 
-            $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
+            $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
             if(mysqli_num_rows($query) == 0){
                 header("Location: ?page=ref");
                 die();

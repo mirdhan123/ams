@@ -31,7 +31,7 @@
                       </script>';
             } else {
 
-            $query = mysqli_query($config, "SELECT referensi FROM tbl_sett");
+            $query = mysqli_query($_config, "SELECT referensi FROM tbl_sett");
             list($referensi) = mysqli_fetch_array($query);
 
             //pagging
@@ -133,7 +133,7 @@
                 <div class="row jarak-form">';
 
                 if(isset($_REQUEST['submit'])){
-                $cari = mysqli_real_escape_string($config, $_REQUEST['cari']);
+                $cari = mysqli_real_escape_string($_config, $_REQUEST['cari']);
                     echo '
                     <div class="col s12" style="margin-top: -18px;">
                         <div class="card blue lighten-5">
@@ -158,7 +158,7 @@
                                 <tr>';
 
                             //script untuk menampilkan data
-                            $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi WHERE uraian LIKE '%$cari%' ORDER BY id_klasifikasi DESC LIMIT $curr, $limit");
+                            $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi WHERE uraian LIKE '%$cari%' ORDER BY id_klasifikasi DESC LIMIT $curr, $limit");
                             if(mysqli_num_rows($query) > 0){
                                 while($row = mysqli_fetch_array($query)){
 
@@ -183,7 +183,7 @@
                         </div>
                         <!-- Row form END -->';
 
-                        $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi");
+                        $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi");
                         $cdata = mysqli_num_rows($query);
                         $cpg = ceil($cdata/$limit);
 
@@ -243,7 +243,7 @@
 
                                                     if(isset($_REQUEST['simpan'])){
 
-                                                        $string = mysqli_real_escape_string($config, $_REQUEST['id_sett']);
+                                                        $string = mysqli_real_escape_string($_config, $_REQUEST['id_sett']);
                                                         $id_sett = decrypt($string, $salt);
                                                         $referensi = $_REQUEST['referensi'];                                                                    $id_user = $_SESSION['id_user'];
 
@@ -256,7 +256,7 @@
                                                                 die();
                                                             } else {
 
-                                                            $query = mysqli_query($config, "UPDATE tbl_sett SET referensi='$referensi', id_user='$id_user' WHERE id_sett='$id_sett'");
+                                                            $query = mysqli_query($_config, "UPDATE tbl_sett SET referensi='$referensi', id_user='$id_user' WHERE id_sett='$id_sett'");
                                                             if($query == true){
                                                                 header("Location: ?page=ref");
                                                                 die();
@@ -265,7 +265,7 @@
                                                         }
                                                     } else {
 
-                                                        $query = mysqli_query($config, "SELECT id_sett, referensi FROM tbl_sett");
+                                                        $query = mysqli_query($_config, "SELECT id_sett, referensi FROM tbl_sett");
                                                         list($id_sett, $referensi) = mysqli_fetch_array($query);
                                                         $string = $id_sett;
                                                         echo '
@@ -305,7 +305,7 @@
                                         <tr>';
 
                                     //script untuk menampilkan data
-                                    $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi ORDER BY id_klasifikasi DESC LIMIT $curr, $limit");
+                                    $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi ORDER BY id_klasifikasi DESC LIMIT $curr, $limit");
                                     if(mysqli_num_rows($query) > 0){
                                         while($row = mysqli_fetch_array($query)){
 
@@ -329,7 +329,7 @@
                         </div>
                         <!-- Row form END -->';
 
-                        $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi");
+                        $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi");
                         $cdata = mysqli_num_rows($query);
                         $cpg = ceil($cdata/$limit);
 

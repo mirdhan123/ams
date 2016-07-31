@@ -92,7 +92,7 @@
                 	global $rest_dir;
 
                     //konfigurasi database
-                	$config = mysqli_connect("localhost", "root", "", "_ams");
+                	$_config = mysqli_connect("localhost", "root", "", "_ams");
 
                 	$file_name = $file['name'];
                 	$file_size = $file['size'];
@@ -107,7 +107,7 @@
                         $password = SHA1($_REQUEST['password']);
                         $id_user = $_SESSION['id_user'];
 
-                        $query = mysqli_query($config, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password='$password'");
+                        $query = mysqli_query($_config, "SELECT password FROM tbl_user WHERE id_user='$id_user' AND password='$password'");
                         if(mysqli_num_rows($query) > 0){
 
                     		$file_dir	= $rest_dir.$file_name;
@@ -133,7 +133,7 @@
                         				$templine .= $line;
 
                         				if(substr(trim($line), -1, 1) == ';'){
-                        					mysqli_query($config, $templine);
+                        					mysqli_query($_config, $templine);
                         					$templine = '';
                         				}
                         			}

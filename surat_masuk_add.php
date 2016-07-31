@@ -74,7 +74,7 @@
                                                 echo '<script language="javascript">window.history.back();</script>';
                                             } else {
 
-                                                $cek = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE no_surat='$no_surat'");
+                                                $cek = mysqli_query($_config, "SELECT * FROM tbl_surat_masuk WHERE no_surat='$no_surat'");
                                                 $result = mysqli_num_rows($cek);
 
                                                 if($result > 0){
@@ -101,7 +101,7 @@
 
                                                                 move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
-                                                                $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda, no_surat, asal_surat, isi, kode, indeks, tgl_surat, tgl_diterima, file, keterangan, id_user)
+                                                                $query = mysqli_query($_config, "INSERT INTO tbl_surat_masuk(no_agenda, no_surat, asal_surat, isi, kode, indeks, tgl_surat, tgl_diterima, file, keterangan, id_user)
                                                                         VALUES('$no_agenda', '$no_surat', '$asal_surat', '$isi', '$nkode', '$indeks', '$tgl_surat', NOW(), '$nfile', '$keterangan', '$id_user')");
 
                                                                 if($query == true){
@@ -123,7 +123,7 @@
                                                     } else {
 
                                                         //jika form file kosong akan mengeksekusi script dibawah ini
-                                                        $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda, no_surat, asal_surat, isi, kode, indeks, tgl_surat, tgl_diterima, keterangan, id_user)
+                                                        $query = mysqli_query($_config, "INSERT INTO tbl_surat_masuk(no_agenda, no_surat, asal_surat, isi, kode, indeks, tgl_surat, tgl_diterima, keterangan, id_user)
                                                             VALUES('$no_agenda', '$no_surat', '$asal_surat', '$isi', '$nkode', '$indeks', '$tgl_surat', NOW(), '$keterangan', '$id_user')");
 
                                                         if($query == true){
@@ -203,7 +203,7 @@
                         <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">looks_one</i>
                             <?php
-                                $query = mysqli_query($config, "SELECT no_agenda FROM tbl_surat_masuk");
+                                $query = mysqli_query($_config, "SELECT no_agenda FROM tbl_surat_masuk");
                                     echo '<input id="no_agenda" type="number" class="validate" value="';
 
                                 $no_agenda = 1;
@@ -228,7 +228,7 @@
                             <div class="input-field col s11 right">
                                 <select class="browser-default validate" name="kode" id="kode" required style="margin: -15px 0 20px;">
                                     <?php
-                                        $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi");
+                                        $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi");
                                         if(mysqli_num_rows($query) > 0){
                                             while($row = mysqli_fetch_array($query)){
                                                 echo '<option value="'.$row['kode'].'">'.$row['kode']. " &nbsp;".$row['nama'].'</option>';

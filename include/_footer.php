@@ -17,7 +17,7 @@
     <div class="footer-copyright blue-grey darken-1 white-text">
         <div class="container" id="footer">
             <?php
-                $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                $query = mysqli_query($_config, "SELECT * FROM tbl_instansi");
                 while($data = mysqli_fetch_array($query)){
             ?>
             <span class="white-text">&copy; <?php echo date("Y"); ?>

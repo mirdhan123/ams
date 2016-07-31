@@ -85,10 +85,10 @@
                                                 if(in_array($eks, $ekstensi) == true){
                                                     if($ukuran < 2500000){
 
-                                                        $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                                                        $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
                                                         $id_surat = decrypt($string, $salt);
 
-                                                        $query = mysqli_query($config, "SELECT file FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
+                                                        $query = mysqli_query($_config, "SELECT file FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
                                                         list($file) = mysqli_fetch_array($query);
 
                                                         //jika file sudah ada akan mengeksekusi script dibawah ini
@@ -97,7 +97,7 @@
 
                                                             move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
-                                                            $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda', tujuan='$tujuan', no_surat='$no_surat', isi='$isi', kode='$nkode', tgl_surat='$tgl_surat', file='$nfile', keterangan='$keterangan', id_user='$id_user' WHERE id_surat='$id_surat'");
+                                                            $query = mysqli_query($_config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda', tujuan='$tujuan', no_surat='$no_surat', isi='$isi', kode='$nkode', tgl_surat='$tgl_surat', file='$nfile', keterangan='$keterangan', id_user='$id_user' WHERE id_surat='$id_surat'");
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -112,7 +112,7 @@
                                                             //jika file kosong akan mengeksekusi script dibawah ini
                                                             move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
-                                                            $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda', tujuan='$tujuan', no_surat='$no_surat', isi='$isi', kode='$nkode', tgl_surat='$tgl_surat', file='$nfile', keterangan='$keterangan', id_user='$id_user' WHERE id_surat='$id_surat'");
+                                                            $query = mysqli_query($_config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda', tujuan='$tujuan', no_surat='$no_surat', isi='$isi', kode='$nkode', tgl_surat='$tgl_surat', file='$nfile', keterangan='$keterangan', id_user='$id_user' WHERE id_surat='$id_surat'");
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -134,10 +134,10 @@
                                             } else {
 
                                                 //jika form file kosong akan mengeksekusi script dibawah ini
-                                                $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+                                                $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
                                                 $id_surat = decrypt($string, $salt);
 
-                                                $query = mysqli_query($config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda', tujuan='$tujuan', no_surat='$no_surat', isi='$isi', kode='$nkode', tgl_surat='$tgl_surat', keterangan='$keterangan', id_user='$id_user' WHERE id_surat='$id_surat'");
+                                                $query = mysqli_query($_config, "UPDATE tbl_surat_keluar SET no_agenda='$no_agenda', tujuan='$tujuan', no_surat='$no_surat', isi='$isi', kode='$nkode', tgl_surat='$tgl_surat', keterangan='$keterangan', id_user='$id_user' WHERE id_surat='$id_surat'");
 
                                                 if($query == true){
                                                     $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -158,10 +158,10 @@
             }
         } else {
 
-            $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
             $id_surat = urldecode(decrypt($string, $salt));
 
-            $query = mysqli_query($config, "SELECT id_surat, no_agenda, tujuan, no_surat, isi, kode, tgl_surat, file, keterangan, id_user FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
+            $query = mysqli_query($_config, "SELECT id_surat, no_agenda, tujuan, no_surat, isi, kode, tgl_surat, file, keterangan, id_user FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
 
             if(mysqli_num_rows($query) == 0){
                 header("Location: ?page=tsk");
@@ -250,10 +250,10 @@
                                 <div class="input-field col s11 right">
                                     <select class="browser-default validate" name="kode" id="kode" required style="margin: -15px 0 20px;">
                                         <?php
-                                            $query = mysqli_query($config, "SELECT kode FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
+                                            $query = mysqli_query($_config, "SELECT kode FROM tbl_surat_keluar WHERE id_surat='$id_surat'");
                                             list($kode) = mysqli_fetch_array($query);
                                                 echo '<option value="'.$kode.'">'.$kode.'</option>';
-                                            $query = mysqli_query($config, "SELECT * FROM tbl_klasifikasi");
+                                            $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi");
                                             if(mysqli_num_rows($query) > 0){
                                                 while($row = mysqli_fetch_array($query)){
                                                     echo '<option value="'.$row['kode'].'">'.$row['kode']. " &nbsp;".$row['nama'].'</option>';

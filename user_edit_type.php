@@ -30,7 +30,7 @@
 
                 if(isset($_REQUEST['submit'])){
 
-                    $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
+                    $string = mysqli_real_escape_string($_config, $_REQUEST['id_user']);
                     $id_user = urldecode(decrypt($string, $salt));
                     $admin = $_REQUEST['admin'];
 
@@ -46,7 +46,7 @@
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
-                            $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
+                            $query = mysqli_query($_config, "UPDATE tbl_user SET admin='$admin' WHERE id_user='$id_user'");
 
                             if($query == true){
                                 $_SESSION['succEdit'] = 'SUKSES! Tipe user berhasil diupdate';
@@ -60,10 +60,10 @@
                     }
                 } else {
 
-                    $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
+                    $string = mysqli_real_escape_string($_config, $_REQUEST['id_user']);
                     $id_user = urldecode(decrypt($string, $salt));
 
-                    $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
+                    $query = mysqli_query($_config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
 
                     if(mysqli_num_rows($query) == 0){
                         header("Location: ?page=sett&sub=usr");

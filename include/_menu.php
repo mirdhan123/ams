@@ -20,7 +20,7 @@
             <li class="no-padding">
                 <div class="logo-side center blue-grey darken-3">
                     <?php
-                        $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                        $query = mysqli_query($_config, "SELECT * FROM tbl_instansi");
                         while($data = mysqli_fetch_array($query)){
                             if(!empty($data['logo'])){
                                 echo '<img class="logoside" src="./upload/'.$data['logo'].'"/>';

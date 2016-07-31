@@ -13,7 +13,7 @@
                   </script>';
         } else {
 
-        $string = mysqli_real_escape_string($config, $_REQUEST['id_user']);
+        $string = mysqli_real_escape_string($_config, $_REQUEST['id_user']);
         $id_user = urldecode(decrypt($string, $salt));
 
         if($id_user == 1){
@@ -32,7 +32,7 @@
 
                 if(isset($_REQUEST['submit'])){
 
-                    $query = mysqli_query($config, "DELETE FROM tbl_user WHERE id_user='$id_user'");
+                    $query = mysqli_query($_config, "DELETE FROM tbl_user WHERE id_user='$id_user'");
                     if($query == true){
                         $_SESSION['succDel'] = 'SUKSES! User berhasil dihapus<br/>';
                         header("Location: ?page=sett&sub=usr");
@@ -57,7 +57,7 @@
                         unset($_SESSION['errQ']);
                     }
 
-                    $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
+                    $query = mysqli_query($_config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
 
                     if(mysqli_num_rows($query) == 0){
                         header("Location: ?page=sett&sub=usr");

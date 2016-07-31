@@ -49,7 +49,7 @@
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
-                                $cek = mysqli_query($config, "SELECT * FROM tbl_user WHERE username='$username'");
+                                $cek = mysqli_query($_config, "SELECT * FROM tbl_user WHERE username='$username'");
                                 $result = mysqli_num_rows($cek);
 
                                 if($result > 0){
@@ -67,7 +67,7 @@
                                             echo '<script language="javascript">window.history.back();</script>';
                                         } else {
 
-                                            $query = mysqli_query($config, "INSERT INTO tbl_user(username, password, nama, nip, admin) VALUES('$username', '$password', '$nama', '$nip', '$admin')");
+                                            $query = mysqli_query($_config, "INSERT INTO tbl_user(username, password, nama, nip, admin) VALUES('$username', '$password', '$nama', '$nip', '$admin')");
 
                                             if($query != false){
                                                 $_SESSION['succAdd'] = 'SUKSES! User baru berhasil ditambahkan';

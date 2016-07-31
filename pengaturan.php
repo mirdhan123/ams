@@ -38,7 +38,7 @@
                         die();
                     } else {
 
-                        $string = mysqli_real_escape_string($config, $_REQUEST['id_instansi']);
+                        $string = mysqli_real_escape_string($_config, $_REQUEST['id_instansi']);
 
                         $id_instansi = decrypt($string, $salt);
                         $institusi = $_REQUEST['institusi'];
@@ -111,14 +111,14 @@
                                                             if(in_array($eks, $ekstensi) == true){
                                                                 if($ukuran < 2000000){
 
-                                                                    $query = mysqli_query($config, "SELECT logo FROM tbl_instansi");
+                                                                    $query = mysqli_query($_config, "SELECT logo FROM tbl_instansi");
                                                                     list($logo) = mysqli_fetch_array($query);
 
                                                                     unlink($target_dir.$logo);
 
                                                                     move_uploaded_file($_FILES['logo']['tmp_name'], $target_dir.$nlogo);
 
-                                                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET institusi='$institusi', nama='$nama', status='$status', alamat='$alamat', kepsek='$kepsek', nip='$nip', website='$website', email='$email', logo='$nlogo', id_user='$id_user' WHERE id_instansi='$id_instansi'");
+                                                                    $query = mysqli_query($_config, "UPDATE tbl_instansi SET institusi='$institusi', nama='$nama', status='$status', alamat='$alamat', kepsek='$kepsek', nip='$nip', website='$website', email='$email', logo='$nlogo', id_user='$id_user' WHERE id_instansi='$id_instansi'");
 
                                                                     if($query == true){
                                                                         $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
@@ -139,7 +139,7 @@
                                                         } else {
 
                                                             //jika form logo kosong akan mengeksekusi script dibawah ini
-                                                            $query = mysqli_query($config, "UPDATE tbl_instansi SET institusi='$institusi', nama='$nama', status='$status', alamat='$alamat', kepsek='$kepsek', nip='$nip', website='$website', email='$email', id_user='$id_user' WHERE id_instansi='$id_instansi'");
+                                                            $query = mysqli_query($_config, "UPDATE tbl_instansi SET institusi='$institusi', nama='$nama', status='$status', alamat='$alamat', kepsek='$kepsek', nip='$nip', website='$website', email='$email', id_user='$id_user' WHERE id_instansi='$id_instansi'");
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
@@ -161,7 +161,7 @@
                     }
                 } else {
 
-                    $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                    $query = mysqli_query($_config, "SELECT * FROM tbl_instansi");
                     if(mysqli_num_rows($query) > 0){
                         $no = 1;
                         while($row = mysqli_fetch_array($query)){?>
