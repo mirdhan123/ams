@@ -154,11 +154,11 @@
                             <thead class="blue lighten-4" id="head">
                                 <tr>
                                     <th width="5%">No. Agenda<br/>Kode</th>
-                                    <th width="28%">Isi Surat<br/> File</th>
+                                    <th width="32%">Isi Surat<br/> File</th>
                                     <th width="24%">Asal Surat</th>
                                     <th width="20%">No. Surat<br/>Tgl Surat</th>
                                     <th width="3%">Status</th>
-                                    <th width="20%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
+                                    <th width="16%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -228,7 +228,7 @@
                                             <button class="btn small light-green waves-effect waves-light"><i class="material-icons md-30">done</i></button>';
                                     } else {
                                         echo  '
-                                        <button class="btn small yellow darken-2 waves-effect waves-light"><i class="material-icons md-30">error</i></button>';
+                                        <button class="btn small yellow darken-2 waves-effect waves-light"><i class="material-icons md-30">error_outline</i></button>';
                                     }
 
                                     echo '
@@ -240,14 +240,14 @@
                                     if($_SESSION['admin'] != 2){
                                         echo '
 
-                                        <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
+                                        <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i></a>
 
-                                        <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>';
+                                        <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i></a>';
                                     }
 
                                     if(!empty($row['tujuan'])){
                                         echo '
-                                            <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
+                                            <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i></a>';
                                     } else {
                                         echo '';
                                     }
@@ -317,11 +317,11 @@
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
                                         <th width="5%">No. Agenda<br/>Kode</th>
-                                        <th width="28%">Isi Surat<br/> File</th>
+                                        <th width="32%">Isi Surat<br/> File</th>
                                         <th width="24%">Asal Surat</th>
                                         <th width="20%">No. Surat<br/>Tgl Surat</th>
                                         <th width="3%">Status</th>
-                                        <th width="20%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
+                                        <th width="16%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
 
                                             <div id="modal" class="modal">
                                                 <div class="modal-content white">
@@ -452,7 +452,7 @@
                                                 <button class="btn small light-green waves-effect waves-light"><i class="material-icons md-30">done</i></button>';
                                         } else {
                                             echo  '
-                                            <button class="btn small yellow darken-2 waves-effect waves-light"><i class="material-icons md-30">error</i></button>';
+                                            <button class="btn small yellow darken-2 waves-effect waves-light"><i class="material-icons md-30">error_outline</i></button>';
                                         }
 
                                         echo '
@@ -464,14 +464,14 @@
                                         if($_SESSION['admin'] != 2){
                                             echo '
 
-                                            <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
+                                            <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i></a>
 
-                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>';
+                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i></a>';
                                         }
 
                                         if(!empty($row['tujuan'])){
                                             echo '
-                                                <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
+                                                <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i></a>';
                                         } else {
                                             echo '';
                                         }

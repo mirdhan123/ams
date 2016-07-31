@@ -76,7 +76,7 @@
                             <div class="col 12" style="margin-top: -8px">
                                 <div class="card green lighten-5">
                                     <div class="card-content">
-                                        <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;">                                             <i class="material-icons md-36">info</i> Surat ini sudah diperiksa dan disposisi sudah dibuat
+                                        <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;">                                             <i class="material-icons md-36">error_outline</i> Surat ini sudah diperiksa dan disposisi sudah dibuat
                                         </p>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                             <div class="col 12" style="margin-top: -8px">
                                 <div class="card green lighten-5">
                                     <div class="card-content">
-                                        <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;"><i class="material-icons md-36">info</i> Surat ini sudah diperiksa namun disposisi tidak dibuat
+                                        <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;"><i class="material-icons md-36">error_outline</i> Surat ini sudah diperiksa namun disposisi tidak dibuat
                                         </p>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                                 <div class="col 12" style="margin-top: -8px">
                                     <div class="card yellow lighten-4">
                                         <div class="card-content">
-                                            <p class="orange-text bold" style="margin: -12px 0!important;font-size: 1.6rem;"><i class="material-icons md-36">info</i> Surat ini belum diperiksa
+                                            <p class="orange-text bold" style="margin: -12px 0!important;font-size: 1.6rem;"><i class="material-icons md-36">error_outline</i> Surat ini belum diperiksa
                                             </p>
                                         </div>
                                     </div>

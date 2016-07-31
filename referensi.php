@@ -148,9 +148,9 @@
                             <thead class="blue lighten-4" id="head">
                                 <tr>
                                     <th width="10%">Kode</th>
-                                    <th width="30%">Nama</th>
+                                    <th width="38%">Nama</th>
                                     <th width="40%">Uraian</th>
-                                    <th width="20%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
+                                    <th width="12%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
                                 </tr>
                             </thead>
 
@@ -169,8 +169,8 @@
                                         <td>'.$row['nama'].'</td>
                                         <td>'.$row['uraian'].'</td>
                                         <td>
-                                            <a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">edit</i> EDIT</a>
-                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>
+                                            <a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">edit</i></a>
+                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>
                                 </tbody>';
@@ -233,9 +233,9 @@
                                     <thead class="blue lighten-4" id="head">
                                         <tr>
                                             <th width="10%">Kode</th>
-                                            <th width="30%">Nama</th>
+                                            <th width="38%">Nama</th>
                                             <th width="40%">Uraian</th>
-                                            <th width="20%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
+                                            <th width="12%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
 
                                                 <div id="modal" class="modal">
                                                     <div class="modal-content white">
@@ -315,8 +315,8 @@
                                                 <td>'.$row['nama'].'</td>
                                                 <td>'.$row['uraian'].'</td>
                                                 <td>
-                                                    <a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">edit</i> EDIT</a>
-                                                    <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>
+                                                    <a class="btn small blue waves-effect waves-light" href="?page=ref&act=edit&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">edit</i></a>
+                                                    <a class="btn small deep-orange waves-effect waves-light" href="?page=ref&act=del&id_klasifikasi='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i></a>
                                                 </td>
                                             </tr>
                                         </tbody>';

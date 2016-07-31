@@ -134,11 +134,11 @@
                             <table class="bordered" id="tbl">
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
-                                        <th width="8%">No. Agenda<br/>Kode</th>
-                                        <th width="30%">Isi Surat<br/> File</th>
+                                        <th width="10%">No. Agenda<br/>Kode</th>
+                                        <th width="32%">Isi Surat<br/> File</th>
                                         <th width="24%">Tujuan</th>
-                                        <th width="19%">No. Surat<br/>Tgl Surat</th>
-                                        <th width="20%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
+                                        <th width="23%">No. Surat<br/>Tgl Surat</th>
+                                        <th width="12%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
                                     </tr>
                                 </thead>
 
@@ -197,8 +197,8 @@
 
                                         <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                         <td>
-                                            <a class="btn small blue waves-effect waves-light" href="?page=tsk&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
-                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsk&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>
+                                            <a class="btn small blue waves-effect waves-light" href="?page=tsk&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i></a>
+                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsk&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>
                                 </tbody>';
@@ -261,11 +261,11 @@
                         <table class="bordered" id="tbl">
                             <thead class="blue lighten-4" id="head">
                                 <tr>
-                                    <th width="8%">No. Agenda<br/>Kode</th>
-                                    <th width="30%">Isi Surat<br/> File</th>
+                                    <th width="10%">No. Agenda<br/>Kode</th>
+                                    <th width="32%">Isi Surat<br/> File</th>
                                     <th width="24%">Tujuan</th>
-                                    <th width="19%">No. Surat<br/>Tgl Surat</th>
-                                    <th width="20%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
+                                    <th width="23%">No. Surat<br/>Tgl Surat</th>
+                                    <th width="12%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
 
                                         <div id="modal" class="modal">
                                             <div class="modal-content white">
@@ -386,8 +386,8 @@
 
                                     <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                     <td>
-                                        <a class="btn small blue waves-effect waves-light" href="?page=tsk&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
-                                        <a class="btn small deep-orange waves-effect waves-light" href="?page=tsk&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">delete</i> HAPUS</a>
+                                        <a class="btn small blue waves-effect waves-light" href="?page=tsk&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i></a>
+                                        <a class="btn small deep-orange waves-effect waves-light" href="?page=tsk&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"> <i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             </tbody>';

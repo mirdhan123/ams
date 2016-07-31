@@ -41,7 +41,7 @@
                                                     <td width="86%">'.$row['indeks'].'</td>
                                                     </tr>
                                                     <tr>
-                                                    <td width="13%">Isi Ringkas</td>
+                                                    <td width="13%">Isi Surat</td>
                                                     <td width="1%">:</td>
                                                     <td width="86%">'.$row['isi'].'</td>
                                                     </tr>

@@ -104,8 +104,8 @@
                                         <th width="8%">No</th>
                                         <th width="22%">Username</th>
                                         <th width="30%">Nama<br/>NIP</th>
-                                        <th width="20%">Level</th>
-                                        <th width="20%">Tindakan</th>
+                                        <th width="25%">Level</th>
+                                        <th width="15%">Tindakan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -134,9 +134,9 @@
                                         $string = $row['id_user'];
                                         echo '
 
-                                            <a class="btn small blue waves-effect waves-light" href="?page=sett&sub=usr&act=edit&id_user='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
+                                            <a class="btn small blue waves-effect waves-light" href="?page=sett&sub=usr&act=edit&id_user='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i></a>
 
-                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=sett&sub=usr&act=del&id_user='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>';
+                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=sett&sub=usr&act=del&id_user='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i></a>';
                                     }
                                     echo '
 
