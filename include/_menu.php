@@ -235,26 +235,14 @@
             <?php
                 }
             ?>
-            <span class="right" style="margin-right: 10px;">
-                <li>
-                    <?php
-                        if($_SESSION['admin'] == 2){
-                            echo '
-                            <a href="?page=tsm">
-                                <div style="margin: 3px; width: 56px;height: 56px; border-radius: 50px; background: #444;"><i class="material-icons" style="margin-top: -10px;">notifications</i><span id="notification" style="font-size: 2rem"></span></div>
-                            </a>';
-                        }
-                    ?>
-                </li>
-                <li><a class="dropdown-button" href="#!" data-activates="logout">
-                    <i class="material-icons">account_circle</i> <?php echo $_SESSION['nama']; ?><i class="material-icons md-18">arrow_drop_down</i></a></li>
-                    <ul id='logout' class='dropdown-content'>
-                        <li><a href="?page=pro">Profil</a></li>
-                        <li><a href="?page=pro&sub=pass">Ubah Password</a></li>
-                        <li class="divider"></li>
-                        <li><a href="logout.php"><i class="material-icons">settings_power</i> Logout</a></li>
-                    </ul>
-            </span>
+            <li class="right"><a class="dropdown-button" href="#!" data-activates="logout">
+                <i class="material-icons">account_circle</i> <?php echo $_SESSION['nama']; ?><i class="material-icons md-18">arrow_drop_down</i></a></li>
+                <ul id='logout' class='dropdown-content'>
+                    <li><a href="?page=pro">Profil</a></li>
+                    <li><a href="?page=pro&sub=pass">Ubah Password</a></li>
+                    <li class="divider"></li>
+                    <li><a href="logout.php"><i class="material-icons">settings_power</i> Logout</a></li>
+                </ul>
         </ul>
         <!-- Menu on large screen END -->
         <a href="#" data-activates="slide-out" class="button-collapse" id="menu"><i class="material-icons">menu</i></a>

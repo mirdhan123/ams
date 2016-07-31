@@ -25,6 +25,10 @@
                     case 'usr':
                         include "user.php";
                         break;
+                    default:
+                        header("Location: ?page=sett");
+                        die();
+                        break;
                 }
             } else {
 

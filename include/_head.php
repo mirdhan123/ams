@@ -216,6 +216,32 @@
             background: #2196f3;
             pointer-events: none;
         }
+        .notification {
+            color: #444;
+            position: absolute;
+            top: 10px;
+            right: 18%
+        }
+        .bell:hover {
+            text-shadow: 0 14px 38px rgba(0,0,0,0.5), 0 10px 10px rgba(0,0,0,0.5);
+            color: #ffff00;
+            animation: 0.3s linear;
+        }
+        .bell {
+            text-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            margin-top:33px;
+            color: #E43;
+            transform-origin: 50% 0;
+            animation: vibrate 0.3s linear infinite;
+        }
+        @keyframes vibrate
+        {
+            0%   {transform: rotate(10deg)}
+            25%  {transform: rotate(-10deg)}
+            50%  {transform: rotate(0)}
+            75%  {transform: rotate(10deg)}
+            100% {transform: rotate(0)}
+        }
         @media print{
             .side-nav,
             .secondary-nav,

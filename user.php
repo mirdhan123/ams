@@ -18,6 +18,10 @@
                 case 'del':
                     include "user_delete.php";
                     break;
+                default:
+                    header("Location: ?page=sett&sub=usr");
+                    die();
+                    break;
             }
         } else {
 

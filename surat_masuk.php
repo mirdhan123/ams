@@ -30,8 +30,12 @@
                 case 'editd':
                     include "disposisi_edit.php";
                     break;
-                }
-            } else {
+                default:
+                    header("Location: ?page=tsm");
+                    die();
+                    break;
+            }
+        } else {
 
                 $query = mysqli_query($_config, "SELECT surat_masuk FROM tbl_sett");
                 list($surat_masuk) = mysqli_fetch_array($query);

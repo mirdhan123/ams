@@ -21,6 +21,10 @@
                 case 'imp':
                     include "referensi_import.php";
                     break;
+                default:
+                    header("Location: ?page=ref");
+                    die();
+                    break;
             }
         } else {
 

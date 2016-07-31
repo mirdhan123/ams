@@ -25,6 +25,10 @@
                 case 'del':
                     include "surat_keluar_delete.php";
                     break;
+                default:
+                    header("Location: ?page=tsk");
+                    die();
+                    break;
             }
         } else {
 
