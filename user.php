@@ -102,10 +102,10 @@
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
                                         <th width="8%">No</th>
-                                        <th width="23%">Username</th>
+                                        <th width="22%">Username</th>
                                         <th width="30%">Nama<br/>NIP</th>
-                                        <th width="22%">Level</th>
-                                        <th width="16%">Tindakan</th>
+                                        <th width="20%">Level</th>
+                                        <th width="20%">Tindakan</th>
                                     </tr>
                                 </thead>
                                 <tbody>

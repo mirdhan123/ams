@@ -149,8 +149,8 @@
                                 <tr>
                                     <th width="10%">Kode</th>
                                     <th width="30%">Nama</th>
-                                    <th width="42%">Uraian</th>
-                                    <th width="18%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
+                                    <th width="40%">Uraian</th>
+                                    <th width="20%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
                                 </tr>
                             </thead>
 
@@ -234,8 +234,8 @@
                                         <tr>
                                             <th width="10%">Kode</th>
                                             <th width="30%">Nama</th>
-                                            <th width="42%">Uraian</th>
-                                            <th width="18%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
+                                            <th width="40%">Uraian</th>
+                                            <th width="20%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
 
                                                 <div id="modal" class="modal">
                                                     <div class="modal-content white">

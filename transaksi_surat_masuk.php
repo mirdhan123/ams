@@ -154,11 +154,11 @@
                             <thead class="blue lighten-4" id="head">
                                 <tr>
                                     <th width="5%">No. Agenda<br/>Kode</th>
-                                    <th width="30%">Isi Surat<br/> File</th>
+                                    <th width="28%">Isi Surat<br/> File</th>
                                     <th width="24%">Asal Surat</th>
                                     <th width="20%">No. Surat<br/>Tgl Surat</th>
                                     <th width="3%">Status</th>
-                                    <th width="18%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
+                                    <th width="20%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -313,11 +313,11 @@
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
                                         <th width="5%">No. Agenda<br/>Kode</th>
-                                        <th width="30%">Isi Surat<br/> File</th>
+                                        <th width="28%">Isi Surat<br/> File</th>
                                         <th width="24%">Asal Surat</th>
                                         <th width="20%">No. Surat<br/>Tgl Surat</th>
                                         <th width="3%">Status</th>
-                                        <th width="18%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
+                                        <th width="20%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
 
                                             <div id="modal" class="modal">
                                                 <div class="modal-content white">
