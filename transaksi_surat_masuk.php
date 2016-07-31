@@ -153,10 +153,11 @@
                         <table class="bordered" id="tbl">
                             <thead class="blue lighten-4" id="head">
                                 <tr>
-                                    <th width="10%">No. Agenda<br/>Kode</th>
+                                    <th width="5%">No. Agenda<br/>Kode</th>
                                     <th width="30%">Isi Ringkas<br/> File</th>
                                     <th width="24%">Asal Surat</th>
-                                    <th width="18%">No. Surat<br/>Tgl Surat</th>
+                                    <th width="20%">No. Surat<br/>Tgl Surat</th>
+                                    <th width="3%">Status</th>
                                     <th width="18%">Tindakan <span class="right"><i class="material-icons" style="color: #333;">settings</i></span></th>
                                 </tr>
                             </thead>
@@ -169,7 +170,13 @@
                                 $no = 1;
                                 while($row = mysqli_fetch_array($query)){
 
-                                    $string = $row['id_surat'];
+                                $string = $row['id_surat'];
+
+                                if($_SESSION['admin'] == 2 AND $row['status'] != 1 AND $row['status'] != 2){
+                                    echo '<tr class="yellow lighten-3">';
+                                } else {
+                                    echo '<tr>';
+                                }
 
                                   echo '
                                     <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
@@ -216,9 +223,21 @@
                                     <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                     <td>';
 
+                                    if($row['status'] == 1 || $row['status'] == 2){
+                                        echo '
+                                            <button class="btn small light-green waves-effect waves-light"><i class="material-icons md-30">done</i></button>';
+                                    } else {
+                                        echo  '
+                                        <button class="btn small yellow darken-2 waves-effect waves-light"><i class="material-icons md-30">error</i></button>';
+                                    }
+
+                                    echo '
+                                    </td>
+                                    <td>';
+
                                     if($_SESSION['admin'] == 2){
                                         echo '
-                                            <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> DISPOSISI</a>';
+                                            <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> LIHAT SURAT</a>';
 
                                     } else {
                                         echo '
@@ -299,10 +318,11 @@
                             <table class="bordered" id="tbl">
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
-                                        <th width="10%">No. Agenda<br/>Kode</th>
+                                        <th width="5%">No. Agenda<br/>Kode</th>
                                         <th width="30%">Isi Ringkas<br/> File</th>
                                         <th width="24%">Asal Surat</th>
-                                        <th width="18%">No. Surat<br/>Tgl Surat</th>
+                                        <th width="20%">No. Surat<br/>Tgl Surat</th>
+                                        <th width="3%">Status</th>
                                         <th width="18%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
 
                                             <div id="modal" class="modal">
@@ -368,8 +388,7 @@
                                         echo '
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>';
+                                <tbody>';
 
                                 //script untuk menampilkan data
                                 $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER by id_surat DESC LIMIT $curr, $limit");
@@ -377,7 +396,13 @@
                                     $no = 1;
                                     while($row = mysqli_fetch_array($query)){
 
-                                        $string = $row['id_surat'];
+                                    $string = $row['id_surat'];
+
+                                    if($_SESSION['admin'] == 2 AND $row['status'] != 1 AND $row['status'] != 2){
+                                        echo '<tr class="yellow lighten-3">';
+                                    } else {
+                                        echo '<tr>';
+                                    }
 
                                       echo '
                                         <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
@@ -424,9 +449,21 @@
                                         <td>'.$row['no_surat'].'<br/><hr/>'.$d." ".$nm." ".$y.'</td>
                                         <td>';
 
+                                        if($row['status'] == 1 || $row['status'] == 2){
+                                            echo '
+                                                <button class="btn small light-green waves-effect waves-light"><i class="material-icons md-30">done</i></button>';
+                                        } else {
+                                            echo  '
+                                            <button class="btn small yellow darken-2 waves-effect waves-light"><i class="material-icons md-30">error</i></button>';
+                                        }
+
+                                        echo '
+                                        </td>
+                                        <td>';
+
                                         if($_SESSION['admin'] == 2){
                                             echo '
-                                                <a class="btn small light-green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> DISPOSISI</a>';
+                                                <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> LIHAT SURAT</a>';
 
                                         } else {
                                             echo '
@@ -436,7 +473,7 @@
                                                     <i class="material-icons">delete</i> HAPUS</a>';
                                         }
 
-                                        if(!empty($row['status'])){
+                                        if(!empty($row['tujuan'])){
                                             echo '
                                                 <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i> CETAK</a>';
                                         } else {

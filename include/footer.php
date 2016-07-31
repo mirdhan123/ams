@@ -58,6 +58,45 @@
 <script data-pace-options='{ "ajax": false }' src='asset/js/pace.min.js'></script>
 <script type="text/javascript">
 
+//Ajax  notification
+function addmsg(type, msg){
+
+$('#notification').html(msg);
+
+}
+
+function waitForMsg(){
+
+$.ajax({
+type: "GET",
+url: "source.php",
+
+async: true,
+cache: false,
+timeout:50000,
+
+success: function(data){
+addmsg("new", data);
+setTimeout(
+waitForMsg,
+1000
+);
+},
+error: function(XMLHttpRequest, textStatus, errorThrown){
+addmsg("error", textStatus + " (" + errorThrown + ")");
+setTimeout(
+waitForMsg,
+15000);
+}
+});
+};
+
+$(document).ready(function(){
+
+waitForMsg();
+
+});
+
 //jquery dropdown
 $(".dropdown-button").dropdown({ hover: false });
 

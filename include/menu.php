@@ -2,7 +2,7 @@
     //cek session
     if(!empty($_SESSION['admin'])){
 
-        $salt = md5('Made with Love by M. Rudianto');
+        $salt = MD5("abc6642ac8e52abdff42837eb969d7f1fa9799dc");
 
         function encrypt($string,$salt){
            return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $string, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
@@ -236,7 +236,13 @@
             <?php
                 }
             ?>
-            <li class="right" style="margin-right: 10px;"><a class="dropdown-button" href="#!" data-activates="logout"><i class="material-icons">account_circle</i> <?php echo $_SESSION['nama']; ?><i class="material-icons md-18">arrow_drop_down</i></a></li>
+            <li class="right" style="margin-right: 10px;"><a class="dropdown-button" href="#!" data-activates="logout">
+            <?php
+                if(isset($_SESSION['admin']) == 2){
+                    echo ' <span><i class="material-icons">notifications</i><span id="notification"></span></span>';
+                }
+            ?>
+                <i class="material-icons">account_circle</i> <?php echo $_SESSION['nama']; ?><i class="material-icons md-18">arrow_drop_down</i></a></li>
                 <ul id='logout' class='dropdown-content'>
                     <li><a href="?page=pro">Profil</a></li>
                     <li><a href="?page=pro&sub=pass">Ubah Password</a></li>
