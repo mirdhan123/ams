@@ -91,9 +91,9 @@
                         <p class="description">Anda login sebagai
                         <?php
                             if($_SESSION['admin'] == 1){
-                                echo "<strong>Administrator</strong>. Anda memiliki akses penuh terhadap semua fitur.";
+                                echo "<strong>Administrator</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
                             } elseif($_SESSION['admin'] == 2){
-                                echo "<strong>Pimpinan Instansi</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
+                                echo "<strong>Pimpinan Instansi</strong>. Anda memiliki hak akses untuk memeriksa dan menyetujui surat masuk serta membuat disposisi surat.";
                             } else {
                                 echo "<strong>Petugas Disposisi</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
                             }?></p>
@@ -114,50 +114,98 @@
 
                 //menghitung jumlah pengguna
                 $count4 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
+
+                //menghitung jumlah surat yang belum diperiksa
+                $count5 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE status='0'"));
             ?>
 
             <!-- Info Statistic START -->
+        <?php
+            if($_SESSION['admin'] == 1 || $_SESSION['admin']  == 3){
+        ?>
+        <a href="?page=tsm">
             <div class="col s12 l4">
                 <div class="card cyan">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">mail</i> Jumlah Surat Masuk</span>
-                        <?php echo '<h5 class="white-text link">'.$count1.' Surat Masuk</h5>'; ?>
+                        <?php echo '<h5 class="link">'.$count1.' Surat Masuk</h5>'; ?>
                     </div>
                 </div>
             </div>
-
+        </a>
+        <a href="?page=tsk">
             <div class="col s12 l4">
                 <div class="card lime darken-1">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Jumlah Surat Keluar</span>
-                        <?php echo '<h5 class="white-text link">'.$count2.' Surat Keluar</h5>'; ?>
+                        <?php echo '<h5 class="link">'.$count2.' Surat Keluar</h5>'; ?>
                     </div>
                 </div>
             </div>
-
+        </a>
+        <a href="?page=ref">
             <div class="col s12 l4">
                 <div class="card yellow darken-2">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">class</i> Jumlah Klasifikasi Surat</span>
-                        <?php echo '<h5 class="white-text link">'.$count3.' Klasifikasi Surat</h5>'; ?>
+                        <?php echo '<h5 class="link">'.$count3.' Klasifikasi Surat</h5>'; ?>
                     </div>
                 </div>
             </div>
+        </a>
+        <?php
+            }
+        ?>
 
         <?php
             if($_SESSION['id_user'] == 1){?>
+        <a href="?page=sett&sub=usr">
             <div class="col s12 l4">
                 <div class="card deep-orange">
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">people</i> Jumlah Pengguna</span>
-                        <?php echo '<h5 class="white-text link">'.$count4.' Pengguna</h5>'; ?>
+                        <?php echo '<h5 class="link">'.$count4.' Pengguna</h5>'; ?>
                     </div>
                 </div>
             </div>
-            <!-- Info Statistic START -->
+        </a>
         <?php
             }
         ?>
+
+        <?php
+            if($_SESSION['admin'] == 2){
+        ?>
+        <a href="?page=tsm">
+            <div class="col s12 l5">
+                <div class="card cyan">
+                    <div class="card-content">
+                        <span class="card-title white-text"><i class="material-icons md-36">mail</i> Jumlah Surat Masuk</span>
+                        <?php echo '<h5 class="link">'.$count1.' Surat Masuk</h5>'; ?>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="?page=tsm">
+            <div class="col s12 l7">
+                <div class="card deep-orange">
+                    <div class="card-content">
+                        <span class="card-title white-text"><i class="material-icons md-36">error_outline</i> Jumlah Surat Masuk yang Belum Diperiksa</span>
+                        <?php echo '<h5 class="link">';
+                            if($count5 == ""){
+                                echo 'Semua surat sudah diperiksa';
+                            } else {
+                                echo $count5." Surat Masuk</h5>";
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <?php
+            }
+        ?>
+        <!-- Info Statistic START -->
 
         </div>
         <!-- Row END -->

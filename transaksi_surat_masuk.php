@@ -235,11 +235,15 @@
                                     </td>
                                     <td>
 
-                                        <a class="btn small indigo accent-2 waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> LIHAT SURAT</a>
+                                        <a class="btn small indigo accent-2 waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> LIHAT SURAT</a>';
+
+                                    if($_SESSION['admin'] != 2){
+                                        echo '
 
                                         <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
 
                                         <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>';
+                                    }
 
                                     if(!empty($row['tujuan'])){
                                         echo '
@@ -455,11 +459,15 @@
                                         </td>
                                         <td>
 
-                                            <a class="btn small indigo accent-2 waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> LIHAT SURAT</a>
+                                            <a class="btn small indigo accent-2 waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> LIHAT SURAT</a>';
+
+                                        if($_SESSION['admin'] != 2){
+                                            echo '
 
                                             <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
 
                                             <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>';
+                                        }
 
                                         if(!empty($row['tujuan'])){
                                             echo '

@@ -119,6 +119,10 @@
             font-size: 1.39rem;
             padding-left: 8px;
         }
+        .link {
+            font-size: 2rem;
+            color: #fff;
+        }
         .hid {
             display: none;
         }
