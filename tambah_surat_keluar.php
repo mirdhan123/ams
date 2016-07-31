@@ -49,7 +49,7 @@
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $isi)){
-                                $_SESSION['isik'] = 'Form Isi Ringkas hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
+                                $_SESSION['isik'] = 'Form Isi Surat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
@@ -420,7 +420,7 @@
                                         unset($_SESSION['isik']);
                                     }
                                 ?>
-                            <label for="isi">Isi Ringkas</label>
+                            <label for="isi">Isi Surat</label>
                         </div>
                         <div class="input-field col m6">
                             <div class="file-field input-field tooltipped" data-position="top" data-tooltip="Jika tidak ada file/scan gambar surat, biarkan kosong">

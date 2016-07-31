@@ -154,7 +154,7 @@
                             <thead class="blue lighten-4" id="head">
                                 <tr>
                                     <th width="5%">No. Agenda<br/>Kode</th>
-                                    <th width="30%">Isi Ringkas<br/> File</th>
+                                    <th width="30%">Isi Surat<br/> File</th>
                                     <th width="24%">Asal Surat</th>
                                     <th width="20%">No. Surat<br/>Tgl Surat</th>
                                     <th width="3%">Status</th>
@@ -233,19 +233,13 @@
 
                                     echo '
                                     </td>
-                                    <td>';
+                                    <td>
 
-                                    if($_SESSION['admin'] == 2){
-                                        echo '
-                                            <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> LIHAT SURAT</a>';
+                                        <a class="btn small indigo accent-2 waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> LIHAT SURAT</a>
 
-                                    } else {
-                                        echo '
-                                            <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'">
-                                                <i class="material-icons">edit</i> EDIT</a>
-                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'">
-                                                <i class="material-icons">delete</i> HAPUS</a>';
-                                    }
+                                        <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
+
+                                        <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>';
 
                                     if(!empty($row['tujuan'])){
                                         echo '
@@ -319,7 +313,7 @@
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
                                         <th width="5%">No. Agenda<br/>Kode</th>
-                                        <th width="30%">Isi Ringkas<br/> File</th>
+                                        <th width="30%">Isi Surat<br/> File</th>
                                         <th width="24%">Asal Surat</th>
                                         <th width="20%">No. Surat<br/>Tgl Surat</th>
                                         <th width="3%">Status</th>
@@ -459,19 +453,13 @@
 
                                         echo '
                                         </td>
-                                        <td>';
+                                        <td>
 
-                                        if($_SESSION['admin'] == 2){
-                                            echo '
-                                                <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> LIHAT SURAT</a>';
+                                            <a class="btn small indigo accent-2 waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">description</i> LIHAT SURAT</a>
 
-                                        } else {
-                                            echo '
-                                                <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'">
-                                                    <i class="material-icons">edit</i> EDIT</a>
-                                                <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'">
-                                                    <i class="material-icons">delete</i> HAPUS</a>';
-                                        }
+                                            <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">edit</i> EDIT</a>
+
+                                            <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i> HAPUS</a>';
 
                                         if(!empty($row['tujuan'])){
                                             echo '

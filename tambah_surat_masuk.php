@@ -50,7 +50,7 @@
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $isi)){
-                                $_SESSION['isi'] = 'Form Isi Ringkas hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
+                                $_SESSION['isi'] = 'Form Isi Surat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), kurung(), underscore(_), dan(&) persen(%) dan at(@)';
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
@@ -308,7 +308,7 @@
                                         unset($_SESSION['isi']);
                                     }
                                 ?>
-                            <label for="isi">Isi Ringkas</label>
+                            <label for="isi">Isi Surat</label>
                         </div>
                         <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">featured_play_list</i>

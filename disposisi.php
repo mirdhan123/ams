@@ -6,18 +6,11 @@
         die();
     } else {
 
-        if($_SESSION['admin'] != 2){
-            echo '<script language="javascript">
-                    window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
-                    window.history.back();
-                  </script>';
-        } else {
+        if(isset($_REQUEST['simpan'])){
 
-            if(isset($_REQUEST['simpan'])){
-
-                $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
-                $id_surat = decrypt($string, $salt);
-                $status = $_REQUEST['status'];
+            $string = mysqli_real_escape_string($config, $_REQUEST['id_surat']);
+            $id_surat = decrypt($string, $salt);
+            $status = $_REQUEST['status'];
 
                 //validasi input data
                 if(!preg_match("/^[1-2]*$/", $status)){
@@ -66,17 +59,10 @@
 
             $string = $row['id_surat'];
 
-            if($_SESSION['admin'] != 2){
-                echo '<script language="javascript">
-                        window.alert("ERROR! Anda tidak memiliki hak akses untuk melihat data ini");
-                        window.location.href="./admin.php?page=tsm";
-                      </script>';
+            if(isset($_REQUEST['arsip'])){
+                header("location: ./");
+                die();
             } else {
-
-                if(isset($_REQUEST['arsip'])){
-                    header("location: ./");
-                    die();
-                } else {
 
                 echo '
                     <!-- Row Start -->
@@ -197,7 +183,7 @@
                                                         <td width="1%">:</td>
                                                         <td width="86%">'.$row['asal_surat'].'</td>
                                                     </tr>
-                                                        <td width="13%">Perihal</td>
+                                                        <td width="13%">Isi Surat</td>
                                                         <td width="1%">:</td>
                                                         <td width="86%">'.$row['isi'].'</td>
                                                     </tr>
@@ -333,9 +319,14 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                    <div class="card-action">
-                                        <a href="?page=tsm&act=editd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>
+                                    <div class="card-action">';
 
+                                    if($_SESSION['admin'] == 2){
+                                    echo '
+                                        <a href="?page=tsm&act=editd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>';
+                                    }
+
+                                    echo '
                                         <a class="btn-large yellow darken-3 waves-effect waves-light white-text" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank">CETAK <i class="material-icons">print</i></a>
                                     </div>
                                 </div>
@@ -372,7 +363,7 @@
                                                     <td width="1%">:</td>
                                                     <td width="86%">'.$row['asal_surat'].'</td>
                                                 </tr>
-                                                    <td width="13%">Perihal</td>
+                                                    <td width="13%">Isi Surat</td>
                                                     <td width="1%">:</td>
                                                     <td width="86%">'.$row['isi'].'</td>
                                                     </tr>
@@ -436,8 +427,14 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="card-action">
-                                        <a href="?page=tsm&act=addd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>
+                                    <div class="card-action">';
+
+                                    if($_SESSION['admin'] == 2){
+                                    echo '
+                                        <a href="?page=tsm&act=addd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>';
+                                    }
+                                    echo '
+
                                     </div>
                                 </div>
                             </div>
@@ -474,7 +471,7 @@
                                                     <td width="1%">:</td>
                                                     <td width="86%">'.$row['asal_surat'].'</td>
                                                 </tr>
-                                                    <td width="13%">Perihal</td>
+                                                    <td width="13%">Isi Surat</td>
                                                     <td width="1%">:</td>
                                                     <td width="86%">'.$row['isi'].'</td>
                                                     </tr>
@@ -539,7 +536,10 @@
                                         </table>
                                     </div>
                                     <div class="card-action">
-                                        <div class="col s12">
+                                        <div class="col s12">';
+
+                                        if($_SESSION['admin'] == 2){
+                                        echo '
                                             <form method="post">
                                                 <input class="with-gap" name="status" type="radio" id="setuju" value="1" required/>
                                                 <label for="setuju" style="color: #444;font-size: 1.4rem">Setujui dan buat disposisi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
@@ -549,14 +549,16 @@
                                                     echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$status.'</div>';
                                                     unset($_SESSION['status']);
                                                 }
-
                                                 echo '
 
                                                 <input class="with-gap" name="status" type="radio" id="arsip" value="2" required/>
                                                 <label for="arsip" style="color: #444;font-size: 1.4rem">Arsipkan saja</label></div><br/><br/><br/>
 
                                                 <button type="submit" name="simpan" class="btn-large deep-orange waves-effect waves-light white-text">SIMPAN <i class="material-icons">done</i></button>
-                                            </form>
+                                            </form>';
+                                        }
+                                        echo '
+
                                         </div>
                                     </div>
                                 </div>
@@ -566,8 +568,6 @@
                         echo '
                     </div>
                     <!-- Row form END -->';
-                }
             }
         }
-    }
 ?>
