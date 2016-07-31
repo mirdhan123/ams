@@ -2,7 +2,7 @@
     //cek session
     if(!empty($_SESSION['admin'])){
 ?>
-<?php require('include/config.php'); ?>
+<?php require('include/_config.php'); ?>
 
 <head>
 

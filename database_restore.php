@@ -92,7 +92,7 @@
                 	global $rest_dir;
 
                     //konfigurasi database
-                	$config = mysqli_connect("localhost", "root", "", "ams");
+                	$config = mysqli_connect("localhost", "root", "", "_ams");
 
                 	$file_name = $file['name'];
                 	$file_size = $file['size'];

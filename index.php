@@ -4,10 +4,10 @@
 
     //cek session
     if(isset($_SESSION['admin'])){
-        header("Location: ./admin.php");
+        header("Location: ./admin");
         die();
     }
-    require('include/config.php');
+    require('include/_config.php');
 ?>
 
 <!doctype html>
@@ -40,7 +40,7 @@
     <![endif]-->
 
     <!-- Global style START -->
-    <link type="text/css" rel="stylesheet" href="./asset/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="asset/css/materialize.css"  media="screen,projection"/>
     <style type="text/css">
         body {
             background: #fff;
@@ -302,7 +302,7 @@
     <!-- Container END -->
 
     <!-- Javascript START -->
-    <script type="text/javascript" src="asset/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="asset/js/jquery.min.js"></script>
     <script type="text/javascript" src="asset/js/materialize.min.js"></script>
     <script type="text/javascript" src="asset/js/bootstrap.min.js"></script>
     <script data-pace-options='{ "ajax": false }' src='asset/js/pace.min.js'></script>
@@ -314,7 +314,7 @@
     <!-- Javascript END -->
 
     <noscript>
-        <meta http-equiv="refresh" content="0;URL='./enable-javascript.html'" />
+        <meta http-equiv="refresh" content="0;URL='enable-javascript.html'" />
     </noscript>
 
 </body>

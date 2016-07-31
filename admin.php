@@ -14,7 +14,7 @@
 <html lang="en">
 
 <!-- Include Head START -->
-<?php include('include/head.php'); ?>
+<?php include('include/_head.php'); ?>
 <!-- Include Head END -->
 
 <!-- Body START -->
@@ -24,7 +24,7 @@
 <header>
 
 <!-- Include Navigation START -->
-<?php include('include/menu.php'); ?>
+<?php include('include/_menu.php'); ?>
 <!-- Include Navigation END -->
 
 </header>
@@ -80,7 +80,7 @@
         <div class="row">
 
             <!-- Include Header Instansi START -->
-            <?php include('include/header_instansi.php'); ?>
+            <?php include('include/_header_instansi.php'); ?>
             <!-- Include Header Instansi END -->
 
             <!-- Welcome Message START -->
@@ -219,7 +219,7 @@
 <!-- Main END -->
 
 <!-- Include Footer START -->
-<?php include('include/footer.php'); ?>
+<?php include('include/_footer.php'); ?>
 <!-- Include Footer END -->
 
 </body>
