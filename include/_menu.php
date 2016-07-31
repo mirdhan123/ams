@@ -2,7 +2,7 @@
     //cek session
     if(!empty($_SESSION['admin'])){
 
-        $salt = MD5("abc6642ac8e52abdff42837eb969d7f1fa9799dc");
+        $salt = MD5("547b7824ae83163a9e6f7eb64a6c7a0b8447e413");
 
         function encrypt($string,$salt){
            return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $string, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
