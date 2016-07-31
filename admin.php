@@ -177,16 +177,6 @@
             if($_SESSION['admin'] == 2){
         ?>
         <a href="?page=tsm">
-            <div class="col s12 l5">
-                <div class="card cyan">
-                    <div class="card-content">
-                        <span class="card-title white-text"><i class="material-icons md-36">mail</i> Jumlah Surat Masuk</span>
-                        <?php echo '<h5 class="link">'.$count1.' Surat Masuk</h5>'; ?>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="?page=tsm">
             <div class="col s12 l7">
                 <div class="card deep-orange">
                     <div class="card-content">
@@ -198,6 +188,16 @@
                                 echo $count5." Surat Masuk</h5>";
                             }
                         ?>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="?page=tsm">
+            <div class="col s12 l5">
+                <div class="card cyan">
+                    <div class="card-content">
+                        <span class="card-title white-text"><i class="material-icons md-36">mail</i> Jumlah Surat Masuk</span>
+                        <?php echo '<h5 class="link">'.$count1.' Surat Masuk</h5>'; ?>
                     </div>
                 </div>
             </div>

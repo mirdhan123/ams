@@ -59,41 +59,36 @@
 
 //Ajax  notification
 function addmsg(type, msg){
-
-$('#notification').html(msg);
-
+    $('#notification').html(msg);
 }
 
 function waitForMsg(){
+    $.ajax({
+        type: "GET",
+        url: "source.php",
 
-$.ajax({
-type: "GET",
-url: "source.php",
+        async: true,
+        cache: false,
+        timeout:50000,
 
-async: true,
-cache: false,
-timeout:50000,
-
-success: function(data){
-addmsg("new", data);
-setTimeout(
-waitForMsg,
-1000
-);
-},
-error: function(XMLHttpRequest, textStatus, errorThrown){
-addmsg("error", textStatus + " (" + errorThrown + ")");
-setTimeout(
-waitForMsg,
-15000);
-}
-});
+        success: function(data){
+            addmsg("new", data);
+            setTimeout(
+            waitForMsg,
+            1000
+            );
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            addmsg("error", textStatus + " (" + errorThrown + ")");
+            setTimeout(
+            waitForMsg,
+            15000);
+        }
+    });
 };
 
 $(document).ready(function(){
-
-waitForMsg();
-
+    waitForMsg();
 });
 
 //jquery dropdown
