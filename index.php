@@ -237,7 +237,7 @@
                                     $_SESSION['nip'] = $nip;
                                     $_SESSION['admin'] = $admin;
 
-                                    header("Location: ./admin.php");
+                                    header("Location: ./admin");
                                     die();
                                 } else {
 

@@ -10,16 +10,16 @@
             $act = $_REQUEST['act'];
             switch ($act) {
                 case 'add':
-                    include "tambah_klasifikasi.php";
+                    include "referensi_add.php";
                     break;
                 case 'edit':
-                    include "edit_klasifikasi.php";
+                    include "referensi_edit.php";
                     break;
                 case 'del':
-                    include "hapus_klasifikasi.php";
+                    include "referensi_delete.php";
                     break;
                 case 'imp':
-                    include "upload_referensi.php";
+                    include "referensi_import.php";
                     break;
             }
         } else {
@@ -252,13 +252,13 @@
                                                         } else {
 
                                                             if($referensi < 5){
-                                                                header("Location: ./admin.php?page=ref");
+                                                                header("Location: ?page=ref");
                                                                 die();
                                                             } else {
 
                                                             $query = mysqli_query($config, "UPDATE tbl_sett SET referensi='$referensi', id_user='$id_user' WHERE id_sett='$id_sett'");
                                                             if($query == true){
-                                                                header("Location: ./admin.php?page=ref");
+                                                                header("Location: ?page=ref");
                                                                 die();
                                                             }
                                                             }

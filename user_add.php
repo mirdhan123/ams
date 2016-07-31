@@ -18,7 +18,7 @@
             //validasi form kosong
             if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == "" || $_REQUEST['admin'] == ""){
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi!';
-                header("Location: ./admin.php?page=sett&sub=usr&act=add");
+                header("Location: ?page=sett&sub=usr&act=add");
                 die();
             } else {
 
@@ -71,7 +71,7 @@
 
                                             if($query != false){
                                                 $_SESSION['succAdd'] = 'SUKSES! User baru berhasil ditambahkan';
-                                                header("Location: ./admin.php?page=sett&sub=usr");
+                                                header("Location: ?page=sett&sub=usr");
                                                 die();
                                             } else {
                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -136,7 +136,7 @@
             <div class="row jarak-form">
 
                 <!-- Form START -->
-                <form class="col s12" method="post" action="?page=sett&sub=usr&act=add">
+                <form class="col s12" method="post" action="">
 
                     <!-- Row in form START -->
                     <div class="row">

@@ -79,7 +79,7 @@
                                 <nav class="secondary-nav">
                                     <div class="nav-wrapper blue-grey darken-1">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light  tooltipped" data-position="right" data-tooltip="Menu ini hanya untuk mengedit tipe user. Username dan password bisa diganti lewat menu profil"><a href="#" class="judul"><i class="material-icons">mode_edit</i> Edit Tipe User</a></li>
+                                            <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">mode_edit</i> Edit Tipe User</a></li>
                                         </ul>
                                     </div>
                                 </nav>

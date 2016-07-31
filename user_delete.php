@@ -19,14 +19,14 @@
         if($id_user == 1){
             echo '<script language="javascript">
                     window.alert("ERROR! Administrator tidak boleh dihapus");
-                    window.location.href="./admin.php?page=sett&sub=usr";
+                    window.location.href="?page=sett&sub=usr";
                   </script>';
         } else {
 
             if($id_user == 2 || $id_user == 3){
                 echo '<script language="javascript">
                         window.alert("ERROR! Akun ini tidak boleh dihapus");
-                        window.location.href="./admin.php?page=sett&sub=usr";
+                        window.location.href="?page=sett&sub=usr";
                       </script>';
             } else {
 
@@ -35,7 +35,7 @@
                     $query = mysqli_query($config, "DELETE FROM tbl_user WHERE id_user='$id_user'");
                     if($query == true){
                         $_SESSION['succDel'] = 'SUKSES! User berhasil dihapus<br/>';
-                        header("Location: ./admin.php?page=sett&sub=usr");
+                        header("Location: ?page=sett&sub=usr");
                         die();
                     } else {
                         $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';

@@ -10,13 +10,13 @@
             $act = $_REQUEST['act'];
             switch ($act) {
                 case 'add':
-                    include "tambah_user.php";
+                    include "user_add.php";
                     break;
                 case 'edit':
-                    include "edit_tipe_user.php";
+                    include "user_edit_type.php";
                     break;
                 case 'del':
-                    include "hapus_user.php";
+                    include "user_delete.php";
                     break;
             }
         } else {

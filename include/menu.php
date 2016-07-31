@@ -11,12 +11,11 @@
         function decrypt($string, $salt){
            return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($string), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
         }
-
 ?>
 
 <nav class="blue-grey darken-1">
     <div class="nav-wrapper">
-        <a href="./" class="brand-logo center hide-on-large-only"><i class="material-icons md-36">school</i> AMS</a>
+        <a href="/admin" class="brand-logo center hide-on-large-only"><i class="material-icons md-36">school</i> AMS</a>
         <ul id="slide-out" class="side-nav" data-simplebar-direction="vertical">
             <li class="no-padding">
                 <div class="logo-side center blue-grey darken-3">
@@ -56,7 +55,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="./"><i class="material-icons middle">dashboard</i> Beranda</a></li>
+            <li><a href="./admin"><i class="material-icons middle">dashboard</i> Beranda</a></li>
             <?php
                 if($_SESSION['admin'] == 2){ ?>
             <li><a href="?page=tsm"><i class="material-icons middle">description</i> Disposisi Surat</a></li>
@@ -174,9 +173,9 @@
 
         <!-- Menu on large screen START -->
         <ul class="center hide-on-med-and-down" id="nv">
-            <li><a href="./" class="ams hide-on-med-and-down"><i class="material-icons md-36">school</i> AMS</a></li>
+            <li><a href="./admin" class="ams hide-on-med-and-down"><i class="material-icons md-36">school</i> AMS</a></li>
             <li><div class="grs"></></li>
-            <li><a href="./"><i class="material-icons"></i>&nbsp; Beranda</a></li>
+            <li><a href="./admin"><i class="material-icons"></i>&nbsp; Beranda</a></li>
             <?php
                 if($_SESSION['admin'] == 2){ ?>
             <li><a href="?page=tsm">Disposisi Surat</a></li>
@@ -236,19 +235,26 @@
             <?php
                 }
             ?>
-            <li class="right" style="margin-right: 10px;"><a class="dropdown-button" href="#!" data-activates="logout">
-            <?php
-                if(isset($_SESSION['admin']) == 2){
-                    echo ' <span><i class="material-icons">notifications</i><span id="notification"></span></span>';
-                }
-            ?>
-                <i class="material-icons">account_circle</i> <?php echo $_SESSION['nama']; ?><i class="material-icons md-18">arrow_drop_down</i></a></li>
-                <ul id='logout' class='dropdown-content'>
-                    <li><a href="?page=pro">Profil</a></li>
-                    <li><a href="?page=pro&sub=pass">Ubah Password</a></li>
-                    <li class="divider"></li>
-                    <li><a href="logout.php"><i class="material-icons">settings_power</i> Logout</a></li>
-                </ul>
+            <span class="right" style="margin-right: 10px;">
+                <li>
+                    <?php
+                        if($_SESSION['admin'] == 2){
+                            echo '
+                            <a href="?page=tsm">
+                                <div style="margin: 3px; width: 56px;height: 56px; border-radius: 50px; background: #444;"><i class="material-icons" style="margin-top: -10px;">notifications</i><span id="notification" style="font-size: 2rem"></span></div>
+                            </a>';
+                        }
+                    ?>
+                </li>
+                <li><a class="dropdown-button" href="#!" data-activates="logout">
+                    <i class="material-icons">account_circle</i> <?php echo $_SESSION['nama']; ?><i class="material-icons md-18">arrow_drop_down</i></a></li>
+                    <ul id='logout' class='dropdown-content'>
+                        <li><a href="?page=pro">Profil</a></li>
+                        <li><a href="?page=pro&sub=pass">Ubah Password</a></li>
+                        <li class="divider"></li>
+                        <li><a href="logout.php"><i class="material-icons">settings_power</i> Logout</a></li>
+                    </ul>
+            </span>
         </ul>
         <!-- Menu on large screen END -->
         <a href="#" data-activates="slide-out" class="button-collapse" id="menu"><i class="material-icons">menu</i></a>

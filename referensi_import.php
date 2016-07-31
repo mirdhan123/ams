@@ -20,7 +20,7 @@
 
                 if($file == ""){
                     $_SESSION['errEmpty'] = 'ERROR! Form File tidak boleh kosong';
-                    header("Location: ./admin.php?page=ref&act=imp");
+                    header("Location: ?page=ref&act=imp");
                     die();
                 } else {
 
@@ -37,7 +37,7 @@
                                 $_SESSION['succUpload'] = 'SUKSES! Data berhasil diimport';
                             } else {
                                 $_SESSION['errUpload'] = 'ERROR! Proses upload data gagal';
-                                header("Location: ./admin.php?page=ref&act=imp");
+                                header("Location: ?page=ref&act=imp");
                                 die();
                             }
 
@@ -52,7 +52,7 @@
                                 $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi, kode, nama, uraian, id_user) values(null, '$data[1]', '$data[2]', '$data[3]', '$id_user')");
                             }
                             fclose($handle);
-                            header("Location: ./admin.php?page=ref");
+                            header("Location: ?page=ref");
                             die();
                         } else {
 
@@ -64,7 +64,7 @@
                                 $_SESSION['succUpload'] = 'SUKSES! Data berhasil diimport';
                             } else {
                                 $_SESSION['errUpload'] = 'ERROR! Proses upload data gagal';
-                                header("Location: ./admin.php?page=ref&act=imp");
+                                header("Location: ?page=ref&act=imp");
                                 die();
                             }
 
@@ -79,13 +79,13 @@
                                 $query = mysqli_query($config, "INSERT into tbl_klasifikasi(id_klasifikasi, kode, nama, uraian, id_user) values('$data[0]', '$data[1]', '$data[2]', '$data[3]', '$id_user')");
                             }
                             fclose($handle);
-                            header("Location: ./admin.php?page=ref");
+                            header("Location: ?page=ref");
                             die();
                         }
 
                     } else {
                         $_SESSION['errFormat'] = 'ERROR! Format file yang diperbolehkan hanya *.CSV';
-                        header("Location: ./admin.php?page=ref&act=imp");
+                        header("Location: ?page=ref&act=imp");
                         die();
                     }
                 }

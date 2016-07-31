@@ -49,7 +49,7 @@
 
                             if($query != false){
                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
-                                header("Location: ./admin.php?page=ref");
+                                header("Location: ?page=ref");
                                 die();
                             } else {
                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -73,7 +73,7 @@
                 if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
                     echo '<script language="javascript">
                             window.alert("ERROR! Anda tidak memiliki hak akses untuk mengedit data ini");
-                            window.location.href="./admin.php?page=ref";
+                            window.location.href="?page=ref";
                           </script>';
                 } else {?>
 
@@ -126,7 +126,7 @@
                     <div class="row jarak-form">
 
                         <!-- Form START -->
-                        <form class="col s12" method="post" action="?page=ref&act=edit">
+                        <form class="col s12" method="post" action="">
 
                             <!-- Row in form START -->
                             <div class="row">

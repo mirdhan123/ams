@@ -27,7 +27,7 @@
                 $query = mysqli_query($config, "DELETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
                 if($query == true){
                     $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
-                    header("Location: ./admin.php?page=ref");
+                    header("Location: ?page=ref");
                     die();
                 } else {
                     $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
