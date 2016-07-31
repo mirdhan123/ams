@@ -106,7 +106,7 @@
 
                                                                 if($query == true){
                                                                     $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
-                                                                    header("Location: ./admin.php?page=tsm");
+                                                                    header("Location: ?page=tsm");
                                                                     die();
                                                                 } else {
                                                                     $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -128,7 +128,7 @@
 
                                                         if($query == true){
                                                             $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
-                                                            header("Location: ./admin.php?page=tsm");
+                                                            header("Location: ?page=tsm");
                                                             die();
                                                         } else {
                                                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -196,7 +196,7 @@
             <div class="row jarak-form">
 
                 <!-- Form START -->
-                <form class="col s12" method="POST" action="?page=tsm&act=add" enctype="multipart/form-data">
+                <form class="col s12" method="POST" action="" enctype="multipart/form-data">
 
                     <!-- Row in form START -->
                     <div class="row">

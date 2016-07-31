@@ -17,10 +17,10 @@
                 $sub = $_REQUEST['sub'];
                 switch ($sub) {
                     case 'back':
-                        include "backup.php";
+                        include "database_backup.php";
                         break;
                     case 'rest':
-                        include "restore.php";
+                        include "database_restore.php";
                         break;
                     case 'usr':
                         include "user.php";

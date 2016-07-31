@@ -17,13 +17,13 @@
             $act = $_REQUEST['act'];
             switch ($act) {
                 case 'add':
-                    include "tambah_surat_keluar.php";
+                    include "surat_keluar_add.php";
                     break;
                 case 'edit':
-                    include "edit_surat_keluar.php";
+                    include "surat_keluar_edit.php";
                     break;
                 case 'del':
-                    include "hapus_surat_keluar.php";
+                    include "surat_keluar_delete.php";
                     break;
             }
         } else {
@@ -282,13 +282,13 @@
                                                 } else {
 
                                                     if($surat_keluar < 5){
-                                                        header("Location: ./admin.php?page=tsk");
+                                                        header("Location: ?page=tsk");
                                                         die();
                                                     } else {
 
                                                     $query = mysqli_query($config, "UPDATE tbl_sett SET surat_keluar='$surat_keluar', id_user='$id_user' WHERE id_sett='$id_sett'");
                                                     if($query == true){
-                                                        header("Location: ./admin.php?page=tsk");
+                                                        header("Location: ?page=tsk");
                                                         die();
                                                     }
                                                     }

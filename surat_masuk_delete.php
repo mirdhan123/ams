@@ -160,7 +160,7 @@
 
                 		if($query == true){
                             $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
-                            header("Location: ./admin.php?page=tsm");
+                            header("Location: ?page=tsm");
                             die();
                 		} else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -173,7 +173,7 @@
 
                         if($query == true){
                             $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
-                            header("Location: ./admin.php?page=tsm");
+                            header("Location: ?page=tsm");
                             die();
                         } else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';

@@ -60,7 +60,7 @@
                     	} else {
                             echo '<script language="javascript">
                                     window.alert("ERROR! File sudah tidak ada");
-                                    window.location.href="./admin.php?page=sett&sub=back";
+                                    window.location.href="?page=sett&sub=back";
                                   </script>';
                         }
                     } else {

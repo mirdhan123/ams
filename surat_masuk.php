@@ -10,25 +10,25 @@
             $act = $_REQUEST['act'];
             switch ($act) {
                 case 'add':
-                    include "tambah_surat_masuk.php";
+                    include "surat_masuk_add.php";
                     break;
                 case 'edit':
-                    include "edit_surat_masuk.php";
+                    include "surat_masuk_edit.php";
                     break;
                 case 'disp':
                     include "disposisi.php";
                     break;
                 case 'print':
-                    include "cetak_disposisi.php";
+                    include "disposisi_print.php";
                     break;
                 case 'del':
-                    include "hapus_surat_masuk.php";
+                    include "surat_masuk_delete.php";
                     break;
                 case 'addd':
-                    include "tambah_disposisi.php";
+                    include "disposisi_add.php";
                     break;
                 case 'editd':
-                    include "edit_disposisi.php";
+                    include "disposisi_edit.php";
                     break;
                 }
             } else {
@@ -338,13 +338,13 @@
                                                     } else {
 
                                                     if($surat_masuk < 5){
-                                                        header("Location: ./admin.php?page=tsm");
+                                                        header("Location: ?page=tsm");
                                                         die();
                                                     } else {
 
                                                         $query = mysqli_query($config, "UPDATE tbl_sett SET surat_masuk='$surat_masuk', id_user='$id_user' WHERE id_sett='$id_sett'");
                                                         if($query == true){
-                                                            header("Location: ./admin.php?page=tsm");
+                                                            header("Location: ?page=tsm");
                                                             die();
                                                         }
                                                     }

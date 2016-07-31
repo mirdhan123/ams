@@ -41,22 +41,28 @@
             $page = $_REQUEST['page'];
             switch ($page) {
                 case 'tsm':
-                    include "transaksi_surat_masuk.php";
+                    include "surat_masuk.php";
                     break;
-                case 'ctk':
-                    include "cetak_disposisi.php";
+                case 'asm':
+                    include "surat_masuk_agenda.php";
+                    break;
+                case 'gsm':
+                    include "surat_masuk_galeri.php";
                     break;
                 case 'disp':
                     include "disposisi.php";
                     break;
-                case 'tsk':
-                    include "transaksi_surat_keluar.php";
+                case 'ctk':
+                    include "disposisi_print.php";
                     break;
-                case 'asm':
-                    include "agenda_surat_masuk.php";
+                case 'tsk':
+                    include "surat_keluar.php";
                     break;
                 case 'ask':
-                    include "agenda_surat_keluar.php";
+                    include "surat_keluar_agenda.php";
+                    break;
+                case 'gsk':
+                    include "surat_keluar_galeri.php";
                     break;
                 case 'ref':
                     include "referensi.php";
@@ -65,13 +71,7 @@
                     include "pengaturan.php";
                     break;
                 case 'pro':
-                    include "profil.php";
-                    break;
-                case 'gsm':
-                    include "galeri_sm.php";
-                    break;
-                case 'gsk':
-                    include "galeri_sk.php";
+                    include "user_profil.php";
                     break;
             }
         } else {

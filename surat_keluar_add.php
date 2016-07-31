@@ -98,7 +98,7 @@
 
                                                             if($query == true){
                                                                 $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
-                                                                header("Location: ./admin.php?page=tsk");
+                                                                header("Location: ?page=tsk");
                                                                 die();
                                                             } else {
                                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -118,7 +118,7 @@
 
                                                     if($query == true){
                                                         $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
-                                                        header("Location: ./admin.php?page=tsk");
+                                                        header("Location: ?page=tsk");
                                                         die();
                                                     } else {
                                                         $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -196,7 +196,7 @@
 
                                                                 $query = mysqli_query($config, "UPDATE tbl_sett SET kode_instansi='$kode_instansi',id_user='$id_user' WHERE id_sett='$id_sett'");
                                                                 if($query == true){
-                                                                    header("Location: ./admin.php?page=tsk&act=add");
+                                                                    header("Location: ?page=tsk&act=add");
                                                                     die();
                                                                 }
                                                             }
@@ -250,7 +250,7 @@
             <div class="row jarak-form">
 
                 <!-- Form START -->
-                <form class="col s12" method="POST" action="?page=tsk&act=add" enctype="multipart/form-data">
+                <form class="col s12" method="POST" action="" enctype="multipart/form-data">
 
                     <!-- Row in form START -->
                     <div class="row">

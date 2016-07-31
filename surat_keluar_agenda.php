@@ -63,7 +63,7 @@
             $sampai_tanggal = $_REQUEST['sampai_tanggal'];
 
             if($_REQUEST['dari_tanggal'] == "" || $_REQUEST['sampai_tanggal'] == ""){
-                header("Location: ./admin.php?page=ask");
+                header("Location: ?page=ask");
                 die();
             } else {
 

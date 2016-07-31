@@ -155,7 +155,7 @@
 
                 		if($query == true){
                             $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
-                            header("Location: ./admin.php?page=tsk");
+                            header("Location: ?page=tsk");
                             die();
                 		} else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -168,7 +168,7 @@
 
                         if($query == true){
                             $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
-                            header("Location: ./admin.php?page=tsk");
+                            header("Location: ?page=tsk");
                             die();
                         } else {
                             $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';

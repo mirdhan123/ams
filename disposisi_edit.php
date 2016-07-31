@@ -65,7 +65,7 @@
                                         $string = $id_surat;
 
                                         echo '<script language="javascript">
-                                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'";
+                                                window.location.href="?page=tsm&act=disp&id_surat='.urlencode(encrypt($string, $salt)).'";
                                               </script>';
                                     } else {
                                         $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';

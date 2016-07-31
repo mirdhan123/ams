@@ -101,7 +101,7 @@
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
-                                                                header("Location: ./admin.php?page=tsk");
+                                                                header("Location: ?page=tsk");
                                                                 die();
                                                             } else {
                                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -116,7 +116,7 @@
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
-                                                                header("Location: ./admin.php?page=tsk");
+                                                                header("Location: ?page=tsk");
                                                                 die();
                                                             } else {
                                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -141,7 +141,7 @@
 
                                                 if($query == true){
                                                     $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
-                                                    header("Location: ./admin.php?page=tsk");
+                                                    header("Location: ?page=tsk");
                                                     die();
                                                 } else {
                                                     $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -172,7 +172,7 @@
             if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
                 echo '<script language="javascript">
                         window.alert("ERROR! Anda tidak memiliki hak akses untuk mengedit data ini");
-                        window.location.href="./admin.php?page=tsk";
+                        window.location.href="?page=tsk";
                       </script>';
             } else {?>
 
@@ -225,7 +225,7 @@
                 <div class="row jarak-form">
 
                     <!-- Form START -->
-                    <form class="col s12" method="POST" action="?page=tsk&act=edit" enctype="multipart/form-data">
+                    <form class="col s12" method="POST" action="" enctype="multipart/form-data">
 
                         <!-- Row in form START -->
                         <div class="row">

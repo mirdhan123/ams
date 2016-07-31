@@ -15,7 +15,7 @@
                 //validasi form kosong
                 if($_REQUEST['username'] == "" || $_REQUEST['password'] == "" || $_REQUEST['nama'] == "" || $_REQUEST['nip'] == ""){
                     $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
-                    header("Location: ./admin.php?page=pro&sub=pass");
+                    header("Location: ?page=pro&sub=pass");
                     die();
                 } else {
 
@@ -28,31 +28,31 @@
                     //validasi input data
                     if(!preg_match("/^[a-zA-Z0-9_]*$/", $username)){
                         $_SESSION['epuname'] = 'Form Username hanya boleh mengandung karakter huruf, angka dan underscore (_)';
-                        header("Location: ./admin.php?page=pro&sub=pass");
+                        header("Location: ?page=pro&sub=pass");
                         die();
                     } else {
 
                         if(!preg_match("/^[a-zA-Z., ]*$/", $nama)){
                             $_SESSION['epnama'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.) dan koma(,)';
-                            header("Location: ./admin.php?page=pro&sub=pass");
+                            header("Location: ?page=pro&sub=pass");
                             die();
                         } else {
 
                             if(!preg_match("/^[0-9 -]*$/", $nip)){
                                 $_SESSION['epnip'] = 'Form NIP hanya boleh mengandung karakter angka, spasi dan minus(-)';
-                                header("Location: ./admin.php?page=pro&sub=pass");
+                                header("Location: ?page=pro&sub=pass");
                                 die();
                             } else {
 
                                 if(strlen($username) < 5){
                                     $_SESSION['errEpUname5'] = 'Username minimal 5 karakter!';
-                                    header("Location: ./admin.php?page=pro&sub=pass");
+                                    header("Location: ?page=pro&sub=pass");
                                     die();
                                 } else {
 
                                     if(strlen($password) < 5){
                                         $_SESSION['errEpPassword5'] = 'Password minimal 5 karakter!';
-                                        header("Location: ./admin.php?page=pro&sub=pass");
+                                        header("Location: ?page=pro&sub=pass");
                                         die();
                                     } else {
 
@@ -67,7 +67,7 @@
                                                       </script>';
                                             } else {
                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                header("Location: ./admin.php?page=pro&sub=pass");
+                                                header("Location: ?page=pro&sub=pass");
                                                 die();
                                             }
                                         } else {

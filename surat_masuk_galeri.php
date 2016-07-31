@@ -10,7 +10,7 @@
             $act = $_REQUEST['act'];
             switch ($act) {
                 case 'fsm':
-                    include "file_sm.php";
+                    include "surat_masuk_file.php";
                     break;
             }
         } else {
@@ -45,7 +45,7 @@
                     $sampai_tanggal = $_REQUEST['sampai_tanggal'];
 
                     if($_REQUEST['dari_tanggal'] == "" || $_REQUEST['sampai_tanggal'] == ""){
-                        header("Location: ./admin.php?page=gsm");
+                        header("Location: ?page=gsm");
                         die();
                     } else {
 

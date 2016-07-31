@@ -100,7 +100,7 @@
 
                 	if($file_name == "" || $_REQUEST['password'] == ""){
                         $_SESSION['errEmpty'] = 'ERROR! Semua Form wajib diisi';
-                        header("Location: ./admin.php?page=sett&sub=rest");
+                        header("Location: ?page=sett&sub=rest");
                         die();
                     } else {
 
@@ -138,16 +138,16 @@
                         				}
                         			}
                                     $_SESSION['succRestore'] = 'SUKSES! Database berhasil direstore';
-                                    header("Location: ./admin.php?page=sett&sub=rest");
+                                    header("Location: ?page=sett&sub=rest");
                                     die();
                         		} else {
                                     $_SESSION['errUpload'] = 'ERROR! Proses upload database gagal';
-                                    header("Location: ./admin.php?page=ref&act=imp");
+                                    header("Location: ?page=ref&act=imp");
                                     die();
                     		    }
                             } else {
                                 $_SESSION['errFormat'] = 'ERROR! Format file yang diperbolehkan hanya *.SQL';
-                                header("Location: ./admin.php?page=sett&sub=rest");
+                                header("Location: ?page=sett&sub=rest");
                                 die();
                             }
                         } else {

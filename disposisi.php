@@ -27,7 +27,7 @@
                         if($query == true){
                             echo '<script language="javascript">
                                     window.alert("SUKSES! Status data surat berhasil diupdate");
-                                    window.location.href="./admin.php?page=tsm&act=addd&id_surat='.urlencode($string).'";
+                                    window.location.href="?page=tsm&act=addd&id_surat='.urlencode($string).'";
                                   </script>';
                         }
                     } elseif($status == 2){
@@ -36,12 +36,12 @@
                         if($query == true){
                             echo '<script language="javascript">
                                     window.alert("SUKSES! Status data surat berhasil diupdate");
-                                    window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode($string).'";
+                                    window.location.href="?page=tsm&act=disp&id_surat='.urlencode($string).'";
                                   </script>';
                         }
                     } else {
                         echo '<script language="javascript">
-                                window.location.href="./admin.php?page=tsm&act=disp&id_surat='.urlencode($string).'";
+                                window.location.href="?page=tsm&act=disp&id_surat='.urlencode($string).'";
                               </script>';
                     }
             }
