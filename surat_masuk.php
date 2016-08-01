@@ -229,10 +229,10 @@
 
                                     if($row['status'] == 1 || $row['status'] == 2){
                                         echo '
-                                            <button class="btn small light-green waves-effect waves-light"><i class="material-icons md-30">done</i></button>';
+                                            <button class="btn small light-green waves-effect waves-light"><i class="material-icons md-24">done</i></button>';
                                     } else {
                                         echo  '
-                                        <button class="btn small yellow darken-2 waves-effect waves-light"><i class="material-icons md-30">error_outline</i></button>';
+                                        <button class="btn small yellow darken-2 waves-effect waves-light"><i class="material-icons md-24">error_outline</i></button>';
                                     }
 
                                     echo '
@@ -453,10 +453,10 @@
 
                                         if($row['status'] == 1 || $row['status'] == 2){
                                             echo '
-                                                <button class="btn small light-green waves-effect waves-light"><i class="material-icons md-30">done</i></button>';
+                                                <button class="btn small light-green waves-effect waves-light"><i class="material-icons md-24">done</i></button>';
                                         } else {
                                             echo  '
-                                            <button class="btn small yellow darken-2 waves-effect waves-light"><i class="material-icons md-30">error_outline</i></button>';
+                                            <button class="btn small yellow darken-2 waves-effect waves-light"><i class="material-icons md-24">error_outline</i></button>';
                                         }
 
                                         echo '
