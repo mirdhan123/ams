@@ -13,9 +13,7 @@
 <!doctype html>
 <html lang="en">
 
-<!-- Include Head START -->
 <?php include('include/_head.php'); ?>
-<!-- Include Head END -->
 
 <!-- Body START -->
 <body class="bg">
@@ -33,9 +31,7 @@
 <!-- Header START -->
 <header>
 
-<!-- Include Navigation START -->
 <?php include('include/_menu.php'); ?>
-<!-- Include Navigation END -->
 
 </header>
 <!-- Header END -->
@@ -90,14 +86,10 @@
             }
         } else {
     ?>
-        <!-- Row START -->
         <div class="row">
 
-            <!-- Include Header Instansi START -->
             <?php include('include/_header_instansi.php'); ?>
-            <!-- Include Header Instansi END -->
 
-            <!-- Welcome Message START -->
             <div class="col s12">
                 <div class="card">
                     <div class="card-content">
@@ -114,7 +106,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Welcome Message END -->
 
             <?php
                 //menghitung jumlah surat masuk
@@ -133,7 +124,6 @@
                 $count5 = mysqli_num_rows(mysqli_query($_config, "SELECT * FROM tbl_surat_masuk WHERE status='0'"));
             ?>
 
-            <!-- Info Statistic START -->
         <?php
             if($_SESSION['admin'] == 1 || $_SESSION['admin']  == 3){
         ?>
@@ -219,7 +209,6 @@
         <?php
             }
         ?>
-        <!-- Info Statistic START -->
 
         </div>
         <!-- Row END -->
@@ -232,9 +221,7 @@
 </main>
 <!-- Main END -->
 
-<!-- Include Footer START -->
 <?php include('include/_footer.php'); ?>
-<!-- Include Footer END -->
 
 </body>
 <!-- Body END -->
