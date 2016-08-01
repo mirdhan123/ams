@@ -194,7 +194,7 @@
                             </div>
                             <div class="card-action">
                                 <form method="post" enctype="multipart/form-data">
-                                    <div class="file-field input-field col m6 tooltipped" data-position="top" data-tooltip="Format file yang diperbolehkan hanya *.CSV">
+                                    <div class="file-field input-field col m6">
                                         <div class="btn light-green darken-1">
                                             <span>File</span>
                                             <input type="file" name="file" accept=".csv" required>

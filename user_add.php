@@ -142,7 +142,7 @@
                     <div class="row">
                         <div class="input-field col m6 tooltipped" data-position="top" data-tooltip="Username minimal 5 karakter [ huruf, angka atau underscore(_) ]">
                             <i class="material-icons prefix md-prefix">account_circle</i>
-                            <input id="username" type="text" class="validate" name="username" required>
+                            <input id="username" type="text" class="validate" name="username" required autocomplete="off">
                                 <?php
                                     if(isset($_SESSION['uname'])){
                                         $uname = $_SESSION['uname'];
@@ -164,7 +164,7 @@
                         </div>
                         <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">text_fields</i>
-                            <input id="nama" type="text" class="validate" name="nama" required>
+                            <input id="nama" type="text" class="validate" name="nama" required autocomplete="off">
                                 <?php
                                     if(isset($_SESSION['namauser'])){
                                         $namauser = $_SESSION['namauser'];
@@ -176,7 +176,7 @@
                         </div>
                         <div class="input-field col m6 tooltipped" data-position="top" data-tooltip="Password minimal 5 karakter">
                             <i class="material-icons prefix md-prefix">lock</i>
-                            <input id="password" type="password" class="validate" name="password" required>
+                            <input id="password" type="password" class="validate" name="password" required autocomplete="off">
                                 <?php
                                     if(isset($_SESSION['errPassword'])){
                                         $errPassword = $_SESSION['errPassword'];
@@ -188,7 +188,7 @@
                         </div>
                         <div class="input-field col m6 tooltipped" data-position="top" data-tooltip="Jika belum memiliki NIP, isi dengan minus(-)">
                             <i class="material-icons prefix md-prefix">looks_one</i>
-                            <input id="nip" type="text" class="validate" name="nip" required>
+                            <input id="nip" type="text" class="validate" name="nip" required autocomplete="off">
                                 <?php
                                     if(isset($_SESSION['nipuser'])){
                                         $nipuser = $_SESSION['nipuser'];

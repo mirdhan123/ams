@@ -74,15 +74,13 @@ function waitForMsg(){
         success: function(data){
             addmsg("new", data);
             setTimeout(
-            waitForMsg,
-            1000
+                waitForMsg, 1000
             );
         },
         error: function(XMLHttpRequest, textStatus, errorThrown){
             addmsg("error", textStatus + " (" + errorThrown + ")");
             setTimeout(
-            waitForMsg,
-            15000);
+                waitForMsg, 15000);
         }
     });
 };

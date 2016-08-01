@@ -15,7 +15,7 @@
 
 <nav class="blue-grey darken-1">
     <div class="nav-wrapper">
-        <a href="/admin" class="brand-logo center hide-on-large-only"><i class="material-icons md-36">school</i> AMS</a>
+        <a href="./admin" class="brand-logo center hide-on-large-only"><i class="material-icons md-36">school</i> AMS</a>
         <ul id="slide-out" class="side-nav" data-simplebar-direction="vertical">
             <li class="no-padding">
                 <div class="logo-side center blue-grey darken-3">
@@ -233,6 +233,18 @@
                     <li><a href="?page=sett">Instansi</a></li>
                 </ul>
             <?php
+                }
+            ?>
+            <?php
+                if($_SESSION['admin'] == 2){
+                echo '
+                    <li class="notification">
+                        <div>
+                            <a href="?page=tsm">
+                                <div class="bell"><i class="material-icons md-24">notifications</i><span id="notification"></span></div>
+                            </a>
+                        </div>
+                    </li>';
                 }
             ?>
             <li class="right"><a class="dropdown-button" href="#!" data-activates="logout">

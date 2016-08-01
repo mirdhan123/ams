@@ -130,7 +130,7 @@
 
                             <!-- Row in form START -->
                             <div class="row">
-                                <div class="input-field col s3 tooltipped" data-position="top" data-tooltip="Isi dengan huruf, angka, spasi dan titik(.)">
+                                <div class="input-field col s3">
                                     <?php
                                         $string = $row['id_klasifikasi'];
                                     ?>

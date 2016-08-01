@@ -20,6 +20,16 @@
 <!-- Body START -->
 <body class="bg">
 
+    <?php
+
+    if($_SESSION['admin'] ==2){
+        echo '
+            <audio id="audio">
+                <source src="asset/sound/notify.mp3" type="audio/mp3" />
+            </audio>';
+        }
+    ?>
+
 <!-- Header START -->
 <header>
 
@@ -221,18 +231,6 @@
 
 </main>
 <!-- Main END -->
-
-<div>
-    <?php
-        if($_SESSION['admin'] == 2){
-            echo '
-            <a href="?page=tsm">
-                <div class="notification bell"><i class="material-icons md-48">notifications</i><span id="notification" style="font-size: 2rem; padding-top: 10px"></span></div>
-            </a>
-            ';
-        }
-    ?>
-</div>
 
 <!-- Include Footer START -->
 <?php include('include/_footer.php'); ?>

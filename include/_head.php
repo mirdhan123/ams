@@ -217,21 +217,28 @@
             pointer-events: none;
         }
         .notification {
+            width: 63px;
+            height: 63px;
+            border-radius: 50%;
+            background: #455a64;
             color: #444;
             position: absolute;
-            top: 10px;
             right: 18%
         }
-        .bell:hover {
-            text-shadow: 0 14px 38px rgba(0,0,0,0.5), 0 10px 10px rgba(0,0,0,0.5);
-            color: #ffff00;
-            animation: 0.3s linear;
+        #notification {
+            font-size: 1.6rem;
         }
         .bell {
+            text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            color: #ff5722;
+            position: absolute;
+            top: -5px;
+            right: 14%
+        }
+        .bell:hover {
             text-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-            margin-top:33px;
-            color: #E43;
-            transform-origin: 50% 0;
+            color: #fff;
+            transform-origin: 20% 0;
             animation: vibrate 0.3s linear infinite;
         }
         @keyframes vibrate
