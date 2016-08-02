@@ -49,7 +49,7 @@
 
                             if($query != false){
                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
-                                header("Location: ?page=ref");
+                                header("Location: ?page=klas");
                                 die();
                             } else {
                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -66,14 +66,14 @@
 
             $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
             if(mysqli_num_rows($query) == 0){
-                header("Location: ?page=ref");
+                header("Location: ?page=klas");
                 die();
             }
                 while($row = mysqli_fetch_array($query))
                 if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
                     echo '<script language="javascript">
                             window.alert("ERROR! Anda tidak memiliki hak akses untuk mengedit data ini");
-                            window.location.href="?page=ref";
+                            window.location.href="?page=klas";
                           </script>';
                 } else {?>
 
@@ -177,7 +177,7 @@
                                     <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
                                 </div>
                                 <div class="col 6">
-                                    <a href="?page=ref" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+                                    <a href="?page=klas" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
                                 </div>
                             </div>
 

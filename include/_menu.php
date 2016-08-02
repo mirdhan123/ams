@@ -1,14 +1,14 @@
 <?php
     //cek session
-    if(!empty($_SESSION['admin'])){
+    if (!empty($_SESSION['admin'])) {
 
         $salt = MD5("547b7824ae83163a9e6f7eb64a6c7a0b8447e413");
 
-        function encrypt($string,$salt){
+        function encrypt($string,$salt) {
            return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $string, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
         }
 
-        function decrypt($string, $salt){
+        function decrypt($string, $salt) {
            return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($string), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
         }
 ?>
@@ -21,18 +21,18 @@
                 <div class="logo-side center blue-grey darken-3">
                     <?php
                         $query = mysqli_query($_config, "SELECT * FROM tbl_instansi");
-                        while($data = mysqli_fetch_array($query)){
-                            if(!empty($data['logo'])){
+                        while ($data = mysqli_fetch_array($query)) {
+                            if (!empty($data['logo'])) {
                                 echo '<img class="logoside" src="./upload/'.$data['logo'].'"/>';
                             } else {
                                 echo '<img class="logoside" src="./asset/img/logo.png"/>';
                             }
-                            if(!empty($data['nama'])){
+                            if (!empty($data['nama'])) {
                                 echo '<h5 class="smk-side">'.$data['nama'].'</h5>';
                             } else {
                                 echo '<h5 class="smk-side">SMK  Al - Husna Loceret Nganjuk</h5>';
                             }
-                            if(!empty($data['alamat'])){
+                            if (!empty($data['alamat'])) {
                                 echo '<p class="description-side">'.$data['alamat'].'</p>';
                             } else {
                                 echo '<p class="description-side">Jalan Raya Kediri Gg. Kwagean No. 04 Loceret Telp/Fax. (0358) 329806 Nganjuk 64471</p>';
@@ -57,7 +57,7 @@
             </li>
             <li><a href="./admin"><i class="material-icons middle">dashboard</i> Beranda</a></li>
             <?php
-                if($_SESSION['admin'] == 2){ ?>
+                if ($_SESSION['admin'] == 2) { ?>
             <li><a href="?page=tsm"><i class="material-icons middle">description</i> Disposisi Surat</a></li>
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
@@ -89,8 +89,9 @@
                 }
             ?>
             <li class="no-padding">
-                <?php
-                    if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3){ ?>
+            <?php
+                if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3) {
+            ?>
                 <ul class="collapsible collapsible-accordion">
                     <li>
                         <a class="collapsible-header"><i class="material-icons">repeat</i> Transaksi Surat</a>
@@ -129,13 +130,14 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="?page=ref"><i class="material-icons middle">class</i> Referensi</a></li>
+            <li><a href="?page=klas"><i class="material-icons middle">class</i> Klasifikasi</a></li>
             <?php
                 }
             ?>
             <li class="no-padding">
             <?php
-                if($_SESSION['admin'] == 1){ ?>
+                if ($_SESSION['admin'] == 1) {
+            ?>
                 <ul class="collapsible collapsible-accordion">
                     <li>
                         <a class="collapsible-header"><i class="material-icons">settings</i> Pengaturan</a>
@@ -151,9 +153,8 @@
                 </ul>
             <?php
                 }
+                if ($_SESSION['admin'] == 2) {
             ?>
-            <?php
-                if($_SESSION['admin'] == 2){ ?>
                 <ul class="collapsible collapsible-accordion">
                     <li>
                         <a class="collapsible-header"><i class="material-icons">settings</i> Pengaturan</a>
@@ -177,7 +178,8 @@
             <li><div class="grs"></></li>
             <li><a href="./admin"><i class="material-icons"></i>&nbsp; Beranda</a></li>
             <?php
-                if($_SESSION['admin'] == 2){ ?>
+                if ($_SESSION['admin'] == 2) {
+            ?>
             <li><a href="?page=tsm">Disposisi Surat</a></li>
             <li><a class="dropdown-button" href="#!" data-activates="agenda">Buku Agenda <i class="material-icons md-18">arrow_drop_down</i></a></li>
                 <ul id='agenda' class='dropdown-content'>
@@ -191,9 +193,8 @@
                 </ul>
             <?php
                 }
+                if ($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3) {
             ?>
-            <?php
-                if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 3){ ?>
             <li><a class="dropdown-button" href="#!" data-activates="transaksi">Transaksi Surat <i class="material-icons md-18">arrow_drop_down</i></a></li>
                 <ul id='transaksi' class='dropdown-content'>
                     <li><a href="?page=tsm">Surat Masuk</a></li>
@@ -209,12 +210,11 @@
                     <li><a href="?page=gsm">Surat Masuk</a></li>
                     <li><a href="?page=gsk">Surat Keluar</a></li>
                 </ul>
-            <li><a href="?page=ref">Referensi</a></li>
+            <li><a href="?page=klas">Klasifikasi</a></li>
             <?php
                 }
+                if ($_SESSION['admin'] == 1) {
             ?>
-            <?php
-                if($_SESSION['admin'] == 1){ ?>
             <li><a class="dropdown-button" href="#!" data-activates="pengaturan">Pengaturan <i class="material-icons md-18">arrow_drop_down</i></a></li>
                 <ul id='pengaturan' class='dropdown-content'>
                     <li><a href="?page=sett">Instansi</a></li>
@@ -225,18 +225,15 @@
                 </ul>
             <?php
                 }
+                if ($_SESSION['admin'] == 2) {
             ?>
-            <?php
-                if($_SESSION['admin'] == 2){ ?>
             <li><a class="dropdown-button" href="#!" data-activates="pengaturan">Pengaturan <i class="material-icons md-18">arrow_drop_down</i></a></li>
                 <ul id='pengaturan' class='dropdown-content'>
                     <li><a href="?page=sett">Instansi</a></li>
                 </ul>
             <?php
                 }
-            ?>
-            <?php
-                if($_SESSION['admin'] == 2){
+                if ($_SESSION['admin'] == 2) {
                 echo '
                     <li class="notification">
                         <div>

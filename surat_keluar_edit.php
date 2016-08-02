@@ -245,7 +245,7 @@
                                     ?>
                                 <label for="no_agenda">Nomor Agenda</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Kode klasifikasi diambil dari data Referensi">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Kode klasifikasi diambil dari data Klasifikasi">
                                 <i class="material-icons prefix md-prefix">bookmark</i><label style="font-size: 1rem;margin-top: -30px">Pilih Kode Klasifikasi</label>
                                 <div class="input-field col s11 right">
                                     <select class="browser-default validate" name="kode" id="kode" required style="margin: -15px 0 20px;">

@@ -70,8 +70,8 @@
                 case 'gsk':
                     include "surat_keluar_galeri.php";
                     break;
-                case 'ref':
-                    include "referensi.php";
+                case 'klas':
+                    include "klasifikasi.php";
                     break;
                 case 'sett':
                     include "pengaturan.php";
@@ -147,7 +147,7 @@
                 </div>
             </div>
         </a>
-        <a href="?page=ref">
+        <a href="?page=klas">
             <div class="col s12 l4">
                 <div class="card yellow darken-2">
                     <div class="card-content">

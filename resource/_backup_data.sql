@@ -89,7 +89,7 @@ CREATE TABLE `tbl_sett` (
   `surat_masuk` tinyint(2) NOT NULL,
   `surat_keluar` tinyint(2) NOT NULL,
   `kode_instansi` varchar(10) NOT NULL,
-  `referensi` tinyint(2) NOT NULL,
+  `klasifikasi` tinyint(2) NOT NULL,
   `id_user` tinyint(2) NOT NULL,
   PRIMARY KEY (`id_sett`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -181,6 +181,3 @@ CREATE TABLE `tbl_user` (
 INSERT INTO tbl_user VALUES("1","admin","d033e22ae348aeb5660fc2140aec35850c4da997","M. Rudianto","-","1");
 INSERT INTO tbl_user VALUES("2","kepsek","82b7283910ac7cb508ea7ecc645e5c944d7fb612","H. Riza Fachri, S.Kom","-","2");
 INSERT INTO tbl_user VALUES("3","disposisi","73c3467d32dd78ef01784a53416fffede068b019","Petugas Disposisi","-","3");
-
-
-

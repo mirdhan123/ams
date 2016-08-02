@@ -9,7 +9,7 @@
         if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 3){
             echo '<script language="javascript">
                     window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
-                    window.location.href="?page=ref";
+                    window.location.href="?page=klas";
                   </script>';
         } else {
 
@@ -33,7 +33,7 @@
                     } else {
 
                         if(!preg_match("/^[a-zA-Z0-9.,\/ -]*$/", $nama)){
-                            $_SESSION['namaref'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.), koma(,) dan minus(-)';
+                            $_SESSION['namaklas'] = 'Form Nama hanya boleh mengandung karakter huruf, spasi, titik(.), koma(,) dan minus(-)';
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
@@ -54,7 +54,7 @@
 
                                     if($query != false){
                                         $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
-                                        header("Location: ?page=ref");
+                                        header("Location: ?page=klas");
                                         die();
                                     } else {
                                         $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -73,7 +73,7 @@
                         <nav class="secondary-nav">
                             <div class="nav-wrapper blue-grey darken-1">
                                 <ul class="left">
-                                    <li class="waves-effect waves-light"><a href="?page=ref&act=add" class="judul"><i class="material-icons">bookmark</i> Tambah Klasifikasi Surat</a></li>
+                                    <li class="waves-effect waves-light"><a href="?page=klas&act=add" class="judul"><i class="material-icons">bookmark</i> Tambah Klasifikasi Surat</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -115,7 +115,7 @@
                 <div class="row jarak-form">
 
                     <!-- Form START -->
-                    <form class="col s12" method="post" action="?page=ref&act=add">
+                    <form class="col s12" method="post" action="?page=klas&act=add">
 
                         <!-- Row in form START -->
                         <div class="row">
@@ -140,10 +140,10 @@
                                 <i class="material-icons prefix md-prefix">text_fields</i>
                                 <input id="nama" type="text" class="validate" name="nama" required>
                                     <?php
-                                        if(isset($_SESSION['namaref'])){
-                                            $namaref = $_SESSION['namaref'];
-                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$namaref.'</div>';
-                                            unset($_SESSION['namaref']);
+                                        if(isset($_SESSION['namaklas'])){
+                                            $namaklas = $_SESSION['namaklas'];
+                                            echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$namaklas.'</div>';
+                                            unset($_SESSION['namaklas']);
                                         }
                                     ?>
                                 <label for="nama">Nama</label>
@@ -167,7 +167,7 @@
                                 <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">SIMPAN <i class="material-icons">done</i></button>
                             </div>
                             <div class="col 6">
-                                <a href="?page=ref" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
+                                <a href="?page=klas" class="btn-large deep-orange waves-effect waves-light">BATAL <i class="material-icons">clear</i></a>
                             </div>
                         </div>
 

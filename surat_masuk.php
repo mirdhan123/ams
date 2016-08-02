@@ -329,7 +329,7 @@
 
                                             <div id="modal" class="modal">
                                                 <div class="modal-content white">
-                                                    <h5>Jumlah data yang ditampilkan per halaman</h5>';
+                                                    <h5>Jumlah data per halaman</h5>';
 
                                                 if(isset($_REQUEST['simpan'])){
 

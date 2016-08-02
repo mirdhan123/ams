@@ -167,7 +167,7 @@
                                     ?>
                                 <label for="nama">Nama</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isikan password lama Anda">
+                            <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">lock_outline</i>
                                 <input id="password_lama" type="password" class="validate" name="password_lama" required>
                                 <label for="password_lama">Password Lama</label>

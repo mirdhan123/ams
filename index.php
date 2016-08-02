@@ -15,7 +15,8 @@
         //validasi form kosong
         if ($_REQUEST['username'] == "" || $_REQUEST['password'] == "") {
             echo '
-                <div class="upss red-text"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.
+                <div class="upss red-text">
+                    <i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.
                     <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke login form</a>
                 </div>';
         } else {
@@ -25,7 +26,7 @@
 
             $query = mysqli_query($_config, "SELECT id_user, username, nama, nip, admin FROM tbl_user WHERE username=BINARY'$username' AND password='$password'");
             if (mysqli_num_rows($query) > 0) {
-                list ($id_user, $username, $nama, $nip, $admin) = mysqli_fetch_array($query);
+                list($id_user, $username, $nama, $nip, $admin) = mysqli_fetch_array($query);
 
                 session_start();
 
@@ -86,7 +87,7 @@
         }
         .bg::before {
             content: '';
-            background-image: url('./asset/img/background.jpg');
+            background-image: url('asset/img/background.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
@@ -252,7 +253,6 @@
                         }
                     ?>
 
-                    <!-- Form START -->
                     <form class="col m12 offset-4 offset-4" method="POST" action="" >
                         <div class="row">
                             <?php
@@ -284,7 +284,6 @@
                             <button type="submit" class="btn-large waves-effect waves-light blue-grey col s12" name="submit">LOGIN</button>
                         </div>
                     </form>
-                    <!-- Form END -->
 
                     </div>
                     <!-- Row Form START -->
@@ -301,17 +300,13 @@
     </div>
     <!-- Container END -->
 
-    <!-- Javascript START -->
     <script type="text/javascript" src="asset/js/jquery.min.js"></script>
     <script type="text/javascript" src="asset/js/materialize.min.js"></script>
     <script type="text/javascript" src="asset/js/bootstrap.min.js"></script>
     <script data-pace-options='{ "ajax": false }' src='asset/js/pace.min.js'></script>
-
-    <!-- Jquery auto hide untuk menampilkan pesan error -->
     <script type="text/javascript">
         $("#alert-message").alert().delay(3000).slideUp('slow');
     </script>
-    <!-- Javascript END -->
 
     <noscript>
         <meta http-equiv="refresh" content="0;URL='enable-javascript.html'" />

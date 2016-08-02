@@ -27,7 +27,7 @@
                 $query = mysqli_query($_config, "DELETE FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
                 if($query == true){
                     $_SESSION['succDel'] = 'SUKSES! Data berhasil dihapus<br/>';
-                    header("Location: ?page=ref");
+                    header("Location: ?page=klas");
                     die();
                 } else {
                     $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
@@ -38,7 +38,7 @@
                 $query = mysqli_query($_config, "SELECT * FROM tbl_klasifikasi WHERE id_klasifikasi='$id_klasifikasi'");
 
                 if(mysqli_num_rows($query) == 0){
-                    header("Location: ?page=ref");
+                    header("Location: ?page=klas");
                     die();
                 }
 
@@ -88,8 +88,8 @@
                         $string = $row['id_klasifikasi'];
                         echo '
 
-        	                <a href="?page=ref&act=del&submit=yes&id_klasifikasi='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
-        	                <a href="?page=ref" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
+        	                <a href="?page=klas&act=del&submit=yes&id_klasifikasi='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">HAPUS <i class="material-icons">delete</i></a>
+        	                <a href="?page=klas" class="btn-large blue waves-effect waves-light white-text">BATAL <i class="material-icons">clear</i></a>
         	            </div>
                     </div>
                 </div>

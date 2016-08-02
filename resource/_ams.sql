@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `tbl_sett` (
   `surat_masuk` tinyint(2) NOT NULL,
   `surat_keluar` tinyint(2) NOT NULL,
   `kode_instansi` varchar(10) NOT NULL,
-  `referensi` tinyint(2) NOT NULL,
+  `klasifikasi` tinyint(2) NOT NULL,
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `tbl_sett` (
 -- Dumping data for table `tbl_sett`
 --
 
-INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `kode_instansi`, `referensi`, `id_user`) VALUES
+INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `kode_instansi`, `klasifikasi`, `id_user`) VALUES
 (1, 5, 5, 'SMK-AH', 10, 3);
 
 -- --------------------------------------------------------

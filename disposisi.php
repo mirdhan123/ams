@@ -1,19 +1,19 @@
 <?php
     //cek session
-    if(empty($_SESSION['admin'])){
+    if (empty($_SESSION['admin'])) {
         $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
 
-        if(isset($_REQUEST['simpan'])){
+        if (isset($_REQUEST['simpan'])) {
 
             $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
             $id_surat = decrypt($string, $salt);
             $status = $_REQUEST['status'];
 
                 //validasi input data
-                if(!preg_match("/^[1-2]*$/", $status)){
+                if (!preg_match("/^[1-2]*$/", $status)) {
                     $_SESSION['status'] = 'Form Status hanya boleh mengandung angka 1 atau 2';
                     echo '<script language="javascript">window.history.back();</script>';
                 } else {
@@ -21,45 +21,45 @@
                     $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
                     $id_surat = decrypt($string, $salt);
 
-                    if($status == 1){
+                    if ($status == 1) {
 
                         $query = mysqli_query($_config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
-                        if($query == true){
+                        if ($query == true) {
                             echo '<script language="javascript">
-                                    window.alert("SUKSES! Status data surat berhasil diupdate");
                                     window.location.href="?page=tsm&act=addd&id_surat='.urlencode($string).'";
                                   </script>';
                         }
-                    } elseif($status == 2){
+
+                    } elseif ($status == 2) {
 
                         $query = mysqli_query($_config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
-                        if($query == true){
+                        if ($query == true) {
                             echo '<script language="javascript">
-                                    window.alert("SUKSES! Status data surat berhasil diupdate");
                                     window.location.href="?page=tsm&act=disp&id_surat='.urlencode($string).'";
                                   </script>';
                         }
+
                     } else {
                         echo '<script language="javascript">
                                 window.location.href="?page=tsm&act=disp&id_surat='.urlencode($string).'";
                               </script>';
                     }
-            }
+                }
         }
 
         $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
         $id_surat = urldecode(decrypt($string, $salt));
 
         $query = mysqli_query($_config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-        if(mysqli_num_rows($query) == 0){
+        if (mysqli_num_rows($query) == 0) {
             header("Location: ?page=tsm");
             die();
         }
-            while($row = mysqli_fetch_array($query)){
+            while ($row = mysqli_fetch_array($query)) {
 
             $string = $row['id_surat'];
 
-            if(isset($_REQUEST['arsip'])){
+            if (isset($_REQUEST['arsip'])) {
                 header("location: ./");
                 die();
             } else {
@@ -71,7 +71,7 @@
                             <a class="btn-large blue waves-effect waves-light" href="?page=tsm"><i class="material-icons">arrow_back</i>  Kembali</a>
                         </div>';
 
-                        if($row['status'] == 1){
+                        if ($row['status'] == 1) {
                             echo '
                             <div class="col 12" style="margin-top: -8px">
                                 <div class="card green lighten-5">
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                             </div>';
-                        } elseif($row['status'] == 2){
+                        } elseif ($row['status'] == 2) {
 
                             echo '
                             <div class="col 12" style="margin-top: -8px">
@@ -93,6 +93,7 @@
                                 </div>
                             </div>';
                         } else {
+
                             echo '
                                 <div class="col 12" style="margin-top: -8px">
                                     <div class="card yellow lighten-4">
@@ -105,7 +106,7 @@
                             }
                         }
 
-                        if(isset($_SESSION['succAdd'])){
+                        if (isset($_SESSION['succAdd'])) {
                             $succAdd = $_SESSION['succAdd'];
                             echo '<br/><div id="alert-message" class="row">
                                     <div class="col m12">
@@ -118,7 +119,8 @@
                                 </div>';
                             unset($_SESSION['succAdd']);
                         }
-                        if(isset($_SESSION['succEdit'])){
+
+                        if (isset($_SESSION['succEdit'])) {
                             $succEdit = $_SESSION['succEdit'];
                             echo '<br/><div id="alert-message" class="row">
                                     <div class="col m12">
@@ -131,29 +133,15 @@
                                 </div>';
                             unset($_SESSION['succEdit']);
                         }
-                        if(isset($_SESSION['succDel'])){
-                            $succDel = $_SESSION['succDel'];
-                            echo '<br/><div id="alert-message" class="row">
-                                    <div class="col m12">
-                                        <div class="card green lighten-5">
-                                            <div class="card-content notif">
-                                                <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succDel.'</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>';
-                            unset($_SESSION['succDel']);
-                        }
 
                         echo '
-
                         </div>
                         <!-- Row END -->
 
                         <!-- Row form Start -->
                         <div class="row" style="margin-top: -15px">';
 
-                            if($row['status'] == 1){
+                            if ($row['status'] == 1) {
                                 echo '
                                 <div class="col l6">
                                     <div class="card">
@@ -200,29 +188,29 @@
                                                         $m = substr($row['tgl_surat'],5,2);
                                                         $d = substr($row['tgl_surat'],8,2);
 
-                                                        if($m == "01"){
+                                                        if ($m == "01") {
                                                             $nm = "Januari";
-                                                        } elseif($m == "02"){
+                                                        } elseif ($m == "02") {
                                                             $nm = "Februari";
-                                                        } elseif($m == "03"){
+                                                        } elseif ($m == "03") {
                                                             $nm = "Maret";
-                                                        } elseif($m == "04"){
+                                                        } elseif ($m == "04") {
                                                             $nm = "April";
-                                                        } elseif($m == "05"){
+                                                        } elseif ($m == "05") {
                                                             $nm = "Mei";
-                                                        } elseif($m == "06"){
+                                                        } elseif ($m == "06") {
                                                             $nm = "Juni";
-                                                        } elseif($m == "07"){
+                                                        } elseif ($m == "07") {
                                                             $nm = "Juli";
-                                                        } elseif($m == "08"){
+                                                        } elseif ($m == "08") {
                                                             $nm = "Agustus";
-                                                        } elseif($m == "09"){
+                                                        } elseif ($m == "09") {
                                                             $nm = "September";
-                                                        } elseif($m == "10"){
+                                                        } elseif ($m == "10") {
                                                             $nm = "Oktober";
-                                                        } elseif($m == "11"){
+                                                        } elseif ($m == "11") {
                                                             $nm = "November";
-                                                        } elseif($m == "12"){
+                                                        } elseif ($m == "12") {
                                                             $nm = "Desember";
                                                         }
                                                         echo '
@@ -233,7 +221,7 @@
                                                         <td width="13%">File Lampiran</td>
                                                         <td width="1%">:</td>
                                                         <td width="86%">';
-                                                        if(!empty($row['file'])){
+                                                        if (!empty($row['file'])) {
                                                             echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
                                                         } else {
                                                             echo ' Tidak ada file yang diupload';
@@ -282,29 +270,29 @@
                                                         $m = substr($row['batas_waktu'],5,2);
                                                         $d = substr($row['batas_waktu'],8,2);
 
-                                                        if($m == "01"){
+                                                        if ($m == "01") {
                                                             $nm = "Januari";
-                                                        } elseif($m == "02"){
+                                                        } elseif ($m == "02") {
                                                             $nm = "Februari";
-                                                        } elseif($m == "03"){
+                                                        } elseif ($m == "03") {
                                                             $nm = "Maret";
-                                                        } elseif($m == "04"){
+                                                        } elseif ($m == "04") {
                                                             $nm = "April";
-                                                        } elseif($m == "05"){
+                                                        } elseif ($m == "05") {
                                                             $nm = "Mei";
-                                                        } elseif($m == "06"){
+                                                        } elseif ($m == "06") {
                                                             $nm = "Juni";
-                                                        } elseif($m == "07"){
+                                                        } elseif ($m == "07") {
                                                             $nm = "Juli";
-                                                        } elseif($m == "08"){
+                                                        } elseif ($m == "08") {
                                                             $nm = "Agustus";
-                                                        } elseif($m == "09"){
+                                                        } elseif ($m == "09") {
                                                             $nm = "September";
-                                                        } elseif($m == "10"){
+                                                        } elseif ($m == "10") {
                                                             $nm = "Oktober";
-                                                        } elseif($m == "11"){
+                                                        } elseif ($m == "11") {
                                                             $nm = "November";
-                                                        } elseif($m == "12"){
+                                                        } elseif ($m == "12") {
                                                             $nm = "Desember";
                                                         }
                                                         echo '
@@ -321,18 +309,22 @@
                                         </div>
                                     <div class="card-action">';
 
-                                    if($_SESSION['admin'] == 2){
+                                    if ($_SESSION['admin'] == 2) {
                                     echo '
                                         <a href="?page=tsm&act=editd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>';
                                     }
 
+                                    if (!empty($row['tujuan'])) {
                                     echo '
-                                        <a class="btn-large yellow darken-3 waves-effect waves-light white-text" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank">CETAK <i class="material-icons">print</i></a>
+                                        <a class="btn-large yellow darken-3 waves-effect waves-light white-text" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank">CETAK <i class="material-icons">print</i></a>';
+                                    }
+                                    echo '
+
                                     </div>
                                 </div>
                             </div>';
 
-                        } elseif($row['status'] == 2) {
+                        } elseif ($row['status'] == 2) {
 
                             echo '
                             <div class="col s12">
@@ -380,29 +372,29 @@
                                                     $m = substr($row['tgl_surat'],5,2);
                                                     $d = substr($row['tgl_surat'],8,2);
 
-                                                    if($m == "01"){
+                                                    if ($m == "01") {
                                                         $nm = "Januari";
-                                                    } elseif($m == "02"){
+                                                    } elseif ($m == "02") {
                                                         $nm = "Februari";
-                                                    } elseif($m == "03"){
+                                                    } elseif ($m == "03") {
                                                         $nm = "Maret";
-                                                    } elseif($m == "04"){
+                                                    } elseif ($m == "04") {
                                                         $nm = "April";
-                                                    } elseif($m == "05"){
+                                                    } elseif ($m == "05") {
                                                         $nm = "Mei";
-                                                    } elseif($m == "06"){
+                                                    } elseif ($m == "06") {
                                                         $nm = "Juni";
-                                                    } elseif($m == "07"){
+                                                    } elseif ($m == "07") {
                                                         $nm = "Juli";
-                                                    } elseif($m == "08"){
+                                                    } elseif ($m == "08") {
                                                         $nm = "Agustus";
-                                                    } elseif($m == "09"){
+                                                    } elseif ($m == "09") {
                                                         $nm = "September";
-                                                    } elseif($m == "10"){
+                                                    } elseif ($m == "10") {
                                                         $nm = "Oktober";
-                                                    } elseif($m == "11"){
+                                                    } elseif ($m == "11") {
                                                         $nm = "November";
-                                                    } elseif($m == "12"){
+                                                    } elseif ($m == "12") {
                                                         $nm = "Desember";
                                                     }
                                                     echo '
@@ -413,7 +405,7 @@
                                                     <td width="13%">File Lampiran</td>
                                                     <td width="1%">:</td>
                                                     <td width="86%">';
-                                                    if(!empty($row['file'])){
+                                                    if (!empty($row['file'])) {
                                                         echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
                                                     } else {
                                                         echo ' Tidak ada file yang diupload';
@@ -429,7 +421,7 @@
                                     </div>
                                     <div class="card-action">';
 
-                                    if($_SESSION['admin'] == 2){
+                                    if ($_SESSION['admin'] == 2) {
                                     echo '
                                         <a href="?page=tsm&act=addd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>';
                                     }
@@ -488,29 +480,29 @@
                                                     $m = substr($row['tgl_surat'],5,2);
                                                     $d = substr($row['tgl_surat'],8,2);
 
-                                                    if($m == "01"){
+                                                    if ($m == "01") {
                                                         $nm = "Januari";
-                                                    } elseif($m == "02"){
+                                                    } elseif ($m == "02") {
                                                         $nm = "Februari";
-                                                    } elseif($m == "03"){
+                                                    } elseif ($m == "03") {
                                                         $nm = "Maret";
-                                                    } elseif($m == "04"){
+                                                    } elseif ($m == "04") {
                                                         $nm = "April";
-                                                    } elseif($m == "05"){
+                                                    } elseif ($m == "05") {
                                                         $nm = "Mei";
-                                                    } elseif($m == "06"){
+                                                    } elseif ($m == "06") {
                                                         $nm = "Juni";
-                                                    } elseif($m == "07"){
+                                                    } elseif ($m == "07") {
                                                         $nm = "Juli";
-                                                    } elseif($m == "08"){
+                                                    } elseif ($m == "08") {
                                                         $nm = "Agustus";
-                                                    } elseif($m == "09"){
+                                                    } elseif ($m == "09") {
                                                         $nm = "September";
-                                                    } elseif($m == "10"){
+                                                    } elseif ($m == "10") {
                                                         $nm = "Oktober";
-                                                    } elseif($m == "11"){
+                                                    } elseif ($m == "11") {
                                                         $nm = "November";
-                                                    } elseif($m == "12"){
+                                                    } elseif ($m == "12") {
                                                         $nm = "Desember";
                                                     }
                                                     echo '
@@ -521,7 +513,7 @@
                                                     <td width="13%">File Lampiran</td>
                                                     <td width="1%">:</td>
                                                     <td width="86%">';
-                                                    if(!empty($row['file'])){
+                                                    if (!empty($row['file'])) {
                                                         echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
                                                         } else {
                                                         echo ' Tidak ada file yang diupload';
@@ -538,13 +530,13 @@
                                     <div class="card-action">
                                         <div class="col s12">';
 
-                                        if($_SESSION['admin'] == 2){
+                                        if ($_SESSION['admin'] == 2) {
                                         echo '
                                             <form method="post">
                                                 <input class="with-gap" name="status" type="radio" id="setuju" value="1" required/>
                                                 <label for="setuju" style="color: #444;font-size: 1.4rem">Setujui dan buat disposisi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
-                                                if(isset($_SESSION['status'])){
+                                                if (isset($_SESSION['status'])) {
                                                     $status = $_SESSION['status'];
                                                     echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$status.'</div>';
                                                     unset($_SESSION['status']);
