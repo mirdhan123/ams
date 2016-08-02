@@ -1,7 +1,2 @@
 Options All -Indexes
 ErrorDocument 404 /ams/index.php
-
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule (.*) $1.php [L]

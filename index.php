@@ -4,7 +4,7 @@
 
     //cek session
     if (isset($_SESSION['admin'])) {
-        header("Location: ./admin");
+        header("Location: ./admin.php");
         die();
     }
 
@@ -37,7 +37,7 @@
                 $_SESSION['nip'] = $nip;
                 $_SESSION['admin'] = $admin;
 
-                header("Location: ./admin");
+                header("Location: ./admin.php");
                 die();
             } else {
 

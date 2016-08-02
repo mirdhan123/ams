@@ -15,7 +15,7 @@
 
 <nav class="blue-grey darken-1">
     <div class="nav-wrapper">
-        <a href="./admin" class="brand-logo center hide-on-large-only"><i class="material-icons md-36">school</i> AMS</a>
+        <a href="./" class="brand-logo center hide-on-large-only"><i class="material-icons md-36">school</i> AMS</a>
         <ul id="slide-out" class="side-nav" data-simplebar-direction="vertical">
             <li class="no-padding">
                 <div class="logo-side center blue-grey darken-3">
@@ -55,7 +55,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="./admin"><i class="material-icons middle">dashboard</i> Beranda</a></li>
+            <li><a href="./"><i class="material-icons middle">dashboard</i> Beranda</a></li>
             <?php
                 if ($_SESSION['admin'] == 2) { ?>
             <li><a href="?page=tsm"><i class="material-icons middle">description</i> Disposisi Surat</a></li>
@@ -174,9 +174,9 @@
 
         <!-- Menu on large screen START -->
         <ul class="center hide-on-med-and-down" id="nv">
-            <li><a href="./admin" class="ams hide-on-med-and-down"><i class="material-icons md-36">school</i> AMS</a></li>
+            <li><a href="./" class="ams hide-on-med-and-down"><i class="material-icons md-36">school</i> AMS</a></li>
             <li><div class="grs"></></li>
-            <li><a href="./admin"><i class="material-icons"></i>&nbsp; Beranda</a></li>
+            <li><a href="./"><i class="material-icons"></i>&nbsp; Beranda</a></li>
             <?php
                 if ($_SESSION['admin'] == 2) {
             ?>

@@ -262,7 +262,7 @@
                                 <td id="left" colspan="2">: '.$row['asal_surat'].'</td>
                             </tr>
                             <tr>
-                                <td id="right"><strong>Isi Ringkas</strong></td>
+                                <td id="right"><strong>Isi Surat</strong></td>
                                 <td id="left" colspan="2">: '.$row['isi'].'</td>
                             </tr>
                             <tr>

@@ -80,7 +80,7 @@
                     include "user_profil.php";
                     break;
                 default:
-                    header("Location: ./admin");
+                    header("Location: ./admin.php");
                     die();
                     break;
             }
