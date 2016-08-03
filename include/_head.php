@@ -16,11 +16,11 @@
         $query = mysqli_query($_config, "SELECT logo from tbl_instansi");
         list($logo) = mysqli_fetch_array($query);
         if(!empty($logo)){
-            echo '<link rel="shortcut icon" href="./upload/'.$logo.'" type="image/x-icon">
-                  <link rel="icon" href="./upload/'.$logo.'" type="image/x-icon">';
+            echo '<link rel="shortcut icon" href="upload/'.$logo.'" type="image/x-icon">
+                  <link rel="icon" href="upload/'.$logo.'" type="image/x-icon">';
         } else {
-            echo '<link rel="shortcut icon" href="./asset/img/favicon.ico" type="image/x-icon">
-                  <link rel="icon" href="./asset/img/favicon.ico" type="image/x-icon">';
+            echo '<link rel="shortcut icon" href="asset/img/favicon.ico" type="image/x-icon">
+                  <link rel="icon" href="asset/img/favicon.ico" type="image/x-icon">';
         }
     ?>
     <!-- Meta END -->
@@ -30,7 +30,7 @@
     <![endif]-->
 
     <!-- Global style START -->
-    <link type="text/css" rel="stylesheet" href="./asset/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="asset/css/materialize.min.css"  media="screen,projection"/>
     <style type="text/css">
         body {
             background: #fff;

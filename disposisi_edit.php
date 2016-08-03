@@ -1,26 +1,25 @@
 <?php
     //cek session
-    if(empty($_SESSION['admin'])){
+    if (empty($_SESSION['admin'])) {
         $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
 
-        if($_SESSION['admin'] != 2){
+        if ($_SESSION['admin'] != 2) {
             echo '<script language="javascript">
                     window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
                     window.history.back();
                   </script>';
         } else {
 
-        if(isset($_REQUEST['submit'])){
+        if (isset($_REQUEST['submit'])) {
 
             $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
             $id_surat = decrypt($string, $salt);
 
             //validasi form kosong
-            if($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
-                || $_REQUEST['catatan'] == ""){
+            if ($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == "") {
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
                 echo '<script language="javascript">window.history.back();</script>';
             } else {
@@ -32,34 +31,34 @@
                 $catatan = $_REQUEST['catatan'];
 
                 //validasi input data
-                if(!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $tujuan)){
+                if (!preg_match("/^[a-zA-Z0-9.,()\/ -]*$/", $tujuan)) {
                     $_SESSION['tujuan'] = 'Form Tujuan Disposisi hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,) minus(-). kurung() dan garis miring(/)';
                     echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
-                    if(!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $isi_disposisi)){
+                    if (!preg_match("/^[a-zA-Z0-9.,_()%&@\/\r\n -]*$/", $isi_disposisi)) {
                         $_SESSION['isi_disposisi'] = 'Form Isi Disposisi hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-), garis miring(/), dan(&), underscore(_), kurung(), persen(%) dan at(@)';
                         echo '<script language="javascript">window.history.back();</script>';
                     } else {
 
-                        if(!preg_match("/^[0-9 -]*$/", $batas_waktu)){
+                        if (!preg_match("/^[0-9 -]*$/", $batas_waktu)) {
                             $_SESSION['batas_waktu'] = 'Form Batas Waktu hanya boleh mengandung karakter huruf dan minus(-)';
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
 
-                            if(!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $catatan)){
+                            if (!preg_match("/^[a-zA-Z0-9.,()%@\/ -]*$/", $catatan)) {
                                 $_SESSION['catatan'] = 'Form catatan hanya boleh mengandung karakter huruf, angka, spasi, titik(.), koma(,), minus(-) garis miring(/), dan kurung()';
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z0 ]*$/", $sifat)){
+                                if (!preg_match("/^[a-zA-Z0 ]*$/", $sifat)) {
                                     $_SESSION['catatan'] = 'Form SIFAT hanya boleh mengandung karakter huruf dan spasi';
                                     echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
                                     $query = mysqli_query($_config, "UPDATE tbl_surat_masuk SET tujuan='$tujuan', isi_disposisi='$isi_disposisi', sifat='$sifat', batas_waktu='$batas_waktu', catatan='$catatan' WHERE id_surat='$id_surat'");
 
-                                    if($query == true){
+                                    if ($query == true) {
                                         $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
 
                                         $string = $id_surat;
@@ -83,7 +82,7 @@
             $id_surat = urlencode(decrypt($string, $salt));
 
             $query = mysqli_query($_config, "SELECT tujuan, isi_disposisi, sifat, batas_waktu, catatan FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-            if(mysqli_num_rows($query) == 0){
+            if (mysqli_num_rows($query) == 0) {
                 header("Location: ?page=tsm");
                 die();
             }
@@ -98,6 +97,9 @@
                                 <ul class="left">
                                     <li class="waves-effect waves-light"><a href="#" class="judul"><i class="material-icons">edit</i> Edit Disposisi Surat</a></li>
                                 </ul>
+                                <ul class="right" style="margin-right: 10px">
+                                    <li class="waves-effect waves-light right"><a class="tooltipped" data-position="left" data-tooltip="Manajemen sifat disposisi" href="?page=tsm&act=sftd"><i class="material-icons">settings</i></a></li>
+                                </ul>
                             </div>
                         </nav>
                     </div>
@@ -106,7 +108,7 @@
                 <!-- Row END -->
 
                 <?php
-                    if(isset($_SESSION['errEmpty'])){
+                    if (isset($_SESSION['errEmpty'])) {
                         $errEmpty = $_SESSION['errEmpty'];
                         echo '<div id="alert-message" class="row">
                                 <div class="col m12">
@@ -119,7 +121,7 @@
                             </div>';
                         unset($_SESSION['errEmpty']);
                     }
-                    if(isset($_SESSION['errQ'])){
+                    if (isset($_SESSION['errQ'])) {
                         $errQ = $_SESSION['errQ'];
                         echo '<div id="alert-message" class="row">
                                 <div class="col m12">
@@ -150,7 +152,7 @@
                                 <i class="material-icons prefix md-prefix">account_box</i>
                                 <input id="tujuan" type="text" class="validate" name="tujuan" value="<?php echo $tujuan; ?>" required>
                                     <?php
-                                        if(isset($_SESSION['tujuan'])){
+                                        if (isset($_SESSION['tujuan'])) {
                                             $tujuan = $_SESSION['tujuan'];
                                             echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$tujuan.'</div>';
                                             unset($_SESSION['tujuan']);
@@ -162,7 +164,7 @@
                                 <i class="material-icons prefix md-prefix">alarm</i>
                                 <input id="batas_waktu" type="text" name="batas_waktu" class="datepicker" value="<?php echo $batas_waktu; ?>"required>
                                     <?php
-                                        if(isset($_SESSION['batas_waktu'])){
+                                        if (isset($_SESSION['batas_waktu'])) {
                                             $batas_waktu = $_SESSION['batas_waktu'];
                                             echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$batas_waktu.'</div>';
                                             unset($_SESSION['batas_waktu']);
@@ -174,7 +176,7 @@
                                 <i class="material-icons prefix md-prefix">description</i>
                                 <textarea id="isi_disposisi" class="materialize-textarea validate" name="isi_disposisi" required><?php echo $isi_disposisi; ?></textarea>
                                     <?php
-                                        if(isset($_SESSION['isi_disposisi'])){
+                                        if (isset($_SESSION['isi_disposisi'])) {
                                             $isi_disposisi = $_SESSION['isi_disposisi'];
                                             echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$isi_disposisi.'</div>';
                                             unset($_SESSION['isi_disposisi']);
@@ -184,9 +186,9 @@
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">featured_play_list   </i>
-                                <input id="catatan" type="text" class="validate" name="catatan" value="<?php echo $catatan; ?>" required>
+                                <input id="catatan" type="text" class="validate" name="catatan" value="<?php echo $catatan; ?>">
                                     <?php
-                                        if(isset($_SESSION['catatan'])){
+                                        if (isset($_SESSION['catatan'])) {
                                             $catatan = $_SESSION['catatan'];
                                             echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$catatan.'</div>';
                                             unset($_SESSION['catatan']);
@@ -200,18 +202,19 @@
                                     <select class="browser-default validate" name="sifat" id="sifat" required>
                                         <option value="<?php echo $sifat; ?>"><?php echo $sifat; ?></option>
                                         <option value="Biasa">Biasa</option>
-                                        <option value="Penting">Penting</option>
                                         <option value="Segera">Segera</option>
+                                        <option value="Penting">Penting</option>
                                         <option value="Rahasia">Rahasia</option>
-                                </select>
-                            </div>
+                                    </select>
+                                </div>
                                 <?php
-                                    if(isset($_SESSION['sifat'])){
+                                    if (isset($_SESSION['sifat'])) {
                                         $sifat = $_SESSION['sifat'];
                                         echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$sifat.'</div>';
                                         unset($_SESSION['sifat']);
                                     }
                                 ?>
+                            </div>
                         </div>
                         <!-- Row in form END -->
 

@@ -17,7 +17,7 @@
 
             //validasi form kosong
             if($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['tujuan'] == "" || $_REQUEST['isi'] == ""
-                || $_REQUEST['kode'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
+                || $_REQUEST['kode'] == "" || $_REQUEST['tgl_surat'] == ""){
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
                 echo '<script language="javascript">window.history.back();</script>';
             } else {
@@ -400,7 +400,7 @@
                         </div>
                         <div class="input-field col m6">
                             <i class="material-icons prefix md-prefix">featured_play_list</i>
-                            <input id="keterangan" type="text" class="validate" name="keterangan" required>
+                            <input id="keterangan" type="text" class="validate" name="keterangan">
                                 <?php
                                     if(isset($_SESSION['keterangank'])){
                                         $keterangank = $_SESSION['keterangank'];

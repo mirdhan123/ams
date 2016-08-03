@@ -130,7 +130,7 @@
 
                             <!-- Row in form START -->
                             <div class="row">
-                                <div class="input-field col s3">
+                                <div class="input-field col m3">
                                     <?php
                                         $string = $row['id_klasifikasi'];
                                     ?>
@@ -146,7 +146,7 @@
                                         ?>
                                     <label for="kd">Kode</label>
                                 </div>
-                                <div class="input-field col s9">
+                                <div class="input-field col m9">
                                     <i class="material-icons prefix md-prefix">text_fields</i>
                                     <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>" required>
                                         <?php

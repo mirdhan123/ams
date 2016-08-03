@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 28, 2016 at 01:29
+-- Generation Time: Aug 03, 2016 at 12:25
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -114,7 +114,7 @@ INSERT INTO `tbl_klasifikasi` (`id_klasifikasi`, `kode`, `nama`, `uraian`, `id_u
 (46, '426.4', 'KONI', 'KONI', 1),
 (47, '427', 'Kepramukaan Meliputi: Organisasi dan Kegiatan Remaja', 'Kepramukaan Meliputi: Organisasi dan Kegiatan Remaja', 1),
 (48, '428', 'Kepramukaan', 'Kepramukaan', 1),
-(49, '429', 'Pendidikan Kedinasan Untuk Depdagri', 'Pendidikan Kedinasan Untuk Depdagri', 1);
+(49, '429', 'PendidikanÂ  Kedinasan Untuk Depdagri', 'PendidikanÂ  Kedinasan Untuk Depdagri', 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `tbl_sett` (
 --
 
 INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `kode_instansi`, `klasifikasi`, `id_user`) VALUES
-(1, 5, 5, 'SMK-AH', 10, 3);
+(1, 5, 5, 'SMK-AH', 10, 1;
 
 -- --------------------------------------------------------
 

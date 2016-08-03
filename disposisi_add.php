@@ -25,8 +25,7 @@
             list($id_surat) = mysqli_fetch_array($query);
 
             //validasi form kosong
-            if($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""
-                || $_REQUEST['catatan'] == ""){
+            if($_REQUEST['tujuan'] == "" || $_REQUEST['isi_disposisi'] == "" || $_REQUEST['sifat'] == "" || $_REQUEST['batas_waktu'] == ""){
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
                 echo '<script language="javascript">window.history.back();</script>';
             } else {
@@ -182,7 +181,7 @@
                             </div>
                             <div class="input-field col s6">
                                 <i class="material-icons prefix md-prefix">featured_play_list   </i>
-                                <input id="catatan" type="text" class="validate" name="catatan" required>
+                                <input id="catatan" type="text" class="validate" name="catatan">
                                     <?php
                                         if(isset($_SESSION['catatan'])){
                                             $catatan = $_SESSION['catatan'];
@@ -196,12 +195,12 @@
                                 <i class="material-icons prefix md-prefix">low_priority</i><label>Pilih Sifat Disposisi</label><br/>
                                 <div class="input-field col s11 right">
                                     <select class="browser-default validate" name="sifat" id="sifat" required>
-                                        <option value="Biasa">Biasa</option>
-                                        <option value="Penting">Penting</option>
+                                        <option value="Biasa" selected>Biasa</option>
                                         <option value="Segera">Segera</option>
+                                        <option value="Penting">Penting</option>
                                         <option value="Rahasia">Rahasia</option>
-                                </select>
-                            </div>
+                                    </select>
+                                </div>
                                 <?php
                                     if(isset($_SESSION['sifat'])){
                                         $sifat = $_SESSION['sifat'];
@@ -209,6 +208,7 @@
                                         unset($_SESSION['sifat']);
                                     }
                                 ?>
+                            </div>
                         </div>
                         <!-- Row in form END -->
 

@@ -23,9 +23,9 @@
                         $query = mysqli_query($_config, "SELECT * FROM tbl_instansi");
                         while ($data = mysqli_fetch_array($query)) {
                             if (!empty($data['logo'])) {
-                                echo '<img class="logoside" src="./upload/'.$data['logo'].'"/>';
+                                echo '<img class="logoside" src="upload/'.$data['logo'].'"/>';
                             } else {
-                                echo '<img class="logoside" src="./asset/img/logo.png"/>';
+                                echo '<img class="logoside" src="asset/img/logo.png"/>';
                             }
                             if (!empty($data['nama'])) {
                                 echo '<h5 class="smk-side">'.$data['nama'].'</h5>';
