@@ -1,8 +1,9 @@
 <?php
     //cek session
-    if(!empty($_SESSION['admin'])){
+    if (!empty($_SESSION['admin'])) {
+
+    require('include/_config.php');
 ?>
-<?php require('include/_config.php'); ?>
 
 <head>
 
@@ -15,7 +16,7 @@
     <?php
         $query = mysqli_query($_config, "SELECT logo from tbl_instansi");
         list($logo) = mysqli_fetch_array($query);
-        if(!empty($logo)){
+        if (!empty($logo)) {
             echo '<link rel="shortcut icon" href="upload/'.$logo.'" type="image/x-icon">
                   <link rel="icon" href="upload/'.$logo.'" type="image/x-icon">';
         } else {

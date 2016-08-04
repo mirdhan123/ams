@@ -307,12 +307,9 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                    <div class="card-action">';
+                                    <div class="card-action">
 
-                                    if ($_SESSION['admin'] == 2) {
-                                    echo '
                                         <a href="?page=tsm&act=editd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>';
-                                    }
 
                                     if (!empty($row['tujuan'])) {
                                     echo '
@@ -419,14 +416,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="card-action">';
-
-                                    if ($_SESSION['admin'] == 2) {
-                                    echo '
-                                        <a href="?page=tsm&act=addd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>';
-                                    }
-                                    echo '
-
+                                    <div class="card-action">
+                                        <a href="?page=tsm&act=addd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>
                                     </div>
                                 </div>
                             </div>

@@ -6,12 +6,17 @@
         die();
     } else {
 
-        if ($_SESSION['admin'] != 2) {
+        $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
+        $id_surat = decrypt($string, $salt);
+
+        $query = mysqli_query($_config, "SELECT status FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
+        list($status) = mysqli_fetch_array($query);
+        if ($status == 2 || $status == 0) {
             echo '<script language="javascript">
                     window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
                     window.history.back();
                   </script>';
-        } else {
+        }
 
         if (isset($_REQUEST['submit'])) {
 
@@ -238,5 +243,4 @@
             }
         }
     }
-}
 ?>

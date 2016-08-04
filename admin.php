@@ -3,7 +3,7 @@
     //cek session
     session_start();
 
-    if(empty($_SESSION['admin'])){
+    if (empty($_SESSION['admin'])) {
         $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
@@ -20,7 +20,7 @@
 
     <?php
 
-    if($_SESSION['admin'] ==2){
+    if ($_SESSION['admin'] ==2) {
         echo '
             <audio id="audio">
                 <source src="asset/sound/notify.mp3" type="audio/mp3" />
@@ -43,7 +43,7 @@
     <div class="container">
 
     <?php
-        if(isset($_REQUEST['page'])){
+        if (isset($_REQUEST['page'])) {
             $page = $_REQUEST['page'];
             switch ($page) {
                 case 'tsm':
@@ -96,9 +96,9 @@
                         <h4>Selamat Datang <?php echo $_SESSION['nama']; ?></h4>
                         <p class="description">Anda login sebagai
                         <?php
-                            if($_SESSION['admin'] == 1){
+                            if ($_SESSION['admin'] == 1) {
                                 echo "<strong>Administrator</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
-                            } elseif($_SESSION['admin'] == 2){
+                            } elseif ($_SESSION['admin'] == 2) {
                                 echo "<strong>Pimpinan Instansi</strong>. Anda memiliki hak akses untuk memeriksa dan menyetujui surat masuk serta membuat disposisi surat.";
                             } else {
                                 echo "<strong>Petugas Disposisi</strong>. Berikut adalah statistik data yang tersimpan dalam sistem.";
@@ -125,7 +125,7 @@
             ?>
 
         <?php
-            if($_SESSION['admin'] == 1 || $_SESSION['admin']  == 3){
+            if ($_SESSION['admin'] == 1 || $_SESSION['admin']  == 3) {
         ?>
         <a href="?page=tsm">
             <div class="col s12 l4">
@@ -162,7 +162,7 @@
         ?>
 
         <?php
-            if($_SESSION['id_user'] == 1){?>
+            if ($_SESSION['id_user'] == 1) {?>
         <a href="?page=sett&sub=usr">
             <div class="col s12 l4">
                 <div class="card deep-orange">
@@ -178,7 +178,7 @@
         ?>
 
         <?php
-            if($_SESSION['admin'] == 2){
+            if ($_SESSION['admin'] == 2) {
         ?>
         <a href="?page=tsm">
             <div class="col s12 l7">
@@ -186,8 +186,8 @@
                     <div class="card-content">
                         <span class="card-title white-text"><i class="material-icons md-36">error_outline</i> Jumlah Surat Masuk yang Belum Diperiksa</span>
                         <?php echo '<h5 class="link">';
-                            if($count5 == ""){
-                                echo 'Semua surat sudah diperiksa';
+                            if ($count5 == "") {
+                                echo 'Semua surat masuk sudah diperiksa';
                             } else {
                                 echo $count5." Surat Masuk</h5>";
                             }
