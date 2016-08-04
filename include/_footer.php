@@ -116,13 +116,6 @@ $(document).ready(function(){
     $('.tooltipped').tooltip({delay: 10});
 });
 
-//jquery autocomplete
-$(function() {
-    $( "#kode" ).autocomplete({
-        source: 'kode.php'
-    });
-});
-
 //jquery untuk menampilkan pemberitahuan
 $("#alert-message").alert().delay(5000).fadeOut('slow');
 
