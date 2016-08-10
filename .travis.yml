@@ -1,6 +1,6 @@
-sudo: required
-setuid: required
-setgid: required
+sudo: false
+setuid: false
+setgid: false
 
 language: php
 
