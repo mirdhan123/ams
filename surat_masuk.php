@@ -249,7 +249,7 @@
                                         <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i></a>';
                                     }
 
-                                    if(!empty($row['tujuan'])){
+                                    if(!empty($row['tujuan']) AND $_SESSION['admin'] != 2){
                                         echo '
                                             <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i></a>';
                                     } else {
@@ -473,7 +473,7 @@
                                             <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.urlencode(encrypt($string, $salt)).'"><i class="material-icons">delete</i></a>';
                                         }
 
-                                        if(!empty($row['tujuan'])){
+                                        if(!empty($row['tujuan']) AND $_SESSION['admin'] != 2){
                                             echo '
                                                 <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank"><i class="material-icons">print</i></a>';
                                         } else {

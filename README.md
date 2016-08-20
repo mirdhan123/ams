@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/m45rud/ams.svg?branch=master)](https://travis-ci.org/m45rud/ams)
-
 # ams
 
 <h3>Aplikasi Manajemen Surat dengan Fitur Backup dan Restore Database.</h3>

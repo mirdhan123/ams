@@ -26,7 +26,7 @@
                         $query = mysqli_query($_config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
                         if ($query == true) {
                             echo '<script language="javascript">
-                                    window.location.href="?page=tsm&act=addd&id_surat='.urlencode($string).'";
+                                    window.location.href="?page=tsm&act=disp&id_surat='.urlencode($string).'";
                                   </script>';
                         }
 
@@ -307,11 +307,14 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                    <div class="card-action">
+                                    <div class="card-action">';
 
+                                    if ($_SESSION['admin'] != 2) {
+                                    echo '
                                         <a href="?page=tsm&act=editd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>';
+                                    }
 
-                                    if (!empty($row['tujuan'])) {
+                                    if (!empty($row['tujuan']) AND $_SESSION['admin'] != 2) {
                                     echo '
                                         <a class="btn-large yellow darken-3 waves-effect waves-light white-text" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank">CETAK <i class="material-icons">print</i></a>';
                                     }
@@ -416,8 +419,14 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="card-action">
-                                        <a href="?page=tsm&act=addd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>
+                                    <div class="card-action">';
+
+                                    if ($_SESSION['admin'] != 2) {
+                                    echo '
+                                        <a href="?page=tsm&act=addd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>';
+                                    }
+                                    echo '
+
                                     </div>
                                 </div>
                             </div>
