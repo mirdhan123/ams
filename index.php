@@ -3,51 +3,11 @@
     session_start();
 
     //cek session
-    if (isset($_SESSION['admin'])) {
+    if(isset($_SESSION['admin'])){
         header("Location: ./admin.php");
         die();
     }
-
-    require_once('include/_config.php');
-
-    if (isset($_REQUEST['submit'])) {
-
-        //validasi form kosong
-        if ($_REQUEST['username'] == "" || $_REQUEST['password'] == "") {
-            echo '
-                <div class="upss red-text">
-                    <i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.
-                    <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke login form</a>
-                </div>';
-        } else {
-
-            $username = trim(htmlspecialchars(mysqli_real_escape_string($_config, $_REQUEST['username'])));
-            $password = SHA1(trim(htmlspecialchars(mysqli_real_escape_string($_config, $_REQUEST['password']))));
-
-            $query = mysqli_query($_config, "SELECT id_user, username, nama, nip, admin FROM tbl_user WHERE username=BINARY'$username' AND password='$password'");
-            if (mysqli_num_rows($query) > 0) {
-                list($id_user, $username, $nama, $nip, $admin) = mysqli_fetch_array($query);
-
-                session_start();
-
-                //buat session
-                $_SESSION['id_user'] = $id_user;
-                $_SESSION['username'] = $username;
-                $_SESSION['nama'] = $nama;
-                $_SESSION['nip'] = $nip;
-                $_SESSION['admin'] = $admin;
-
-                header("Location: ./admin.php");
-                die();
-            } else {
-
-                //session error
-                $_SESSION['errLog'] = '<center>Username & Password tidak ditemukan!</center>';
-                header("Location: ./");
-                die();
-            }
-        }
-    }
+    require('include/config.php');
 ?>
 
 <!doctype html>
@@ -63,9 +23,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <?php
-        $query = mysqli_query($_config, "SELECT logo from tbl_instansi");
+        $query = mysqli_query($config, "SELECT logo from tbl_instansi");
         list($logo) = mysqli_fetch_array($query);
-        if (!empty($logo)) {
+        if(!empty($logo)){
             echo '<link rel="shortcut icon" href="./upload/'.$logo.'" type="image/x-icon">
                   <link rel="icon" href="./upload/'.$logo.'" type="image/x-icon">';
         } else {
@@ -80,14 +40,14 @@
     <![endif]-->
 
     <!-- Global style START -->
-    <link type="text/css" rel="stylesheet" href="asset/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./asset/css/materialize.css"  media="screen,projection"/>
     <style type="text/css">
         body {
             background: #fff;
         }
         .bg::before {
             content: '';
-            background-image: url('asset/img/background.jpg');
+            background-image: url('./asset/img/background.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
@@ -109,7 +69,7 @@
         }
         .container {
             max-width: 100%;
-            margin-top: 3.5rem;
+            margin-top: 2.5rem;
         }
         #logo {
             display: block;
@@ -220,16 +180,15 @@
                     <div class="row">
 
                     <?php
-                        $query = mysqli_query($_config, "SELECT * FROM tbl_instansi");
-                        while ($data = mysqli_fetch_array($query)) {
+                        $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
+                        while($data = mysqli_fetch_array($query)){
                     ?>
-
                     <!-- Logo and title START -->
                     <div class="col s12">
                         <div class="card-content">
                             <h5 class="center" id="title">Aplikasi Manajemen Surat</h5>
                             <?php
-                                if (!empty($data['logo'])) {
+                                if(!empty($data['logo'])){
                                     echo '<img id="logo" src="./upload/'.$data['logo'].'"/>';
                                 } else {
                                     echo '<img id="logo" src="./asset/img/logo.png"/>';
@@ -237,7 +196,7 @@
                             ?>
                             <h4 class="center" id="smk">
                             <?php
-                                if (!empty($data['nama'])) {
+                                if(!empty($data['nama'])){
                                     echo ''.$data['nama'].'';
                                 } else {
                                     echo 'SMK AL - Husna Loceret Nganjuk';
@@ -248,21 +207,60 @@
                         </div>
                     </div>
                     <!-- Logo and title END -->
-
                     <?php
                         }
                     ?>
 
-                    <form class="col m12 offset-4 offset-4" method="POST" action="" >
+                    <?php
+                        if(isset($_REQUEST['submit'])){
+
+                            //validasi form kosong
+                            if($_REQUEST['username'] == "" || $_REQUEST['password'] == ""){
+                                echo '<div class="upss red-text"><i class="material-icons">error_outline</i> <strong>ERROR!</strong> Username dan Password wajib diisi.
+                                <a class="btn-large waves-effect waves-light blue-grey col s11" href="./" style="margin: 20px 0 0 5px;"><i class="material-icons md-24">arrow_back</i> Kembali ke login form</a></div>';
+                            } else {
+
+                                $username = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['username'])));
+                                $password = trim(htmlspecialchars(mysqli_real_escape_string($config, $_REQUEST['password'])));
+
+                                $query = mysqli_query($config, "SELECT id_user, username, nama, nip, admin FROM tbl_user WHERE username=BINARY'$username' AND password=MD5('$password')");
+
+                                if(mysqli_num_rows($query) > 0){
+                                    list($id_user, $username, $nama, $nip, $admin) = mysqli_fetch_array($query);
+
+                                    session_start();
+
+                                    //buat session
+                                    $_SESSION['id_user'] = $id_user;
+                                    $_SESSION['username'] = $username;
+                                    $_SESSION['nama'] = $nama;
+                                    $_SESSION['nip'] = $nip;
+                                    $_SESSION['admin'] = $admin;
+
+                                    header("Location: ./admin.php");
+                                    die();
+                                } else {
+
+                                    //session error
+                                    $_SESSION['errLog'] = '<center>Username & Password tidak ditemukan!</center>';
+                                    header("Location: ./");
+                                    die();
+                                }
+                            }
+                        } else {
+                    ?>
+
+                    <!-- Form START -->
+                    <form class="col s12 m12 offset-4 offset-4" method="POST" action="" >
                         <div class="row">
                             <?php
-                                if (isset($_SESSION['errLog'])) {
+                                if(isset($_SESSION['errLog'])){
                                     $errLog = $_SESSION['errLog'];
                                     echo '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>LOGIN GAGAL!</strong></div>
                                     '.$errLog.'</div>';
                                     unset($_SESSION['errLog']);
                                 }
-                                if (isset($_SESSION['err'])) {
+                                if(isset($_SESSION['err'])){
                                     $err = $_SESSION['err'];
                                     echo '<div id="alert-message" class="error red lighten-5"><div class="center"><i class="material-icons">error_outline</i> <strong>ERROR!</strong></div>
                                     '.$err.'</div>';
@@ -284,7 +282,10 @@
                             <button type="submit" class="btn-large waves-effect waves-light blue-grey col s12" name="submit">LOGIN</button>
                         </div>
                     </form>
-
+                    <!-- Form END -->
+                    <?php
+                        }
+                    ?>
                     </div>
                     <!-- Row Form START -->
 
@@ -300,16 +301,20 @@
     </div>
     <!-- Container END -->
 
-    <script type="text/javascript" src="asset/js/jquery.min.js"></script>
+    <!-- Javascript START -->
+    <script type="text/javascript" src="asset/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="asset/js/materialize.min.js"></script>
     <script type="text/javascript" src="asset/js/bootstrap.min.js"></script>
     <script data-pace-options='{ "ajax": false }' src='asset/js/pace.min.js'></script>
+
+    <!-- Jquery auto hide untuk menampilkan pesan error -->
     <script type="text/javascript">
         $("#alert-message").alert().delay(3000).slideUp('slow');
     </script>
+    <!-- Javascript END -->
 
     <noscript>
-        <meta http-equiv="refresh" content="0;URL='enable-javascript.html'" />
+        <meta http-equiv="refresh" content="0;URL='./enable-javascript.html'" />
     </noscript>
 
 </body>

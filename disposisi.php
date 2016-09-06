@@ -1,565 +1,203 @@
 <?php
     //cek session
-    if (empty($_SESSION['admin'])) {
+    if(empty($_SESSION['admin'])){
         $_SESSION['err'] = '<center>Anda harus login terlebih dahulu!</center>';
         header("Location: ./");
         die();
     } else {
 
-        if (isset($_REQUEST['simpan'])) {
+        if(isset($_REQUEST['sub'])){
+            $sub = $_REQUEST['sub'];
+            switch ($sub) {
+                case 'add':
+                    include "tambah_disposisi.php";
+                    break;
+                case 'edit':
+                    include "edit_disposisi.php";
+                    break;
+                case 'del':
+                    include "hapus_disposisi.php";
+                    break;
+            }
+        } else {
 
-            $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
-            $id_surat = decrypt($string, $salt);
-            $status = $_REQUEST['status'];
-
-                //validasi input data
-                if (!preg_match("/^[1-2]*$/", $status)) {
-                    $_SESSION['status'] = 'Form Status hanya boleh mengandung angka 1 atau 2';
-                    echo '<script language="javascript">window.history.back();</script>';
+            //pagging
+            $limit = 5;
+            $pg = @$_GET['pg'];
+                if(empty($pg)){
+                    $curr = 0;
+                    $pg = 1;
                 } else {
-
-                    $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
-                    $id_surat = decrypt($string, $salt);
-
-                    if ($status == 1) {
-
-                        $query = mysqli_query($_config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
-                        if ($query == true) {
-                            echo '<script language="javascript">
-                                    window.location.href="?page=tsm&act=disp&id_surat='.urlencode($string).'";
-                                  </script>';
-                        }
-
-                    } elseif ($status == 2) {
-
-                        $query = mysqli_query($_config, "UPDATE tbl_surat_masuk SET status='$status' WHERE id_surat='$id_surat'");
-                        if ($query == true) {
-                            echo '<script language="javascript">
-                                    window.location.href="?page=tsm&act=disp&id_surat='.urlencode($string).'";
-                                  </script>';
-                        }
-
-                    } else {
-                        echo '<script language="javascript">
-                                window.location.href="?page=tsm&act=disp&id_surat='.urlencode($string).'";
-                              </script>';
-                    }
+                    $curr = ($pg - 1) * $limit;
                 }
-        }
 
-        $string = mysqli_real_escape_string($_config, $_REQUEST['id_surat']);
-        $id_surat = urldecode(decrypt($string, $salt));
+                $id_surat = $_REQUEST['id_surat'];
 
-        $query = mysqli_query($_config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
-        if (mysqli_num_rows($query) == 0) {
-            header("Location: ?page=tsm");
-            die();
-        }
-            while ($row = mysqli_fetch_array($query)) {
+                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE id_surat='$id_surat'");
 
-            $string = $row['id_surat'];
+                if(mysqli_num_rows($query) > 0){
+                    $no = 1;
+                    while($row = mysqli_fetch_array($query)){
 
-            if (isset($_REQUEST['arsip'])) {
-                header("location: ./");
-                die();
-            } else {
+                    if($_SESSION['id_user'] != $row['id_user'] AND $_SESSION['id_user'] != 1){
+                        echo '<script language="javascript">
+                                window.alert("ERROR! Anda tidak memiliki hak akses untuk melihat data ini");
+                                window.location.href="./admin.php?page=tsm";
+                              </script>';
+                    } else {
 
-                echo '
-                    <!-- Row Start -->
-                    <div class="row jarak-form">
-                        <div class="col 12">
-                            <a class="btn-large blue waves-effect waves-light" href="?page=tsm"><i class="material-icons">arrow_back</i>  Kembali</a>
-                        </div>';
-
-                        if ($row['status'] == 1) {
-                            echo '
-                            <div class="col 12" style="margin-top: -8px">
-                                <div class="card green lighten-5">
-                                    <div class="card-content">
-                                        <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;">                                             <i class="material-icons md-36">error_outline</i> Surat ini sudah diperiksa dan disposisi sudah dibuat
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>';
-                        } elseif ($row['status'] == 2) {
-
-                            echo '
-                            <div class="col 12" style="margin-top: -8px">
-                                <div class="card green lighten-5">
-                                    <div class="card-content">
-                                        <p class="green-text bold" style="margin: -12px 0!important;font-size: 1.6rem;"><i class="material-icons md-36">error_outline</i> Surat ini sudah diperiksa namun disposisi tidak dibuat
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>';
-                        } else {
-
-                            echo '
-                                <div class="col 12" style="margin-top: -8px">
-                                    <div class="card yellow lighten-4">
-                                        <div class="card-content">
-                                            <p class="orange-text bold" style="margin: -12px 0!important;font-size: 1.6rem;"><i class="material-icons md-36">error_outline</i> Surat ini belum diperiksa
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>';
-                            }
-                        }
-
-                        if (isset($_SESSION['succAdd'])) {
-                            $succAdd = $_SESSION['succAdd'];
-                            echo '<br/><div id="alert-message" class="row">
-                                    <div class="col m12">
-                                        <div class="card green lighten-5">
-                                            <div class="card-content notif">
-                                                <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succAdd.'</span>
+                      echo '<!-- Row Start -->
+                            <div class="row">
+                                <!-- Secondary Nav START -->
+                                <div class="col s12">
+                                    <div class="z-depth-1">
+                                        <nav class="secondary-nav">
+                                            <div class="nav-wrapper blue-grey darken-1">
+                                                <div class="col m12">
+                                                    <ul class="left">
+                                                        <li class="waves-effect waves-light hide-on-small-only"><a href="#" class="judul"><i class="material-icons">description</i> Disposisi  Surat</a></li>
+                                                        <li class="waves-effect waves-light">
+                                                            <a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=add"><i class="material-icons md-24">add_circle</i> Tambah Disposisi</a>
+                                                        </li>
+                                                        <li class="waves-effect waves-light hide-on-small-only"><a href="?page=tsm"><i class="material-icons">arrow_back</i> Kembali</a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>';
-                            unset($_SESSION['succAdd']);
-                        }
-
-                        if (isset($_SESSION['succEdit'])) {
-                            $succEdit = $_SESSION['succEdit'];
-                            echo '<br/><div id="alert-message" class="row">
-                                    <div class="col m12">
-                                        <div class="card green lighten-5">
-                                            <div class="card-content notif">
-                                                <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succEdit.'</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>';
-                            unset($_SESSION['succEdit']);
-                        }
-
-                        echo '
-                        </div>
-                        <!-- Row END -->
-
-                        <!-- Row form Start -->
-                        <div class="row" style="margin-top: -15px">';
-
-                            if ($row['status'] == 1) {
-                                echo '
-                                <div class="col l6">
-                                    <div class="card">
-                                        <div class="card-content">
-                                            <table>
-                                                <thead>
-                                                    <h5>Data surat masuk</h5><hr/>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td width="13%">No. Agenda</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['no_agenda'].'</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="13%">Kode Klasifikasi</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['kode'].'</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="13%">Indeks Berkas</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['indeks'].'</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="13%">Asal Surat</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['asal_surat'].'</td>
-                                                    </tr>
-                                                        <td width="13%">Isi Surat</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['isi'].'</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="13%">No. Surat</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['no_surat'].'</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="13%">Tanggal Surat</td>
-                                                        <td width="1%">:</td>';
-
-                                                        $y = substr($row['tgl_surat'],0,4);
-                                                        $m = substr($row['tgl_surat'],5,2);
-                                                        $d = substr($row['tgl_surat'],8,2);
-
-                                                        if ($m == "01") {
-                                                            $nm = "Januari";
-                                                        } elseif ($m == "02") {
-                                                            $nm = "Februari";
-                                                        } elseif ($m == "03") {
-                                                            $nm = "Maret";
-                                                        } elseif ($m == "04") {
-                                                            $nm = "April";
-                                                        } elseif ($m == "05") {
-                                                            $nm = "Mei";
-                                                        } elseif ($m == "06") {
-                                                            $nm = "Juni";
-                                                        } elseif ($m == "07") {
-                                                            $nm = "Juli";
-                                                        } elseif ($m == "08") {
-                                                            $nm = "Agustus";
-                                                        } elseif ($m == "09") {
-                                                            $nm = "September";
-                                                        } elseif ($m == "10") {
-                                                            $nm = "Oktober";
-                                                        } elseif ($m == "11") {
-                                                            $nm = "November";
-                                                        } elseif ($m == "12") {
-                                                            $nm = "Desember";
-                                                        }
-                                                        echo '
-
-                                                        <td width="86%">'.$d." ".$nm." ".$y.'</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="13%">File Lampiran</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">';
-                                                        if (!empty($row['file'])) {
-                                                            echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
-                                                        } else {
-                                                            echo ' Tidak ada file yang diupload';
-                                                        } echo '</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="13%">Keterangan</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['keterangan'].'</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="card-action">
-                                        </div>
+                                        </nav>
                                     </div>
                                 </div>
+                                <!-- Secondary Nav END -->
+                            </div>
+                            <!-- Row END -->
 
-                                <div class="col l6">
-                                    <div class="card">
-                                        <div class="card-content">
-                                            <table>
-                                                <thead>
-                                                    <h5>Data disposisi surat</h5><hr/>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td width="13%">Tujuan</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['tujuan'].'</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="13%">Isi Disposisi</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['isi_disposisi'].'</td>
-                                                    </tr>
-                                                        <td width="13%">Sifat</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['sifat'].'</td>
-                                                        </tr>
-                                                    <tr>
-                                                        <td width="13%">Batas Waktu</td>
-                                                        <td width="1%">:</td>';
-
-                                                        $y = substr($row['batas_waktu'],0,4);
-                                                        $m = substr($row['batas_waktu'],5,2);
-                                                        $d = substr($row['batas_waktu'],8,2);
-
-                                                        if ($m == "01") {
-                                                            $nm = "Januari";
-                                                        } elseif ($m == "02") {
-                                                            $nm = "Februari";
-                                                        } elseif ($m == "03") {
-                                                            $nm = "Maret";
-                                                        } elseif ($m == "04") {
-                                                            $nm = "April";
-                                                        } elseif ($m == "05") {
-                                                            $nm = "Mei";
-                                                        } elseif ($m == "06") {
-                                                            $nm = "Juni";
-                                                        } elseif ($m == "07") {
-                                                            $nm = "Juli";
-                                                        } elseif ($m == "08") {
-                                                            $nm = "Agustus";
-                                                        } elseif ($m == "09") {
-                                                            $nm = "September";
-                                                        } elseif ($m == "10") {
-                                                            $nm = "Oktober";
-                                                        } elseif ($m == "11") {
-                                                            $nm = "November";
-                                                        } elseif ($m == "12") {
-                                                            $nm = "Desember";
-                                                        }
-                                                        echo '
-
-                                                        <td width="86%">'.$d." ".$nm." ".$y.'</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="13%">Catatan</td>
-                                                        <td width="1%">:</td>
-                                                        <td width="86%">'.$row['catatan'].'</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    <div class="card-action">';
-
-                                    if ($_SESSION['admin'] != 2) {
-                                    echo '
-                                        <a href="?page=tsm&act=editd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">EDIT<i class="material-icons">edit</i></a>';
-                                    }
-
-                                    if (!empty($row['tujuan']) AND $_SESSION['admin'] != 2) {
-                                    echo '
-                                        <a class="btn-large yellow darken-3 waves-effect waves-light white-text" href="?page=ctk&id_surat='.urlencode(encrypt($string, $salt)).'" target="_blank">CETAK <i class="material-icons">print</i></a>';
-                                    }
-                                    echo '
-
-                                    </div>
-                                </div>
-                            </div>';
-
-                        } elseif ($row['status'] == 2) {
-
-                            echo '
+                            <!-- Perihal START -->
                             <div class="col s12">
-                                <div class="card">
+                                <div class="card blue lighten-5">
                                     <div class="card-content">
-                                        <table>
-                                            <thead>
-                                                <h5>Data surat masuk</h5><hr/>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td width="13%">No. Agenda</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['no_agenda'].'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">Kode Klasifikasi</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['kode'].'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">Indeks Berkas</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['indeks'].'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">Asal Surat</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['asal_surat'].'</td>
-                                                </tr>
-                                                    <td width="13%">Isi Surat</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['isi'].'</td>
-                                                    </tr>
-                                                <tr>
-                                                    <td width="13%">No. Surat</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['no_surat'].'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">Tanggal Surat</td>
-                                                    <td width="1%">:</td>';
-
-                                                    $y = substr($row['tgl_surat'],0,4);
-                                                    $m = substr($row['tgl_surat'],5,2);
-                                                    $d = substr($row['tgl_surat'],8,2);
-
-                                                    if ($m == "01") {
-                                                        $nm = "Januari";
-                                                    } elseif ($m == "02") {
-                                                        $nm = "Februari";
-                                                    } elseif ($m == "03") {
-                                                        $nm = "Maret";
-                                                    } elseif ($m == "04") {
-                                                        $nm = "April";
-                                                    } elseif ($m == "05") {
-                                                        $nm = "Mei";
-                                                    } elseif ($m == "06") {
-                                                        $nm = "Juni";
-                                                    } elseif ($m == "07") {
-                                                        $nm = "Juli";
-                                                    } elseif ($m == "08") {
-                                                        $nm = "Agustus";
-                                                    } elseif ($m == "09") {
-                                                        $nm = "September";
-                                                    } elseif ($m == "10") {
-                                                        $nm = "Oktober";
-                                                    } elseif ($m == "11") {
-                                                        $nm = "November";
-                                                    } elseif ($m == "12") {
-                                                        $nm = "Desember";
-                                                    }
-                                                    echo '
-
-                                                    <td width="86%">'.$d." ".$nm." ".$y.'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">File Lampiran</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">';
-                                                    if (!empty($row['file'])) {
-                                                        echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
-                                                    } else {
-                                                        echo ' Tidak ada file yang diupload';
-                                                    } echo '</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">Keterangan</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['keterangan'].'</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="card-action">';
-
-                                    if ($_SESSION['admin'] != 2) {
-                                    echo '
-                                        <a href="?page=tsm&act=addd&id_surat='.urlencode(encrypt($string, $salt)).'" class="btn-large deep-orange waves-effect waves-light white-text">BUAT DISPOSISI <i class="material-icons">edit</i></a>';
-                                    }
-                                    echo '
-
+                                        <p><p class="description">Perihal Surat:</p>'.$row['isi'].'</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                            <!-- Perihal END -->';
 
-                        } else {
+                            if(isset($_SESSION['succAdd'])){
+                                $succAdd = $_SESSION['succAdd'];
+                                echo '<div id="alert-message" class="row">
+                                        <div class="col m12">
+                                            <div class="card green lighten-5">
+                                                <div class="card-content notif">
+                                                    <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succAdd.'</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                unset($_SESSION['succAdd']);
+                            }
+                            if(isset($_SESSION['succEdit'])){
+                                $succEdit = $_SESSION['succEdit'];
+                                echo '<div id="alert-message" class="row">
+                                        <div class="col m12">
+                                            <div class="card green lighten-5">
+                                                <div class="card-content notif">
+                                                    <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succEdit.'</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                unset($_SESSION['succEdit']);
+                            }
+                            if(isset($_SESSION['succDel'])){
+                                $succDel = $_SESSION['succDel'];
+                                echo '<div id="alert-message" class="row">
+                                        <div class="col m12">
+                                            <div class="card green lighten-5">
+                                                <div class="card-content notif">
+                                                    <span class="card-title green-text"><i class="material-icons md-36">done</i> '.$succDel.'</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                unset($_SESSION['succDel']);
+                            }
 
                             echo '
-                            <div class="col s12">
-                                <div class="card">
-                                    <div class="card-content">
-                                        <table>
-                                            <thead>
-                                                <h5>Data surat masuk</h5><hr/>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td width="13%">No. Agenda</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['no_agenda'].'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">Kode Klasifikasi</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['kode'].'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">Indeks Berkas</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['indeks'].'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">Asal Surat</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['asal_surat'].'</td>
-                                                </tr>
-                                                    <td width="13%">Isi Surat</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['isi'].'</td>
-                                                    </tr>
-                                                <tr>
-                                                    <td width="13%">No. Surat</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['no_surat'].'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">Tanggal Surat</td>
-                                                    <td width="1%">:</td>';
+                            <!-- Row form Start -->
+                            <div class="row jarak-form">
 
-                                                    $y = substr($row['tgl_surat'],0,4);
-                                                    $m = substr($row['tgl_surat'],5,2);
-                                                    $d = substr($row['tgl_surat'],8,2);
+                                <div class="col m12" id="colres">
+                                    <table class="bordered" id="tbl">
+                                        <thead class="blue lighten-4" id="head">
+                                            <tr>
+                                                <th width="6%">No</th>
+                                                <th width="22%">Tujuan Disposisi</th>
+                                                <th width="32%">Isi Disposisi</th>
+                                                <th width="24%">Sifat<br/>Batas Waktu</th>
+                                                <th width="16%">Tindakan</th>
+                                            </tr>
+                                        </thead>
 
-                                                    if ($m == "01") {
+                                        <tbody>
+                                            <tr>';
+
+                                        $query2 = mysqli_query($config, "SELECT * FROM tbl_disposisi JOIN tbl_surat_masuk ON tbl_disposisi.id_surat = tbl_surat_masuk.id_surat WHERE tbl_disposisi.id_surat='$id_surat'");
+
+                                        if(mysqli_num_rows($query2) > 0){
+                                            $no = 0;
+                                            while($row = mysqli_fetch_array($query2)){
+                                            $no++;
+                                             echo ' <td>'.$no.'</td>
+                                                    <td>'.$row['tujuan'].'</td>
+                                                    <td>'.$row['isi_disposisi'].'</td>';
+
+                                                    $y = substr($row['batas_waktu'],0,4);
+                                                    $m = substr($row['batas_waktu'],5,2);
+                                                    $d = substr($row['batas_waktu'],8,2);
+
+                                                    if($m == "01"){
                                                         $nm = "Januari";
-                                                    } elseif ($m == "02") {
+                                                    } elseif($m == "02"){
                                                         $nm = "Februari";
-                                                    } elseif ($m == "03") {
+                                                    } elseif($m == "03"){
                                                         $nm = "Maret";
-                                                    } elseif ($m == "04") {
+                                                    } elseif($m == "04"){
                                                         $nm = "April";
-                                                    } elseif ($m == "05") {
+                                                    } elseif($m == "05"){
                                                         $nm = "Mei";
-                                                    } elseif ($m == "06") {
+                                                    } elseif($m == "06"){
                                                         $nm = "Juni";
-                                                    } elseif ($m == "07") {
+                                                    } elseif($m == "07"){
                                                         $nm = "Juli";
-                                                    } elseif ($m == "08") {
+                                                    } elseif($m == "08"){
                                                         $nm = "Agustus";
-                                                    } elseif ($m == "09") {
+                                                    } elseif($m == "09"){
                                                         $nm = "September";
-                                                    } elseif ($m == "10") {
+                                                    } elseif($m == "10"){
                                                         $nm = "Oktober";
-                                                    } elseif ($m == "11") {
+                                                    } elseif($m == "11"){
                                                         $nm = "November";
-                                                    } elseif ($m == "12") {
+                                                    } elseif($m == "12"){
                                                         $nm = "Desember";
                                                     }
                                                     echo '
 
-                                                    <td width="86%">'.$d." ".$nm." ".$y.'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">File Lampiran</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">';
-                                                    if (!empty($row['file'])) {
-                                                        echo ' <a class="blue-text" href="?page=gsm&act=fsm&id_surat='.urlencode(encrypt($string, $salt)).'">'.$row['file'].'</a>';
-                                                        } else {
-                                                        echo ' Tidak ada file yang diupload';
-                                                    } echo '</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="13%">Keterangan</td>
-                                                    <td width="1%">:</td>
-                                                    <td width="86%">'.$row['keterangan'].'</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="card-action">
-                                        <div class="col s12">';
-
-                                        if ($_SESSION['admin'] == 2) {
-                                        echo '
-                                            <form method="post">
-                                                <input class="with-gap" name="status" type="radio" id="setuju" value="1" required/>
-                                                <label for="setuju" style="color: #444;font-size: 1.4rem">Setujui dan buat disposisi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-
-                                                if (isset($_SESSION['status'])) {
-                                                    $status = $_SESSION['status'];
-                                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$status.'</div>';
-                                                    unset($_SESSION['status']);
-                                                }
-                                                echo '
-
-                                                <input class="with-gap" name="status" type="radio" id="arsip" value="2" required/>
-                                                <label for="arsip" style="color: #444;font-size: 1.4rem">Arsipkan saja</label></div><br/><br/><br/>
-
-                                                <button type="submit" name="simpan" class="btn-large deep-orange waves-effect waves-light white-text">SIMPAN <i class="material-icons">done</i></button>
-                                            </form>';
+                                                    <td>'.$row['sifat'].'<br/>'.$d." ".$nm." ".$y.'</td>
+                                                    <td><a class="btn small blue waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$row['id_disposisi'].'">
+                                                            <i class="material-icons">edit</i> EDIT</a>
+                                                        <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=del&id_disposisi='.$row['id_disposisi'].'"><i class="material-icons">delete</i> DEL</a>
+                                                    </td>
+                                            </tr>
+                                        </tbody>';
+                                            }
+                                        } else {
+                                            echo '<tr><td colspan="5"><center><p class="add">Tidak ada data untuk ditampilkan. <u><a href="?page=tsm&act=disp&id_surat='.$row['id_surat'].'&sub=add">Tambah data baru</a></u></p></center></td></tr>';
                                         }
-                                        echo '
-
-                                        </div>
-                                    </div>
+                                echo '</table>
                                 </div>
-                            </div>';
-                        }
-
-                        echo '
-                    </div>
-                    <!-- Row form END -->';
+                            </div>
+                            <!-- Row form END -->';
+                    }
+                }
             }
         }
+    }
 ?>

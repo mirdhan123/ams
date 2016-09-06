@@ -9,7 +9,7 @@
         if($_SESSION['admin'] != 1 AND $_SESSION['admin'] != 2){
             echo '<script language="javascript">
                     window.alert("ERROR! Anda tidak memiliki hak akses untuk membuka halaman ini");
-                    window.history.back();
+                    window.location.href="./logout.php";
                   </script>';
         } else {
 
@@ -17,19 +17,15 @@
                 $sub = $_REQUEST['sub'];
                 switch ($sub) {
                     case 'back':
-                        include "database_backup.php";
+                        include "backup.php";
                         break;
                     case 'rest':
-                        include "database_restore.php";
+                        include "restore.php";
                         break;
                     case 'usr':
                         include "user.php";
                         break;
-                    default:
-                        header("Location: ?page=sett");
-                        die();
-                        break;
-                }
+                    }
             } else {
 
                 if(isset($_REQUEST['submit'])){
@@ -42,9 +38,7 @@
                         die();
                     } else {
 
-                        $string = mysqli_real_escape_string($_config, $_REQUEST['id_instansi']);
-
-                        $id_instansi = decrypt($string, $salt);
+                        $id_instansi = "1";
                         $institusi = $_REQUEST['institusi'];
                         $nama = $_REQUEST['nama'];
                         $status = $_REQUEST['status'];
@@ -62,7 +56,7 @@
                         } else {
 
                             if(!preg_match("/^[a-zA-Z0-9. -]*$/", $institusi)){
-                                $_SESSION['institusi'] = 'Form Nama Institusi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan minus(-)';
+                                $_SESSION['institusi'] = 'Form Nama Yayasan hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan minus(-)';
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
@@ -115,14 +109,14 @@
                                                             if(in_array($eks, $ekstensi) == true){
                                                                 if($ukuran < 2000000){
 
-                                                                    $query = mysqli_query($_config, "SELECT logo FROM tbl_instansi");
+                                                                    $query = mysqli_query($config, "SELECT logo FROM tbl_instansi");
                                                                     list($logo) = mysqli_fetch_array($query);
 
                                                                     unlink($target_dir.$logo);
 
                                                                     move_uploaded_file($_FILES['logo']['tmp_name'], $target_dir.$nlogo);
 
-                                                                    $query = mysqli_query($_config, "UPDATE tbl_instansi SET institusi='$institusi', nama='$nama', status='$status', alamat='$alamat', kepsek='$kepsek', nip='$nip', website='$website', email='$email', logo='$nlogo', id_user='$id_user' WHERE id_instansi='$id_instansi'");
+                                                                    $query = mysqli_query($config, "UPDATE tbl_instansi SET institusi='$institusi',nama='$nama',status='$status',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',logo='$nlogo',id_user='$id_user' WHERE id_instansi='$id_instansi'");
 
                                                                     if($query == true){
                                                                         $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
@@ -143,7 +137,7 @@
                                                         } else {
 
                                                             //jika form logo kosong akan mengeksekusi script dibawah ini
-                                                            $query = mysqli_query($_config, "UPDATE tbl_instansi SET institusi='$institusi', nama='$nama', status='$status', alamat='$alamat', kepsek='$kepsek', nip='$nip', website='$website', email='$email', id_user='$id_user' WHERE id_instansi='$id_instansi'");
+                                                            $query = mysqli_query($config, "UPDATE tbl_instansi SET institusi='$institusi',nama='$nama',status='$status',alamat='$alamat',kepsek='$kepsek',nip='$nip',website='$website',email='$email',id_user='$id_user' WHERE id_instansi='$id_instansi'");
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data instansi berhasil diupdate';
@@ -165,7 +159,7 @@
                     }
                 } else {
 
-                    $query = mysqli_query($_config, "SELECT * FROM tbl_instansi");
+                    $query = mysqli_query($config, "SELECT * FROM tbl_instansi");
                     if(mysqli_num_rows($query) > 0){
                         $no = 1;
                         while($row = mysqli_fetch_array($query)){?>
@@ -237,10 +231,7 @@
                                 <!-- Row in form START -->
                                 <div class="row">
                                     <div class="input-field col s6">
-                                        <?php
-                                            $string = $row['id_instansi'];
-                                        ?>
-                                        <input type="hidden" value="<?php echo encrypt($string, $salt); ?>" name="id_instansi">
+                                        <input type="hidden" value="<?php echo $id_instansi; ?>" name="id_instansi">
                                         <i class="material-icons prefix md-prefix">school</i>
                                         <input id="nama" type="text" class="validate" name="nama" value="<?php echo $row['nama']; ?>" required>
                                             <?php
@@ -262,7 +253,7 @@
                                                     unset($_SESSION['institusi']);
                                                 }
                                             ?>
-                                        <label for="institusi">Nama Institusi</label>
+                                        <label for="institusi">Nama Yayasan</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">assistant_photo</i>
